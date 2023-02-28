@@ -1,0 +1,9 @@
+# General
+node_modules
+.idea
+.env
+lerna-debug.log
+**/*.bak
+**/.DS_Store
+.nyc_output
+dist
