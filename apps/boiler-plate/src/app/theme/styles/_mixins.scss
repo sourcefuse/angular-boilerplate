@@ -1,0 +1,93 @@
+@mixin padding($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  padding-top: $top  !important;
+  padding-right: $right  !important;
+  padding-bottom: $bottom  !important;
+  padding-left: $left  !important;
+}
+
+@mixin padding-left($left: 0) {
+  padding-left: $left  !important;
+}
+
+@mixin padding-right($right: 0) {
+  padding-right: $right  !important;
+}
+
+@mixin padding-top($top: 0) {
+  padding-top: $top  !important;
+}
+
+@mixin padding-bottom($bottom: 0) {
+  padding-bottom: $bottom  !important;
+}
+
+@mixin height($size) {
+  height: $size;
+}
+@mixin font-size($size) {
+  font-size: $size;
+}
+@mixin font-weight($size) {
+  font-weight: $size;
+}
+@mixin font-size($size) {
+  font-size: $size;
+}
+@mixin width($size) {
+  width: $size;
+}
+
+@mixin color-classes($colors) {
+  @each $name, $hex in $colors {
+    .color-#{$name} {
+      color: $hex;
+    }
+  }
+}
+
+@mixin font-size-classes($fonts) {
+  @each $name, $hex in $fonts {
+    .font-size-#{$name} {
+      font-size: $hex;
+    }
+  }
+}
+
+@mixin font-weight-classes($fonts) {
+  @each $name, $hex in $fonts {
+    .font-weight-#{$name} {
+      font-weight: $hex;
+    }
+  }
+}
+
+@mixin bg-classes($bgs) {
+  @each $name, $hex in $bgs {
+    .bg-#{$name} {
+      background: $hex;
+    }
+  }
+}
+@mixin margin($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  margin-top: $top  !important;
+  margin-right: $right  !important;
+  margin-bottom: $bottom  !important;
+  margin-left: $left  !important;
+}
+
+@mixin margin-left($left: 0) {
+  margin-left: $left  !important;
+}
+
+@mixin margin-right($right: 0) {
+  margin-right: $right  !important;
+}
+
+@mixin margin-top($top: 0) {
+  margin-top: $top  !important;
+}
+
+@mixin margin-bottom($bottom: 0) {
+  margin-bottom: $bottom  !important;
+}
+

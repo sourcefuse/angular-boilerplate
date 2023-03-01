@@ -1,0 +1,44 @@
+<div class="column-container pl-2" *ngIf="item">
+  <nb-icon
+    *ngIf="item.hasChildren"
+    [icon]="item.$open ? 'chevron-up' : 'chevron-down'"
+    class="expand"
+    data-gantt-click="expand"
+  ></nb-icon>
+  <div
+    *ngIf="
+      (item.isParent && showParentInitials) ||
+      (!item.isParent && showChildInitials)
+    "
+    class="employee-icon"
+    data-gantt-click="name"
+  >
+    <div>{{ item.name?.charAt(0)?.toUpperCase() }}</div>
+  </div>
+  <div
+    [ngClass]="item.subtitle ? 'with-designation' : 'without-designation'"
+    class="name-container"
+    data-gantt-click="name"
+  >
+    <div class="name">{{ item.name }}</div>
+    <div *ngIf="!item.hasChildren" class="designation">
+      {{ item.subtitle }}
+    </div>
+  </div>
+  <div
+    *ngIf="showOverallocatedIcon && item.overallocated"
+    class="overallocation_icon"
+  >
+    <div>This resource is over allocated</div>
+    <nb-icon class="icon" icon="overallocation" pack="svg-boiler"></nb-icon>
+  </div>
+  <div class="kebab-container">
+    <nb-icon
+      *ngIf="showKebab"
+      class="cursor-pointer kebab"
+      icon="kebab"
+      pack="svg-boiler"
+      data-gantt-click="kebab"
+    ></nb-icon>
+  </div>
+</div>

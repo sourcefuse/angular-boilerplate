@@ -1,0 +1,169 @@
+@use '_variables' as *;
+@use 'sass:map';
+
+.cell-background {
+  background: map.get($color, 'light') !important;
+
+  .ag-row-hover & {
+    background: map.get($color, 'grid-row-hover') !important;
+  }
+}
+
+.cell-font {
+  color: map.get($color, 'grid-text') !important;
+  font-weight: map.get($font-weight, 'light') !important;
+}
+
+.title-cell-font {
+  color: map.get($color, 'grid-text') !important;
+  font-weight: map.get($font-weight, 'bold') !important;
+}
+
+.ag-cell.border {
+  border-right: 0.063rem solid map.get($color, border-basic) !important;
+}
+
+.ag-theme-alpine {
+  font-family: var(--font-family-primary) !important;
+
+  .ag-header {
+    background: inherit;
+    border: none !important;
+    border-bottom: none !important;
+  }
+
+  .ag-root-wrapper {
+    border: none;
+    background: none;
+  }
+
+  .ag-filter-toolpanel-header,
+  .ag-filter-toolpanel-search,
+  .ag-status-bar,
+  .ag-header-row,
+  .ag-panel-title-bar-title,
+  .ag-multi-filter-group-title-bar {
+    font-weight: 600 !important;
+    color: map.get($color, 'grey') !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    font-size: var(--text-button-small-font-size) !important;
+    font-family: Montserrat, Open Sans, sans-serif;
+    line-height: 0.938rem !important;
+    letter-spacing: 0.03em !important;
+    text-align: left !important;
+  }
+
+  .ag-row {
+    font-size: var(--text-paragraph-font-size) !important;
+    letter-spacing: 0em !important;
+    text-align: left !important;
+    font-weight: 500 !important;
+  }
+
+  .ag-pinned-left-header {
+    border-right: 0.063rem solid transparent !important;
+  }
+
+  .ag-icon {
+    color: map.get($color, 'primary');
+    height: 0.625rem;
+    width: 0.444rem;
+    padding-bottom: 1.094rem;
+  }
+}
+
+.status-dot {
+  height: 0.625rem;
+  width: 0.625rem;
+  display: inline-block;
+  margin-right: 0.5rem;
+  border-radius: 100%;
+}
+
+.client-icon {
+  display: inline-block;
+  background: map.get($color, 'logo-bg');
+  color: map.get($font, 'logo-text');
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  line-height: 1rem;
+  text-align: center;
+}
+
+.tabset-grid {
+  .ag-body-viewport {
+    border: 0.063rem solid map.get($color, 'border-basic');
+  }
+}
+
+.ag-body-viewport {
+  border-radius: 0.625rem;
+  background: map.get($color, 'light');
+}
+
+.ag-root ::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  overflow-x: visible;
+}
+
+.ag-root ::-webkit-scrollbar-thumb {
+  background: map.get($color, 'grid-scrollbar-color');
+  border-radius: 1.25rem;
+  height: 13.188rem;
+}
+
+.ag-row-hover {
+  &.ag-full-width-row.ag-row-group::before,
+  &:not(.ag-full-width-row)::before {
+    background: none !important;
+  }
+}
+
+/* Hide right header and spacer */
+.ag-pinned-right-header,
+.ag-horizontal-right-spacer {
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+/* Removing border for right header */
+.ag-pinned-right-header {
+  border-left: none !important;
+}
+
+/* Add absolute position so that action buttons column will appear on top of other columns. 
+   pointer-events: none to pass on mouse events to behind columns */
+.ag-pinned-right-cols-container {
+  position: absolute !important;
+  right: 0;
+
+  & .ag-row {
+    background: none !important;
+  }
+
+  & .ag-cell {
+    /*Hide border of right-cols-container */
+    border: none !important;
+    background: linear-gradient(
+      269.92deg,
+      rgba(245, 249, 255, 0.98) 65.46%,
+      rgba(245, 249, 255, 0.735) 74.95%,
+      rgba(245, 249, 255, 0) 105.92%
+    ) !important;
+  }
+
+  /* Show action buttons only for the row that is being hovered.
+   For rows which are not being hovered, hide them by setting their width and padding to 0. */
+  & .ag-row:not(.ag-row-hover) .ag-cell {
+    width: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+// workaround to hide ag-grid header filter icon
+.ag-filter-icon {
+  display: none;
+}

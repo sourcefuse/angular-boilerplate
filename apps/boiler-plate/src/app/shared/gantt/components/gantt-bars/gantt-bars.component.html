@@ -1,0 +1,73 @@
+<ng-container *ngIf="item">
+  <ng-container
+    *ngIf="
+      item.type === allocationTypes.PlaceholderResource &&
+      !hasSubAllocation(item)
+    "
+  >
+    <div class="placeholder-bar bar">
+      <div class="placeholder_resource_hours">
+        {{ formatAllocation(item.allocation) }}
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="item.type !== allocationTypes.PlaceholderResource">
+    <div
+      class="bar actual-bar"
+      [class.with-suballocations]="hasSubAllocation(item)"
+      [class.closed-won]="item.payload?.['dealStage'] === 'closedwon'"
+      [ngClass]="item.classes ?? []"
+      data-gantt-click="bar"
+    >
+      <div
+        *ngIf="!hasSubAllocation(item) && item.allocation"
+        class="actual-hours"
+      >
+        {{ formatAllocation(item.allocation) }}
+      </div>
+      <div
+        *ngIf="!hasSubAllocation(item) && item.payload?.['billingRate']"
+        class="actual-rate"
+      >
+        {{ formatter(item.payload?.['billingRate']) }}
+      </div>
+      <div *ngIf="hasSubAllocation(item)" class="bar-container">
+        <ng-container *ngFor="let allocationBar of item.subAllocations">
+          <div
+            class="suballocation-bars"
+            [attr.gantt-bar-data]="stringify(allocationBar)"
+            gantt-hover="bar"
+            [ngClass]="allocationBar.classes ?? []"
+            [ngStyle]="{
+              width: allocationBar.percent + '%'
+            }"
+            [class.empty]="!allocationBar.allocation"
+            [class.over-allocated]="allocationBar.allocation > allocationBase"
+          >
+            <div class="actual-hours">
+              {{
+                formatAllocation(
+                  allocationBar['allocatedHours'] ?? allocationBar.allocation
+                )
+              }}
+            </div>
+            <div
+              *ngIf="allocationBar.allocation > allocationBase"
+              class="overallocated-container"
+            >
+              <div class="arrow">&#8593;</div>
+              <div class="overallocated-hours">
+                {{
+                  formatAllocation(allocationBar.allocation - allocationBase)
+                }}
+              </div>
+            </div>
+            <div class="actual-rate" *ngIf="item.payload['billingRate']">
+              {{ formatter(item.payload['billingRate']) }}
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

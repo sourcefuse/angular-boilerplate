@@ -1,0 +1,10 @@
+<nb-form-field>
+  <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+  <input
+    nbInput
+    (input)="searchChange($event)"
+    class="search-input"
+    type="text"
+    placeholder="{{ placeholder }}"
+  />
+</nb-form-field>

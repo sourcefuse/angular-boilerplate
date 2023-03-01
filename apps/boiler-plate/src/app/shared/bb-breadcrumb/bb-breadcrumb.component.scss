@@ -1,0 +1,16 @@
+.breadcrumb {
+  background: none;
+  margin: 0;
+  padding: 0rem;
+
+  li {
+    list-style: none;
+    float: left;
+    margin: 0.15rem;
+    color: #9A9A9A;
+  }
+
+li:first-child {
+    color: #555555;
+  }
+}

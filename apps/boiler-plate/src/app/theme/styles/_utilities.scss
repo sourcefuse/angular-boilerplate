@@ -1,0 +1,319 @@
+@use '_mixins' as *;
+@use '_variables' as *;
+@use 'sass:map';
+
+.p-0 {
+  @include padding();
+}
+
+.font-size-10 {
+  @include font-size(0.625rem);
+}
+
+.font-size-12 {
+  @include font-size(0.75rem);
+}
+
+.font-size-13 {
+  @include font-size(0.8125rem);
+}
+
+.font-size-14 {
+  @include font-size(0.875rem);
+}
+
+.font-size-16 {
+  @include font-size(1rem);
+}
+
+.font-size-18 {
+  @include font-size(1.125rem);
+}
+
+.font-size-24 {
+  @include font-size(1.5rem);
+}
+
+.font-weight-100 {
+  @include font-weight(100);
+}
+
+.font-weight-200 {
+  @include font-weight(200);
+}
+
+.font-weight-300 {
+  @include font-weight(300);
+}
+
+.font-weight-400 {
+  @include font-weight(400);
+}
+
+.font-weight-500 {
+  @include font-weight(500);
+}
+
+.font-weight-600 {
+  @include font-weight(600);
+}
+
+.font-weight-700 {
+  @include font-weight(700);
+}
+
+.font-weight-800 {
+  @include font-weight(800);
+}
+
+.pl-0 {
+  @include padding-left();
+}
+
+.pr-0 {
+  @include padding-right();
+}
+
+.pt-0 {
+  @include padding-top();
+}
+
+.pb-0 {
+  @include padding-bottom();
+}
+
+.pt-8 {
+  @include padding-top(8px);
+}
+
+.pl-5 {
+  @include padding-left(5px);
+}
+
+.pr-5 {
+  @include padding-right(5px);
+}
+
+.p-14 {
+  @include padding(14px, 14px, 14px, 14px);
+}
+
+.p-15 {
+  @include padding(0.9375rem, 0.9375rem, 0.9375rem, 0.9375rem);
+}
+
+.h-100 {
+  @include height(100%);
+}
+
+.h-50 {
+  @include height(50%);
+}
+
+.w-100 {
+  @include width(100%);
+}
+
+.w-50 {
+  @include width(50%);
+}
+
+.w-60 {
+  @include width(60%);
+}
+
+.mr-15 {
+  @include margin-right(0.9375rem);
+}
+
+.border-basic-bottom {
+  border-bottom: 0.063rem solid map.get($color, 'border-basic') !important;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-basic2 {
+  color: map.get($font, 'dark2');
+}
+
+.text-disable {
+  color: map.get($font, 'disable');
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.background-basic {
+  background-color: map.get($color, 'background-basic');
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+@include color-classes($color);
+@include font-size-classes($font-size);
+@include font-weight-classes($font-weight);
+
+.color-icon {
+  color: map.get($color, 'icon');
+}
+
+.color-dark {
+  color: map.get($font, 'dark');
+}
+.color-primary {
+  color: map.get($font, 'primary');
+}
+
+.color-primary-hover {
+  color: map.get($color, 'primary-hover');
+}
+
+.margin-top-11 {
+  margin-top: 0.688rem;
+}
+
+.margin-bottom-60 {
+  margin-bottom: 3.75rem;
+}
+
+.color-placeholder {
+  color: map.get($font, 'placeholder');
+}
+
+.border-radius-10 {
+  border-radius: 0.625rem !important;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.25rem;
+}
+
+.main-options {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.main-title {
+  @extend .font-size-largest;
+  @extend .color-dark;
+  @extend .font-weight-bold;
+  line-height: 29px;
+  letter-spacing: 0rem;
+  margin-bottom: 0;
+  display: inline-block;
+}
+
+.description {
+  padding-bottom: 2.688rem;
+}
+
+.icon-btn-white:not(.status-primary) {
+  background: map.get($color, 'light');
+  border-color: map.get($color, 'border-disable');
+  border-radius: var(--border-radius);
+
+  nb-icon {
+    color: map.get($font, 'primary');
+  }
+}
+
+.float-right {
+  float: right;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: #f8f8f8;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+.display-inline {
+  display: inline-block;
+}
+
+.overview-gap {
+  margin-bottom: 2.563rem;
+}
+
+.inner-search {
+  margin-top: 1.5rem;
+  align-items: center;
+  padding-bottom: 0.25rem;
+}
+
+.clip-text-with-ellipses {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+  display: inline-block;
+}
+
+.bold-blue-link {
+  color: map.get($color, 'primary');
+  font-weight: map.get($font-weight, 'bold');
+  text-decoration: none;
+}
+.dialog-label {
+  color: #464646;
+}
+
+.edit-warning-banner {
+  background-color: map.get($color, 'warning-banner');
+}
+
+.edit-warning-color {
+  color: map.get($color, 'gray20');
+}
+
+.warning-color {
+  color: map.get($color, 'warning') !important;
+}
+.button-border {
+  border: 0.063rem solid map.get($color, 'warning') !important;
+}
+.button-background {
+  background-color: map.get($color, 'warning') !important;
+}
+.warning-icon {
+  height: 5rem;
+  width: 5rem;
+  margin-top: -0.75rem;
+  margin-bottom: -1.313rem;
+  opacity: 0.1;
+}
+.warning-label {
+  line-height: 3.75rem;
+}
+.border-top {
+  border-top: 0.063rem solid map.get($color, 'warning-footer') !important;
+}
+
+.w-500 {
+  width: 31.25rem;
+  word-wrap: break-word;
+}
+.line-height {
+  line-height: initial;
+}
+.title-opacity {
+  opacity: 0.2;
+}

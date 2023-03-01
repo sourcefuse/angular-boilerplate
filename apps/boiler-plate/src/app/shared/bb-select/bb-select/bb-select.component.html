@@ -1,0 +1,8 @@
+<ng-multiselect-dropdown
+  (ngModelChange)="valueChanges($event)"
+  [ngModel]="selected"
+  [settings]="settings ?? {idField, textField}"
+  [placeholder]="settings?.placeholder ?? placeholder"
+  [data]="list"
+  class="bb-select"
+></ng-multiselect-dropdown>

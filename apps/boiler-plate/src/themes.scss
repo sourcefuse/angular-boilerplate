@@ -1,0 +1,233 @@
+@use 'sass:map';
+@use 'app/theme/styles/index' as *;
+@forward '@nebular/theme/styles/theming';
+@use '@nebular/theme/styles/theming' as *;
+@use '@nebular/theme/styles/themes/default';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('./assets/fonts/montserrat/Montserrat-Regular.otf')
+    format('opentype');
+}
+
+$nb-themes: nb-register-theme(
+  (
+    // common
+    border-radius: 0.25rem,
+
+    // Font
+    font-family-primary: 'Montserrat,Open Sans,sans-serif',
+
+    // Background related
+    background-basic-color-3: map.get($bb-color, 'background-basic'),
+    ag-header-background-color: inherit,
+
+    // Layout related
+    layout-padding: 1.25rem map.get($bb-font-size, 'large'),
+    // Header related
+    header-height: 3.25rem,
+    header-padding: map.get($bb-font-size, 'medium'),
+    header-shadow: none,
+
+    // Text related
+    text-basic-color: map.get($bb-font, 'dark'),
+    text-primary-color: map.get($bb-font, 'primary'),
+    text-hint-color: map.get($bb-font, 'placeholder'),
+    text-control-color: map.get($bb-font, 'light'),
+    text-disabled-color: map.get($bb-font, 'disable'),
+    // Text paragraphs
+    tabset-tab-text-color: map.get($bb-color, 'icon'),
+    text-primary-hover-color: map.get($bb-color, 'tab-hover'),
+    tabset-tab-disabled-text-color: map.get($bb-font, 'placeholder'),
+    text-paragraph-font-weight: map.get($bb-font-weight, 'bold'),
+    text-paragraph-2-font-weight: map.get($bb-font-weight, 'light'),
+    text-paragraph-font-size: map.get($bb-font-size, 'medium'),
+    text-button-small-font-size: map.get($bb-font-size, 'small'),
+    text-subtitle-2-font-weight: map.get($bb-font-weight, 'bold'),
+    text-paragraph-line-height: 0.914rem,
+    text-caption-line-height: 0.762rem,
+    text-caption-font-size: map.get($bb-font-size, 'small'),
+    // Headings
+    text-heading-1-font-size: 2.25rem,
+    text-heading-1-font-weight: map.get($bb-font-weight, 'light'),
+    text-heading-1-line-height: 2.75rem,
+    text-heading-2-font-size: 2rem,
+    text-heading-2-font-weight: map.get($bb-font-weight, 'light'),
+    text-heading-2-line-height: 2.5rem,
+    text-heading-3-font-size: 1.875rem,
+    text-heading-3-font-weight: map.get($bb-font-weight, 'light'),
+    text-heading-3-line-height: 2rem,
+    text-heading-4-font-size: 1.5rem,
+    text-heading-4-font-weight: map.get($bb-font-weight, 'bold'),
+    text-heading-4-line-height: 1.813rem,
+    text-heading-5-font-size: 1.25rem,
+    text-heading-5-font-weight: map.get($bb-font-weight, 'bold'),
+    text-heading-5-line-height: 1.5rem,
+
+    // Icons
+    icon-width: map.get($bb-font-size, 'large'),
+    icon-height: map.get($bb-font-size, 'large'),
+    icon-line-height: map.get($bb-font-size, 'large'),
+    // Sidebar related
+    sidebar-text-color: map.get($bb-font, 'dark2'),
+    sidebar-text-font-size: map.get($bb-font-size, 'medium'),
+    sidebar-shadow: none,
+    sidebar-width: 10.688rem,
+    sidebar-padding: map.get($bb-font-size, 'medium'),
+    sidebar-width-compact: 3.5rem,
+    // Nb-user
+    user-title-text-color: map.get($bb-font, 'light2'),
+    user-initials-text-color: map.get($bb-font, 'light2'),
+    user-picture-box-border-color: map.get($bb-font, 'placeholder'),
+    user-medium-name-text-font-size: map.get($bb-font-size, 'medium'),
+    user-name-text-color: map.get($bb-font, 'dark'),
+    user-medium-width: 1.938rem,
+    user-medium-height: 1.938rem,
+    // Nb-actions
+    actions-icon-color: map.get($bb-color, 'icon'),
+    divider-color: map.get($bb-color, 'border-basic'),
+    // Nb-menu related
+    menu-item-icon-color: map.get($bb-font, 'dark2'),
+    menu-text-font-size: map.get($bb-font-size, 'medium'),
+    menu-text-color: map.get($bb-font, 'dark2'),
+    menu-item-hover-background-color: map.get($bb-color, 'menu-item-hover'),
+    menu-item-active-background-color: map.get($bb-color, 'menu-item-active'),
+    menu-item-hover-text-color: map.get($bb-font, 'dark'),
+    menu-text-line-height: 0.898rem,
+    menu-item-divider-style: none,
+    menu-item-padding: map.get($bb-font-size, 'smallest'),
+    menu-item-border-radius: 0.188rem,
+
+    // Button related
+    button-filled-basic-background-color: map.get($bb-color, 'light'),
+    button-medium-text-font-size: map.get($bb-font-size, 'small'),
+    color-primary-default: map.get($bb-font, 'primary'),
+    color-primary-focus: map.get($bb-font, 'primary-active'),
+    color-primary-focus-border: map.get($bb-font, 'primary-active'),
+    color-primary-active: map.get($bb-font, 'primary-active'),
+    color-primary-active-border: map.get($bb-font, 'primary-active'),
+    color-primary-disabled: map.get($bb-color, 'background-disable'),
+    color-primary-disabled-border: map.get($bb-color, 'border-disable'),
+    button-outline-primary-background-color: map.get($bb-color, 'light'),
+    button-outline-primary-hover-background-color: map.get($bb-color, 'light'),
+    button-outline-primary-active-background-color: map.get($bb-color, 'light'),
+    button-outline-primary-focus-background-color: map.get($bb-color, 'light'),
+    button-outline-danger-background-color: map.get($bb-color, 'light'),
+    button-outline-danger-hover-background-color: map.get($bb-color, 'light'),
+    button-outline-danger-active-background-color: map.get($bb-color, 'light'),
+    button-outline-danger-focus-background-color: map.get($bb-color, 'light'),
+    button-outline-text-transform: none,
+    button-outline-medium-padding: map.get($bb-padding, 'large') 0.914rem,
+    button-filled-basic-hover-background-color: map.get($bb-color, 'light'),
+    button-filled-basic-active-background-color: map.get($bb-color, 'light'),
+    button-filled-basic-focus-background-color: map.get($bb-color, 'light'),
+    button-filled-basic-border-color: map.get($bb-color, 'input-border-basic'),
+    button-filled-basic-active-border-color: map.get($bb-color, 'primary-focus'),
+    button-filled-basic-focus-border-color: map.get($bb-color, 'primary-focus'),
+    button-filled-medium-padding: map.get($bb-padding, 'large') 0.914rem,
+    button-filled-basic-hover-border-color:
+      map.get($bb-color, 'input-border-basic-hover'),
+    button-medium-text-line-height: map.get($bb-font-size, 'medium'),
+    button-medium-icon-size: 0.688rem,
+    button-medium-icon-offset: 0.125rem,
+    button-filled-text-transform: none,
+    button-filled-primary-border-color: none,
+
+    // route tabset
+    route-tabset-tab-underline-width: 0.125rem,
+    route-tabset-tab-padding: map.get($bb-font-size, 'largest') 1.5rem,
+    route-tabset-tab-underline-width-cover:
+      calc(100% - map.get($bb-font-size, 'large')),
+    route-tabset-tab-underline-left-position: map.get($bb-font-size, 'smallest'),
+    route-tabset-tab-underline-bottom-position: 0,
+    route-tabset-tab-text-transform: capitalize,
+    route-tabset-tab-text-font-size: map.get($bb-font-size, 'medium'),
+    route-tabset-tab-text-font-weight: map.get($bb-font-weight, 'light'),
+    // select backgrounds
+    select-outline-basic-background-color: map.get($bb-color, 'card'),
+    select-medium-placeholder-text-color: map.get($bb-font, 'placeholder'),
+    select-outline-basic-open-border-color: map.get($bb-color, 'primary'),
+    select-outline-basic-adjacent-border-color: map.get($bb-color, 'primary'),
+    select-outline-basic-icon-color: map.get($bb-color, 'dark'),
+    text-button-medium-font-size: map.get($bb-font-size, 'small'),
+    // input
+    input-basic-background-color: map.get($bb-color, 'light'),
+    input-basic-hover-background-color-disabled:
+      map.get($bb-color, 'background-basic'),
+    input-basic-text-color-disabled: map.get($bb-font, 'disable'),
+    input-basic-focus-background-color: map.get($bb-color, 'light'),
+    input-basic-hover-background-color: map.get($bb-color, 'light'),
+    input-medium-placeholder-text-font-size: 0.8125rem,
+    input-medium-text-font-size: 0.8125rem,
+    input-medium-text-line-height: map.get($bb-font-size, 'largest'),
+    input-medium-padding: map.get($bb-padding, 'large') 1rem,
+    input-medium-max-width: 15.5rem,
+    background-basic-color-2: map.get($bb-font, 'light'),
+    border-basic-color-4: map.get($bb-color, 'input-border-basic'),
+    input-basic-hover-border-color: map.get($bb-color, 'input-border-basic'),
+    input-basic-hover-border-color-disabled:
+      map.get($bb-color, 'background-basic'),
+    color-primary-default-border: map.get($bb-font, 'primary-hover'),
+    input-basic-disabled-background-color:
+      map.get($bb-color, 'background-basic'),
+    select-outline-basic-border-color: map.get($bb-color, 'input-border-basic'),
+    select-outline-basic-disabled-background-color:
+      map.get($bb-color, 'background-basic'),
+    // form field
+    form-field-addon-medium-height: 1.875rem,
+    // card
+    card-border-radius: 0.625rem,
+
+    bb-select-shadow: 0px 0.938rem 1.25rem rgba(0, 0, 0, 0.16),
+    bb-select-border: 0.063rem solid
+      map.get($bb-color, 'select-dropdown-border'),
+    bb-select-checkbox-border: 0.125rem solid map.get($bb-color, 'primary'),
+    bb-select-checkbox-padding: 0.688rem 0.75rem,
+    bb-select-checkbox-hover-border: 0.125rem solid
+      map.get($bb-color, 'primary'),
+    bb-select-item-text-color: map.get($bb-color, 'dark'),
+    bb-select-checkbox-width: 0.875rem,
+    bb-select-checkbox-height: 0.875rem,
+    bb-select-checkbox-margin-top: -0.563rem,
+    bb-select-caret-size: 1.675rem,
+    bb-select-input-btn-padding: 0.36rem 0.75rem,
+    bb-select-line-height: 1.728571,
+    bb-select-placeholder-font-color: var(--input-basic-placeholder-text-color),
+    bb-select-placeholder-font-weight:
+      var(--input-medium-placeholder-text-font-weight),
+    bb-select-font-weight: var(--input-medium-text-font-weight),
+    select-medium-text-line-height: 1.25rem,
+    select-medium-text-font-size: 0.8125rem,
+    option-medium-text-font-size: 0.8125rem,
+
+    //toggle related
+    toggle-height: 1rem,
+    toggle-width: 2rem,
+    toggle-switcher-size: 0.875rem,
+    toggle-switcher-icon-size: 0rem,
+    // unchecked toggle backgrounds
+    toggle-basic-background-color: map.get($bb-color, 'grey'),
+    toggle-basic-hover-background-color: map.get($bb-color, 'grey'),
+    toggle-basic-focus-background-color: map.get($bb-color, 'grey'),
+    // checked toggle backgrounds
+    toggle-basic-checked-background-color:
+      map.get($bb-color, 'toggle-background'),
+    toggle-basic-hover-checked-background-color:
+      map.get($bb-color, 'toggle-background'),
+    toggle-basic-focus-checked-background-color:
+      map.get($bb-color, 'toggle-background'),
+    // unchecked toggle border
+    toggle-basic-border-color: map.get($bb-color, 'grey'),
+    toggle-basic-hover-border-color: map.get($bb-color, 'grey'),
+    toggle-basic-focus-border-color: map.get($bb-color, 'grey'),
+    // checked toggle border
+    toggle-basic-checked-border-color: map.get($bb-color, 'toggle-background'),
+    toggle-basic-hover-checked-border-color:
+      map.get($bb-color, 'toggle-background'),
+    toggle-basic-focus-checked-border-color:
+      map.get($bb-color, 'toggle-background'),
+    toggle-outline-width: 0rem
+  ),
+  boiler,
+  default
+);

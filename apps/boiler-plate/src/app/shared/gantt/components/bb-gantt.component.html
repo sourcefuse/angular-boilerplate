@@ -1,0 +1,14 @@
+<div class="gantt-container">
+  <div
+    [ngClass]="showBorder ? 'gantt-chart' : 'gantt-chart no-border'"
+    [class.no-grid-border]="!showGridBorder"
+    [class.no-child-indent]="!childIndent"
+    #gantt
+  ></div>
+</div>
+
+<ng-template #menu let-item="item" let-contextItems="contextItems">
+  <div class="gantt-menu">
+    <nb-menu [items]="contextItems" [tag]="item"></nb-menu>
+  </div>
+</ng-template>

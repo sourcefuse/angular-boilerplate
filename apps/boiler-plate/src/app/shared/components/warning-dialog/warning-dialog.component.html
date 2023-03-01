@@ -1,0 +1,39 @@
+<nb-card>
+  <nb-card-header
+    class="font-weight-600 mt-2 warning-color font-size-24 border"
+  >
+    <span class="warning-label">{{ 'warningLbl' | translate }}</span>
+    <nb-icon
+      class="float-right cursor-pointer warning-icon"
+      icon="alert-triangle-outline"
+    >
+    </nb-icon>
+  </nb-card-header>
+  <nb-card-body class="pt-0">
+    <p class="font-size-16 font-weight-500 line-height w-500">
+      {{ warningMessageLbl | translate }}
+    </p>
+    <p class="font-size-16 font-weight-600">
+      {{ confirmationLbl | translate }}
+    </p>
+  </nb-card-body>
+  <nb-card-footer class="border-top">
+    <button
+      class="float-right ml-1 button-background"
+      type="submit"
+      nbButton
+      status="primary"
+      (click)="onYes()"
+    >
+      {{ 'yes' | translate }}
+    </button>
+    <button
+      class="float-right button-border warning-color"
+      type="submit"
+      nbButton
+      (click)="onNo()"
+    >
+      {{ 'no' | translate }}
+    </button>
+  </nb-card-footer>
+</nb-card>
