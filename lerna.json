@@ -1,5 +1,5 @@
 {
-  "packages": [],
+  "packages": ["apps/boiler-plate"],
   "command": {
     "bootstrap": {
       "concurrency": 4,

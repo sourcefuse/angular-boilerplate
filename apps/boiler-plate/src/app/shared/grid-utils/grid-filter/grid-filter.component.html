@@ -1,0 +1,32 @@
+<nb-card *ngIf="formGroup" class="card-container">
+  <nb-icon
+    icon="close-outline"
+    class="close-btn"
+    (click)="clear(); close()"
+  ></nb-icon>
+  <nb-card-body [formGroup]="formGroup" class="overflow-visible">
+    <div class="filter-input-container" *ngFor="let column of options.columns">
+      <div class="filter-label">{{ column.name }}</div>
+      <ng-container [ngSwitch]="column.type">
+        <ng-container *ngSwitchCase="types.MultiSelectList">
+          <boiler-select
+            [formControlName]="asString(column.field)"
+            [list]="column.options"
+            [settings]="{
+              idField: column.optionKeys.value,
+              textField: column.optionKeys.name,
+              singleSelection: false,
+              placeholder: column.name,
+              itemsShowLimit: 1
+            }"
+          ></boiler-select>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="filter-button-container">
+      <button nbButton class="clear-btn blue-text" (click)="clear()">
+        Clear All
+      </button>
+    </div>
+  </nb-card-body>
+</nb-card>

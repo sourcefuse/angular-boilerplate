@@ -1,0 +1,93 @@
+$font: (
+  'dark': #191a1b,
+  'dark2': #404040,
+  'primary': #1a69df,
+  'primary-active': #124798,
+  'primary-hover': #1658bb,
+  'light': #fff,
+  'light2': #838383,
+  'light3': #4b4b4b,
+  'light4': #b1b1b1,
+  'placeholder': #9a9a9a,
+  'disable': #838383,
+  'logo-text': #35ab38,
+) !default;
+
+$color: (
+  'light': #ffffff,
+  'background-basic': #f8f8f8,
+  'background-disable': #dfdfdf,
+  'border-basic': #ebebeb,
+  'border-disable': #dfdfdf,
+  'icon': #555555,
+  'menu-item-active': #edf3fd,
+  'menu-item-hover': #f8f8f8,
+  'tab-hover': #222222,
+  'select-dropdown-border': #f5f5f5,
+  'input-border-basic': #e6e6e6,
+  'logo-bg': #c5ffd4,
+  'grey': #838383,
+  'grid-text': #191a1b,
+  'grid-row-hover': #f5f9ff,
+  'input-border-basic-hover': #9a9a9a,
+  'primary': #1a69df,
+  'primary-active': #1a69df,
+  'primary-hover': #9a9a9a,
+  'primary-focused': #1658bb,
+  'dark': #191a1b,
+  'toggle-background': #0469e3,
+  'warning': #bf2600,
+  'gray20': #333333,
+  'warning-banner': #fff0f0,
+  'warning-footer': #f5cdc4,
+  'overallocated': #df0101,
+  'primary-label-background': #fff0b3,
+  'overallocated-gantt-border': 'f6222e1a',
+  'overallocated-resource-gantt-text': '#e73d3d',
+  'actual-resource-gantt-text': #006497,
+  'actual-resource-gantt-lines': #cde3ff,
+  'actual-resource-gantt-background': #ebf7fe,
+  'placeholder-resource-gantt-background': #f7f7f7,
+  'placeholder-resource-gantt-lines': #cbcbcb,
+  'gantt-lines': #e5e5e5,
+  'currency-tags': #464646,
+  'opendialogspan': #1a69df,
+  'warning-separator': #d1d1d1,
+  'gantt-subtitle': #8f8f8f,
+  'grid-scrollbar-color': #dedede,
+  'gantt-parent-bar': #e3fcef,
+  'gantt-parent-bar-border': #baefd4,
+) !default;
+
+$font-size: (
+  //8px
+  smallest: 0.5rem,
+  // 10px
+  small: 0.625rem,
+  // 12px
+  medium: 0.75rem,
+  // 14px
+  default: 0.875rem,
+  // 16px
+  large: 1rem,
+  // 18px
+  largest: 1.125rem
+);
+
+$font-weight: (
+  200: 200,
+  lightest: 300,
+  lighter: 400,
+  light: 500,
+  bold: 600,
+  bolder: 700,
+  boldest: 800,
+);
+
+$padding: (
+  small: 0.125rem,
+  medium: 0.25rem,
+  large: 0.5rem,
+);
+
+$main-font-family: Montserrat, Open Sans, sans-serif;

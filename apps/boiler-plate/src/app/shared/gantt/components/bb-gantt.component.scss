@@ -1,0 +1,14 @@
+@use 'sass:map';
+@import '../../../theme/styles/_variables';
+
+.gantt-container {
+  position: relative;
+  border-top: 0.063rem solid map.get($color, gantt-lines);
+  height: 100%;
+}
+
+.gantt-menu {
+  background-color: map.get($color, light);
+  box-shadow: 0px 0.938rem 1.25rem 0px #00000029;
+  width: 11.75rem;
+}

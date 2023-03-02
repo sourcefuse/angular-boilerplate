@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use '../theme/styles/variables.scss' as *;
+@use '@nebular/theme/styles/theming' as *;
+
+@include nb-install-component() {
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
+    user-select: none;
+  }
+
+  .footer {
+    font-size: 0.625rem;
+    white-space: nowrap;
+    transition: width 0.3s;
+    overflow: hidden;
+
+    .footer-links {
+      text-decoration: none;
+    }
+
+    .footer-divider {
+      border-left: 0.063rem solid #1a69df;
+    }
+  }
+
+  nb-action {
+    height: auto;
+    display: flex;
+    align-content: center;
+  }
+
+  nb-user {
+    cursor: pointer;
+  }
+
+  nb-sidebar {
+    z-index: 1038;
+    border-right: 0.063rem solid map.get($color, 'border-basic');
+    border-top: 0.063rem solid map.get($color, 'border-basic');
+
+    nb-sidebar-footer {
+      border-top: 0.063rem solid map.get($color, 'border-basic');
+    }
+
+    nb-menu {
+      margin: 0 !important;
+    }
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+
+    .menu-icon {
+      margin-left: 0.625rem;
+    }
+
+    .logo {
+      padding: 0 1.25rem;
+      padding-left: 0.625rem;
+      font-size: 1.75rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<nb-layout>
+  <nb-layout-header fixed class="border-basic-bottom">
+    <div class="nav-container">
+      <div class="header-container">
+        <div class="logo-container">
+          <nb-icon
+            icon="menu-outline"
+            class="cursor-pointer menu-icon"
+            (click)="toggle()"
+          ></nb-icon>
+          <a class="logo" href="javascript:void(0)" (click)="navigateHome()">
+            <img src="" alt="logo" />
+          </a>
+        </div>
+      </div>
+
+      <div class="header-container">
+        <nb-actions size="small">
+          <nb-action class="control-item" icon="bell-outline"></nb-action>
+          <nb-action class="user-action">
+            <nb-user
+              [nbContextMenu]="userMenu"
+              nbContextMenuTag="userMenu"
+              [name]="loggedInUserDM.fullName"
+              [picture]="loggedInUserDM.photo ?? ''"
+              [title]="loggedInUserDM.role ?? 'Admin'"
+            >
+            </nb-user>
+          </nb-action>
+        </nb-actions>
+      </div>
+    </div>
+  </nb-layout-header>
+  <nb-sidebar>
+    <nb-menu [items]="menu"></nb-menu>
+    <nb-sidebar-footer
+      class="footer"
+      [ngStyle]="{visibility: toggleFooter ? 'hidden' : 'visible'}"
+    >
+      <nb-actions>
+        <nb-action class="pl-0 pr-5 footer-action">
+          <a class="footer-links" href="javascript:void(0)">Privacy</a>
+        </nb-action>
+        <nb-action class="pr-0 pl-5 footer-divider footer-action">
+          <a class="footer-links" href="javascript:void(0)"
+            >Terms & conditions</a
+          >
+        </nb-action>
+      </nb-actions>
+      © 2023 Boiler Plate
+    </nb-sidebar-footer>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet class="main-router"></router-outlet>
+  </nb-layout-column>
+</nb-layout>

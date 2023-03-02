@@ -1,0 +1,153 @@
+@use 'sass:map';
+@use '../../../../theme/styles/variables' as *;
+
+.actual-rate {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem !important;
+  background: map.get($color, light);
+  font-weight: map.get($font-weight, bold);
+  color: map.get($color, actual-resource-gantt-text);
+  font-size: map.get($font-size, medium);
+  line-height: 1;
+  margin-right: 0.75rem;
+}
+
+.bar-container {
+  display: flex;
+  flex-grow: 1;
+  background: white;
+}
+
+.bar {
+  font-family: var(--font-family-primary);
+  font-weight: map.get($font-weight, bold);
+  font-size: map.get($font-size, default);
+  color: map.get($color, dark);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+
+  &.actual-bar {
+    background: repeating-linear-gradient(
+      305deg,
+      map.get($color, actual-resource-gantt-lines),
+      map.get($color, actual-resource-gantt-lines) 0.063rem,
+      map.get($color, actual-resource-gantt-background) 0.063rem,
+      map.get($color, actual-resource-gantt-background) 0.5rem
+    );
+    border: 0.063rem solid map.get($color, actual-resource-gantt-lines);
+    &.closed-won {
+      background-color: map.get(
+        $color,
+        actual-resource-gantt-background
+      ) !important;
+    }
+    &.with-suballocations {
+      padding: 0;
+      border: none;
+      overflow: visible;
+    }
+
+    color: map.get($color, actual-resource-gantt-text);
+  }
+  &.placeholder-bar {
+    background: repeating-linear-gradient(
+      305deg,
+      map.get($color, placeholder-resource-gantt-lines),
+      map.get($color, placeholder-resource-gantt-lines) 0.063rem,
+      map.get($color, placeholder-resource-gantt-background) 0.063rem,
+      map.get($color, placeholder-resource-gantt-background) 0.5rem
+    );
+    border: 0.063rem solid map.get($color, placeholder-resource-gantt-lines);
+    .placeholder_resource_hours {
+      margin-left: 0.75rem;
+    }
+  }
+}
+.suballocation-bars {
+  width: 100%;
+  font-family: var(--font-family-primary);
+  font-weight: map.get($font-weight, bold);
+  font-size: map.get($font-size, default);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+
+  background: repeating-linear-gradient(
+    305deg,
+    map.get($color, actual-resource-gantt-lines),
+    map.get($color, actual-resource-gantt-lines) 0.063rem,
+    map.get($color, actual-resource-gantt-background) 0.063rem,
+    map.get($color, actual-resource-gantt-background) 0.5rem
+  );
+  border: 0.063rem solid map.get($color, actual-resource-gantt-lines);
+
+  color: map.get($color, actual-resource-gantt-text);
+}
+
+.actual-hours {
+  margin-left: 0.75rem;
+}
+
+.parent-bar {
+  background: map.get($color, light);
+  border: none;
+  border-radius: 0.5rem;
+  text-align: left;
+
+  & .actual-hours {
+    color: black;
+  }
+  &.filled-parent-bar {
+    background: map.get($color, gantt-parent-bar);
+    border: 0.063rem solid map.get($color, gantt-parent-bar-border);
+  }
+
+  .gantt_split_parent {
+    opacity: 1;
+    display: none;
+  }
+}
+.parent-allocations-container {
+  width: 100%;
+}
+
+.parent-allocation-bar {
+  padding: 0;
+  border: 0;
+  overflow: visible;
+}
+
+.arrow {
+  font-size: map.get($font-size, large);
+  font-weight: map.get($font-weight, light);
+  vertical-align: middle;
+}
+
+.over-allocated {
+  background: map.get($color, warning-banner) !important;
+  border: 0.063rem solid map.get($color, overallocated-gantt-border) !important;
+  .actual-hours {
+    color: map.get($color, overallocated);
+  }
+  .actual-rate {
+    color: map.get($color, overallocated);
+  }
+}
+
+.overallocated-container {
+  display: flex;
+  color: map.get($color, warning);
+  margin: 0rem 0.438rem;
+  font-size: map.get($font-size, small);
+}
+
+.empty {
+  visibility: hidden;
+}

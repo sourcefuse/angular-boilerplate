@@ -1,0 +1,22 @@
+<div class="header-container">
+  <div class="search-bar">
+    <nb-form-field class="gantt-search" *ngIf="showSearch">
+      <nb-icon nbPrefix icon="search-outline"></nb-icon>
+      <input type="text" placeholder="{{ searchPlaceholder }}" nbInput />
+    </nb-form-field>
+    <nb-icon *ngIf="showSearch" icon="menu-arrow-outline"></nb-icon>
+  </div>
+  <div class="title-bar">
+    <div class="title">{{ name }}</div>
+    <div class="sort" data-gantt-click="sort">
+      <nb-icon
+        icon="chevron-up-outline"
+        [status]="desc === true ? 'primary' : 'default'"
+      ></nb-icon>
+      <nb-icon
+        icon="chevron-down-outline"
+        [status]="desc === false ? 'primary' : 'default'"
+      ></nb-icon>
+    </div>
+  </div>
+</div>

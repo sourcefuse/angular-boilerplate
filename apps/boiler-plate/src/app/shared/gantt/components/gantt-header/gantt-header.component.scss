@@ -1,0 +1,51 @@
+@use '../../../../theme/styles/variables' as *;
+@use 'sass:map';
+.header-container {
+  line-height: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .search-bar {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    border-bottom: 0.063rem solid map.get($color, gantt-lines);
+    nb-form-field {
+      flex-grow: 1;
+    }
+    nb-icon[icon='menu-arrow-outline'] {
+      height: 100%;
+      margin: 0 1rem;
+      cursor: pointer;
+      color: map.get($color, currency-tags);
+      width: 1.059rem;
+      left: 20.83%;
+      right: 8.33%;
+      top: 20.83%;
+      bottom: 70.83%;
+    }
+  }
+  .title-bar {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    font-family: $main-font-family;
+    font-size: map.get($font-size, small);
+    padding: 0 1rem;
+    text-transform: uppercase;
+    .sort {
+      padding: 0 0.3rem;
+      display: flex;
+      flex-direction: column;
+      & > nb-icon {
+        cursor: pointer;
+        margin: -0.313rem;
+      }
+    }
+  }
+
+  nb-form-field nb-icon {
+    color: map.get($color, icon);
+  }
+}

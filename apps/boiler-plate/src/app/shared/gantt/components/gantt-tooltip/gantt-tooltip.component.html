@@ -1,0 +1,41 @@
+<div class="gantt-tooltip" gantt-hover="tooltip" *ngIf="item">
+  <div class="key">
+    <div>Start Date</div>
+    <div *ngIf="item.startDate">
+      {{ formatDate(item.startDate) | date : 'dd/MM/YYYY' }}
+    </div>
+  </div>
+  <div class="key">
+    <div>End Date</div>
+    <div *ngIf="item.endDate">
+      {{ formatDate(item.endDate) | date : 'dd/MM/YYYY' }}
+    </div>
+  </div>
+  <div class="key">
+    <div>Hourly Rate Charged</div>
+    <div>{{ formatter(item.billingRate!) }}</div>
+  </div>
+  <div class="key">
+    <div>Allocated Hours</div>
+    <div>{{ formatAllocation(item.allocatedHours) }}</div>
+  </div>
+  <hr />
+  <div class="key">
+    <div>{{ 'currentAllocationsLbl' | translate }}</div>
+    <div [ngClass]="item.allocation > maxAllocation ? 'over-allocated' : ''">
+      <div *ngIf="item.allocation > maxAllocation">
+        <span class="arrow">&#8593;</span>
+        <span class="overallocated-hours">
+          {{ formatAllocation(item.allocation - maxAllocation) }}
+        </span>
+      </div>
+      <div>
+        {{ formatAllocation(item.allocation) }}
+      </div>
+    </div>
+  </div>
+  <div class="key" *ngFor="let deal of item.allotedDeals">
+    <div class="deal-name">{{ deal.name }}</div>
+    <div>{{ formatAllocation(deal.allocatedHours) }}</div>
+  </div>
+</div>

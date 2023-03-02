@@ -1,0 +1,28 @@
+.filter-input-container,
+.filter-button-container {
+  display: inline-block;
+  font-size: 1rem;
+  margin: 0.5rem;
+}
+
+.filter-input-container {
+  width: 15.5rem;
+  &:hover {
+    .filter-label {
+      color: var(--text-primary-color);
+    }
+  }
+}
+
+.filter-label {
+  font-size: var(--input-medium-text-font-size);
+  padding-bottom: 0.625rem;
+}
+
+.blue-text.clear-btn {
+  color: var(--text-primary-color);
+}
+
+.card-container {
+  position: relative;
+}

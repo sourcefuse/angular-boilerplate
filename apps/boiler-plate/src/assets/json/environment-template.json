@@ -1,0 +1,8 @@
+{
+    "baseApiUrl": "${BASE_API_URL}",
+    "clientId": "${CLIENT_ID}",
+    "publicKey": "${CLIENT_SECRET}",
+    "cspApiUrl": "${CSP_API_URL}",
+    "authServiceUrl": "${AUTH_SERVICE_URL}",
+    "userServiceUrl": "${USER_SERVICE_URL}"
+}

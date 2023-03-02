@@ -1,0 +1,67 @@
+<nz-select
+  nzMode="multiple"
+  [nzMaxTagCount]="getVisibleCount()"
+  nzPlaceHolder="Please select"
+  [nzMaxTagPlaceholder]="tagPlaceHolder"
+  [(ngModel)]="listOfSelectedValue"
+  [nzDropdownRender]="renderTemplate1"
+  [nzCustomTemplate]="defaultTemplate"
+  nzId="skillSearch"
+  (ngModelChange)="selectOptionOnModelChange($event)"
+  [nzServerSearch]="true"
+>
+  <nz-option
+    *ngFor="let option of listOfOption"
+    nzCustomContent
+    [nzLabel]="option.label"
+    [nzValue]="option.value"
+  >
+    <label
+      nz-checkbox
+      [ngModel]="
+        listOfSelectedValue.indexOf(option.value) !== -1 ? true : false
+      "
+      nzValue="option.value"
+      (ngModelChange)="selectOption($event, option.value, option.label)"
+      style="width: 100%"
+      >{{ option.label }}</label
+    >
+  </nz-option>
+</nz-select>
+<ng-template #tagPlaceHolder let-selectedList>
+  <a nz-dropdown [nzDropdownMenu]="menu"> + {{ selectedList.length }} </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="multiselExtraElmDiv">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item *ngFor="let menuItem of moreSelectedOptions">
+          {{ menuItem.label }}
+          <span
+            class="multiselectSpan"
+            (click)="selectOption(false, menuItem.value, menuItem.label)"
+            >x</span
+          >
+        </li>
+      </ul>
+    </div>
+  </nz-dropdown-menu>
+</ng-template>
+
+<ng-template #renderTemplate1>
+  <div class="container">
+    <input
+      type="text"
+      placeholder="Search"
+      (keyup)="onSearch($event)"
+      #inputElement
+      nbInput
+      fullWidth
+    />
+  </div>
+</ng-template>
+
+<ng-template #defaultTemplate let-selected>
+  <div class="ant-select-selection-item-content" id="{{ selected.nzValue }}">
+    <span nz-icon></span>
+    {{ selected.nzLabel }}
+  </div>
+</ng-template>

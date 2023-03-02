@@ -28,7 +28,7 @@ const scopes = [
   {name: 'ci-cd'},
   {name: 'core'},
   {name: 'styles'},
-  {name: 'auth'},
+  {name: 'angular-boiler-plate'},
   {name: 'theme'},
   {name: 'shared'},
 ];

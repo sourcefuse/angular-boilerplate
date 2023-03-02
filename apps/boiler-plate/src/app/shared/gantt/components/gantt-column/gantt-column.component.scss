@@ -1,0 +1,115 @@
+@use '../../../../theme/styles/variables' as *;
+@use 'sass:map';
+.column-container {
+  .kebab-container {
+    position: absolute;
+    background: linear-gradient(
+      269.92deg,
+      rgba(253, 254, 255, 0.98) 55.46%,
+      rgba(253, 254, 255, 0.735) 74.95%,
+      rgba(253, 254, 255, 0) 105.92%
+    );
+    right: 2%;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    height: 100%;
+    .kebab {
+      padding: 0 2rem;
+    }
+  }
+  &:hover,
+  &.active {
+    .kebab-container {
+      opacity: 1;
+    }
+  }
+
+  .expand {
+    height: 100%;
+    margin: 0 0.5rem;
+  }
+
+  .employee-icon {
+    min-width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 50%;
+    background: map.get($color, 'menu-item-active');
+    color: map.get($font, 'primary');
+    display: flex;
+    margin: auto 0rem;
+    line-height: 2.175rem;
+    & > div {
+      margin: auto;
+    }
+  }
+  .with-designation {
+    overflow: hidden;
+    flex-grow: 1;
+    height: 2.175rem;
+    margin: auto 0rem;
+    line-height: 1;
+    padding: 0 1.102rem;
+    font-size: map.get($font-size, default);
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    max-width: 60%;
+    & > .name {
+      font-weight: map.get($font-weight, light);
+      cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    & > .designation {
+      font-weight: map.get($font-weight, light);
+      color: map.get($color, gantt-subtitle);
+      font-size: map.get($font-size, medium);
+      line-height: 1rem;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .without-designation {
+    overflow: hidden;
+    flex-grow: 1;
+    height: 2.175rem;
+    margin: auto;
+    line-height: 2;
+    padding: 0 0.2rem;
+    font-size: map.get($font-size, default);
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    & > .name {
+      font-weight: map.get($font-weight, bold);
+    }
+  }
+
+  .overallocation_icon {
+    position: absolute;
+    right: 20%;
+    & > .icon {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+
+  .overallocation_icon div {
+    display: none;
+    background-color: map.get($color, black-color) !important;
+    color: map.get($font, light);
+    border-radius: 0.5rem;
+    position: absolute;
+    z-index: 1;
+    font-size: 0.75rem;
+    right: -4.063rem;
+    top: -0.313rem;
+  }
+  .overallocation_icon:hover div {
+    display: flex;
+    line-height: 1;
+    padding: 0.75rem 1rem;
+  }
+}

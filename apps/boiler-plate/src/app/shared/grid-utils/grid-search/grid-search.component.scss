@@ -1,0 +1,9 @@
+@use '../../../theme/styles/variables' as *;
+@use 'sass:map';
+.search-input {
+  width: 15.5rem;
+  line-height: map.get($font-size, 'medium');
+  font-size:map.get($font-size, 'medium');
+  padding-top: 0.406rem;
+  padding-bottom: 0.406rem;
+}
