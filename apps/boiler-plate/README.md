@@ -30,7 +30,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Angular-BoilerPlate
 
-# Overview
+# Description
 
 This boilerplate project is a project set up that can be easily altered to create new projects. The user is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
 
@@ -87,9 +87,9 @@ feature/: This directory contains feature-specific components, services, and mod
 
 authComponent: this component authenticates the user and receives an access token from Auth
 
-loginComponent The login component uses the authentication service to login to the application. If the user is already logged in they are automatically redirected to the home page.
+loginComponent: The login component uses the authentication service to login to the application. If the user is already logged in they are automatically redirected to the home page.
 
-homeComponent The home page shows the content what is exactly going into the project
+homeComponent: The home page shows the content what is exactly going into the project
 
 # Usage
 
