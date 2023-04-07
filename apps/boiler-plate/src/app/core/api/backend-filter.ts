@@ -100,8 +100,3 @@ export interface BackendFilter<MT extends object = AnyObject> {
    */
   include?: Inclusion[];
 }
-
-export interface BackendFilterWithPermissions<T extends object = AnyObject>
-  extends BackendFilter<T> {
-  permissions?: PermissionKey[];
-}

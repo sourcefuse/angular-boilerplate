@@ -8,8 +8,7 @@ import {HttpObserve} from '../types';
 import {ICommand} from './i-command';
 
 export abstract class PostAPICommand<T extends Partial<R>, R = T>
-  implements ICommand
-{
+  implements ICommand {
   constructor(
     protected readonly apiService: IApiService,
     protected readonly adapter: IAdapter<T, R>,
@@ -24,7 +23,7 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
     reportProgress?: boolean;
   };
 
-  execute(): Observable<T> {
+  execute(): Observable<R> {
     if (!this.parameters) {
       throwError(() => new Error(`Parameters missing for POST ${this.uri}`));
     }

@@ -18,7 +18,7 @@ export abstract class GetListAPICommand<T, R = T> implements ICommand {
     headers?: HttpHeaders;
   };
 
-  execute(): Observable<T[]> {
+  execute(): Observable<R[]> {
     // tslint:disable-next-line:rule no-any
     const options: any = {observe: 'body'};
     if (this.parameters) {

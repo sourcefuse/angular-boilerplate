@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {NbIconLibraries} from '@nebular/theme';
 
 import {ThemeModule} from '../theme.module';
-import {KEBAB_SVG, SOW_SVG} from './icons';
+import {KEBAB_SVG} from './icons';
 
 @Injectable({
   providedIn: ThemeModule,
@@ -21,7 +21,6 @@ export class IconPacksManagerService {
   }
   registerSvgs() {
     this.iconLibraries.registerSvgPack('svg-boiler', {
-      sow: SOW_SVG,
       kebab: KEBAB_SVG,
     });
   }

@@ -11,15 +11,8 @@ import {NzInputModule} from 'ng-zorro-antd/input';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
 import {ThemeModule} from '../theme';
-import {BbBreadcrumbComponent} from './bb-breadcrumb/bb-breadcrumb.component';
-import {BbSelectMultipleComponent} from './bb-select-multiple/bb-select-multiple.component';
-import {WarningDialogComponent} from './components/warning-dialog/warning-dialog.component';
 @NgModule({
-  declarations: [
-    BbBreadcrumbComponent,
-    BbSelectMultipleComponent,
-    WarningDialogComponent,
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     TranslateModule,
@@ -37,7 +30,6 @@ import {WarningDialogComponent} from './components/warning-dialog/warning-dialog
   ],
   exports: [
     TranslateModule,
-    BbBreadcrumbComponent,
     NzSelectModule,
     NzInputModule,
     NzCheckboxModule,
@@ -45,7 +37,6 @@ import {WarningDialogComponent} from './components/warning-dialog/warning-dialog
     ReactiveFormsModule,
     NzDividerModule,
     NzSpinModule,
-    BbSelectMultipleComponent,
   ],
 })
 export class SharedModule {}
