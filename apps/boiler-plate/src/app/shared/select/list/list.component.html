@@ -1,0 +1,100 @@
+<div class="select-panel h-100">
+  <div class="search-panel" *ngIf="search">
+    <div class="search-div">
+      <nb-form-field>
+        <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+        <nb-icon
+          nbSuffix
+          icon="close-outline"
+          pack="eva"
+          class="close-icon"
+          (click)="searchControl.reset()"
+          *ngIf="searchControl.value?.length"
+        ></nb-icon>
+        <input
+          type="text"
+          fullWidth
+          [formControl]="searchControl"
+          [placeholder]="searchPlaceholder | translate"
+          #searchInput
+          (keyup.enter)="selectOnEnter && enterOnSearch()"
+          nbInput
+          class="search-input"
+        />
+      </nb-form-field>
+    </div>
+  </div>
+  <cdk-virtual-scroll-viewport
+    class="list w-100"
+    appendOnly
+    [itemSize]="itemHeight"
+    [minBufferPx]="itemHeight * 5"
+    [maxBufferPx]="itemHeight * 20"
+    #viewport
+    *ngIf="visibleList.length"
+  >
+    <ng-container *cdkVirtualFor="let item of visibleList; let i = index">
+      <div
+        class="label-item font-size-14 font-weight-600 mb-2 mt-1 ml-3"
+        *ngIf="groupIndexMap[i]"
+      >
+        {{ groupIndexMap[i] }}
+      </div>
+      <div
+        class="item"
+        [class.disabled]="item[disabledField]"
+        [class.selected]="
+          !multiple &&
+          !removal &&
+          selections.isSelected(item[idField]) &&
+          !item[disabledField]
+        "
+        (click)="!removal && toggleItem(item); $event.stopPropagation()"
+      >
+        <nb-checkbox
+          *ngIf="multiple"
+          [class.disabled]="item[disabledField]"
+          [checked]="selections.isSelected(item[idField])"
+          (click)="$event.preventDefault()"
+          (checkedChange)="toggleItem(item)"
+          class="w-100"
+          >{{ item[nameField] }}</nb-checkbox
+        >
+        <div *ngIf="!multiple">
+          <ng-container *ngIf="allowInput; else noInputTemplate">
+            <ng-container
+              *ngIf="!isPlaceholder(item); else placeholderTemplate"
+              >{{ item[nameField] }}</ng-container
+            >
+            <ng-template #placeholderTemplate
+              ><span class="add-tag-item">
+                {{ addTagString | translate : {name: item[nameField]} }}
+              </span></ng-template
+            >
+          </ng-container>
+          <ng-template #noInputTemplate>
+            <span *ngIf="showIcon" class="list-icon h-100">
+              {{ item.name.charAt(0).toUpperCase() }}
+            </span>
+            <span>{{ item[nameField] }}</span>
+          </ng-template>
+        </div>
+        <ng-container *ngIf="removal">
+          <nb-icon
+            icon="close-outline"
+            class="float-right"
+            (click)="removeItem(item)"
+          ></nb-icon>
+        </ng-container>
+      </div>
+    </ng-container>
+  </cdk-virtual-scroll-viewport>
+  <div class="no-results-container h-100 w-100" *ngIf="!visibleList.length">
+    <div class="no-results" *ngIf="searchControl.value; else noData">
+      {{ noSearchResultText | translate }}
+    </div>
+    <ng-template #noData>
+      <div class="no-results">{{ noDataText | translate }}</div>
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.select-container {
+  width: 100%;
+  nb-icon[icon='chevron-down'] {
+    cursor: pointer;
+  }
+  .count-box {
+    user-select: none;
+    color: var(--text-primary-color);
+    cursor: pointer;
+  }
+  nb-tag {
+    position: relative;
+    overflow: hidden !important;
+    white-space: nowrap;
+    padding-right: 1.4rem;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: block;
+    text-transform: none;
+    background: var(--bb-tag-background);
+    border: var(--bb-tag-border);
+  }
+}
+
+.dropdown-panel {
+  display: block;
+  box-shadow: var(--bb-select-panel-shadow);
+  border-radius: var(--border-radius);
+  user-select: none;
+}

@@ -1,0 +1,93 @@
+@use 'sass:map';
+@import '../../../theme/styles/variables';
+
+.select-panel {
+  font-family: $main-font-family;
+  font-weight: map.get($font-weight, lightest);
+  background: map.get($color, light);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+
+  .search-div {
+    padding: 0.4rem 0.75rem;
+  }
+
+  .list {
+    flex-grow: 1;
+
+    .item {
+      // 38px to match item height in component
+      height: 2.375rem;
+      cursor: pointer;
+
+      &.top-buffer:first-child {
+        margin-top: 0.4rem;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.75rem;
+
+      nb-checkbox {
+        margin-bottom: -0.188rem;
+      }
+
+      &:hover {
+        background: map.get($color, background-basic);
+      }
+
+      &.selected {
+        background: map.get($color, list-selected);
+      }
+
+      &.disabled {
+        color: map.get($font, disable);
+        pointer-events: none;
+      }
+
+      div {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 90%;
+      }
+
+      .add-tag-item {
+        color: map.get($color, primary);
+      }
+    }
+  }
+
+  .no-results-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .no-results {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+}
+
+.label-item {
+  line-height: 1rem;
+  letter-spacing: 0rem;
+  text-align: left;
+  margin-left: 0.8rem;
+}
+
+.list-icon {
+  display: inline-block;
+  background: map.get($color, 'menu-item-active');
+  color: map.get($font, 'primary');
+  width: 2rem;
+  height: 2rem !important;
+  margin-right: 0.5rem;
+  line-height: 2rem;
+  text-align: center;
+  border-radius: 50%;
+}

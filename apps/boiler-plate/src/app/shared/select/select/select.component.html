@@ -1,0 +1,150 @@
+<nb-form-field
+  class="select-container"
+  [class.disabled]="disabled"
+  (bizbookResize)="multiple && updateTagsCount()"
+  cdk-overlay-origin
+  #overlayOrigin="cdkOverlayOrigin"
+  (click)="!disabled && toggleDropdown()"
+>
+  <div
+    *ngIf="multiple && invisibleTags.length"
+    nbSuffix
+    class="count-box"
+    (click)="togglePanel(types.Extra); $event.stopPropagation()"
+  >
+    +{{ invisibleTags.length }}
+  </div>
+  <nb-icon
+    nbSuffix
+    class="close-icon"
+    icon="close-outline"
+    *ngIf="!disabled && !isEmpty && showClearAll"
+    (click)="clearAll(); $event.stopPropagation()"
+  ></nb-icon>
+  <nb-icon
+    [@rotate]="state"
+    *ngIf="!disabled"
+    nbSuffix
+    (click)="toggleDropdown(); $event.stopPropagation()"
+    icon="chevron-down"
+  ></nb-icon>
+  <nb-tag-list
+    [ngStyle]="{padding}"
+    *ngIf="multiple; else single"
+    [class.active]="state === states.Open"
+    [class.tag-list-padding]="visibleTags.length"
+  >
+    <nb-tag
+      *ngFor="let item of visibleTags"
+      [text]="asString(item && item[nameField])"
+      [ngStyle]="{maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'}"
+      [removable]="!disabled"
+      (remove)="toggle(item); toggleDropdown()"
+    ></nb-tag>
+    <input
+      type="text"
+      nbTagInput
+      fullWidth
+      [placeholder]="placeholder"
+      (keyup.enter)="selectOnEnter && autocompleteEnter(autoCompleteInput)"
+      [hidden]="
+        (!allowInput && visibleTags.length !== 0) || (disabled && multiple)
+      "
+      [readonly]="!allowInput"
+      #autoCompleteInput
+      [class.cursor-pointer]="!allowInput"
+      (input)="updateAutocompleteOptions(autoCompleteInput.value)"
+      (click)="$event.stopPropagation(); !allowInput && toggleDropdown()"
+      [ngStyle]="{
+        minWidth: inputMinWidth + 'px',
+        marginRight: suffixCount * suffixWidth + 'px'
+      }"
+    />
+  </nb-tag-list>
+  <ng-template #single>
+    <input
+      type="text"
+      class="cursor-pointer"
+      [class.no-disable-style]="!disabled"
+      nbInput
+      fullWidth
+      [value]="selectedItems.selected[0]?.[nameField] ?? ''"
+      [placeholder]="placeholder"
+      readonly
+    />
+  </ng-template>
+</nb-form-field>
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
+  [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayOpen]="state === states.Open"
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayWidth]="width"
+  (backdropClick)="close()"
+  (detach)="close()"
+>
+  <list
+    class="dropdown-panel"
+    [options]="options"
+    [nameField]="nameField"
+    [idField]="idField"
+    [itemHeight]="itemHeight"
+    [@dropdownPanel]="state"
+    (toggle)="toggle($event); !multiple && close()"
+    [selections]="selections"
+    [multiple]="multiple"
+    [search]="search"
+    [searchPlaceholder]="searchPlaceholder"
+    [disabledField]="disabledField"
+    [selectOnEnter]="selectOnEnter"
+    [ngStyle]="{height: dropdownHeight + 'px'}"
+    [groupConfig]="groupConfig"
+    [showIcon]="showIcon"
+  ></list>
+</ng-template>
+<ng-template
+  cdk-connected-overlay
+  cdkConnectedOverlayLockPosition
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
+  [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  [cdkConnectedOverlayOpen]="
+    !!currentPanel && currentPanel.state === states.Open
+  "
+  [cdkConnectedOverlayPositions]="positions"
+  [cdkConnectedOverlayWidth]="currentPanel?.width ?? 0"
+  (backdropClick)="closePanel()"
+  (detach)="closePanel()"
+>
+  <list
+    class="dropdown-panel"
+    *ngIf="currentPanel?.list?.length"
+    [options]="currentPanel?.list"
+    [nameField]="nameField"
+    [idField]="idField"
+    [itemHeight]="itemHeight"
+    [@dropdownPanel]="currentPanel?.state"
+    (toggle)="
+      currentPanel?.allowInput
+        ? handleAutocompleteSelect($event)
+        : toggle($event)
+    "
+    (remove)="toggle($event)"
+    [selections]="selections"
+    [addTagString]="addTagString"
+    [allowInput]="currentPanel?.allowInput ?? false"
+    [multiple]="false"
+    [search]="false"
+    [removal]="currentPanel?.removal ?? false"
+    [ngStyle]="{height: (currentPanel?.height ?? 0) + 'px'}"
+    (closed)="closePanel()"
+    [groupConfig]="groupConfig"
+  ></list>
+</ng-template>

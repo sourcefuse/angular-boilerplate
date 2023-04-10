@@ -17,83 +17,98 @@ Run `npm i @angular/material` for Angular material
 
 Run ng generate component component-name to generate a new component. You can also use ng generate directive|pipe|service|class|guard|interface|enum|module.
 
-# Project Structure
+## Project Features
 
-The Angular CLI generates the initial file structure of your project. The root directory of your project should contain the following files and directories:
+Angular Boilerplate is a starter template for Angular applications that provides various features and components to help developers get started with their projects quickly. Here are some of the features and components that the boilerplate provides:
 
-src/: This directory contains all the source files of your microservice.
+# Auth Module:
 
-angular.json: This file contains configuration options for your Angular project.
+This Module provides the following features:
 
-package.json: This file contains dependencies and scripts for your project.
+## Login Component:
 
-tsconfig.json: This file contains TypeScript compiler options for your project.
+- login component allows users to authenticate themselves by entering their credentials, such as a username and password. The login component typically includes a form with input fields for the user's credentials, as well as a submit button to initiate the login process.
 
-Within the src/ directory, the recommended file structure is as follows:
+- login component communicates with a backend server to verify the user's credentials and grant access to the application if the user is authorized. Upon successful authentication, the login component typically stores the user's session information, such as a token or cookie, to allow the user to access protected resources without having to log in again.
 
-app/: This directory contains the root component and other components, services, and modules for your microservice.
+## Auth Component:
 
-assets/: This directory contains static assets like images, fonts, and other files that should be copied as-is to the output folder.
+Auth component handles the authentication and authorization of users. It is responsible for managing user sessions, verifying user credentials, and granting access to protected resources based on the user's role and permissions.
 
-environments/: This directory contains environment-specific configuration files.
+The auth component typically includes a login as well as a registration form for new users to create an account. The component may also handle password reset functionality and provide options for users to manage their accounts.
 
-index.html: This file is the entry point for your microservice.
+# Core Component:
 
-main.ts: This file bootstraps your microservice.
+## API:
 
-styles.css: This file contains global styles for your microservice.
+- Adapters:We are using 3 adapters in this microservice named "anyAdapter,countAdapter,nameAdapter".We use these adapters for manipulating the data, as we get the data from the api.
 
-test.ts: This file is the entry point for your microservice's tests.
+- Commands:In this microservice we are using "del-api.command,get-api.command,get-list-api.command,patch-api.command,post-api.command,put-api.command" We are using all the commands for
+  modifying the data through API.
 
-Within the app/ directory, the recommended file structure is as follows:
+- Models:We are using 3 models named "count.model,named-id-required.model,named-id.model" In these models we are using model based validations.
 
-app.component.ts, app.component.html, and app.component.css: These files define the root component of your microservice.
+## Auth:
 
-app.module.ts: This file defines the main module of your microservice.
+- Adaptors:Two adapter service provided are "logged-in-user-adapter.service and login-adapter.
+  service" which helps in adapting API response to a LoggedInUserDM model representing a logged-in user or adapting the LoginModel object to the API request format and adapting the API response which allows for a separation of concerns between the API response data and the application data model.
 
-shared/: This directory contains shared components, services, and modules for your microservice.
+- Commands:It provides implementation of a commands that makes a Get/Post/patch request to the
+  API endpoint for triggering forget password functionality,retrieving current user's data,authentication token,initiating a Google OAuth login flow and logout etc.
 
-feature/: This directory contains feature-specific components, services, and modules for your microservice.
+- Guards:In microservice 2 guards provided are "LoggedInGuard and AuthGuard" used to control
+  access to certain routes or pages in the application.Guards can be used to check if the user has permission to access a certain route, if the user is logged in, or to perform other types of authentication or authorization check.
 
-# Project Features
+- Models: We are using 4 models named "logged-in-user.model,loggedin-response.model,login.model,
+  token-response.model" that represents user's data when they are logged in,response from a login API call(code),data that is required for a user to authenticate or log
+  in to a system and the the response from server after a user gets authenticated
+  and obtains a new access token and refresh token.
 
-authComponent: this component authenticates the user and receives an access token from Auth
+## Decorator:
 
-loginComponent: The login component uses the authentication service to login to this microservice. If the user is already logged in they are automatically redirected to the home page.
+In this microservice we are using 2 decorators named "required.decorator,validate.decorator",In these decorator we are providing our requirement for the data that which data needs to be fill,and than validate the data.
 
-mainModule:The Main module where the User enters after login under mainModule we have homeComponent.
+## Interceptors:
 
-homeComponent: The home page shows the content what is exactly going into the project
+In this microservice we are using 3 Interceptors named auth.interceptor,error.interceptor,session-recovery.interceptor.So, in these we are providing header as token & checking when that gives us the error and also checking when will session get expired.
 
-adapters: We are using 3 adapters in this microservice named "anyAdapter,countAdapter,nameAdapter" we use this adaters for manipulating the data, as we get the data from the api
+## Localization:
 
-commands:In this microservice we are using "del-api.command,get-api.command,get-list-api.command,patch-api.command,post-api.command,put-api.command" We are using all the commands for CRUD api Operations.
+In this microservice we are using i18n module as a language translator & where we are using 3 files as follows :
 
-models::We are using 3 models named "count.model,named-id-required.model,named-id.model" In these models we are using model based validation and count model is updating whenever we get the data
+- Enums:we are using language.enum in this microservice where this files define the set of named values.
 
-decorator:In this microservice we are using 2 decorators named "required.decorator,validate.decorator",In these decorator we are providing our requirment for the data that which data needs to be fill,and than validate the data
+- Module:We are using localization.module while using the module we are using data from enum too and according to enums value we translate the language and call the service
 
-Interceptors:In this microservice we are using 3 Interception named auth.interceptor,error.interceptor,session-recovery.interceptor so in this we are proving header as token & checking when that gives us the error and also checking when will session get experied
+- Service: The translationService provides localization functionality to the application. It depends on @ngx-translate/core library to handle translations allowing users to select their preferred language for the application & to provide appropriate translations based on that preference.
 
-localization:In this microservice we are using i18n module as a language translator & where we are using 3 files as follows :
+## Env Resolver Service:
 
-enums: we are using language.enum in this microservice where this files define the set of named values.
+The purpose of this service is to retrieve environment configuration data from a store (SystemStoreFacadeService) and make it available to components before they are displayed.
 
-Module:we are using localization.module while using the module we are using data from enum too and according to enums value we translate the language and call the service
+## Store:
 
-Service: we are using translate.service in this microservice,when we get the data from the module we push the data through the api over the server
+In store module we have following features named store-keys.enum,user-session-store.service
+system-store-facade.service.These are used to fetch and update environment configurations.
+It also updates the environment configurations in memory and logs the change in the logging system.Also, provides methods to save, retrieve, and remove user session data such as access token, refresh token, user information, and last accessed URL.
 
-toaster: In this microservice we are using toaster named Itosater this is a user interface component that displays notifications or alerts to users in a non-intrusive way. Itoaster notifications typically appear as small pop-up messages that provide feedback or information.
+## Theme:
 
-theme.scss: theme.scss is a file in an Angular boilerplate microservice we used this file to define the global styles and visual theme of the application. It's an important file that determines the look and feel of the application, such as the color scheme, typography, and layout.
+Theme module in our microservice is usually used in conjunction with Nebular, Nebular is a customizable Angular UI Library and styles designed to create a consistent, modern user interface. Nebular includes a set of pre-defined themes, but you can also create your own custom themes also.
 
-guards: In microservice guards are used to control access to certain routes or pages in the application. They are essentially middleware functions that are executed before a route is activated. Guards can be used to check if the user has permission to access a certain route, if the user is logged in, or to perform other types of authentication or authorization check.
+Also, provides methods to register icon packs with the NbIconLibraries service. The NbIconLibraries service is a part of the nebular UI library and is used to manage icon libraries and packs.
 
-breadcrumb: we are using bb-breadcrumbs in our microservice which is user interface component named bb-breadcrumb.component that provides users with a navigation trail or path of the pages they have visited within an application.
+## Toaster:
 
-gantt: In this microservice we are using bb.gantt,bb.gantt charts,bb.gantt bars a Gantt chart is a user interface component that displays project tasks or events over a timeline, allowing users to visualize the schedule and progress of a project.
+In this microservice we are using toaster named Itoaster this is a user interface component that displays notifications or alerts to users in a non-intrusive way. Itoaster notifications typically appear as small pop-up messages that provide feedback or information.
 
-grid: We are using Ag-Grid this is a powerful and flexible data grid component that can be used in Angular boilerplate microservice to display and manipulate large amounts of data.
+# Shared:
+
+- Select:This component supports auto-completion, filtering of options by search terms, and the
+  ability to add new tags that are not present in the list of options. There are also several configurable options, such as the ability to select multiple items, the placeholder text for the input field, and the width and height of the dropdown panel and provides a reusable component for displaying a searchable list of items with a selectable checkbox and dropdown with customized states.
+
+- Gantt:
+  In this microservice we are using bb.gantt,bb.gantt charts,bb.gantt bars a Gantt chart is a user interface component that displays project tasks or events over a timeline, allowing users to visualize the schedule and progress of a project.
 
 # Usage
 
