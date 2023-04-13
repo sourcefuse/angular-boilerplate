@@ -35,7 +35,7 @@ export class IconPacksManagerService {
    */
   registerSvgs() {
     this.iconLibraries.registerSvgPack('svg-boiler', {
-      kebab: KEBAB_SVG,
+      kebab: KEBAB_SVG, // KEBAB_SVG is constant that provides a mapping of the SVG filenames to their corresponding URLs.
     });
   }
 }

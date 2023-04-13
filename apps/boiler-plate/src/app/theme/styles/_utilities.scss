@@ -293,16 +293,7 @@
 .button-background {
   background-color: map.get($color, 'warning') !important;
 }
-.warning-icon {
-  height: 5rem;
-  width: 5rem;
-  margin-top: -0.75rem;
-  margin-bottom: -1.313rem;
-  opacity: 0.1;
-}
-.warning-label {
-  line-height: 3.75rem;
-}
+
 .border-top {
   border-top: 0.063rem solid map.get($color, 'warning-footer') !important;
 }
