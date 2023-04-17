@@ -26,6 +26,9 @@ export class TranslationService {
 
   public browserPreference: LanguageTranslation | undefined;
 
+  /*
+  `prefPriority` is an array that defines the order of priority for language preferences.
+  */
   protected prefPriority = [
     LanguagePreferences.UserPreference,
     LanguagePreferences.TenantPreference,
@@ -41,7 +44,10 @@ export class TranslationService {
 
     this.browserPreference = navigator.language as LanguageTranslation;
   }
-
+  /*
+  This function resets the current language of the translation service to a new language 
+  based on a set of language preferences.
+  */
   reset(): Observable<string> {
     let langToSet: LanguageTranslation | undefined;
     for (let i = 0; i < this.prefPriority.length; i++) {
@@ -74,7 +80,9 @@ export class TranslationService {
         continue;
       }
     }
-
+    /* It checks if a language preference has been set and if not, it returns the
+    current language being used by the translate service.
+    */
     if (!langToSet) {
       return of(this.translate.currentLang);
     }
@@ -87,7 +95,7 @@ export class TranslationService {
           .pipe(map(() => this.translate.currentLang));
       }
     }
-
+    // If the preferred language is not available, it returns the current language being used
     return of(this.translate.currentLang);
   }
 }

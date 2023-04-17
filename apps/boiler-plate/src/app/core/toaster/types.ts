@@ -1,7 +1,11 @@
 import {InjectionToken} from '@angular/core';
 
 import {IToaster} from './i-toaster';
-
+/*
+The InjectionToken allows for the creation of unique identifiers that can be used for 
+dependency injection. In this case, TOASTER_SERVICE_KEY is used to identify 
+the IToaster class for dependency injection purposes within an Angular application.
+*/
 export const TOASTER_SERVICE_KEY = new InjectionToken<IToaster>(
   'Identifier for ToasterService class',
 );

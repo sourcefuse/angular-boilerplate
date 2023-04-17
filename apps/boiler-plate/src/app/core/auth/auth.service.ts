@@ -53,7 +53,7 @@ export class AuthService {
     private readonly anyAdapter: AnyAdapter,
     private readonly permissionsService: NgxPermissionsService,
   ) {}
-
+  // The method returns an observable that emits true if the user is logged in, and false otherwise.
   public isLoggedIn(): Observable<boolean> {
     return this.currentUser().pipe(
       switchMap(user => {
@@ -65,7 +65,11 @@ export class AuthService {
       }),
     );
   }
-
+  /*
+  The method returns an observable that emits the currently logged-in user,or an error if there is no
+  user session in progress. It also stores the logged-in user in a UserSessionStoreService instance and 
+  loads the user's permissions .
+  */
   public currentUser(): Observable<LoggedInUserDM> {
     const user = this._loadUserFromStore();
     const hasToken = !!this.store.getAccessToken();
@@ -74,8 +78,10 @@ export class AuthService {
     } else if (!hasToken) {
       return throwError(() => new Error('No token available'));
     } else {
-      const command: GetCurrentUserCommand<LoggedInUserDM> =
-        new GetCurrentUserCommand(this.apiService, this.currentUserAdapter);
+      const command: GetCurrentUserCommand<LoggedInUserDM> = new GetCurrentUserCommand(
+        this.apiService,
+        this.currentUserAdapter,
+      );
       return command.execute().pipe(
         tap(res => {
           this.store.setUser(res);
@@ -106,8 +112,10 @@ export class AuthService {
 
   // sonarignore:start
   public verifyResetPasswordLink(token: string): Observable<any> {
-    const command: VerifyResetPasswordLinkCommand<any> =
-      new VerifyResetPasswordLinkCommand(this.apiService, this.anyAdapter);
+    const command: VerifyResetPasswordLinkCommand<any> = new VerifyResetPasswordLinkCommand(
+      this.apiService,
+      this.anyAdapter,
+    );
     // sonarignore:end
     command.parameters = {
       data: {
@@ -296,7 +304,10 @@ export class AuthService {
 
     this.permissionsService.loadPermissions([...permissions, ...entityPerms]);
   }
-
+  /*
+  This function loads a user from the store and checks if their permissions already exist before
+  loading them & returns either a user object or null.
+  */
   private _loadUserFromStore() {
     const user = this.store.getUser();
 
