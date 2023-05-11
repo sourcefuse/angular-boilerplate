@@ -1,1 +1,35 @@
-{}
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@main-project/boiler/env/*": [
+        "projects/angular-boilerplate/src/environments/*"
+      ],
+      "@main-project/boiler/*": ["projects/angular-boilerplate/src/app/*"],
+      "@main-project/core/*": ["projects/shared-library/src/lib/shared/core/*"],
+      "@main-project/shared/*": ["projects/shared-library/src/lib/shared/*"],
+      "@main-project/theme/*": ["projects/shared-library/src/lib/theme/*"],
+      "@main-project/app-config": [
+        "projects/shared-library/src/lib/app-config/index.ts"
+      ],
+      "@main-project/auth/*": ["projects/shared-library/src/lib/auth/*"],
+      "@main-project/assets/*": ["projects/shared-library/src/lib/assets/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
