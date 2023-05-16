@@ -21,7 +21,7 @@
 
 # Projects
 
-1. Angular-BoilerPlate:
+1. Arc:
 - This boilerplate project is a project set up that can be easily altered to create new projects. The user 
   is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
 
@@ -29,33 +29,38 @@
 
 FOR further reference you can refer [here]()
 
-2. Shared Library
+2. Arc-Lib
 - A shared library can include components, services, pipes, directives, and other modules that can be used 
   by other projects in the workspace. By using a shared library, you can avoid duplicating code and functionality across multiple projects, which can save time and effort.
  
-For further reference you can refer [here]()
+For further reference you can refer [here](../arc-sf/projects/arc-lib/README.md)
 
 # Prerequisite
 
 Run `npm install -g @angular/cli` for Angular CLI & NPM installed
 Run `npm i @angular/material` for Angular material
 
-# Code scaffolding
-
-Run ng generate component component-name to generate a new component. You can also use ng generate directive|pipe|service|class|guard|interface|enum|module.
-
-
 # MainProject
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
 
+# Code scaffolding
+
+Run ng generate component component-name to generate a new component. You can also use ng generate directive|pipe|service|class|guard|interface|enum|module.
+
+1. Create a workspace
+   ng new <workspace-name> --no-create-application
+
+2. Generate applications/projects
+   ng generate application <application-name>
+
+3. Generate a library - which will act as a shared util/files/pages
+   ng generate library <library-name>
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
 ## Build
 

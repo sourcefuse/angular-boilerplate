@@ -10,22 +10,22 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2015",
+    "target": "ES2019",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["es2018", "dom"],
+    "lib": ["ES2019", "dom"],
     "paths": {
       "@main-project/boiler/env/*": [
-        "projects/angular-boilerplate/src/environments/*"
+        "projects/arc/src/environments/*"
       ],
-      "@main-project/boiler/*": ["projects/angular-boilerplate/src/app/*"],
-      "@main-project/core/*": ["projects/shared-library/src/lib/shared/core/*"],
-      "@main-project/shared/*": ["projects/shared-library/src/lib/shared/*"],
-      "@main-project/theme/*": ["projects/shared-library/src/lib/theme/*"],
+      "@main-project/boiler/*": ["projects/arc/src/app/*"],
+      "@main-project/core/*": ["projects/arc-lib/src/lib/core/*"],
+      "@main-project/components/*": ["projects/arc-lib/src/lib/components/*"],
+      "@main-project/theme/*": ["projects/arc-lib/src/lib/theme/*"],
       "@main-project/app-config": [
-        "projects/shared-library/src/lib/app-config/index.ts"
+        "projects/arc-lib/src/lib/app-config/index.ts"
       ],
-      "@main-project/auth/*": ["projects/shared-library/src/lib/auth/*"],
-      "@main-project/assets/*": ["projects/shared-library/src/lib/assets/*"]
+      "@main-project/auth/*": ["projects/arc-lib/src/lib/components/auth/*"],
+      "@main-project/assets/*": ["projects/arc-lib/src/lib/assets/*"]
     }
   },
   "angularCompilerOptions": {

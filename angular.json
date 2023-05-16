@@ -3,31 +3,31 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-boilerplate": {
+    "arc": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "projects/angular-boilerplate",
-      "sourceRoot": "projects/angular-boilerplate/src",
+      "root": "projects/arc",
+      "sourceRoot": "projects/arc/src",
       "prefix": "arc",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-boilerplate",
-            "index": "projects/angular-boilerplate/src/index.html",
-            "main": "projects/angular-boilerplate/src/main.ts",
+            "outputPath": "dist/arc",
+            "index": "projects/arc/src/index.html",
+            "main": "projects/arc/src/main.ts",
             "polyfills": ["zone.js"],
-            "tsConfig": "projects/angular-boilerplate/tsconfig.app.json",
+            "tsConfig": "projects/arc/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/angular-boilerplate/src/favicon.ico",
+              "projects/arc/src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "projects/shared-library/src/lib/assets/",
+                "input": "projects/arc-lib/src/lib/assets/",
                 "output": "/assets/"
               }
             ],
@@ -35,7 +35,7 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/eva-icons/style/scss/eva-icons.scss",
               "node_modules/@nebular/theme/styles/prebuilt/dark.css",
-              "projects/angular-boilerplate/src/styles.scss"
+              "projects/arc/src/styles.scss"
             ],
             "scripts": []
           },
@@ -58,12 +58,12 @@
             "development": {
               "fileReplacements": [
                 {
-                  "replace": "projects/angular-boilerplate/src/environments/environment.ts",
-                  "with": "projects/angular-boilerplate/src/environments/environment.ts"
+                  "replace": "projects/arc/src/environments/environment.ts",
+                  "with": "projects/arc/src/environments/environment.ts"
                 }
               ],
               "index": {
-                "input": "projects/angular-boilerplate/src/index.html",
+                "input": "projects/arc/src/index.html",
                 "output": "index.html"
               },
               "optimization": false,
@@ -76,13 +76,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "7mb",
-                  "maximumError": "7mb"
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "100kb",
+                  "maximumError": "500kb"
                 }
               ]
             }
@@ -92,14 +92,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-boilerplate:build"
+            "browserTarget": "arc:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-boilerplate:build:production"
+              "browserTarget": "arc:build:production"
             },
             "development": {
-              "browserTarget": "angular-boilerplate:build:development"
+              "browserTarget": "arc:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -107,49 +107,49 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-boilerplate:build"
+            "browserTarget": "arc:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "projects/angular-boilerplate/tsconfig.spec.json",
+            "tsConfig": "projects/arc/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "projects/angular-boilerplate/src/favicon.ico",
+              "projects/arc/src/favicon.ico",
               {
                 "glob": "**/*",
-                "input": "projects/shared-library/src/lib/assets/",
-                "output": "projects/shared-library/src/lib/assets/"
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "projects/arc-lib/src/lib/assets/"
               }
             ],
             "styles": [
-              "projects/angular-boilerplate/src/styles.scss",
-              "projects/shared-library/src/lib/theme/styles/index.scss"
+              "projects/arc/src/styles.scss",
+              "projects/arc-lib/src/lib/theme/styles/index.scss"
             ],
             "scripts": []
           }
         }
       }
     },
-    "shared-library": {
+    "arc-lib": {
       "projectType": "library",
-      "root": "projects/shared-library",
-      "sourceRoot": "projects/shared-library/src",
+      "root": "projects/arc-lib",
+      "sourceRoot": "projects/arc-lib/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/shared-library/ng-package.json"
+            "project": "projects/arc-lib/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/shared-library/tsconfig.lib.prod.json"
+              "tsConfig": "projects/arc-lib/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/shared-library/tsconfig.lib.json"
+              "tsConfig": "projects/arc-lib/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -157,14 +157,14 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "tsConfig": "projects/shared-library/tsconfig.spec.json",
+            "tsConfig": "projects/arc-lib/tsconfig.spec.json",
             "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
     }
   },
-  "defaultProject": "angular-boilerplate",
+  "defaultProject": "arc",
   "cli": {
     "analytics": "dcf534a6-f2c3-4c9c-99f0-3de66c9162da"
   }

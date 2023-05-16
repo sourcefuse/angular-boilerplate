@@ -1,0 +1,146 @@
+@use './themes' as *;
+//@use '@main-project/theme/styles/index' as *;
+@use 'projects/arc-lib/src/lib/theme/styles/index' as *;
+@use '@nebular/theme/styles/globals' as *;
+@use '@nebular/auth/styles/globals' as *;
+@use 'projects/arc-lib/src/lib/theme/styles/variables' as *;
+//@use '@main-project/theme/styles/variables';
+
+@include nb-install() {
+  @include nb-theme-global();
+  @include nb-auth-global();
+}
+
+/* You can add global styles to this file, and also import other style files */
+.kebab-menu ul.menu-items {
+  text-align: left !important;
+}
+router-outlet.main-router + * {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+h1,
+.h1 {
+  font-size: 2.25rem !important;
+}
+
+h3,
+.h3 {
+  font-size: 1.5rem;
+}
+
+h5,
+.h5 {
+  font-size: 1.125rem;
+}
+
+.border {
+  border: none !important;
+}
+
+.route-tabset .route-tab a.tab-link:before {
+  width: var(--route-tabset-tab-underline-width-cover) !important;
+  left: var(--route-tabset-tab-underline-left-position) !important;
+  bottom: var(--route-tabset-tab-underline-bottom-position) !important;
+}
+
+.route-tabset + router-outlet + * {
+  height: calc(100% - 3.25rem);
+  display: flex;
+  flex-direction: column;
+  & > * {
+    flex-grow: 1;
+  }
+}
+
+input[nbinput][readonly],
+nb-select[readonly] > button {
+  background-color: var(
+    --input-basic-hover-background-color-disabled
+  ) !important;
+  border-color: var(--input-basic-hover-border-color-disabled) !important;
+  color: var(--input-basic-text-color-disabled) !important;
+}
+
+.cdk-overlay-container {
+  z-index: 1041 !important; // is not provided through a variable
+}
+
+nb-sidebar,
+nb-sidebar > div.main-container {
+  transition: width 0.3s;
+}
+
+input[disabled],
+select[disabled] {
+  background-color: #{nb-theme(color-primary-disabled)};
+}
+// bootstrap css messing with nb toggle scss for labels
+label.toggle-label {
+  margin: 0 !important;
+}
+
+fieldset {
+  border: var(--card-border-width) var(--card-border-style)
+    var(--card-border-color);
+  margin-bottom: var(--card-margin-bottom);
+  border-radius: var(--card-border-radius);
+}
+nb-sidebar.compacted nb-menu .menu-item a.active::before {
+  top: 0.563rem;
+  height: 0.9rem;
+  width: 0.063rem;
+}
+
+nb-sidebar.compacted {
+  width: 4rem !important;
+}
+
+nb-sidebar.compacted nb-menu .menu-items > .menu-item a {
+  justify-content: left !important;
+}
+
+nb-toast.status-success {
+  background: #e0fde2;
+  border-color: #e0fde2;
+  color: #047205;
+  border-left: 0.188rem solid #047205 !important;
+}
+
+nb-toast.status-success:hover {
+  background-color: #e0fde2 !important ;
+  border: 0.188rem 0px 0px 0px #047205 !important;
+}
+nb-toast .icon-container {
+  border-radius: 1rem;
+  min-width: 1.25rem;
+  min-height: 1.25rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nb-toast .message {
+  font-weight: 600;
+  display: inline-flex;
+}
+nb-toast.status-success .icon-container {
+  background: #047205;
+  color: #e0fde2;
+}
+
+.add-actual-resource-popup {
+  width: 100%;
+  height: 100%;
+  nb-dialog-container {
+    width: inherit;
+    height: inherit;
+    nb-card {
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+}
