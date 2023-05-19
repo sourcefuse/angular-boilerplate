@@ -1,4 +1,4 @@
-# Angular Boilerplate 
+#### ANGULAR BOILERPLATE
 [![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)](http://commitizen.github.io/cz-cli/)
 
 <!-- DOCUMENTATION -->
@@ -13,26 +13,18 @@
 
 Following are the steps to get started with it:
 
-# Prerequisite
+# Usage
 
-#### Step 1: Install NodeJS
-
-Install the latest LTS version from here: https://nodejs.org/en/download/.
-
-#### Step 2: Install Angular CLI
-
-Angular provides a very useful command line utility that help in easily developing angular applications, models, services, etc. as a boilerplate, which saves a lot of time.
+#### Step 1:Clone the boilerplate project repository to your local machine
 
 ```sh
-npm install -g @angular/cli
+https://github.com/sourcefuse/angular-boilerplate
 ```
 
-#### step 3 : Install Nebular
-
-Similarly Angular also Provides Nebular which supports init configuration with Angular Schematics. This means you can simply add it to your project, and Angular Schematics will do the rest
+#### Step 2: Install the project dependencies by running the following command 
 
 ```sh
-ng add @nebular/theme
+npm install 
 ```
 
 After this, it will take a few minutes to set everything up, once that is done, you will see a folder structure generated like below:
@@ -64,7 +56,7 @@ As can be seen above, scaffold has initialized and set up a lot, such as:
 6. The folder named  `projects`:
    - Projects will hold the multi application pattern and will always be completely independent 
 
-#### Step 4:  The Structure is main project folder 
+#### The Structure is main project folder 
 
 ```
 PROJECTS
@@ -84,25 +76,21 @@ PROJECTS
 - This boilerplate arc project is a project set up that can be easily altered to create new projects. 
   The user is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
 
-FOR further reference you can refer [here]()
-
 2. Arc-Lib
 - A arc-lib shared library can include components, services, pipes, directives, and other modules that can be used  by other projects in the workspace. By using a shared library, we avoid duplicating code and functionality across multiple projects, which can save time and effort.
  
-For further reference you can refer [here](../arc-sf/projects/arc-lib/README.md)
+For further reference you can refer [Here](Projects/arc-lib/README.md)
 
 
-### Step 5: Start the Server
-
-Go to the terminal and change the directory into your service folder:
+### Step 3: Start the Server
 
 ```sh
 ng serve
 ```
 
-You'll see a message saying `Server is running at http://localhost:4200/` Navigate to this URL. The application will automatically reload if you change any of the source files.
+You'll see a message saying Server is running at `http://localhost:4200/` Navigate to this URL. The application will automatically reload if you change any of the source files.
 
-### Step 6: Build the Application
+###  Build the Application
 
  To build the project. The build artifacts will be stored in the `dist/` directory.
 

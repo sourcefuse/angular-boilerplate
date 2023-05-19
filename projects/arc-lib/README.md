@@ -1,4 +1,4 @@
-# arc Shared-Library 
+#### ARC-LIBRARY
 
 # Description
 
@@ -97,7 +97,7 @@ Store module provides `store-keys.enum`,`user-session-store.service` and`system-
 
 - In order to use it ,one can incorporate `ToasterService` provided in theme module which provides methods to display toast messages using the NbToastrService from the `@nebular/theme package`. The service has methods to show different types of toast messages such as success, info, warning, error, and default, and allows customization of the toast messages through an optional config parameter. The `ToasterAdapterService` is used to adapt the config object to the format expected by the NbToastrService. The service implements the IToaster interface which defines the method signatures for displaying toast messages.
 
-For more detail about Core Module, refer [here](./src/lib/core/readme.md)
+For more detail about Core Module, refer [Here](/projects/arc-lib/src/lib/core/readme.md)
 
 ## Theme:
 
@@ -105,7 +105,8 @@ Theme module in arc is usually used in conjunction with Nebular, Nebular is a cu
 
 Also, provides methods to register icon packs with the NbIconLibraries service. The `NbIconLibraries` service is a part of the nebular UI library and is used to manage icon libraries and packs.
 
-For more details about Theme Module,refer [here](./src/lib/theme/readme.md)
+For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme/readme.md)
+(./src/lib/theme/readme.md)
 
 # Components:
 
@@ -133,19 +134,5 @@ For more details about Theme Module,refer [here](./src/lib/theme/readme.md)
 - The auth component typically includes a login as well as a registration form for new users to create 
   an account. The component may also handle password reset functionality and provide options for users to manage their accounts
 
-For more details about Components ,refer [here](./src/lib/components/readme.md)
+For more details about Components ,refer [Here](/projects/arc-lib/src/lib/components/readme.md)
 
-# Usage
-
-Clone the boilerplate project repository to your local machine:
-`https://github.com/sourcefuse/angular-boilerplate`
-
-Install the project dependencies by running the following command in your terminal:
-
-```sh
-npm install
-```
-
-# Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](`https://angular.io/cli`) page.

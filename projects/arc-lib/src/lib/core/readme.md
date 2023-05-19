@@ -1,4 +1,4 @@
-# Core Module
+#### CORE MODULE
 
 The Core Module provides essential services and functionality that will be used throughout the
 application. It imports various Angular and third-party modules including basic modules which we need for an application and this module also imports NgxPermissionsModule, ApiModule, LocalizationModule, StoreModule, ToasterModule etc.The module extends EnsureModuleLoadedOnce class to ensure that it is only loaded once in the application.

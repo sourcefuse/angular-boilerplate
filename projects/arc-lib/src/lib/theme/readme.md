@@ -1,4 +1,4 @@
-# Theme module
+#### THEME MODULE
 
 - Theme module in the boilerplate is usually used in conjunction with Nebular,Nebular is a customizable Angular UI Library and styles designed to create a consistent, modern user interface. Nebular includes a set of pre-defined themes, but you can also create your own custom themes also.
 

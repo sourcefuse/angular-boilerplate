@@ -1,4 +1,4 @@
-# Components
+#### COMPONENTS
 
 1. Gantt
 
