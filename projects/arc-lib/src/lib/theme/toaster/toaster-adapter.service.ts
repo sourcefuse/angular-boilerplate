@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { NbGlobalPhysicalPosition, NbToastrConfig } from '@nebular/theme';
-import { isNull, isUndefined } from 'lodash';
-import { ToasterConfigExt } from './types';
-import { IAdapter } from '@main-project/core/api';
+import {Injectable} from '@angular/core';
+import {NbGlobalPhysicalPosition, NbToastrConfig} from '@nebular/theme';
+import {isNull, isUndefined} from 'lodash';
+import {ToasterConfigExt} from './types';
+import {IAdapter} from '@project-lib/core/api';
 
 const timeout = 4000;
 

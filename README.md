@@ -1,72 +1,116 @@
-# Sourceloop Angular Multi Project Application
+# Angular Boilerplate 
+[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)](http://commitizen.github.io/cz-cli/)
 
 <!-- DOCUMENTATION -->
 
 # Description
 
-- We are using multiple projects in one Angular environment so that we can help users to improve 
-  code  reusability, scalability, maintainability, and customization. It can also help in increase productivity, reduce risks, and improve the quality of  application.
+- The boilerplate using multiple projects in one Angular environment so that the boilerplate help users 
+  to improve code  reusability, scalability, maintainability, and customization. It can also help in increase productivity, reduce risks, and improve the quality of  application.
 
-- Code Reusability: I have multiple applications or parts of applications that share common functionality, 
-  using multiple projects can help you avoid duplicating code. You can create a shared library project and use it across all the projects. This approach can help you maintain consistency and reduce code duplication.
+- The multiple applications or parts of applications that share common functionality,  using multiple
+  projects can help you avoid duplicating code. You can create a shared library project and use it across all the projects. This approach can help you maintain consistency and reduce code duplication.
 
-- Isolation: Each project can be developed and tested independently, which allows you to isolate changes and
-  minimize the risk of breaking other parts of the application. This approach can help you increase productivity and reduce the time spent on debugging and fixing issues.
+Following are the steps to get started with it:
 
-- Scalability: As your application grows, it can become more complex and harder to maintain. Using multiple
-  projects can help you manage complexity by breaking down the application into smaller, more manageable pieces. You can also use different teams to work on different projects, which can help you scale the development process.
+# Prerequisite
 
-- Customization: Each project can have its own configuration and dependencies, which allows to 
-  customize the build process and optimize each project for its specific use case. This approach can help to improve the performance and reduce the size of the application.
+#### Step 1: Install NodeJS
+
+Install the latest LTS version from here: https://nodejs.org/en/download/.
+
+#### Step 2: Install Angular CLI
+
+Angular provides a very useful command line utility that help in easily developing angular applications, models, services, etc. as a boilerplate, which saves a lot of time.
+
+```sh
+npm install -g @angular/cli
+```
+
+#### step 3 : Install Nebular
+
+Similarly Angular also Provides Nebular which supports init configuration with Angular Schematics. This means you can simply add it to your project, and Angular Schematics will do the rest
+
+```sh
+ng add @nebular/theme
+```
+
+After this, it will take a few minutes to set everything up, once that is done, you will see a folder structure generated like below:
+
+```
+BOILER-PLATE
+├── .github
+├── .husky
+├── projects
+├── .czferc.js
+├── .npmrc
+├── .cz-config.js
+├── .gitignore
+├── commitlint.config.js
+├── CODE_OF_CONDUCT.md
+├── lerna.json
+├── package-lock.json
+├── package.json
+├── README.md
+└── tsconfig.json
+```
+As can be seen above, scaffold has initialized and set up a lot, such as:
+
+1. GitHub PR template inside `.github`
+2. Conventional commits enablement using commitizen (`.cz-config.js`), commitlint (`commitlint-config.js`) and husky for githooks.
+3. `.gitignore` for ignoring files from source code. Important for secure coding and keeping the repo clean on SCM (git)
+4. `lerna.json` which contains the setup for lerna commands. Lerna is going to be our monorepo manager and build tool going forward. It is one of the most popular monorepo managers in the industry, used by Jest, NestJS, LoopBack, and Nx.
+5. `package.json` and `package-lock.json` for npm to work.
+6. The folder named  `projects`:
+   - Projects will hold the multi application pattern and will always be completely independent 
+
+#### Step 4:  The Structure is main project folder 
+
+```
+PROJECTS
+├── arc
+├── arc-lib
+│   └── src
+          └──lib
+│            ├── assets
+│            ├── components
+│            ├── core
+│            └── theme
+├── (...other files)
+```
 
 # Projects
-
 1. Arc:
-- This boilerplate project is a project set up that can be easily altered to create new projects. The user 
-  is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
-
-- This project is based on Angular CLI on version 14.0.0.
+- This boilerplate arc project is a project set up that can be easily altered to create new projects. 
+  The user is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
 
 FOR further reference you can refer [here]()
 
 2. Arc-Lib
-- A shared library can include components, services, pipes, directives, and other modules that can be used 
-  by other projects in the workspace. By using a shared library, you can avoid duplicating code and functionality across multiple projects, which can save time and effort.
+- A arc-lib shared library can include components, services, pipes, directives, and other modules that can be used  by other projects in the workspace. By using a shared library, we avoid duplicating code and functionality across multiple projects, which can save time and effort.
  
 For further reference you can refer [here](../arc-sf/projects/arc-lib/README.md)
 
-# Prerequisite
 
-Run `npm install -g @angular/cli` for Angular CLI & NPM installed
-Run `npm i @angular/material` for Angular material
+### Step 5: Start the Server
 
-# MainProject
+Go to the terminal and change the directory into your service folder:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+```sh
+ng serve
+```
 
-# Code scaffolding
+You'll see a message saying `Server is running at http://localhost:4200/` Navigate to this URL. The application will automatically reload if you change any of the source files.
 
-Run ng generate component component-name to generate a new component. You can also use ng generate directive|pipe|service|class|guard|interface|enum|module.
+### Step 6: Build the Application
 
-1. Create a workspace
-   ng new <workspace-name> --no-create-application
+ To build the project. The build artifacts will be stored in the `dist/` directory.
 
-2. Generate applications/projects
-   ng generate application <application-name>
+```sh
+ng build
+```
 
-3. Generate a library - which will act as a shared util/files/pages
-   ng generate library <library-name>
-
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 

@@ -16,8 +16,8 @@ import {
   ViewChildren,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {DIGITS} from '@main-project/core/constants';
-import {ComponentBaseDirective} from '@main-project/core/component-base';
+import {DIGITS} from '@project-lib/core/constants';
+import {ComponentBaseDirective} from '@project-lib/core/component-base';
 import {NbTagComponent} from '@nebular/theme';
 import {cloneDeep, isEqual} from 'lodash';
 import {takeUntil} from 'rxjs';

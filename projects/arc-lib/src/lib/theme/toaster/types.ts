@@ -1,4 +1,4 @@
-import { ToasterConfig } from '@main-project/core/toaster';
+import {ToasterConfig} from '@project-lib/core/toaster';
 import {
   NbGlobalLogicalPosition,
   NbGlobalPhysicalPosition,

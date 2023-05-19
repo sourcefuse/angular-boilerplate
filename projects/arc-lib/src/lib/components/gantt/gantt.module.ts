@@ -1,7 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {ThemeModule} from '@main-project/theme/theme.module';
+import {ThemeModule} from '@project-lib/theme/theme.module';
 import {
   BbGanttComponent,
   GanttBarsComponent,

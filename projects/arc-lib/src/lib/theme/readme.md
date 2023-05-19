@@ -1,8 +1,6 @@
 # Theme module
 
-- Theme module in our micro service is usually used in conjunction with Nebular,Nebular is a customizable Angular UI Library and styles designed to create a consistent, modern user interface. Nebular includes a set of pre-defined themes, but you can also create your own custom themes also.
-
-- Once you have created your theme module, you can import it into your application's main module or any other module that needs to use the styles defined in the theme. You can also use the nebular service to switch between different themes at runtime, allowing users to choose their preferred theme
+- Theme module in the boilerplate is usually used in conjunction with Nebular,Nebular is a customizable Angular UI Library and styles designed to create a consistent, modern user interface. Nebular includes a set of pre-defined themes, but you can also create your own custom themes also.
 
 # IconPacksManagerService
 
@@ -23,16 +21,15 @@
 
 4. Styles
 
-- In styles we have all the files which we are using for styling and designing the data in presentable way for
-  this we are using these files named `mixins`,`utilities`,`variables` and `dhtmlx_gantt` These all are the collection of Sass files can be used to quickly add styles to HTML elements.for example we are using padding,width,height,margin,color-cases,font-size,alignment etc.
+- In styles boilerplate have all the files which The boilerplate using for styling and designing the data 
+  in presentable way for this The boilerplate usingthese files named `mixins`,`utilities`,`variables` and `dhtmlx_gantt` These all are the collection of Sass files can be used to quickly add styles to HTML elements.for example The boilerplate using `padding,width,height,margin,color-cases,font-size,alignment` etc.
 
 3. Toaster
 
 # ToasterService:
 
-We are using ToasterService that provides methods to display toasts using the `NbToastrService` and
+We are using `ToasterService` that provides methods to display toasts using the `NbToastrService` and
 The `ToasterService` provides the methods to show different types of toasts like :
-
 - `show`: shows a generic toast.
 - `success`: shows a success toast.
 - `info`: shows an info toast .
@@ -42,7 +39,7 @@ The `ToasterService` provides the methods to show different types of toasts like
 
 # ToasterAdapterService:
 
-In our application `ToasterAdapterService` implements the `IAdapter` interface for converting between two different types of objects: `ToasterConfigExt` and `NbToastrConfig`.
+In boilerplate `ToasterAdapterService` implements the `IAdapter` interface for converting between two different types of objects: `ToasterConfigExt` and `NbToastrConfig`.
 
 - `ngx-toastr` which provides a toast notification service for Angular applications. It allows you to configure various options for the toast notifications, including their appearance, position, duration, and behavior. The library provides a `ToastrConfig` class that you can use to set these options globally for your application or on a per-toast basis.
 

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {UntypedFormControl} from '@angular/forms';
-import {NameIdRequired} from '@main-project/core/api';
+import {NameIdRequired} from '@project-lib/core/api';
 
 @Component({
   selector: 'select-test',

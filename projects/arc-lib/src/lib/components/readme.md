@@ -4,23 +4,27 @@
 
 # GanttBarComponent
 
-- The component is used to render the bars for the Gantt chart. It is generic and can be used with any type of task value. The component contains properties and methods for rendering the bars and sub-allocations, formatting the allocation values, and translating labels using the `TranslationService` and `TranslateService`.
+- The component is used to render the bars for the Gantt chart. It is generic and can be used with any type 
+  of task value. The component contains properties and methods for rendering the bars and sub-allocations, formatting the allocation values, and translating labels using the `TranslationService` and `TranslateService`.
 
 # GanttColumnComponent
 
-- This Component is used to displays a single column of the Gantt chart. It has several input properties like
-- `contextItems`: An array of NbMenuItem objects representing the context menu items to display for the task.
+- This Component is used to displays a single column of the Gantt chart. It has several input properties 
+  like
+- `contextItems`: An array of NbMenuItem objects representing the context menu items to display for the 
+   task.
 - `showKebab`: A boolean value indicating whether to show a kebab icon for the task or not.
 - `showParentInitials`: A boolean value indicating whether to show the initials of the parent task or not.
 - `showChildInitials`: A boolean value indicating whether to show the initials of the child tasks or not.
-- `showOverallocatedIcon`: A boolean value indicating whether to show an overallocated icon for the task or not.
-- `contextItemFilter`: A function that takes a GanttTaskValue object as input and returns a boolean indicating
-  whether to display the context menu items for that task or not.
+- `showOverallocatedIcon`: A boolean value indicating whether to show an overallocated icon for the task or 
+   not.
+- `contextItemFilter`: A function that takes a GanttTaskValue object as input and returns a boolean 
+   indicating whether to display the context menu items for that task or not.
 
 # GanttHeaderComponent
 
-- The component that represents the header of a Gantt chart. It has several inputs, including `searchPlaceholder`
-  string representing the placeholder text to be displayed in the search box and `showSearch` A boolean value indicating whether the search box should be displayed or not.
+- The component that represents the header of a Gantt chart. It has several inputs, including 
+ `searchPlaceholder` string representing the placeholder text to be displayed in the search box and `showSearch` A boolean value indicating whether the search box should be displayed or not.
 
 # GanttChartTooltipComponent
 
@@ -101,16 +105,22 @@
 
 # Auth Component:
 
-- Auth component is a module that handles the authentication and authorization of users. It is responsible for managing user sessions, verifying user credentials, and granting access to protected resources based on the user's role and permissions.
-- The auth component typically includes a login as well as a registration form for new users to create an account. The component may also handle password reset functionality and provide options for users to manage their accounts
-- This component defines an Angular component that extends the `NbAuthComponent` class, which is a part of the `@nebular/auth` package. This component is responsible for handling the authentication process in the Angular application. It is using dependency injection to inject the `NbAuthService` and `Location` dependencies into the component's constructor.
+- Auth component is a module that handles the authentication and authorization of users. It is responsible 
+  for managing user sessions, verifying user credentials, and granting access to protected resources based on the user's role and permissions.
+
+- The auth component typically includes a login as well as a registration form for new users to create an 
+  account. The component may also handle password reset functionality and provide options for users to manage their accounts
+
+- This component defines an Angular component that extends the `NbAuthComponent` class, which is a part of 
+  the `@nebular/auth` package. This component is responsible for handling the authentication process in the Angular application. It is using dependency injection to inject the `NbAuthService` and `Location` dependencies into the component's constructor.
 
 
   # Animations
 
-- These animations could be used to provide visual feedback when elements are added or removed from the DOM, or to animate UI elements such as buttons or icons.and it also defines two Angular animations, dropdownAnimation and rotateAnimation.
+- These animations could be used to provide visual feedback when elements are added or removed fro DOM, 
+  or to animate UI elements such as buttons or icons.and it also defines two Angular animations, dropdownAnimation and rotateAnimation.
 
-- `DropdownAnimation`: The `dropdownAnimation` trigger defines two states: `void'` and `open`. The `void` state
-  is applied to an element that does not exist in the DOM. The `open` state is applied to an element that is visible in the DOM.
-- `RotateAnimation` : The `rotateAnimation` trigger defines two states: `closed` and `open`. The `closed` state
-  sets the element's rotation angle to 0 degrees. The`open` state sets the element's rotation angle to 180 degrees.
+- `DropdownAnimation`: The `dropdownAnimation` trigger defines two states: `void'` and `open`. The `void` 
+   state is applied to an element that does not exist in the DOM. The `open` state is applied to an element that is visible in the DOM.
+- `RotateAnimation` : The `rotateAnimation` trigger defines two states: `closed` and `open`. The `closed` 
+   state sets the element's rotation angle to 0 degrees. The`open` state sets the element's rotation angle to 180 degrees.

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {MAX_ALLOCATION} from '@main-project/core/constants';
+import {MAX_ALLOCATION} from '@project-lib/core/constants';
 import {TranslateService} from '@ngx-translate/core';
 import {SubAllocation} from '../../types';
 

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {environment} from '../environments/environment';
-import {AuthGuard, LoggedInGuard} from '@main-project/core/auth';
+import {AuthGuard, LoggedInGuard} from '@project-lib/core/auth';
 
 const routes: Routes = [
   {
@@ -10,12 +10,12 @@ const routes: Routes = [
       import('projects/arc-lib/src/lib/components/auth/auth.module').then(
         m => m.AuthModule,
       ),
-    // canActivate: [LoggedInGuard],
+    canActivate: [LoggedInGuard],
   },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '',

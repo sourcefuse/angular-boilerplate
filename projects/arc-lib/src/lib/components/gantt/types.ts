@@ -1,6 +1,6 @@
 import {TemplateRef, Type, ViewContainerRef} from '@angular/core';
-import {AnyObject} from '@main-project/core/api';
-import {DIGITS, ONE_MIN} from '@main-project/core/constants';
+import {AnyObject} from '@project-lib/core/api';
+import {DIGITS, ONE_MIN} from '@project-lib/core/constants';
 import {NbMenuItem} from '@nebular/theme';
 import {RANDOM_SIZE} from './const';
 import {gantt} from 'dhtmlx-gantt';

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { catchError, concatMap, Observable, of, tap } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
+import {catchError, concatMap, Observable, of, tap} from 'rxjs';
 
-import { AuthService } from '../auth.service';
-import { SystemStoreFacadeService } from '@main-project/core/store';
-import { environment } from '@main-project/boiler/env/environment';
+import {AuthService} from '../auth.service';
+import {SystemStoreFacadeService} from '@project-lib/core/store';
+import {environment} from '@main-project/boiler/env/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class LoggedInGuard implements CanActivate {
   constructor(
     private readonly authService: AuthService,
     private readonly systemStore: SystemStoreFacadeService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   canActivate(): Observable<boolean> {
@@ -21,7 +21,7 @@ export class LoggedInGuard implements CanActivate {
       .getEnvConfig()
       .pipe(concatMap(() => this.authService.isLoggedIn()))
       .pipe(
-        tap((res) => {
+        tap(res => {
           if (res) {
             const timeout = setTimeout(() => {
               this.router.navigate([environment.homePath]);
@@ -29,7 +29,7 @@ export class LoggedInGuard implements CanActivate {
             });
           }
         }),
-        catchError(() => of(true))
+        catchError(() => of(true)),
       );
   }
 }

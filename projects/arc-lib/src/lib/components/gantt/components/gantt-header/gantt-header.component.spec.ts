@@ -1,5 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ThemeModule} from '@main-project/theme/theme.module';
+import {ThemeModule} from '@project-lib/theme/theme.module';
 import {GanttModule} from '../../gantt.module';
 import {GanttHeaderComponent} from './gantt-header.component';
 

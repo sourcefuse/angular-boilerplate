@@ -13,8 +13,8 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {AnyObject} from '@main-project/core/api';
-import {ComponentBaseDirective} from '@main-project/core/component-base';
+import {AnyObject} from '@project-lib/core/api';
+import {ComponentBaseDirective} from '@project-lib/core/component-base';
 import {NbMenuItem, NbMenuService} from '@nebular/theme';
 import {takeUntil} from 'rxjs';
 import {GANTT_COLUMN_WIDTH} from '../const';

@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {By} from '@angular/platform-browser';
-import {AnyObject} from '@main-project/core/api';
-import {TranslationService} from '@main-project/core/localization';
+import {AnyObject} from '@project-lib/core/api';
+import {TranslationService} from '@project-lib/core/localization';
 import {
   TranslateFakeLoader,
   TranslateLoader,

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -10,12 +10,12 @@ import {
   UrlTree,
 } from '@angular/router';
 
-import { catchError, concatMap, Observable, of } from 'rxjs';
-import { AuthService } from '../auth.service';
+import {catchError, concatMap, Observable, of} from 'rxjs';
+import {AuthService} from '../auth.service';
 import {
   SystemStoreFacadeService,
   UserSessionStoreService,
-} from '@main-project/core/store';
+} from '@project-lib/core/store';
 
 @Injectable({
   providedIn: 'root',
@@ -25,12 +25,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     private readonly store: UserSessionStoreService,
     private readonly systemStore: SystemStoreFacadeService,
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<boolean> {
     if (route.queryParamMap.keys.length > 0) {
       const code = route.queryParamMap.get('code');
@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canActivateChild(
     childRoute: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): Observable<boolean> {
     if (childRoute.queryParamMap.keys.length > 0) {
       const code = childRoute.queryParamMap.get('code');
@@ -65,7 +65,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   }
 
   canLoad(
-    route: Route
+    route: Route,
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
@@ -80,7 +80,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       catchError(() => {
         this.router.navigate(['/auth/login']);
         return of(false);
-      })
+      }),
     );
   }
 }

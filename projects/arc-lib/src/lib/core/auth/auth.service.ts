@@ -1,9 +1,9 @@
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthTokenSkipHeader, ErrToastSkipHeader } from '../constants';
-import { UserSessionStoreService } from '../store';
-import { NgxPermissionsService } from 'ngx-permissions';
+import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {Inject, Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthTokenSkipHeader, ErrToastSkipHeader} from '../constants';
+import {UserSessionStoreService} from '../store';
+import {NgxPermissionsService} from 'ngx-permissions';
 import {
   catchError,
   from,
@@ -16,8 +16,8 @@ import {
   throwError,
 } from 'rxjs';
 
-import { LoggedInUserAdapterService, LoginAdapterService } from './adapters';
-import { CoreAuthModule } from './auth.module';
+import {LoggedInUserAdapterService, LoginAdapterService} from './adapters';
+import {CoreAuthModule} from './auth.module';
 import {
   ForgetPasswordCommand,
   GetCurrentUserCommand,
@@ -28,9 +28,9 @@ import {
   ResetPasswordCommand,
   VerifyResetPasswordLinkCommand,
 } from './commands';
-import { LoggedInUserDM, LoginModel } from './models';
-import { AnyAdapter, ApiService } from '../api';
-import { APP_CONFIG } from '@main-project/app-config';
+import {LoggedInUserDM, LoginModel} from './models';
+import {AnyAdapter, ApiService} from '../api';
+import {APP_CONFIG} from '@project-lib/app-config';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -38,11 +38,11 @@ import { APP_CONFIG } from '@main-project/app-config';
 export class AuthService {
   private readonly authTokenSkipHeader = new HttpHeaders().set(
     AuthTokenSkipHeader,
-    ''
+    '',
   );
   private readonly errorToastSkipHeader = new HttpHeaders().set(
     ErrToastSkipHeader,
-    ''
+    '',
   );
   constructor(
     private readonly router: Router,
@@ -52,18 +52,18 @@ export class AuthService {
     private readonly loginAdapter: LoginAdapterService,
     private readonly anyAdapter: AnyAdapter,
     private readonly permissionsService: NgxPermissionsService,
-    @Inject(APP_CONFIG) private readonly appConfig: any
+    @Inject(APP_CONFIG) private readonly appConfig: any,
   ) {}
 
   public isLoggedIn(): Observable<boolean> {
     return this.currentUser().pipe(
-      switchMap((user) => {
+      switchMap(user => {
         if (user && user.id && this.store.getAccessToken()) {
           return of(true);
         } else {
           return of(false);
         }
-      })
+      }),
     );
   }
 
@@ -79,13 +79,13 @@ export class AuthService {
         new GetCurrentUserCommand(
           this.apiService,
           this.currentUserAdapter,
-          this.appConfig
+          this.appConfig,
         );
       return command.execute().pipe(
-        tap((res) => {
+        tap(res => {
           this.store.setUser(res);
           this._loadPermissions(res.permissions);
-        })
+        }),
       );
     }
   }
@@ -95,7 +95,7 @@ export class AuthService {
     const command: ForgetPasswordCommand<any> = new ForgetPasswordCommand(
       this.apiService,
       this.anyAdapter,
-      this.appConfig
+      this.appConfig,
     );
     // sonarignore:end
     command.parameters = {
@@ -116,7 +116,7 @@ export class AuthService {
       new VerifyResetPasswordLinkCommand(
         this.apiService,
         this.anyAdapter,
-        this.appConfig
+        this.appConfig,
       );
     // sonarignore:end
     command.parameters = {
@@ -135,7 +135,7 @@ export class AuthService {
     const command: ResetPasswordCommand<any> = new ResetPasswordCommand(
       this.apiService,
       this.anyAdapter,
-      this.appConfig
+      this.appConfig,
     );
     // sonarignore:end
     command.parameters = {
@@ -160,7 +160,7 @@ export class AuthService {
     const command: LoginCommand<LoginModel> = new LoginCommand(
       this.apiService,
       this.loginAdapter,
-      this.appConfig
+      this.appConfig,
     );
     command.parameters = {
       data: {
@@ -204,7 +204,7 @@ export class AuthService {
     const command: GetTokenCommand<any> = new GetTokenCommand(
       this.apiService,
       this.anyAdapter,
-      this.appConfig
+      this.appConfig,
     );
     // sonarignore:end
     command.parameters = {
@@ -215,7 +215,7 @@ export class AuthService {
       headers: this.authTokenSkipHeader,
     };
     return command.execute().pipe(
-      map((response) => {
+      map(response => {
         const redirectTo =
           this.store.getLastAccessedUrl() ?? this.appConfig.homePath;
         if (response.accessToken && response.refreshToken) {
@@ -226,7 +226,7 @@ export class AuthService {
           return true;
         }
         return false;
-      })
+      }),
     );
   }
 
@@ -241,7 +241,7 @@ export class AuthService {
     const command: RefreshTokenCommand<any> = new RefreshTokenCommand(
       this.apiService,
       this.anyAdapter,
-      this.appConfig
+      this.appConfig,
     );
     // sonarignore:end
     command.parameters = {
@@ -254,7 +254,7 @@ export class AuthService {
       .execute()
       .pipe(
         tap({
-          next: (response) => {
+          next: response => {
             if (response.accessToken && response.refreshToken) {
               this.store.clearAll();
               this.store.saveAccessToken(response.accessToken);
@@ -267,7 +267,7 @@ export class AuthService {
           error: () => {
             this.clearAllData();
           },
-        })
+        }),
       )
       .pipe(catchError(this.handleError));
   }
@@ -281,7 +281,7 @@ export class AuthService {
     const command: LogoutCommand<unknown> = new LogoutCommand(
       this.apiService,
       this.anyAdapter,
-      this.appConfig
+      this.appConfig,
     );
     command.parameters = {
       data: {
@@ -293,7 +293,7 @@ export class AuthService {
       map(() => {
         this.clearAllData();
         return true;
-      })
+      }),
     );
   }
 
@@ -318,11 +318,11 @@ export class AuthService {
     if (user && user.id) {
       this._checkIfPermissionsAlreadyExists(user.permissions)
         .pipe(
-          tap((exists) => {
+          tap(exists => {
             if (!exists) {
               this._loadPermissions(user.permissions);
             }
-          })
+          }),
         )
         .pipe(take(1))
         .subscribe();
@@ -343,7 +343,7 @@ export class AuthService {
 
   private handleError(error: HttpErrorResponse) {
     return throwError(
-      () => new Error('Something bad happened; please try again later.')
+      () => new Error('Something bad happened; please try again later.'),
     );
   }
 }

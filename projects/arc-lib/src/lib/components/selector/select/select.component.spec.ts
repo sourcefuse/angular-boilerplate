@@ -12,9 +12,10 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TranslateService} from '@ngx-translate/core';
 import {finishVirtualScrollInit} from 'src/testing/virtual-scroll-init';
+// import { finishvirt}
 import {AngularTranslationServiceStub} from '../../../../testing/translation-service-stub';
-import {DIGITS} from '@main-project/core/constants';
-import {ThemeModule} from '@main-project/theme/theme.module';
+import {DIGITS} from '@project-lib/core/constants';
+import {ThemeModule} from '@project-lib/theme/theme.module';
 import {SelectModule} from '../select.module';
 import {SelectTestComponent} from '../tests/select-test.component';
 import {SelectTestModule} from '../tests/select-test.module';

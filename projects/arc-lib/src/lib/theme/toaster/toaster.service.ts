@@ -1,22 +1,22 @@
-import { Injectable } from '@angular/core';
-import { NbToastrService } from '@nebular/theme';
-import { ToasterAdapterService } from './toaster-adapter.service';
-import { ToasterConfigExt } from './types';
-import { IToaster } from '@main-project/core/toaster';
-import { IAnyObject } from '@main-project/core/i-any-object';
+import {Injectable} from '@angular/core';
+import {NbToastrService} from '@nebular/theme';
+import {ToasterAdapterService} from './toaster-adapter.service';
+import {ToasterConfigExt} from './types';
+import {IToaster} from '@project-lib/core/toaster';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 @Injectable({
   providedIn: null,
 })
 export class ToasterService implements IToaster {
   constructor(
     private readonly toastrSvc: NbToastrService,
-    private readonly configAdapter: ToasterAdapterService
+    private readonly configAdapter: ToasterAdapterService,
   ) {}
 
   show(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfigExt>
+    config?: Partial<ToasterConfigExt>,
   ): IAnyObject {
     const conf = config && this.configAdapter.adaptFromModel(config);
     return this.toastrSvc.show(message, title, conf);
@@ -25,12 +25,12 @@ export class ToasterService implements IToaster {
   success(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfigExt>
+    config?: Partial<ToasterConfigExt>,
   ): IAnyObject {
     const conf =
       config &&
       this.configAdapter.adaptFromModel(
-        Object.assign({}, config, { status: 'success' })
+        Object.assign({}, config, {status: 'success'}),
       );
     return this.toastrSvc.success(message, title, conf);
   }
@@ -38,12 +38,12 @@ export class ToasterService implements IToaster {
   info(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfigExt>
+    config?: Partial<ToasterConfigExt>,
   ): IAnyObject {
     const conf =
       config &&
       this.configAdapter.adaptFromModel(
-        Object.assign({}, config, { status: 'info' })
+        Object.assign({}, config, {status: 'info'}),
       );
     return this.toastrSvc.info(message, title, conf);
   }
@@ -51,12 +51,12 @@ export class ToasterService implements IToaster {
   warn(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfigExt>
+    config?: Partial<ToasterConfigExt>,
   ): IAnyObject {
     const conf =
       config &&
       this.configAdapter.adaptFromModel(
-        Object.assign({}, config, { status: 'warning' })
+        Object.assign({}, config, {status: 'warning'}),
       );
     return this.toastrSvc.warning(message, title, conf);
   }
@@ -64,12 +64,12 @@ export class ToasterService implements IToaster {
   error(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfigExt>
+    config?: Partial<ToasterConfigExt>,
   ): IAnyObject {
     const conf =
       config &&
       this.configAdapter.adaptFromModel(
-        Object.assign({}, config, { status: 'danger' })
+        Object.assign({}, config, {status: 'danger'}),
       );
     return this.toastrSvc.danger(message, title, conf);
   }
@@ -77,12 +77,12 @@ export class ToasterService implements IToaster {
   default(
     message: string,
     title?: string,
-    config?: Partial<ToasterConfigExt>
+    config?: Partial<ToasterConfigExt>,
   ): IAnyObject {
     const conf =
       config &&
       this.configAdapter.adaptFromModel(
-        Object.assign({}, config, { status: 'basic' })
+        Object.assign({}, config, {status: 'basic'}),
       );
     return this.toastrSvc.default(message, title, conf);
   }

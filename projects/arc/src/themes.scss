@@ -1,5 +1,4 @@
 @use 'sass:map';
-//@use '@main-project/theme/styles/index' as *;
 @use '../../arc-lib/src/lib/theme/styles/index.scss' as *;
 @forward '@nebular/theme/styles/theming';
 @use '@nebular/theme/styles/theming' as *;

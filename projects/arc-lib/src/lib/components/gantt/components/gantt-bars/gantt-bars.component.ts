@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {AnyObject} from '@main-project/core/api';
-import {MAX_ALLOCATION} from '@main-project/core/constants';
-import {TranslationService} from '@main-project/core/localization';
+import {AnyObject} from '@project-lib/core/api';
+import {MAX_ALLOCATION} from '@project-lib/core/constants';
+import {TranslationService} from '@project-lib/core/localization';
 import {TranslateService} from '@ngx-translate/core';
 import {
   GanttTaskValue,

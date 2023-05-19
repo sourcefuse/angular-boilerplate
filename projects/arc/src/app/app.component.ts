@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  ComponentBaseDirective,
-  TranslationService,
-} from '@main-project/core/index';
-import { IconPacksManagerService } from '@main-project/theme/services';
+import {Component, OnInit} from '@angular/core';
+import {ComponentBaseDirective} from '@project-lib/core/component-base';
+import {TranslationService} from '@project-lib/core/localization';
+import {IconPacksManagerService} from '@project-lib/theme/services';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +12,7 @@ export class AppComponent extends ComponentBaseDirective implements OnInit {
   title = 'boiler-plate-ui';
   constructor(
     private readonly iconMgr: IconPacksManagerService,
-    private readonly languageTranslateService: TranslationService
+    private readonly languageTranslateService: TranslationService,
   ) {
     super();
   }

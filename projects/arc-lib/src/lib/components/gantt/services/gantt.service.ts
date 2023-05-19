@@ -14,7 +14,7 @@ import {
   Type,
 } from '@angular/core';
 import {GanttEventName} from 'dhtmlx-gantt/codebase/dhtmlxgantt';
-import {AnyObject} from '@main-project/core/api';
+import {AnyObject} from '@project-lib/core/api';
 import {debounceTime, fromEventPattern, Subject} from 'rxjs';
 import {GanttHeaderComponent} from '../components/gantt-header/gantt-header.component';
 import {GanttTooltipComponent} from '../components/gantt-tooltip/gantt-tooltip.component';

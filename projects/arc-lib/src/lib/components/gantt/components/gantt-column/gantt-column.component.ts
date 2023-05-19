@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {AnyObject} from '@main-project/core/api';
+import {AnyObject} from '@project-lib/core/api';
 import {NbMenuItem} from '@nebular/theme';
 import {ContextItemFilter, GanttTaskValue} from '../../types';
 

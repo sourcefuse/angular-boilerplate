@@ -1,8 +1,8 @@
 import {Location} from '@angular/common';
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AuthService} from '@main-project/core/auth';
-import {RouteComponentBaseDirective} from '@main-project/core/route-component-base';
+import {AuthService} from '@project-lib/core/auth';
+import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 
 @Component({
   selector: 'boiler-login',

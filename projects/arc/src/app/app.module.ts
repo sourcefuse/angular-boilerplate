@@ -4,20 +4,20 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {IconPacksManagerService} from '@main-project/theme/services';
+import {IconPacksManagerService} from '@project-lib/theme/services';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {
   LocalizationModule,
   TranslationService,
-} from '@main-project/core/localization';
-import {SystemStoreFacadeService} from '@main-project/core/store';
+} from '@project-lib/core/localization';
+import {SystemStoreFacadeService} from '@project-lib/core/store';
 import {InMemoryStorageService} from 'ngx-webstorage-service';
-import {EnvAdapterService} from '@main-project/core/store/adapters';
-import {ApiService} from '@main-project/core/api';
-import {CoreModule} from '@main-project/core/core.module';
-import {APP_CONFIG} from '@main-project/app-config';
+import {EnvAdapterService} from '@project-lib/core/store/adapters';
+import {ApiService} from '@project-lib/core/api';
+import {CoreModule} from '@project-lib/core/core.module';
+import {APP_CONFIG} from '@project-lib/app-config';
 import {environment} from '../environments/environment';
-import {ThemeModule} from '@main-project/theme/theme.module';
+import {ThemeModule} from '@project-lib/theme/theme.module';
 import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
 
 @NgModule({

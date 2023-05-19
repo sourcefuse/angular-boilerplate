@@ -18,14 +18,14 @@
         "projects/arc/src/environments/*"
       ],
       "@main-project/boiler/*": ["projects/arc/src/app/*"],
-      "@main-project/core/*": ["projects/arc-lib/src/lib/core/*"],
-      "@main-project/components/*": ["projects/arc-lib/src/lib/components/*"],
-      "@main-project/theme/*": ["projects/arc-lib/src/lib/theme/*"],
-      "@main-project/app-config": [
+      "@project-lib/core/*": ["projects/arc-lib/src/lib/core/*"],
+      "@project-lib/components/*": ["projects/arc-lib/src/lib/components/*"],
+      "@project-lib/theme/*": ["projects/arc-lib/src/lib/theme/*"],
+      "@project-lib/app-config": [
         "projects/arc-lib/src/lib/app-config/index.ts"
       ],
-      "@main-project/auth/*": ["projects/arc-lib/src/lib/components/auth/*"],
-      "@main-project/assets/*": ["projects/arc-lib/src/lib/assets/*"]
+      "@project-lib/auth/*": ["projects/arc-lib/src/lib/components/auth/*"],
+      "@project-lib/assets/*": ["projects/arc-lib/src/lib/assets/*"]
     }
   },
   "angularCompilerOptions": {

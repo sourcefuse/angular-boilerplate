@@ -7,7 +7,7 @@ import {NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';
 import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {ThemeModule} from '@main-project/theme/theme.module';
+import {ThemeModule} from '@project-lib/theme/theme.module';
 import {AuthRoutingModule} from './auth-routing.module';
 import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
@@ -19,7 +19,7 @@ import {LoginComponent} from './login/login.component';
     CommonModule,
     FormsModule,
     RouterModule,
-    ThemeModule,
+    // ThemeModule,
     AuthRoutingModule,
     HttpClientModule,
     NbLayoutModule,
