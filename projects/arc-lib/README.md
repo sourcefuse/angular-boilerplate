@@ -1,6 +1,6 @@
-#### ARC-LIBRARY
+# ARC-LIBRARY
 
-# Description
+## Description
 
 - In an Angular multiproject workspace, a shared library is a package that contains reusable code and 
   functionality that can be used across multiple projects within the workspace.
@@ -27,9 +27,9 @@ The Structure of the arc-lib is as follows
 - Angular arc library  provides various features and components to help developers get started with 
   their projects quickly. Here are some of the features and components that provides:
 
-# Core Module:
+## Core Module:
 
-## API:
+### API:
 
 - Adapters: We are using 3 adapters named `anyAdapter` , `countAdapter` and `nameAdapter`. We
   use these adapters for manipulating the data, as we get the data from the api.
@@ -40,7 +40,7 @@ The Structure of the arc-lib is as follows
 - Models: We are using 3 models named `count.model`,`named-id-required.model` and
   `named-id. model`. In these models The boilerplate usingmodel based validations.
 
-## Auth:
+### Auth:
 
 - Adaptors: Two adapter service provided are `logged-in-user-adapter.service` and
   `login-adapter. service` which helps in adapting API response to a LoggedInUserDM model representing a logged-in user or adapting the LoginModel object to the API request format and adapting the API response which allows for a separation of concerns between the API response data and the application data model.
@@ -56,7 +56,7 @@ The Structure of the arc-lib is as follows
   in to a system and the the response from server after a user gets authenticated
   and obtains a new access token and refresh token.
 
-## Decorator:
+### Decorator:
 
 We are using 2 decorators named `required.decorator` and `validate.decorator`.
 
@@ -66,12 +66,12 @@ We are using 2 decorators named `required.decorator` and `validate.decorator`.
   a parameterized constructor. The required decorator adds metadata to the target constructor and validate uses `Reflect.getMetadata` to retrieve the required properties and validate them in the constructor.
   These decorators help to ensure that required properties are not left undefined or null.
 
-## Interceptors:
+### Interceptors:
 
 The boilerplate using 3 Interceptors named `auth.interceptor`,`error.interceptor` and `session-recovery.interceptor`. These interceptors are responsible for adding an authorization header to requests that require authentication, checks for errors that occur during HTTP requests and
 displays error messages and also refreshes the user's authentication token when the session gets expired.
 
-## Localization:
+### Localization:
 
 The boilerplate using i18n module as a language translator where The boilerplate using 3 files as follows :
 
@@ -82,15 +82,15 @@ The boilerplate using i18n module as a language translator where The boilerplate
 - Service: The translationService provides localization functionality to the application. It
   depends on `@ngx-translate/core` library to handle translations allowing users to select their preferred language for the application & to provide appropriate translations based on that preference.
 
-## Env Resolver Service:
+### Env Resolver Service:
 
 The purpose of this service (implements the Resolve interface and is responsible for resolving the environment configuration ) is to retrieve environment configuration data from a store (`SystemStoreFacadeService`) and make it available to components before they are displayed.
 
-## Store:
+### Store:
 
 Store module provides `store-keys.enum`,`user-session-store.service` and`system-store-facade.service`. These are used to fetch and update environment configurations.It also updates the environment configurations in memory and logs the change in the logging system.Also, provides methods to save, retrieve, and remove user session data such as access token, refresh token, user information, and last accessed URL.
 
-## Toaster:
+### Toaster:
 
 - In this The boilerplate using toaster named `Itoaster` this is a user interface component that displays
   notifications or alerts to users in a non-intrusive way. Itoaster notifications typically appear as small pop-up messages that provide feedback or information.
@@ -108,18 +108,18 @@ Also, provides methods to register icon packs with the NbIconLibraries service. 
 For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme/readme.md)
 (./src/lib/theme/readme.md)
 
-# Components:
+## Components:
 
-## Select Component
+### Select Component
 
   This component supports auto-completion, filtering of options by search terms, and the
   ability to add new tags that are not present in the list of options. There are also several configurable options, such as the ability to select multiple items, the placeholder text for the input field, and the width and height of the dropdown panel and provides a reusable component for displaying a searchable list of items with a selectable checkbox and dropdown with customized states.
 
-## Gantt Component:
+### Gantt Component:
 
   In this The boilerplate usingbb.gantt,bb.gantt charts,bb.gantt bars a Gantt chart is a user interface component that displays project tasks or events over a timeline, allowing users to visualize the schedule and progress of a project.
 
-## Login Component:
+### Login Component:
 
 - Login component allows users to authenticate themselves by entering their credentials, such as a username
   and password and also we can login with google.
@@ -127,7 +127,7 @@ For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme
 - The login component may also include features such as password reset, remember me functionality, and
   social login options.
 
-## Auth Component:
+### Auth Component:
 
 - Auth component is a module that handles the authentication and authorization of users. It is responsible
   for managing user sessions, verifying user credentials, and granting access to protected resources based on the user's role and permissions.
@@ -135,4 +135,3 @@ For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme
   an account. The component may also handle password reset functionality and provide options for users to manage their accounts
 
 For more details about Components ,refer [Here](/projects/arc-lib/src/lib/components/readme.md)
-

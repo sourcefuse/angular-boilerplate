@@ -32,9 +32,7 @@ import {
   NbUserModule,
 } from '@nebular/theme';
 import {TranslateModule} from '@ngx-translate/core';
-//import { TOASTER_SERVICE_KEY } from '../shared/core/toaster';
 import {TOASTER_SERVICE_KEY} from '../core';
-
 import {ToasterAdapterService, ToasterService} from './toaster';
 import {IconPacksManagerService} from './services';
 

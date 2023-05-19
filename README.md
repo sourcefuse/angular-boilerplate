@@ -1,9 +1,9 @@
-#### ANGULAR BOILERPLATE
-[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)](http://commitizen.github.io/cz-cli/)
+# ARC ANGULAR BOILERPLATE
+[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)
 
 <!-- DOCUMENTATION -->
 
-# Description
+## Description
 
 - The boilerplate using multiple projects in one Angular environment so that the boilerplate help users 
   to improve code  reusability, scalability, maintainability, and customization. It can also help in increase productivity, reduce risks, and improve the quality of  application.
@@ -13,7 +13,7 @@
 
 Following are the steps to get started with it:
 
-# Usage
+## Usage
 
 #### Step 1:Clone the boilerplate project repository to your local machine
 
@@ -40,7 +40,6 @@ BOILER-PLATE
 ├── .gitignore
 ├── commitlint.config.js
 ├── CODE_OF_CONDUCT.md
-├── lerna.json
 ├── package-lock.json
 ├── package.json
 ├── README.md
@@ -49,12 +48,13 @@ BOILER-PLATE
 As can be seen above, scaffold has initialized and set up a lot, such as:
 
 1. GitHub PR template inside `.github`
-2. Conventional commits enablement using commitizen (`.cz-config.js`), commitlint (`commitlint-config.js`) and husky for githooks.
-3. `.gitignore` for ignoring files from source code. Important for secure coding and keeping the repo clean on SCM (git)
-4. `lerna.json` which contains the setup for lerna commands. Lerna is going to be our monorepo manager and build tool going forward. It is one of the most popular monorepo managers in the industry, used by Jest, NestJS, LoopBack, and Nx.
-5. `package.json` and `package-lock.json` for npm to work.
-6. The folder named  `projects`:
-   - Projects will hold the multi application pattern and will always be completely independent 
+2. Conventional commits enablement using commitizen (`.cz-config.js`), commitlint (`commitlint-config.js`) 
+   and husky for githooks.
+3. `.gitignore` for ignoring files from source code. Important for secure coding and keeping the repo clean 
+    on SCM (git)
+4. `package.json` and `package-lock.json` for npm to work.
+5. The folder named `projects`: Projects will hold the multi application pattern and will always be 
+   completely independent 
 
 #### The Structure is main project folder 
 
@@ -71,7 +71,7 @@ PROJECTS
 ├── (...other files)
 ```
 
-# Projects
+## Projects
 1. Arc:
 - This boilerplate arc project is a project set up that can be easily altered to create new projects. 
   The user is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
@@ -82,7 +82,7 @@ PROJECTS
 For further reference you can refer [Here](Projects/arc-lib/README.md)
 
 
-### Step 3: Start the Server
+#### Step 3: Start the Server
 
 ```sh
 ng serve
@@ -90,7 +90,7 @@ ng serve
 
 You'll see a message saying Server is running at `http://localhost:4200/` Navigate to this URL. The application will automatically reload if you change any of the source files.
 
-###  Build the Application
+##  Build the Application
 
  To build the project. The build artifacts will be stored in the `dist/` directory.
 
@@ -98,7 +98,7 @@ You'll see a message saying Server is running at `http://localhost:4200/` Naviga
 ng build
 ```
 
-### Running unit tests
+## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 

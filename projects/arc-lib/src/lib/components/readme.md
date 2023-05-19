@@ -1,13 +1,13 @@
-#### COMPONENTS
+# COMPONENTS
 
-1. Gantt
+## Gantt
 
-# GanttBarComponent
+### GanttBarComponent
 
 - The component is used to render the bars for the Gantt chart. It is generic and can be used with any type 
   of task value. The component contains properties and methods for rendering the bars and sub-allocations, formatting the allocation values, and translating labels using the `TranslationService` and `TranslateService`.
 
-# GanttColumnComponent
+### GanttColumnComponent
 
 - This Component is used to displays a single column of the Gantt chart. It has several input properties 
   like
@@ -21,19 +21,19 @@
 - `contextItemFilter`: A function that takes a GanttTaskValue object as input and returns a boolean 
    indicating whether to display the context menu items for that task or not.
 
-# GanttHeaderComponent
+### GanttHeaderComponent
 
 - The component that represents the header of a Gantt chart. It has several inputs, including 
  `searchPlaceholder` string representing the placeholder text to be displayed in the search box and `showSearch` A boolean value indicating whether the search box should be displayed or not.
 
-# GanttChartTooltipComponent
+### GanttChartTooltipComponent
 
 - The component which is displayed when hovering over a Gantt chart bar.The tooltip displays information 
   about a SubAllocation object, including its start and end dates, allocation rate, and allocated hours per day. The SubAllocation object is passed to the component using the item input property.The component has methods for formatting the allocation rate and allocated hours per day values into readable strings
 
-# Service:
+## Service:
 
-1. GanttService
+### GanttService
 
 - The GanttService class has several private properties, including ` _data`, `_overlays`, `_tooltipOverlay`,
   `_eventHandlers` etc
@@ -41,7 +41,7 @@
   chart. The method sets several properties such as the `row_height, bar_height, scale_height`, and readonly properties. It also sets up the layout of the Gantt chart and registers event handlers for task clicks and
   grid header clicks.
 
-2. Timeline-scale
+### Timeline-scale
 
 - `MonthlyScaleService` : This is an service for generating a monthly scale for a Gantt chart It provides a configuration for displaying the Monthly timeline scale for a Gantt chart. The `config()` method, which returns an array of objects representing the different units in the timeline scale.The `GanttScaleService` interface defines a contract for a service that can be used to generate scale configurations for different timelines. The `MonthlyScaleService` class implements this interface by defining the scale property, which is set to Timelines.Monthly
 
@@ -49,11 +49,11 @@
 
 - `WeeklyScaleService` : This defines service called `WeeklyScaleService` which implements the `GanttScaleService` interface. The `GanttScaleService` interface defines the contract that all Gantt scale services must adhere to. The `WeeklyScaleService` service provides a configuration for a Gantt chart with a weekly timeline. The configuration includes an array of objects that specify the scale units, step size, and formatting for each unit.The `config()` method returns an array of two objects. The first object represents the weekly scale unit and formats the date using the `_formatWeeklyScale` private method. The second object represents the daily scale unit and formats the date using the `toLocaleString()`
 
-# GanttModule
+### GanttModule
 
 - This is an Angular module called GanttModule which declares and exports a components and Modules related to Gantt.The module also provides three different `GanttScaleService` implementations as providers using the GANTT_SCALES injection token: `MonthlyScaleService`, `WeeklyScaleService`, and `QuarterlyScaleService`as we discuss above
 
-2. Resize
+## Resize
 
 - The ResizeService provides reactive programming features in the application.
 - `filter` allows filtering values emitted by an Observable based on a predicate function.
@@ -64,9 +64,7 @@
 - we can say the ResizeService provides a convenient way to listen for and observe changes in the size of an
   element in an Angular application.
 
-3. Select
-
-# ListComponent:
+## ListComponent:
 
 - This component implements the behavior of a search and select component. It has several methods,
   the methods are creating a Set of removed items, assigning a copy of the options to the visibleList array, sorting the list by groups, and subscribing to changes in the value of a search control.
@@ -75,7 +73,9 @@
 - It also retrieves the name of an item by getting the value of the name field of the item,removes an item 
   from the list and emits an event,method checks if an item is a placeholder item,selects the first item in the list if the user presses enter on the search box and there are items in the list and groups the visibleList array according to the groupConfig property.
 
-# SelectComponent
+## Selector
+
+### SelectComponent
 
 - The component is used to display a list of options that can be selected by the user. The selected options 
   can be displayed as tags. The component has various inputs and outputs
@@ -86,16 +86,16 @@
 - The component emits several events, including added, removed, and cleared for changes to the selection
   (s), and `newAdded` and `newRemoved` for changes to custom values entered by the user.It also provides a valueChange output for two-way binding of the selected value(s).
 
-# TestComponent
+### TestComponent
 
 - This component defines the behavior of a select dropdown in the UI.The options property is an array of
   `NameIdRequired` objects that will be displayed as the available options in the dropdown.
 - The multiple, allowInput, disabled, and search properties are boolean values that control various aspects 
   of the dropdown behavior. `multiple` specifies whether multiple options can be selected at once, `allowInput` specifies whether the user can input a custom option, `disabled` specifies whether the dropdown is disabled or not, and `search` specifies whether a search box is displayed to filter the options.
 
-4. Auth 
+## Auth 
 
-# Login Component:
+### Login Component:
 
 - Login component allows users to authenticate themselves by entering their credentials, such as a username and password and also we can login with google.
 - The login component typically includes a form with input fields for the user's credentials, as well as a submit button to initiate the login process also gives us option to login via google.
@@ -103,7 +103,7 @@
 - The component is a basically for an Angular login page with a Google login option
 - The login component may also include features such as password reset, remember me functionality, and social login options.
 
-# Auth Component:
+### Auth Component:
 
 - Auth component is a module that handles the authentication and authorization of users. It is responsible 
   for managing user sessions, verifying user credentials, and granting access to protected resources based on the user's role and permissions.
@@ -115,7 +115,7 @@
   the `@nebular/auth` package. This component is responsible for handling the authentication process in the Angular application. It is using dependency injection to inject the `NbAuthService` and `Location` dependencies into the component's constructor.
 
 
-  # Animations
+  ### Animations
 
 - These animations could be used to provide visual feedback when elements are added or removed fro DOM, 
   or to animate UI elements such as buttons or icons.and it also defines two Angular animations, dropdownAnimation and rotateAnimation.
