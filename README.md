@@ -1,5 +1,5 @@
 # ARC ANGULAR BOILERPLATE
-[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)(https://www.npmjs.com/package/@angular/cli/v/14.0.0)
+[![Version][(https://img.shields.io/badge/@angular/core-v14-brightgreen)](https://www.npmjs.com/package/@angular/cli/v/14.0.0)
 
 <!-- DOCUMENTATION -->
 
