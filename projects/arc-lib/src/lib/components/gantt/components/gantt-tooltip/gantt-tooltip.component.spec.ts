@@ -1,5 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslationService } from '@boiler/core/localization';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {TranslationService} from '@project-lib/core/localization';
 import {
   TranslateFakeLoader,
   TranslateLoader,
@@ -7,7 +7,7 @@ import {
   TranslateService,
 } from '@ngx-translate/core';
 
-import { GanttTooltipComponent } from './gantt-tooltip.component';
+import {GanttTooltipComponent} from './gantt-tooltip.component';
 
 describe('GanttTooltipComponent', () => {
   let component: GanttTooltipComponent;

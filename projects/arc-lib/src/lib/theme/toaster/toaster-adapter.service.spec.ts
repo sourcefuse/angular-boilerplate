@@ -1,8 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-import { CoreModule } from '@boiler/core/core.module';
-
-import { ThemeModule } from '../theme.module';
-import { ToasterAdapterService } from './toaster-adapter.service';
+import {TestBed} from '@angular/core/testing';
+import {CoreModule} from '@project-lib/core/core.module';
+import {ThemeModule} from '../theme.module';
+import {ToasterAdapterService} from './toaster-adapter.service';
 
 describe('ToasterAdapterService', () => {
   let service: ToasterAdapterService;

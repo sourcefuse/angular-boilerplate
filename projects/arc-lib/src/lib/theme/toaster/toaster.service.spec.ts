@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-import { CoreModule } from '@boiler/core/core.module';
-import { IToaster, TOASTER_SERVICE_KEY } from '@boiler/core/toaster';
-import { ThemeModule } from '..';
+import {TestBed} from '@angular/core/testing';
+import {CoreModule} from '@project-lib/core/core.module';
+import {IToaster, TOASTER_SERVICE_KEY} from '@project-lib/core/toaster';
+import {ThemeModule} from '..';
 
-import { ToasterAdapterService } from './toaster-adapter.service';
-import { ToasterService } from './toaster.service';
+import {ToasterAdapterService} from './toaster-adapter.service';
+import {ToasterService} from './toaster.service';
 
 describe('ToasterService', () => {
   let service: IToaster;

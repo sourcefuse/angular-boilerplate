@@ -6,7 +6,7 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {takeUntil} from 'rxjs';
 
 @Component({
-  selector: 'boiler-home',
+  selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })

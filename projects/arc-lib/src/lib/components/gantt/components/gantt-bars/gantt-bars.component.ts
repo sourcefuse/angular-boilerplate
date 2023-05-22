@@ -10,7 +10,7 @@ import {
 } from '../../types';
 
 @Component({
-  selector: 'boiler-gantt-bars',
+  selector: 'gantt-bars',
   templateUrl: './gantt-bars.component.html',
   styleUrls: ['./gantt-bars.component.scss'],
 })

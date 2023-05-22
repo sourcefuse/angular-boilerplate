@@ -33,7 +33,7 @@ import {GanttBarsComponent} from './gantt-bars/gantt-bars.component';
 import {GanttColumnComponent} from './gantt-column/gantt-column.component';
 
 @Component({
-  selector: 'boiler-gantt',
+  selector: 'gantt',
   templateUrl: './bb-gantt.component.html',
   styleUrls: ['./bb-gantt.component.scss'],
 })

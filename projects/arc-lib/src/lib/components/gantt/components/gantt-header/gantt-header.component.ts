@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'boiler-gantt-header',
+  selector: 'gantt-header',
   templateUrl: './gantt-header.component.html',
   styleUrls: ['./gantt-header.component.scss'],
 })

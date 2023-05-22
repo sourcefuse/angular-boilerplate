@@ -4,7 +4,7 @@ import {NbMenuItem} from '@nebular/theme';
 import {ContextItemFilter, GanttTaskValue} from '../../types';
 
 @Component({
-  selector: 'boiler-gantt-column',
+  selector: 'gantt-column',
   templateUrl: './gantt-column.component.html',
   styleUrls: ['./gantt-column.component.scss'],
 })

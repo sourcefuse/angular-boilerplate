@@ -4,7 +4,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {SubAllocation} from '../../types';
 
 @Component({
-  selector: 'boiler-gantt-tooltip',
+  selector: 'gantt-tooltip',
   templateUrl: './gantt-tooltip.component.html',
   styleUrls: ['./gantt-tooltip.component.scss'],
 })

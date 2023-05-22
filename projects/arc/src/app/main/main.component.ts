@@ -8,7 +8,7 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {IconPacksManagerService} from '@project-lib/theme/services';
 
 @Component({
-  selector: 'boiler-main',
+  selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
 })

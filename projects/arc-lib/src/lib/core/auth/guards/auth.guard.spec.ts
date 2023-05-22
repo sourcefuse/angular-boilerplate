@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { CoreModule } from '@boiler/core/core.module';
-import { StoreModule } from '@boiler/core/store';
-import { AuthGuard } from './auth.guard';
+import {TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {CoreModule} from '../..';
+import {StoreModule} from '../..';
+import {AuthGuard} from './auth.guard';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;
