@@ -1,5 +1,5 @@
 # ARC ANGULAR BOILERPLATE
-[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)
+[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)(https://www.npmjs.com/package/@angular/cli/v/14.0.0)
 
 <!-- DOCUMENTATION -->
 
@@ -13,10 +13,10 @@
 
 ## Usage
 
-#### Step 1:Clone the boilerplate project repository to your local machine
+#### Step 1: Clone the boilerplate project repository to your local machine
 
 ```sh
-https://github.com/sourcefuse/angular-boilerplate
+git clone https://github.com/sourcefuse/angular-boilerplate
 ```
 
 #### Step 2: Install the project dependencies by running the following command 
@@ -61,7 +61,7 @@ PROJECTS
 ├── arc
 ├── arc-lib
 │   └── src
-          └──lib
+│          └──lib
 │            ├── assets
 │            ├── components
 │            ├── core
@@ -71,7 +71,7 @@ PROJECTS
 
 ## Projects
 
-### Purpose of the Projectswe have 
+### Purpose of the Projects folder boilerplate have 
   - Boilerplate use Multi project to avoid duplicate code and easy maintainance this can be used where 
     we have to maintain multiple projects that have something in common like a user portal and admin portal
     Here Boilerplate use "Projects" folder typically serves as a centralized location to organize and store project-related files and resources. 
@@ -88,7 +88,7 @@ PROJECTS
 2. Arc-Lib
 - A arc-lib shared library can include components, services, pipes, directives, and other modules that can be used  by other projects in the workspace. By using a shared library, we avoid duplicating code and functionality across multiple projects, which can save time and effort.
  
-For further reference you can refer [Here](Projects/arc-lib/README.md)
+For further reference you can refer [Here](projects/arc-lib/README.md)
 
 
 #### Step 3: Setup of Starting the Server

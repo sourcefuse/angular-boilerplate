@@ -106,7 +106,6 @@ Theme module in arc is usually used in conjunction with Nebular, Nebular is a cu
 Also, provides methods to register icon packs with the NbIconLibraries service. The `NbIconLibraries` service is a part of the nebular UI library and is used to manage icon libraries and packs.
 
 For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme/readme.md)
-(./src/lib/theme/readme.md)
 
 ## Components:
 
