@@ -1,0 +1,171 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "arc": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/arc",
+      "sourceRoot": "projects/arc/src",
+      "prefix": "arc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/arc",
+            "index": "projects/arc/src/index.html",
+            "main": "projects/arc/src/main.ts",
+            "polyfills": ["zone.js"],
+            "tsConfig": "projects/arc/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/arc/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/eva-icons/style/scss/eva-icons.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "projects/arc/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/arc/src/environments/environment.ts",
+                  "with": "projects/arc/src/environments/environment.ts"
+                }
+              ],
+              "index": {
+                "input": "projects/arc/src/index.html",
+                "output": "index.html"
+              },
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "100kb",
+                  "maximumError": "500kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "arc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "arc:build:production"
+            },
+            "development": {
+              "browserTarget": "arc:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "arc:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": ["zone.js", "zone.js/testing"],
+            "tsConfig": "projects/arc/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/arc/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "projects/arc-lib/src/lib/assets/"
+              }
+            ],
+            "styles": [
+              "projects/arc/src/styles.scss",
+              "projects/arc-lib/src/lib/theme/styles/index.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "arc-lib": {
+      "projectType": "library",
+      "root": "projects/arc-lib",
+      "sourceRoot": "projects/arc-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/arc-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/arc-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/arc-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/arc-lib/tsconfig.spec.json",
+            "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "arc",
+  "cli": {
+    "analytics": "dcf534a6-f2c3-4c9c-99f0-3de66c9162da"
+  }
+}

@@ -1,1 +1,35 @@
-{}
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ES2019",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["ES2019", "dom"],
+    "paths": {
+      "@main-project/boiler/env/*": [
+        "projects/arc/src/environments/*"
+      ],
+      "@main-project/boiler/*": ["projects/arc/src/app/*"],
+      "@project-lib/core/*": ["projects/arc-lib/src/lib/core/*"],
+      "@project-lib/components/*": ["projects/arc-lib/src/lib/components/*"],
+      "@project-lib/theme/*": ["projects/arc-lib/src/lib/theme/*"],
+      "@project-lib/app-config": [
+        "projects/arc-lib/src/lib/app-config/index.ts"
+      ],
+      "@project-lib/auth/*": ["projects/arc-lib/src/lib/components/auth/*"],
+      "@project-lib/assets/*": ["projects/arc-lib/src/lib/assets/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
