@@ -5,13 +5,11 @@
 
 ## Description
 
-- The boilerplate using multiple projects in one Angular environment so that the boilerplate help users 
-  to improve code  reusability, scalability, maintainability, and customization. It can also help in increase productivity, reduce risks, and improve the quality of  application.
-
-- The multiple applications or parts of applications that share common functionality,  using multiple
+  The boilerplate using multiple projects in one Angular environment so that the boilerplate help users 
+  to improve code  reusability,maintainability and customization. boilerplate can also help in increase productivity, reduce risks, and improve the quality of  application.
+  The multiple applications or parts of applications that share common functionality, using multiple
   projects can help you avoid duplicating code. You can create a shared library project and use it across all the projects. This approach can help you maintain consistency and reduce code duplication.
 
-Following are the steps to get started with it:
 
 ## Usage
 
@@ -72,6 +70,17 @@ PROJECTS
 ```
 
 ## Projects
+
+### Purpose of the Projectswe have 
+  - Boilerplate use Multi project to avoid duplicate code and easy maintainance this can be used where 
+    we have to maintain multiple projects that have something in common like a user portal and admin portal
+    Here Boilerplate use "Projects" folder typically serves as a centralized location to organize and store project-related files and resources. 
+  - Boilerplate allows users to Generate new applications at same workspace with following command:
+
+ ```sh
+   ng generate application <application-name>
+  ```
+
 1. Arc:
 - This boilerplate arc project is a project set up that can be easily altered to create new projects. 
   The user is able to use in the original project, its foundation, and its structure to set up a new one without changing the original.
@@ -82,7 +91,15 @@ PROJECTS
 For further reference you can refer [Here](Projects/arc-lib/README.md)
 
 
-#### Step 3: Start the Server
+#### Step 3: Setup of Starting the Server
+
+- By Default boilerplate giving `defaultProject` as `arc` in the `angular.json` you can do further changes as per your Project requirment so that if you directly do `ng serve` your project run by default.
+
+```typescript
+"defaultProject": "arc",
+```
+
+#### Step 4: Running Server
 
 ```sh
 ng serve
