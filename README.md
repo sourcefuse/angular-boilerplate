@@ -1,4 +1,4 @@
-# ARC ANGULAR BOILERPLATE
+# [ARC Angular](https://github.com/sourcefuse/angular-boilerplate)
 [![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)](https://www.npmjs.com/package/@angular/cli/v/14.0.0)
 
 
