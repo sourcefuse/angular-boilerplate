@@ -20,7 +20,9 @@
             "outputPath": "dist/arc",
             "index": "projects/arc/src/index.html",
             "main": "projects/arc/src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/arc/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -113,7 +115,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/arc/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -126,6 +131,141 @@
             ],
             "styles": [
               "projects/arc/src/styles.scss",
+              "projects/arc-lib/src/lib/theme/styles/index.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "chat-app-example": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/chat-app-example",
+      "sourceRoot": "projects/chat-app-example/src",
+      "prefix": "cae",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/chat-app-example",
+            "index": "projects/chat-app-example/src/index.html",
+            "main": "projects/chat-app-example/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/chat-app-example/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/chat-app-example/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "/assets/"
+              }
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/eva-icons/style/scss/eva-icons.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "projects/chat-app-example/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/chat-app-example/src/environments/environment.ts",
+                  "with": "projects/chat-app-example/src/environments/environment.ts"
+                }
+              ],
+              "index": {
+                "input": "projects/chat-app-example/src/index.html",
+                "output": "index.html"
+              },
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "8mb",
+                  "maximumError": "8mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "100kb",
+                  "maximumError": "500kb"
+                }
+              ]
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "chat-app-example:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "chat-app-example:build:production"
+            },
+            "development": {
+              "browserTarget": "chat-app-example:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "chat-app-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/chat-app-example/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/chat-app-example/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "projects/arc-lib/src/lib/assets/"
+              }
+            ],
+            "styles": [
+              "projects/chat-app-example/src/styles.scss",
               "projects/arc-lib/src/lib/theme/styles/index.scss"
             ],
             "scripts": []
@@ -158,7 +298,10 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/arc-lib/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }
