@@ -1,0 +1,132 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.eslint.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": "off",
+        "@angular-eslint/component-selector": "off",
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": ["Page", "Component"]
+          }
+        ],
+        "@angular-eslint/contextual-lifecycle": ["error"],
+        "@angular-eslint/directive-class-suffix": ["error"],
+        "@angular-eslint/no-conflicting-lifecycle": ["error"],
+        "@angular-eslint/no-host-metadata-property": ["error"],
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/no-inputs-metadata-property": ["error"],
+        "@angular-eslint/no-empty-lifecycle-method": ["error"],
+        "@angular-eslint/no-output-native": ["error"],
+        "@angular-eslint/no-output-on-prefix": "off",
+        "@angular-eslint/no-output-rename": ["error"],
+        "@angular-eslint/no-outputs-metadata-property": ["error"],
+        "@angular-eslint/use-lifecycle-interface": "off",
+        "@angular-eslint/use-pipe-transform-interface": ["error"],
+        "@typescript-eslint/array-type": "off",
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/explicit-member-accessibility": "off",
+        "@typescript-eslint/member-ordering": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-inferrable-types": "off",
+        "@typescript-eslint/no-non-null-assertion": ["error"],
+        "@typescript-eslint/no-var-requires": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "@typescript-eslint/one-variable-per-declaration": "off",
+        "@typescript-eslint/semi": ["error"],
+        "arrow-body-style": [
+          "error",
+          "as-needed",
+          {
+            "requireReturnForObjectLiteral": true
+          }
+        ],
+        "arrow-parens": "off",
+        "curly": "off",
+        "no-string-literal": "off",
+        "eol-last": ["error", "always"],
+        "eqeqeq": ["error", "always"],
+        "jsdoc/no-types": "off",
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": ["rxjs/Rx"]
+          }
+        ],
+        "keyword-spacing": [
+          "error",
+          {
+            "before": true,
+            "after": true
+          }
+        ],
+        "max-classes-per-file": ["off"],
+        "max-len": [
+          "error",
+          {
+            "code": 140,
+            "ignoreRegExpLiterals": true
+          }
+        ],
+        "no-irregular-whitespace": ["error"],
+        "no-multiple-empty-lines": "off",
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+            "message": "Unexpected property on console object was called"
+          }
+        ],
+        "no-empty": "off",
+        "no-fallthrough": ["error"],
+        "no-whitespace-before-property": ["error"],
+        "object-shorthand": ["error", "always"],
+        "prefer-const": ["error"],
+        "sort-keys": "off",
+        "quotes": [
+          "error",
+          "single",
+          {
+            "allowTemplateLiterals": true,
+            "avoidEscape": true
+          }
+        ],
+        "comma-dangle": "off",
+        "sort-imports": "off",
+        "space-before-function-paren": [
+          "error",
+          {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.component.html"],
+      "parser": "@angular-eslint/template-parser",
+      "plugins": ["@angular-eslint/template"],
+      "rules": {
+        "@angular-eslint/template/banana-in-box": ["error"],
+        "@angular-eslint/template/no-negated-async": ["error"]
+      }
+    }
+  ]
+}

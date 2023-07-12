@@ -130,6 +130,15 @@
             ],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/arc/src/**/*.ts",
+              "projects/arc/src/**/*.html"
+            ]
+          }
         }
       }
     },
@@ -159,6 +168,15 @@
           "options": {
             "tsConfig": "projects/arc-lib/tsconfig.spec.json",
             "polyfills": ["zone.js", "zone.js/testing"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/arc-lib/src/**/*.ts",
+              "projects/arc-lib/src/**/*.html"
+            ]
           }
         }
       }
