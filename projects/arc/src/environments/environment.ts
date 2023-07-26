@@ -1,11 +1,11 @@
 export const environment = {
   production: false,
-  clientId: 'my-id',
-  clientSecret: 'my-secret',
-  publicKey: 'hujkmmkn',
-  homePath: '/main/home',
+  clientId: '',
+  clientSecret: '',
+  publicKey: '',
+  homePath: '',
   baseApiUrl: '',
-  authServiceUrl: 'http:localhost:4002:auth/google/login',
+  authServiceUrl: '',
   userServiceUrl: '',
   logLevel: 5,
 };
