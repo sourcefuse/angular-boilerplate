@@ -10,9 +10,6 @@ import {
   LocalizationModule,
   TranslationService,
 } from '@project-lib/core/localization';
-import {SystemStoreFacadeService} from '@project-lib/core/store';
-import {InMemoryStorageService} from 'ngx-webstorage-service';
-import {EnvAdapterService} from '@project-lib/core/store/adapters';
 import {ApiService} from '@project-lib/core/api';
 import {CoreModule} from '@project-lib/core/core.module';
 import {APP_CONFIG} from '@project-lib/app-config';
@@ -38,8 +35,6 @@ import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
     TranslateService,
     IconPacksManagerService,
     TranslateStore,
-    SystemStoreFacadeService,
-    EnvAdapterService,
     ApiService,
     {
       provide: APP_CONFIG,
