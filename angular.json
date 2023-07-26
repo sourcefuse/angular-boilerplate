@@ -76,8 +76,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "8mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "12mb",
+                  "maximumError": "12mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -142,7 +142,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/arc-lib/ng-package.json"
+            "project": "projects/arc-lib/ng-package.json",
+            "tsConfig": "projects/arc-lib/tsconfig.lib.json"
           },
           "configurations": {
             "production": {
@@ -164,7 +165,6 @@
       }
     }
   },
-  "defaultProject": "arc",
   "cli": {
     "analytics": "dcf534a6-f2c3-4c9c-99f0-3de66c9162da"
   }

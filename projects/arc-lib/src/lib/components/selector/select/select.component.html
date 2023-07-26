@@ -90,7 +90,7 @@
   (backdropClick)="close()"
   (detach)="close()"
 >
-  <list
+  <arc-list
     class="dropdown-panel"
     [options]="options"
     [nameField]="nameField"
@@ -107,7 +107,7 @@
     [ngStyle]="{ height: dropdownHeight + 'px' }"
     [groupConfig]="groupConfig"
     [showIcon]="showIcon"
-  ></list>
+  ></arc-list>
 </ng-template>
 <ng-template
   cdk-connected-overlay
@@ -125,7 +125,7 @@
   (backdropClick)="closePanel()"
   (detach)="closePanel()"
 >
-  <list
+  <arc-list
     class="dropdown-panel"
     *ngIf="currentPanel?.list?.length"
     [options]="currentPanel?.list"
@@ -148,5 +148,5 @@
     [ngStyle]="{ height: (currentPanel?.height ?? 0) + 'px' }"
     (closed)="closePanel()"
     [groupConfig]="groupConfig"
-  ></list>
+  ></arc-list>
 </ng-template>

@@ -19,7 +19,7 @@ import {ITEM_HEIGHT, PLACEHOLDER_ITEM} from '../selector';
 import {GroupConfig} from '../selector/types';
 
 @Component({
-  selector: 'list',
+  selector: 'arc-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
