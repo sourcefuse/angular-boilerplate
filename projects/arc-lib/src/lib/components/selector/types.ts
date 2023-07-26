@@ -1,4 +1,4 @@
-import { SelectState } from './constants';
+import {SelectState} from './constants';
 
 export type ValueType<Mode, ResulType> =
   | (Mode extends true ? ResulType[] : ResulType)
@@ -17,3 +17,8 @@ export interface GroupConfig<T> {
   fieldName: keyof T;
   value: T[keyof T] | '*';
 }
+
+export type ItemTemplate<T, F extends keyof T> = {
+  item: T;
+  name: T[F];
+};

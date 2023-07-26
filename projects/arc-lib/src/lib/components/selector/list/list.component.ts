@@ -12,11 +12,13 @@ import {
   OnInit,
   Output,
   SimpleChanges,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import {UntypedFormControl} from '@angular/forms';
-import {ITEM_HEIGHT, PLACEHOLDER_ITEM} from '../selector';
-import {GroupConfig} from '../selector/types';
+import {orderBy} from 'lodash';
+import {ITEM_HEIGHT, OptionType, PLACEHOLDER_ITEM} from '../constants';
+import {GroupConfig, ItemTemplate} from '../types';
 
 @Component({
   selector: 'arc-list',
@@ -44,6 +46,12 @@ export class ListComponent<
    */
   @Input()
   nameField: keyof InputType = 'name' as keyof InputType;
+
+  /**
+   * Hide these options in list.
+   */
+  @Input()
+  hiddenValues?: Set<Value>;
 
   /**
    * The field in the data item that uniquely identifies it.
@@ -78,6 +86,15 @@ export class ListComponent<
   @Input()
   removal = false;
 
+  /**
+   * The `disabled` input property is used to determine whether the component should be disabled or not.
+   * It has a default value of `false`, which means that the component is enabled by default. If
+   * `disabled` is set to `true`, the component will be disabled and the user will not be able to
+   * interact with it
+   */
+  @Input()
+  disabled = false;
+
   /* Placeholder for the search input */
   @Input()
   searchPlaceholder = 'search';
@@ -109,7 +126,7 @@ export class ListComponent<
   allowInput = false;
 
   @Input()
-  selections!: SelectionModel<Value>;
+  selections: SelectionModel<Value>;
 
   /**
    * @description
@@ -130,17 +147,24 @@ export class ListComponent<
   remove = new EventEmitter<InputType>();
 
   @ViewChild('searchInput')
-  searchInput!: ElementRef;
+  searchInput: ElementRef;
 
   @ViewChild(CdkVirtualScrollViewport)
-  viewport!: CdkVirtualScrollViewport;
+  viewport: CdkVirtualScrollViewport;
 
   visibleList: InputType[] = [];
-  searchControl!: UntypedFormControl;
-  removed!: Set<InputType>;
+  searchControl: UntypedFormControl;
+  removed: Set<InputType>;
 
   @Input()
-  showIcon!: boolean;
+  showIcon: boolean;
+
+  /* whether to show selected options on top */
+  @Input()
+  showSelectedOnTop: boolean;
+
+  @Input()
+  itemTemplate: TemplateRef<ItemTemplate<InputType, keyof InputType>>;
 
   @Input()
   groupConfig?: GroupConfig<InputType>[] = [];
@@ -242,8 +266,9 @@ export class ListComponent<
   }
 
   sortByGroups() {
-    if (this.groupConfig && this.groupConfig.length) {
-      let groupedData: InputType[][] = this.groupConfig.map(() => []);
+    let groupedData: InputType[][] = [[], []];
+    if (this.groupConfig?.length) {
+      groupedData = this.groupConfig.map(() => []);
       this.visibleList?.forEach(option => {
         const group = this.groupConfig!.findIndex(
           group =>
@@ -252,12 +277,57 @@ export class ListComponent<
         );
         if (group !== -1) groupedData[group].push(option);
       });
+      this.setGroupIndex(groupedData);
+    } else if (this.showSelectedOnTop) {
+      groupedData = this._sortSelectedOptions(groupedData);
+    } else {
+      //intentional
+    }
+
+    if (groupedData[0].length || groupedData[1].length) {
+      this.visibleList = groupedData.flat();
+    }
+  }
+  setGroupIndex(groupedData: InputType[][]) {
+    if (this.groupConfig)
       this.groupIndexMap = this.groupConfig.reduce(
         (acc, obj, index) =>
           obj.groupName ? {...acc, [index]: obj.groupName} : acc,
         {},
       );
-      this.visibleList = groupedData.flat();
+
+    let dataLength = 0;
+    groupedData.forEach(data => {
+      if (data.length > 0) {
+        dataLength = dataLength + 1;
+      }
+    });
+    if (dataLength <= 1) {
+      this.groupIndexMap = {};
     }
+  }
+
+  private _sortSelectedOptions(groupedData: InputType[][]) {
+    this.visibleList?.forEach(option => {
+      if (option['isSelected' as keyof InputType]) {
+        groupedData[OptionType.Selected].push(option);
+      } else {
+        groupedData[OptionType.UnSelected].push(option);
+      }
+    });
+
+    groupedData.forEach((data, index) => {
+      groupedData[index] = orderBy(
+        data,
+        [
+          option =>
+            (
+              option['name' as keyof InputType] as unknown as string
+            ).toLocaleLowerCase(),
+        ],
+        'asc',
+      );
+    });
+    return groupedData;
   }
 }

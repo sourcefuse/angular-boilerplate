@@ -12,7 +12,7 @@ import {
 } from '@nebular/theme';
 import {TranslateModule} from '@ngx-translate/core';
 import {ResizeModule} from '../resize/resize.module';
-import {ListComponent} from '../list/list.component';
+import {ListComponent} from './list/list.component';
 import {SelectComponent} from './select/select.component';
 
 @NgModule({
@@ -31,6 +31,6 @@ import {SelectComponent} from './select/select.component';
     TranslateModule,
     OverlayModule,
   ],
-  exports: [SelectComponent, ListComponent],
+  exports: [SelectComponent],
 })
 export class SelectModule {}

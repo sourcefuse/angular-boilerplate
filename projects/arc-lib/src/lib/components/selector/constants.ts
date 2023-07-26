@@ -35,3 +35,8 @@ export const TAG_MARGIN = 4;
 export const SUFFIX_WIDTH = 24;
 export const SEARCH_HEIGHT = 48;
 export const MIN_VISIBLE_ITEMS = 5;
+
+export enum OptionType {
+  Selected,
+  UnSelected,
+}
