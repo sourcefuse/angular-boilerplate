@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -12,10 +12,8 @@ import {
 
 import {catchError, concatMap, Observable, of} from 'rxjs';
 import {AuthService} from '../auth.service';
-import {
-  SystemStoreFacadeService,
-  UserSessionStoreService,
-} from '@project-lib/core/store';
+import {UserSessionStoreService} from '@project-lib/core/store';
+import {APP_CONFIG} from '@project-lib/app-config';
 
 @Injectable({
   providedIn: 'root',
@@ -23,9 +21,10 @@ import {
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   constructor(
     private readonly store: UserSessionStoreService,
-    private readonly systemStore: SystemStoreFacadeService,
     private readonly authService: AuthService,
     private readonly router: Router,
+    // sonarignore:start
+    @Inject(APP_CONFIG) private readonly appConfig: any, // sonarignore:end
   ) {}
 
   canActivate(
@@ -35,15 +34,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     if (route.queryParamMap.keys.length > 0) {
       const code = route.queryParamMap.get('code');
       if (code) {
-        return this.systemStore
-          .getEnvConfig()
-          .pipe(concatMap(() => this.authService.authorize(code)))
+        return this.authService
+          .authorize(code)
           .pipe(concatMap(() => this._checkLogin(state.url)));
       }
     }
-    return this.systemStore
-      .getEnvConfig()
-      .pipe(concatMap(() => this._checkLogin(state.url)));
+    return this._checkLogin(state.url);
   }
 
   canActivateChild(
@@ -53,15 +49,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     if (childRoute.queryParamMap.keys.length > 0) {
       const code = childRoute.queryParamMap.get('code');
       if (code) {
-        return this.systemStore
-          .getEnvConfig()
-          .pipe(concatMap(() => this.authService.authorize(code)))
+        return this.authService
+          .authorize(code)
           .pipe(concatMap(() => this._checkLogin(state.url)));
       }
     }
-    return this.systemStore
-      .getEnvConfig()
-      .pipe(concatMap(() => this._checkLogin(state.url)));
+    return this._checkLogin(state.url);
   }
 
   canLoad(
@@ -78,7 +71,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     this.store.saveLastAccessedUrl(url);
     return this.authService.isLoggedIn().pipe(
       catchError(() => {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate([this.appConfig.homePath]);
         return of(false);
       }),
     );

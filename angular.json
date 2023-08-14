@@ -41,6 +41,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/arc/src/environments/environment.ts",
+                  "with": "projects/arc/src/environments/environment.prod.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -54,40 +60,8 @@
                 }
               ],
               "outputHashing": "all"
-            },
-            "development": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/arc/src/environments/environment.ts",
-                  "with": "projects/arc/src/environments/environment.ts"
-                }
-              ],
-              "index": {
-                "input": "projects/arc/src/index.html",
-                "output": "index.html"
-              },
-              "optimization": false,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "8mb",
-                  "maximumError": "8mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "100kb",
-                  "maximumError": "500kb"
-                }
-              ]
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -101,8 +75,7 @@
             "development": {
               "browserTarget": "arc:build:development"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -142,7 +115,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/arc-lib/ng-package.json"
+            "project": "projects/arc-lib/ng-package.json",
+            "tsConfig": "projects/arc-lib/tsconfig.lib.json"
           },
           "configurations": {
             "production": {
@@ -164,7 +138,6 @@
       }
     }
   },
-  "defaultProject": "arc",
   "cli": {
     "analytics": "dcf534a6-f2c3-4c9c-99f0-3de66c9162da"
   }

@@ -8,5 +8,8 @@
     "inlineSources": true,
     "types": []
   },
+  "angularCompilerOptions": {
+    "enableIvy": false
+  },
   "exclude": ["**/*.spec.ts"]
 }

@@ -1,5 +1,5 @@
 @use "sass:map";
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use  "../../../theme/styles/variables" as *;
 
 :host {
   .logo {

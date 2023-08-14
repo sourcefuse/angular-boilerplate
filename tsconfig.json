@@ -14,10 +14,7 @@
     "typeRoots": ["node_modules/@types"],
     "lib": ["ES2019", "dom"],
     "paths": {
-      "@main-project/boiler/env/*": [
-        "projects/arc/src/environments/*"
-      ],
-      "@main-project/boiler/*": ["projects/arc/src/app/*"],
+      "@main-project/boiler/env/*": ["projects/arc/src/environments/*"],
       "@project-lib/core/*": ["projects/arc-lib/src/lib/core/*"],
       "@project-lib/components/*": ["projects/arc-lib/src/lib/components/*"],
       "@project-lib/theme/*": ["projects/arc-lib/src/lib/theme/*"],

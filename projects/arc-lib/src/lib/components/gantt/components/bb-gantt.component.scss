@@ -1,6 +1,7 @@
 @use "sass:map";
-@import "projects/arc-lib/src/lib/theme/styles/_variables.scss";
+//@import "projects/arc-lib/src/lib/theme/styles/_variables.scss";
 //@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss";
+@use "../../../theme/styles/_variables" as *;
 
 .gantt-container {
   position: relative;
