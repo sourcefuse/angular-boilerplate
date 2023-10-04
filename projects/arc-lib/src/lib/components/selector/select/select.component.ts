@@ -299,7 +299,7 @@ export class SelectComponent<
 
   ngOnInit(): void {
     this._initSelectionModel();
-    /* Subscribing to the viewportRuler's change event and updating the width of the element. */
+        /* Subscribing to the viewportRuler's change event and updating the width of the element. */
     this._viewportRuler
       .change()
       .pipe(takeUntil(this._destroy$))

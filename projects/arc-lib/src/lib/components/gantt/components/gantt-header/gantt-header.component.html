@@ -1,8 +1,8 @@
 <div class="header-container">
   <div class="search-bar">
     <nb-form-field class="gantt-search" *ngIf="showSearch">
-      <nb-icon nbPrefix icon="search-outline"></nb-icon>
-      <input type="text" placeholder="{{ searchPlaceholder }}" nbInput />
+      <nb-icon nbPrefix icon="search-outline" class="search-icon"></nb-icon>
+      <input type="text" placeholder="{{ searchPlaceholder }}" status=“info” nbInput />
     </nb-form-field>
     <nb-icon *ngIf="showSearch" icon="menu-arrow-outline"></nb-icon>
   </div>

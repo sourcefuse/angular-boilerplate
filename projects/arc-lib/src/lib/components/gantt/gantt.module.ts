@@ -14,6 +14,7 @@ import {MonthlyScaleService} from './services/timeline-scales/monthly-scale.serv
 import {QuarterlyScaleService} from './services/timeline-scales/quarterly-scale.service';
 import {WeeklyScaleService} from './services/timeline-scales/weekly-scale.service';
 import {GanttAdapter} from './types';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,9 @@ import {GanttAdapter} from './types';
     GanttBarsComponent,
     GanttColumnComponent,
     GanttHeaderComponent,
-    GanttTooltipComponent,
+    // GanttTooltipComponent,
   ],
+  
   providers: [
     {
       provide: GANTT_SCALES,

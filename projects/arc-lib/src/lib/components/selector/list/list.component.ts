@@ -1,5 +1,5 @@
-import {SelectionModel} from '@angular/cdk/collections';
-import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
+import { SelectionModel } from '@angular/cdk/collections';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,9 +14,12 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import {UntypedFormControl} from '@angular/forms';
-import {ITEM_HEIGHT, PLACEHOLDER_ITEM} from '../selector';
-import {GroupConfig} from '../selector/types';
+import { UntypedFormControl } from '@angular/forms';
+
+
+import { NbFormFieldModule, NbListModule } from '@nebular/theme';
+import { ITEM_HEIGHT, PLACEHOLDER_ITEM } from '../constants';
+import { GroupConfig } from '../types';
 
 @Component({
   selector: 'list',
@@ -29,9 +32,8 @@ export class ListComponent<
   MultipleMode extends boolean,
   Value extends InputType[IdField],
   IdField extends keyof InputType,
-> implements OnInit, AfterViewInit, OnChanges
-{
-  constructor(private _cdr: ChangeDetectorRef) {}
+> implements OnInit, AfterViewInit, OnChanges {
+  constructor(private _cdr: ChangeDetectorRef) { }
   /**
    * The list of items to display.
    */
@@ -254,7 +256,7 @@ export class ListComponent<
       });
       this.groupIndexMap = this.groupConfig.reduce(
         (acc, obj, index) =>
-          obj.groupName ? {...acc, [index]: obj.groupName} : acc,
+          obj.groupName ? { ...acc, [index]: obj.groupName } : acc,
         {},
       );
       this.visibleList = groupedData.flat();

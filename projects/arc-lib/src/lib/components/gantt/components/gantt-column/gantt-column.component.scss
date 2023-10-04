@@ -1,23 +1,44 @@
 // @use "../../../../theme/styles/variables" as *;
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
 @use "sass:map";
+
 .column-container {
+  width: 320px;
+
+  .up-down-icon {
+    display: flex;
+    flex-flow: column;
+    justify-content: right;
+    align-items: end;
+    border: 1px solid #cfcecec4;
+
+    nb-icon:nth-child(1) {
+      height: 30px !important;
+      transform: rotate(180deg);
+    }
+
+    nb-icon:nth-child(2) {
+      height: 30px !important;
+      transform: rotate(360deg);
+    }
+  }
+
   .kebab-container {
     position: absolute;
-    background: linear-gradient(
-      269.92deg,
-      rgba(253, 254, 255, 0.98) 55.46%,
-      rgba(253, 254, 255, 0.735) 74.95%,
-      rgba(253, 254, 255, 0) 105.92%
-    );
+    background: linear-gradient(269.92deg,
+        rgba(253, 254, 255, 0.98) 55.46%,
+        rgba(253, 254, 255, 0.735) 74.95%,
+        rgba(253, 254, 255, 0) 105.92%);
     right: 2%;
     opacity: 0;
     transition: opacity 0.2s ease-in;
     height: 100%;
+
     .kebab {
       padding: 0 2rem;
     }
   }
+
   &:hover,
   &.active {
     .kebab-container {
@@ -39,10 +60,12 @@
     display: flex;
     margin: auto 0rem;
     line-height: 2.175rem;
-    & > div {
+
+    &>div {
       margin: auto;
     }
   }
+
   .with-designation {
     overflow: hidden;
     flex-grow: 1;
@@ -55,13 +78,15 @@
     display: flex;
     flex-direction: column;
     max-width: 60%;
-    & > .name {
+
+    &>.name {
       font-weight: map.get($font-weight, light);
       cursor: pointer;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    & > .designation {
+
+    &>.designation {
       font-weight: map.get($font-weight, light);
       color: map.get($color, gantt-subtitle);
       font-size: map.get($font-size, medium);
@@ -72,6 +97,7 @@
       text-overflow: ellipsis;
     }
   }
+
   .without-designation {
     overflow: hidden;
     flex-grow: 1;
@@ -83,7 +109,8 @@
     justify-content: space-between;
     display: flex;
     flex-direction: column;
-    & > .name {
+
+    &>.name {
       font-weight: map.get($font-weight, bold);
     }
   }
@@ -91,7 +118,8 @@
   .overallocation_icon {
     position: absolute;
     right: 20%;
-    & > .icon {
+
+    &>.icon {
       height: 1.25rem;
       width: 1.25rem;
     }
@@ -108,9 +136,24 @@
     right: -4.063rem;
     top: -0.313rem;
   }
+
   .overallocation_icon:hover div {
     display: flex;
     line-height: 1;
     padding: 0.75rem 1rem;
+  }
+
+  .inner-list {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cfcecec4;
+    padding: 10px;
+
+    .with-designation {
+      .name {
+        margin-top: 10px;
+      }
+
+    }
   }
 }

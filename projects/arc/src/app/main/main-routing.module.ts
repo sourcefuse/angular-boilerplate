@@ -5,14 +5,14 @@ import { MainComponent } from './main.component';
 const routes: Routes = [
   {
     path: '',
-    component: MainComponent,
-    children: [
-      {
+  component: MainComponent,
+  children: [
+  {
         path: 'home',
-        loadChildren: () =>
-          import('./home/home.module').then((m) => m.HomeModule),
-      },
-    ],
+  loadChildren: () =>
+  import('./home/home.module').then((m) => m.HomeModule),
+  },
+  ],
   },
 ];
 

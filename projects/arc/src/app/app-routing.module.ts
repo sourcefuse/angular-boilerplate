@@ -26,7 +26,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: environment.homePath,
   },
-];
+  ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

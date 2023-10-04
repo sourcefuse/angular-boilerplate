@@ -25,6 +25,7 @@ export class HomeComponent
 
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
   greeting = '';
+  // imagePath="assets/images/Illustration.svg";
 
   ngOnInit(): void {
     this.authService
@@ -38,6 +39,7 @@ export class HomeComponent
 
   getGreetingText() {
     // Intentionally ignored as this is needed to be done sequentially
+
     // sonarignore:start
     const data = [
         [21, 'Good Night'],
@@ -48,7 +50,7 @@ export class HomeComponent
       ],
       hr = new Date().getHours();
     for (let i = 0; i < data.length; i++) {
-      if (hr >= data[i][0]) {
+      if (hr >= +data[i][0]) {
         return data[i][1] as string;
       }
     }
@@ -56,3 +58,7 @@ export class HomeComponent
     return 'Good morning';
   }
 }
+
+
+
+

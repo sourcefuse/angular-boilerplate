@@ -9,6 +9,12 @@ import {ContextItemFilter, GanttTaskValue} from '../../types';
   styleUrls: ['./gantt-column.component.scss'],
 })
 export class GanttColumnComponent<T extends AnyObject> {
+// //  item :GanttTaskValue<T> = {
+
+// }
+  ngOnInit(){
+    console.log(this.item);
+  }
   @Input()
   item!: GanttTaskValue<T>;
 

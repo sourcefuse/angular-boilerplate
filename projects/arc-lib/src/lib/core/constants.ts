@@ -8,6 +8,10 @@ export const ONE_MIN = ONE_SEC * SIXTY;
 export const ONE_HOUR = ONE_MIN * SIXTY;
 export const ONE_DAY = ONE_HOUR * HOURS_IN_DAY;
 export const PERCENT = 100;
+export enum OptionType {
+  Selected,
+  UnSelected,
+}
 export enum DIGITS {
   ZERO,
   ONE,

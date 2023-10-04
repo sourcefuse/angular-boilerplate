@@ -11,3 +11,4 @@ import {APP_CONFIG} from '@project-lib/app-config';
   imports: [CommonModule, HomeRoutingModule, ThemeModule],
 })
 export class HomeModule {}
+

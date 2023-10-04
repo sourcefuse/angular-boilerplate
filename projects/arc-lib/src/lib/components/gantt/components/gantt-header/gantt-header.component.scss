@@ -1,20 +1,36 @@
 // @use "../../../../theme/styles/variables" as *;
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
 @use "sass:map";
+
 .header-container {
   line-height: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
+
   .search-bar {
-    height: 2.5rem;
     display: flex;
     justify-content: space-between;
-    padding: 0 0.5rem;
+    padding: 0 0.5rem 17px 0.5rem;
     border-bottom: 0.063rem solid map.get($color, gantt-lines);
+
     nb-form-field {
       flex-grow: 1;
     }
+
+    input {
+      padding: 7px 35px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      width: 400px;
+    }
+
+    .search-icon {
+      height: 20px;
+      margin-right: -35px;
+      display: block
+    }
+
     nb-icon[icon="menu-arrow-outline"] {
       height: 100%;
       margin: 0 1rem;
@@ -27,21 +43,43 @@
       bottom: 70.83%;
     }
   }
+
   .title-bar {
-    display: flex;
     align-items: center;
     flex-grow: 1;
     font-family: $main-font-family;
     font-size: map.get($font-size, small);
-    padding: 0 1rem;
     text-transform: uppercase;
+    padding: 0 0.3rem;
+    display: flex;
+    position: absolute;
+    top: 21px;
+    left: 27.5%;
+    flex-direction: row-reverse;
+    gap: 15px;
+    margin-top: 5px;
+
     .sort {
-      padding: 0 0.3rem;
-      display: flex;
-      flex-direction: column;
-      & > nb-icon {
+
+      &>nb-icon {
         cursor: pointer;
         margin: -0.313rem;
+        height: 22px;
+        color: #000000bf;
+
+
+      }
+
+
+
+      .status-primary {
+        transform: rotate(270deg);
+        height: 30px;
+      }
+
+      .status-default {
+        transform: rotate(270deg);
+        height: 30px;
       }
     }
   }

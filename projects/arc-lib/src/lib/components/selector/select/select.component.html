@@ -3,9 +3,10 @@
   [class.disabled]="disabled"
   (bizbookResize)="multiple && updateTagsCount()"
   cdk-overlay-origin
-  #overlayOrigin="cdkOverlayOrigin"
+  
   (click)="!disabled && toggleDropdown()"
 >
+<!--6 #overlayOrigin="cdkOverlayOrigin" -->
   <div
     *ngIf="multiple && invisibleTags.length"
     nbSuffix
@@ -83,13 +84,14 @@
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
   cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
-  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  
   [cdkConnectedOverlayOpen]="state === states.Open"
   [cdkConnectedOverlayPositions]="positions"
   [cdkConnectedOverlayWidth]="width"
   (backdropClick)="close()"
   (detach)="close()"
 >
+<!--87 [cdkConnectedOverlayOrigin]="overlayOrigin" -->
   <list
     class="dropdown-panel"
     [options]="options"
@@ -116,7 +118,7 @@
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
   cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
-  [cdkConnectedOverlayOrigin]="overlayOrigin"
+  
   [cdkConnectedOverlayOpen]="
     !!currentPanel && currentPanel.state === states.Open
   "
@@ -150,3 +152,4 @@
     [groupConfig]="groupConfig"
   ></list>
 </ng-template>
+<!-- 119 [cdkConnectedOverlayOrigin]="overlayOrigin" -->

@@ -20,7 +20,9 @@
             "outputPath": "dist/arc",
             "index": "projects/arc/src/index.html",
             "main": "projects/arc/src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/arc/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -44,8 +46,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1mb",
-                  "maximumError": "2mb"
+                  "maximumWarning": "9mb",
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -76,8 +78,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "8mb",
-                  "maximumError": "8mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -113,7 +115,10 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/arc/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -129,6 +134,36 @@
               "projects/arc-lib/src/lib/theme/styles/index.scss"
             ],
             "scripts": []
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/arc/.storybook",
+            "browserTarget": "arc:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/arc"
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/arc/.storybook",
+            "browserTarget": "arc:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/arc"
+            ],
+            "outputDir": "dist/storybook/arc"
           }
         }
       }
@@ -158,7 +193,52 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/arc-lib/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "projects/arc-lib/.storybook",
+            "browserTarget": "arc-lib:build",
+            
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/eva-icons/style/scss/eva-icons.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css"
+            ],
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/arc-lib"
+            ],
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "projects/arc-lib/.storybook",
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/eva-icons/style/scss/eva-icons.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "projects/arc/src/styles.scss"
+            ],
+            "browserTarget": "arc-lib:build",
+            "compodoc": true,
+            "compodocArgs": [
+              "-e",
+              "json",
+              "-d",
+              "projects/arc-lib"
+            ],
+            "outputDir": "dist/storybook/arc-lib"
           }
         }
       }

@@ -1,8 +1,8 @@
 @use './themes' as *;
-@use 'projects/arc-lib/src/lib/theme/styles/index' as *;
+@use '../../arc-lib/src/lib/theme/styles/index.scss' as *;
 @use '@nebular/theme/styles/globals' as *;
 @use '@nebular/auth/styles/globals' as *;
-@use 'projects/arc-lib/src/lib/theme/styles/variables' as *;
+@use   '../../arc-lib/src/lib/theme/styles/variables' as *;
 
 @include nb-install() {
   @include nb-theme-global();

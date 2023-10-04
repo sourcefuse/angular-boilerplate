@@ -9,7 +9,7 @@
   font-family: var(--font-family-primary);
   font-weight: map.get($font-weight, light);
   font-size: map.get($font-size, default);
-  width: 35rem;
+  width: 25rem;
   max-height: 20rem;
   overflow-y: auto;
 }
@@ -19,6 +19,7 @@
   height: 0.5rem !important;
   overflow-x: visible;
 }
+
 .gantt-tooltip::-webkit-scrollbar-thumb {
   background: map.get($color, border-disable) !important;
   border-radius: 1.25rem !important;
@@ -28,11 +29,14 @@
 .gantt-tooltip .key {
   display: flex;
   line-height: 2.5rem;
-  > div:first-child {
-    color: map.get($font, tooltip-text);
+
+  >div:first-child {
+    color: white;
     width: 12rem;
+    font-weight: bold;
   }
-  > div:last-child {
+
+  >div:last-child {
     font-weight: map.get($font-weight, bold);
     font-size: map.get($font-size, large);
     color: map.get($color, light);
@@ -55,7 +59,8 @@ hr {
 .over-allocated {
   display: flex;
   color: map.get($font, tooltip-overallocated-text) !important;
-  > div:first-child {
+
+  >div:first-child {
     text-align: right;
     width: 100%;
   }

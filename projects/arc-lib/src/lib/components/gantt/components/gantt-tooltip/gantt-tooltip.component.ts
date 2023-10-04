@@ -15,7 +15,7 @@ export class GanttTooltipComponent {
   constructor(private translate: TranslateService) {}
 
   formatDate(date: Date) {
-    return new Date(date);
+    return  date? new Date(date):new Date();
   }
 
   formatter(rate: number) {
