@@ -12,12 +12,12 @@ import {
   Output,
   QueryList,
   SimpleChanges,
+  TemplateRef,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {DIGITS} from '@project-lib/core/constants';
-import {ComponentBaseDirective} from '@project-lib/core/component-base';
+
 import {NbTagComponent} from '@nebular/theme';
 import {cloneDeep, isEqual} from 'lodash';
 import {takeUntil} from 'rxjs';
@@ -26,18 +26,20 @@ import {
   INPUT_MIN_WIDTH,
   ITEM_HEIGHT,
   MIN_VISIBLE_ITEMS,
-  panelConfigs,
-  PanelType,
   PLACEHOLDER_ITEM,
+  PanelType,
   SEARCH_HEIGHT,
-  SelectState,
   SUFFIX_WIDTH,
+  SelectState,
   TAG_MARGIN,
   TAG_PADDING,
+  panelConfigs,
 } from '../constants';
-import {GroupConfig, Panel, ValueType} from '../types';
+import {GroupConfig, ItemTemplate, Panel, ValueType} from '../types';
+import { DIGITS } from '@project-lib/core/constants';
+import { ComponentBaseDirective } from '@project-lib/core/component-base';
 @Component({
-  selector: 'select',
+  selector: 'selector',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   animations: [dropdownAnimation, rotateAnimation],
@@ -70,7 +72,7 @@ export class SelectComponent<
   }
 
   @ViewChildren(NbTagComponent)
-  tags!: QueryList<NbTagComponent>;
+  tags: QueryList<NbTagComponent>;
 
   @ViewChild('autoCompleteInput')
   autoCompleteInput?: ElementRef<HTMLInputElement>;
@@ -105,7 +107,7 @@ export class SelectComponent<
       originY: 'top',
       overlayX: 'start',
       overlayY: 'bottom',
-      panelClass: 'bizbook-select-panel-above',
+      panelClass: 'select-panel-above',
     },
   ];
 
@@ -126,7 +128,7 @@ export class SelectComponent<
 
   /* calculated values based on above values */
   /* A variable that is used to set the height of the dropdown. */
-  dropdownHeight!: number;
+  dropdownHeight: number;
   /* this could 1,2 or 3, based on the whether the cross, plus and chevrons */
   suffixCount = 0;
 
@@ -167,7 +169,7 @@ export class SelectComponent<
 
   // This code sets the multiple mode for the Select component.
   @Input()
-  multiple: MultipleMode = false as MultipleMode;
+  multiple: MultipleMode = true as MultipleMode;
 
   /**
    * The options that will be displayed in the select.
@@ -175,8 +177,17 @@ export class SelectComponent<
   @Input()
   options?: InputType[];
 
+  /**
+   * Disable cross icon in input field.
+   */
   @Input()
   showClearAll = true;
+
+  /**
+   * Hide these options in list.
+   */
+  @Input()
+  hiddenValues?: Set<Value>;
 
   /**
    * Whether to show the search box.
@@ -186,505 +197,540 @@ export class SelectComponent<
 
   // disable the dropdown
   @Input()
-  disabled = false;
+  disabledDropdown = false;
 
-  /**
+
+
+
+/**
    * Indicates whether custom the input is allowed.
    */
-  @Input()
-  allowInput = false;
+@Input()
+allowInput = false;
 
-  /* Max number of items visible at a time in the dropdown, used to set the height */
-  @Input()
-  maxVisibleItems = MIN_VISIBLE_ITEMS;
+/* Max number of items visible at a time in the dropdown, used to set the height */
+@Input()
+maxVisibleItems = MIN_VISIBLE_ITEMS;
 
-  /* label to show to add a custom item in the dropdown */
-  @Input()
-  addTagString = 'createANewTag';
+/* label to show to add a custom item in the dropdown */
+@Input()
+addTagString = 'createANewTag';
 
-  /* Placeholder for the search input */
-  @Input()
-  searchPlaceholder = 'search';
+/* Placeholder for the search input */
+@Input()
+searchPlaceholder = 'search';
 
-  /* Used to get groupConfig from components to group data if needed */
-  @Input()
-  groupConfig: GroupConfig<InputType>[] = [];
-  /**
-   * Whether to select the first option when the user presses enter
-   */
-  @Input()
-  selectOnEnter = true;
+/* Used to get groupConfig from components to group data if needed */
+@Input()
+groupConfig: GroupConfig<InputType>[] = [];
+/**
+ * Whether to select the first option when the user presses enter
+ */
+@Input()
+selectOnEnter = true;
 
-  @Output()
-  newAdded = new EventEmitter<InputType>();
+/* whether to show selected options on top */
+@Input()
+showSelectedOnTop = false;
 
-  @Output()
-  newRemoved = new EventEmitter<InputType>();
+@Input()
+itemTemplate: TemplateRef<ItemTemplate<InputType, keyof InputType>>;
 
-  @Output()
-  added = new EventEmitter<InputType>();
+@Output()
+newAdded = new EventEmitter<InputType>();
 
-  @Output()
-  removed = new EventEmitter<InputType>();
+@Output()
+newRemoved = new EventEmitter<InputType>();
 
-  @Output()
-  cleared = new EventEmitter<void>();
+@Output()
+added = new EventEmitter<InputType>();
 
-  @Output()
-  valueChange = new EventEmitter<ValueType<MultipleMode, Value>>();
+@Output()
+removed = new EventEmitter<InputType>();
 
-  /* Control value accessor related properties */
-  onChange = (value: ValueType<MultipleMode, Value>) => {};
+@Output()
+cleared = new EventEmitter<void>();
 
-  onTouched = () => {};
+@Output()
+valueChange = new EventEmitter<ValueType<MultipleMode, Value>>();
 
-  registerOnChange(onChange: (value: ValueType<MultipleMode, Value>) => {}) {
-    this.onChange = onChange;
+/* Control value accessor related properties */
+onChange = (value: ValueType<MultipleMode, Value>) => {};
+
+onTouched = () => {};
+
+registerOnChange(onChange: (value: ValueType<MultipleMode, Value>) => {}) {
+  this.onChange = onChange;
+}
+
+registerOnTouched(onTouched: () => {}) {
+  this.onTouched = onTouched;
+}
+
+writeValue(value: ValueType<MultipleMode, Value>) {
+  this.value = value;
+}
+
+setDisabledState(isDisabled: boolean) {
+  this.disabledDropdown = isDisabled;
+}
+
+/**
+ * The function sets the value of the selection model to the value passed in
+ * @param value - ValueType<MultipleMode, Value>
+ */
+@Input()
+set value(value: ValueType<MultipleMode, Value>) {
+  this._initSelectionModel();
+  this._setSelections(value);
+  this.onChange(value);
+  this.onTouched();
+  // this.updateTagsCount();
+}
+
+/**
+ * If the `multiple` property is true, return the `selected` property of the `selections` object as an
+ * array. Otherwise, return the first element of the `selected` property of the `selections` object as
+ * a single value
+ * @returns The value of the selected item.
+ */
+get value(): ValueType<MultipleMode, Value> {
+  if (this.multiple === true) {
+    return this.selections.selected as ValueType<MultipleMode, Value>;
+  } else {
+    return this.selections.selected[0] as ValueType<MultipleMode, Value>;
   }
+}
 
-  registerOnTouched(onTouched: () => {}) {
-    this.onTouched = onTouched;
-  }
+/**
+ * It returns the list of invisible tags to be shown in tags panel
+ * @returns The list of invisible tags.
+ */
+get invisibleTags() {
+  return this.panels[PanelType.Extra].list;
+}
 
-  writeValue(value: ValueType<MultipleMode, Value>) {
-    this.value = value;
-  }
+/**
+ * It sets the value of the invisibleTags property to the value of the value parameter.
+ * @param {InputType[]} value - The value of the input.
+ */
+set invisibleTags(value: InputType[]) {
+  this.panels[PanelType.Extra].list = Object.assign([], value);
+}
 
-  setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
-  }
+ngOnInit(): void {
+  console.log(this.options);
+  this._initSelectionModel();
+  /* Subscribing to the viewportRuler's change event and updating the width of the element. */
+  this._viewportRuler
+    .change()
+    .subscribe(() => {
+      // this._updateWidth();
+    });
+}
 
-  /**
-   * The function sets the value of the selection model to the value passed in
-   * @param value - ValueType<MultipleMode, Value>
-   */
-  @Input()
-  set value(value: ValueType<MultipleMode, Value>) {
+ngOnChanges(changes: SimpleChanges): void {
+
+  console.log(this.options)
+  if (changes['multiple'] && !changes['multiple'].isFirstChange()) {
     this._initSelectionModel();
-    this._setSelections(value);
-    this.onChange(value);
-    this.onTouched();
-    this.updateTagsCount();
   }
+  if (this.showSelectedOnTop) {
+    this._setIsSelectedOption(this.options!, false);
+  }
+  this._dropdownHeight();
+  this.updateSelectedItems();
+  // this.updateTagsCount();
+}
 
-  /**
-   * If the `multiple` property is true, return the `selected` property of the `selections` object as an
-   * array. Otherwise, return the first element of the `selected` property of the `selections` object as
-   * a single value
-   * @returns The value of the selected item.
-   */
-  get value(): ValueType<MultipleMode, Value> {
-    if (this.multiple === true) {
-      return this.selections.selected as ValueType<MultipleMode, Value>;
+/**
+ * If the item is not a placeholder, toggle the item in the selections array. If the item is a
+ * placeholder, and it is not selected, emit the item as a newRemoved event
+ * @param {InputType} item - InputType - the item that was selected/deselected
+ */
+toggle(item: InputType) {
+  if (!this.multiple && this.selectedItems.isSelected(item)) {
+    return;
+  }
+  this.selectedItems.toggle(item);
+  if (!this.isPlaceholder(item)) {
+    this.selections.toggle(item[this.idField] as Value);
+    if (this.selections.isSelected(item[this.idField] as Value)) {
+      this.added.emit(item);
     } else {
-      return this.selections.selected[0] as ValueType<MultipleMode, Value>;
+      this.removed.emit(item);
     }
+  } else if (!this.selectedItems.isSelected(item)) {
+    this.newRemoved.emit(item);
+  } else {
+    this.newAdded.emit(item);
   }
-
-  /**
-   * It returns the list of invisible tags to be shown in tags panel
-   * @returns The list of invisible tags.
-   */
-  get invisibleTags() {
-    return this.panels[PanelType.Extra].list;
+  const isSelectedOption = 'isSelected' as keyof InputType;
+  if (item[isSelectedOption] !== undefined) {
+    item[isSelectedOption] = !item[
+      isSelectedOption
+    ] as unknown as InputType[keyof InputType];
   }
+  this._processChange();
+}
 
-  /**
-   * It sets the value of the invisibleTags property to the value of the value parameter.
-   * @param {InputType[]} value - The value of the input.
-   */
-  set invisibleTags(value: InputType[]) {
-    this.panels[PanelType.Extra].list = Object.assign([], value);
+/**
+ * It clears the selections and selectedItems collections, then emits the cleared event
+ */
+clearAll() {
+  if (this.options?.length) {
+    this._setIsSelectedOption(this.options, false);
   }
+  this.selections.clear();
+  this.selectedItems.clear();
+  this._processChange();
+  this.cleared.emit();
+}
 
-  ngOnInit(): void {
-    this._initSelectionModel();
-        /* Subscribing to the viewportRuler's change event and updating the width of the element. */
-    this._viewportRuler
-      .change()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(() => {
-        this._updateWidth();
-      });
+/**
+ * If the state is closed, open the dropdown, otherwise close it
+ */
+toggleDropdown() {
+  if (this.state === SelectState.Closed) {
+    this.open();
+  } else {
+    this.close();
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['multiple'] && !changes['multiple'].isFirstChange()) {
-      this._initSelectionModel();
-    }
-    this._dropdownHeight();
-    this.updateSelectedItems();
-    this.updateTagsCount();
-  }
-
-  /**
-   * If the item is not a placeholder, toggle the item in the selections array. If the item is a
-   * placeholder, and it is not selected, emit the item as a newRemoved event
-   * @param {InputType} item - InputType - the item that was selected/deselected
-   */
-  toggle(item: InputType) {
-    this.selectedItems.toggle(item);
-    if (!this.isPlaceholder(item)) {
-      this.selections.toggle(item[this.idField] as Value);
-      if (this.selections.isSelected(item[this.idField] as Value)) {
-        this.added.emit(item);
-      } else {
-        this.removed.emit(item);
-      }
-    } else if (!this.selectedItems.isSelected(item)) {
-      this.newRemoved.emit(item);
-    } else {
-      this.newAdded.emit(item);
-    }
-    this._processChange();
-  }
-
-  /**
-   * It clears the selections and selectedItems collections, then emits the cleared event
-   */
-  clearAll() {
-    this.selections.clear();
-    this.selectedItems.clear();
-    this._processChange();
-    this.cleared.emit();
-  }
-
-  /**
-   * If the state is closed, open the dropdown, otherwise close it
-   */
-  toggleDropdown() {
-    if (this.state === SelectState.Closed) {
-      this.open();
-    } else {
-      this.close();
-    }
-    this._cdr.detectChanges();
-  }
-
-  /**
+  this._cdr.detectChanges();
+}
+ /**
    * If the panel is closed, open it, otherwise close it
    */
-  togglePanel(type: PanelType) {
-    if (this.panels[type].state === SelectState.Closed) {
-      this.openPanel(type);
-    } else {
-      this.closePanel();
-    }
+ togglePanel(type: PanelType) {
+  if (this.panels[type].state === SelectState.Closed) {
+    this.openPanel(type);
+  } else {
+    this.closePanel();
   }
+}
 
-  openPanel(type: PanelType) {
-    this.panels[type].state = SelectState.Open;
-    this.currentPanel = this.panels[type];
-    this.currentPanelType = type;
-    this._panelWidth(type);
-    this._panelHeight(type, this.panels[type].list);
-    this._cdr.detectChanges();
+openPanel(type: PanelType) {
+  this.panels[type].state = SelectState.Open;
+  this.currentPanel = this.panels[type];
+  this.currentPanelType = type;
+  this._panelWidth(type);
+  this._panelHeight(type, this.panels[type].list);
+  this._cdr.detectChanges();
+}
+
+/**
+ * If there is a current panel, set its state to closed and clear the current panel and panel type
+ */
+closePanel() {
+  if (this.currentPanel) {
+    this.currentPanel.state = SelectState.Closed;
+    this.currentPanel = undefined;
+    this.currentPanelType = undefined;
   }
+}
 
-  /**
-   * If there is a current panel, set its state to closed and clear the current panel and panel type
-   */
-  closePanel() {
-    if (this.currentPanel) {
-      this.currentPanel.state = SelectState.Closed;
-      this.currentPanel = undefined;
-      this.currentPanelType = undefined;
-    }
+/**
+ * It filters the autocomplete options based on the value of the input, and adds a placeholder option
+ * if the value is not found in the data
+ * @param {string} value - string - the value of the input field
+ */
+updateAutocompleteOptions(value: string) {
+  let showAddOption = !this.selectedItems.selected.some(item =>
+    isEqual(item[this.nameField], value),
+  );
+  this.panels[PanelType.Autocomplete].list = [];
+  if (value) {
+    this.panels[PanelType.Autocomplete].list =
+      this.options?.filter?.(item => {
+        if (this.asString(item[this.nameField]) === value) {
+          showAddOption = false;
+        }
+        return (
+          !this.selections.isSelected(item[this.idField] as Value) &&
+          this.asString(item[this.nameField])
+            .toLowerCase()
+            .trim()
+            .indexOf(value.toLowerCase().trim()) > -1
+        );
+      }) ?? [];
   }
+  if (showAddOption && value.length) {
+    this.panels[PanelType.Autocomplete].list.push({
+      [this.idField]: PLACEHOLDER_ITEM,
+      [this.nameField]: value,
+    } as unknown as InputType);
+  }
+  if (this.panels[PanelType.Autocomplete].list.length) {
+    this.openPanel(PanelType.Autocomplete);
+  } else {
+    this.closePanel();
+  }
+  this._cdr.detectChanges();
+}
 
-  /**
-   * It filters the autocomplete options based on the value of the input, and adds a placeholder option
-   * if the value is not found in the data
-   * @param {string} value - string - the value of the input field
-   */
-  updateAutocompleteOptions(value: string) {
-    let showAddOption = !this.selectedItems.selected.some(item =>
-      isEqual(item[this.nameField], value),
+/**
+ * If the user presses enter, clear the input and if there's an autocomplete suggestion, select it
+ * @param {HTMLInputElement} input - HTMLInputElement - the input element that the user is typing in
+ */
+autocompleteEnter(input: HTMLInputElement) {
+  input.value = '';
+  if (this.panels[PanelType.Autocomplete].list[0]) {
+    this.handleAutocompleteSelect(
+      this.panels[PanelType.Autocomplete].list[0],
     );
-    this.panels[PanelType.Autocomplete].list = [];
-    if (value) {
-      this.panels[PanelType.Autocomplete].list =
-        this.options?.filter(item => {
-          if (this.asString(item[this.nameField]) === value) {
-            showAddOption = false;
-          }
-          return (
-            !this.selections.isSelected(item[this.idField] as Value) &&
-            this.asString(item[this.nameField])
-              .toLowerCase()
-              .trim()
-              .indexOf(value.toLowerCase().trim()) > -1
-          );
-        }) ?? [];
-    }
-    if (showAddOption && value.length) {
-      this.panels[PanelType.Autocomplete].list.push({
-        [this.idField]: PLACEHOLDER_ITEM,
-        [this.nameField]: value,
-      } as unknown as InputType);
-    }
-    if (this.panels[PanelType.Autocomplete].list.length) {
-      this.openPanel(PanelType.Autocomplete);
-    } else {
-      this.closePanel();
-    }
-    this._cdr.detectChanges();
+    this.closePanel();
   }
+}
 
-  /**
-   * If the user presses enter, clear the input and if there's an autocomplete suggestion, select it
-   * @param {HTMLInputElement} input - HTMLInputElement - the input element that the user is typing in
-   */
-  autocompleteEnter(input: HTMLInputElement) {
-    input.value = '';
-    if (this.panels[PanelType.Autocomplete].list[0]) {
-      this.handleAutocompleteSelect(
-        this.panels[PanelType.Autocomplete].list[0],
-      );
-      this.closePanel();
-    }
+/**
+ * If the item is a placeholder, then select it and emit the newAdded event. Otherwise, toggle the item
+ * @param {InputType} item - InputType - this is the item that was selected from the autocomplete
+ * dropdown.
+ */
+handleAutocompleteSelect(item: InputType) {
+  if (this.isPlaceholder(item)) {
+    this.selectedItems.select(item);
+    this.newAdded.emit(item);
+  } else {
+    this.toggle(item);
   }
-
-  /**
-   * If the item is a placeholder, then select it and emit the newAdded event. Otherwise, toggle the item
-   * @param {InputType} item - InputType - this is the item that was selected from the autocomplete
-   * dropdown.
-   */
-  handleAutocompleteSelect(item: InputType) {
-    if (this.isPlaceholder(item)) {
-      this.selectedItems.select(item);
-      this.newAdded.emit(item);
-    } else {
-      this.toggle(item);
-    }
-    this.panels[PanelType.Autocomplete].list = [];
-    if (this.autoCompleteInput) {
-      this.autoCompleteInput.nativeElement.value = '';
-    }
-    this._processChange();
+  this.panels[PanelType.Autocomplete].list = [];
+  if (this.autoCompleteInput) {
+    this.autoCompleteInput.nativeElement.value = '';
   }
+  this._processChange();
+}
 
-  /**
-   * The funtion closes the dropdown, change detection is triggered internally by the update width method
-   */
-  open() {
-    this.state = SelectState.Open;
-    this._updateWidth();
+/**
+ * The funtion closes the dropdown, change detection is triggered internally by the update width method
+ */
+open() {
+  this.state = SelectState.Open;
+  // this._updateWidth();
+}
+
+/**
+ * The function closes the dropdown and tells Angular to check for changes
+ */
+close() {
+  this.state = SelectState.Closed;
+  this._cdr.detectChanges();
+}
+
+/**
+ * It emits the new value of the select box
+ */
+emitNewValue() {
+  if (this.multiple === true) {
+    this.valueChange.emit(
+      this.selections.selected as ValueType<MultipleMode, Value>,
+    );
+  } else {
+    this.valueChange.emit(
+      this.selections.selected[0] as ValueType<MultipleMode, Value>,
+    );
   }
+}
 
-  /**
-   * The function closes the dropdown and tells Angular to check for changes
-   */
-  close() {
-    this.state = SelectState.Closed;
-    this._cdr.detectChanges();
+/**
+ * It calculates the width of the tags and the input box and then decides which tags to show and which
+ * to hide
+ */
+// updateTagsCount() {
+//   // for cross and chevron if not disabled
+//   this.suffixCount = this.disabledDropdown ? 0 : DIGITS.TWO;
+//   if (this.invisibleTags.length) {
+//     // for the counter box
+//     this.suffixCount += 1;
+//   }
+//   this.invisibleTags = [];
+//   this.visibleTags = Object.assign([], this.selectedItems.selected);
+//   this._cdr.detectChanges();
+//   const inputBuffer =
+//     this.allowInput && !this.disabledDropdown
+//       ? this.inputMinWidth + DIGITS.TWO * this.tagMargin
+//       : 0;
+//   const width = this.elementRef.nativeElement.getBoundingClientRect().width;
+//   const rightPadding = this.suffixWidth * this.suffixCount;
+//   const allowedWidth =
+//     width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);
+//   let combinedWidth = 0;
+//   let i;
+//   for (i = 0; i < this.tags.length; i++) {
+//     const tag = this.tags.get(i);
+//     if (!tag) {
+//       break;
+//     }
+//     combinedWidth =
+//       combinedWidth +
+//       tag._hostElement.nativeElement.getBoundingClientRect().width +
+//       DIGITS.TWO * this.tagMargin;
+//     if (combinedWidth > allowedWidth) {
+//       break;
+//     }
+//   }
+//   if (i === 0) {
+//     i = 1;
+//   }
+//   this.visibleTags = this.selectedItems.selected.slice(0, i);
+//   this.invisibleTags = this.selectedItems.selected.slice(i);
+//   // this required again to ensure proper width of input element
+//   if (this.invisibleTags.length) {
+//     // for the counter box
+//     this.suffixCount += 1;
+//   }
+//   this._cdr.detectChanges();
+// }
+
+/**
+ * It takes an item of type T and returns it as a string
+ * @param {T} item - T - The item to be converted to a string.
+ * @returns The item as a string.
+ */
+asString<T>(item: T) {
+  return item as unknown as string;
+}
+
+/**
+ * If the id of the item is a string and it's equal to the placeholder item, then return true.
+ * Otherwise, return false
+ * @param {InputType} item - InputType - the item to check
+ * @returns A boolean value.
+ */
+isPlaceholder(item: InputType) {
+  const id = item[this.idField];
+  if (typeof id === 'string' && id === PLACEHOLDER_ITEM) {
+    return true;
+  } else {
+    return false;
   }
-
-  /**
-   * It emits the new value of the select box
-   */
-  emitNewValue() {
-    if (this.multiple === true) {
-      this.valueChange.emit(
-        this.selections.selected as ValueType<MultipleMode, Value>,
-      );
-    } else {
-      this.valueChange.emit(
-        this.selections.selected[0] as ValueType<MultipleMode, Value>,
-      );
-    }
-  }
-
-  /**
-   * It calculates the width of the tags and the input box and then decides which tags to show and which
-   * to hide
-   */
-  updateTagsCount() {
-    // for cross and chevron if not disabled
-    this.suffixCount = this.disabled ? 0 : DIGITS.TWO;
-    if (this.invisibleTags.length) {
-      // for the counter box
-      this.suffixCount += 1;
-    }
-    this.invisibleTags = [];
-    this.visibleTags = Object.assign([], this.selectedItems.selected);
-    this._cdr.detectChanges();
-    const inputBuffer =
-      this.allowInput && !this.disabled
-        ? this.inputMinWidth + DIGITS.TWO * this.tagMargin
-        : 0;
-    const width = this.elementRef.nativeElement.getBoundingClientRect().width;
-    const rightPadding = this.suffixWidth * this.suffixCount;
-    const allowedWidth =
-      width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);
-    let combinedWidth = 0;
-    let i;
-    for (i = 0; i < this.tags.length; i++) {
-      const tag = this.tags.get(i);
-      if (!tag) {
-        break;
-      }
-      combinedWidth =
-        combinedWidth +
-        tag._hostElement.nativeElement.getBoundingClientRect().width +
-        DIGITS.TWO * this.tagMargin;
-      if (combinedWidth > allowedWidth) {
-        break;
-      }
-    }
-    if (i === 0) {
-      i = 1;
-    }
-    this.visibleTags = this.selectedItems.selected.slice(0, i);
-    this.invisibleTags = this.selectedItems.selected.slice(i);
-    // this required again to ensure proper width of input element
-    if (this.invisibleTags.length) {
-      // for the counter box
-      this.suffixCount += 1;
-    }
-    this._cdr.detectChanges();
-  }
-
-  /**
-   * It takes an item of type T and returns it as a string
-   * @param {T} item - T - The item to be converted to a string.
-   * @returns The item as a string.
-   */
-  asString<T>(item: T) {
-    return item as unknown as string;
-  }
-
-  /**
-   * If the id of the item is a string and it's equal to the placeholder item, then return true.
-   * Otherwise, return false
-   * @param {InputType} item - InputType - the item to check
-   * @returns A boolean value.
-   */
-  isPlaceholder(item: InputType) {
-    const id = item[this.idField];
-    if (typeof id === 'string' && id === PLACEHOLDER_ITEM) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  /**
+}
+ /**
    * A function that is called when the selection changes.
    */
-  private _processChange() {
-    this._updateEmptyState();
-    this.emitNewValue();
-    this.onChange(this.value);
-    // this triggers the detect changes
-    this.updateTagsCount();
-    // this can only be called after tags have been updated
-    if (this.currentPanel && this.currentPanelType) {
-      this._panelHeight(this.currentPanelType, this.currentPanel.list);
+ private _processChange() {
+  this._updateEmptyState();
+  this.emitNewValue();
+  this.onChange(this.value);
+  // this triggers the detect changes
+  // this.updateTagsCount();
+  // this can only be called after tags have been updated
+  if (this.currentPanel && this.currentPanelType) {
+    this._panelHeight(this.currentPanelType, this.currentPanel.list);
+  }
+}
+
+/**
+ * `this._setSelections` is a private function that updates the value of the selections
+ * @param value - ValueType<MultipleMode, Value>
+ */
+private _setSelections(value: ValueType<MultipleMode, Value>) {
+  if (this.multiple && Array.isArray(value)) {
+    this.selections.select(...(value as Value[]));
+  } else if (!this.multiple) {
+    this.selections.select(value as Value);
+  } else {
+    this.selections.clear();
+  }
+  this.updateSelectedItems();
+}
+
+/**
+ * If the selectedItems.selected array is empty, then set the isEmpty variable to true. Otherwise, set
+ * it to false
+ */
+private _updateEmptyState() {
+  if (this.selectedItems.selected.length === 0) {
+    this.isEmpty = true;
+  } else {
+    this.isEmpty = false;
+  }
+}
+
+/**
+ * It updates the selectedItems with the selected items
+ */
+private updateSelectedItems() {
+  this.selectedItems.clear();
+  const ids = this.selections.selected;
+  if (this.multiple) {
+    const items = this.options?.filter?.(item =>
+      ids.includes(item[this.idField] as Value),
+    );
+    if (items?.length) {
+      this.selectedItems.select(...items);
+      this._setIsSelectedOption(items, true);
+    }
+  } else {
+    const item = this.options?.find?.(
+      item => item[this.idField] === ids[0],
+    ) as InputType;
+    if (item) {
+      this.selectedItems.select(item);
     }
   }
+  this._updateEmptyState();
+}
 
-  /**
-   * `this._setSelections` is a private function that updates the value of the selections
-   * @param value - ValueType<MultipleMode, Value>
-   */
-  private _setSelections(value: ValueType<MultipleMode, Value>) {
-    if (this.multiple && Array.isArray(value)) {
-      this.selections.select(...(value as Value[]));
-    } else if (!this.multiple) {
-      this.selections.select(value as Value);
-    } else {
-      this.selections.clear();
-    }
-    this.updateSelectedItems();
-  }
+/**
+ * > Initialize the selection models based on the `multiple` property
+ */
+private _initSelectionModel() {
+  this.selections = new SelectionModel(this.multiple);
+  this.selectedItems = new SelectionModel(this.multiple);
+}
 
-  /**
-   * If the selectedItems.selected array is empty, then set the isEmpty variable to true. Otherwise, set
-   * it to false
-   */
-  private _updateEmptyState() {
-    if (this.selectedItems.selected.length === 0) {
-      this.isEmpty = true;
-    } else {
-      this.isEmpty = false;
-    }
-  }
+/**
+ * It updates the width of the dropdown overlay element.
+ */
+// private _updateWidth() {
+//   this.width = this.elementRef.nativeElement.getBoundingClientRect().width;
+//   this._cdr.detectChanges();
+// }
 
-  /**
-   * It updates the selectedItems with the selected items
-   */
-  private updateSelectedItems() {
-    this.selectedItems.clear();
-    const ids = this.selections.selected;
-    if (this.multiple) {
-      const items = this.options?.filter(item =>
-        ids.includes(item[this.idField] as Value),
-      );
-      if (items?.length) {
-        this.selectedItems.select(...items);
-      }
-    } else {
-      const item = this.options?.find(
-        item => item[this.idField] === ids[0],
-      ) as InputType;
-      if (item) {
-        this.selectedItems.select(item);
-      }
-    }
-    this._updateEmptyState();
-  }
+/**
+ * It updates the width of the panel overlay element.
+ */
+private _panelWidth(type: PanelType) {
+  this.panels[type].width =
+    this.elementRef.nativeElement.getBoundingClientRect().width;
+  this._cdr.detectChanges();
+}
 
-  /**
-   * > Initialize the selection models based on the `multiple` property
-   */
-  private _initSelectionModel() {
-    this.selections = new SelectionModel(this.multiple);
-    this.selectedItems = new SelectionModel(this.multiple);
-  }
+/**
+ * It sets the height of the `panel` div to the height of the number of items in the `invisibleTags`
+ * array, or the `maxVisibleItems` property, whichever is smaller
+ */
+private _panelHeight(type: PanelType, list: InputType[]) {
+  // this.panels[type].height =
+  //   list.length > this.maxVisibleItems
+  //     ? this.itemHeight * this.maxVisibleItems
+  //     : this.itemHeight * list.length;
+  // this._cdr.detectChanges();
+}
 
-  /**
-   * It updates the width of the dropdown overlay element.
-   */
-  private _updateWidth() {
-    this.width = this.elementRef.nativeElement.getBoundingClientRect().width;
-    this._cdr.detectChanges();
-  }
+/**
+ * _dropdownHeight() is a private function that calculates the panelHeight property based on the number
+ * of items in the data array and the `maxVisibleItems` property.
+ * If the `search` property is true, then it adds the `searchHeight` property to the panelHeight.
+ */
+private _dropdownHeight() {
+  // const minSize = this.options?.length ?? 1;
+  // this.dropdownHeight =
+  //   minSize > this.maxVisibleItems
+  //     ? this.itemHeight * this.maxVisibleItems
+  //     : this.itemHeight * minSize;
+  // if (this.search) {
+  //   this.dropdownHeight += this.searchHeight + 1;
+  // }
+}
 
-  /**
-   * It updates the width of the panel overlay element.
-   */
-  private _panelWidth(type: PanelType) {
-    this.panels[type].width =
-      this.elementRef.nativeElement.getBoundingClientRect().width;
-    this._cdr.detectChanges();
+private _setIsSelectedOption(items: InputType[], value: boolean) {
+  if (this.showSelectedOnTop) {
+    items.forEach?.(item => {
+      item['isSelected' as keyof InputType] =
+        value as unknown as InputType[keyof InputType];
+    });
   }
-
-  /**
-   * It sets the height of the `panel` div to the height of the number of items in the `invisibleTags`
-   * array, or the `maxVisibleItems` property, whichever is smaller
-   */
-  private _panelHeight(type: PanelType, list: InputType[]) {
-    this.panels[type].height =
-      list.length > this.maxVisibleItems
-        ? this.itemHeight * this.maxVisibleItems
-        : this.itemHeight * list.length;
-    this._cdr.detectChanges();
-  }
-
-  /**
-   * _dropdownHeight() is a private function that calculates the panelHeight property based on the number
-   * of items in the data array and the `maxVisibleItems` property.
-   * If the `search` property is true, then it adds the `searchHeight` property to the panelHeight.
-   */
-  private _dropdownHeight() {
-    const minSize = this.options?.length || 1;
-    this.dropdownHeight =
-      minSize > this.maxVisibleItems
-        ? this.itemHeight * this.maxVisibleItems
-        : this.itemHeight * minSize;
-    if (this.search) {
-      this.dropdownHeight += this.searchHeight + 1;
-    }
-  }
+}
 }

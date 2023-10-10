@@ -19,6 +19,7 @@ import {
   NbListModule,
   NbMenuModule,
   NbOptionModule,
+  NbOverlayContainerAdapter,
   NbRouteTabsetModule,
   NbSelectModule,
   NbSidebarModule,
@@ -76,6 +77,7 @@ const themeModules = [
       useClass: ToasterService,
     },
     NbSidebarService,
+    NbOverlayContainerAdapter
   ],
   imports: [
     CommonModule,

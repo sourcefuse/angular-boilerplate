@@ -11,15 +11,17 @@ import {ThemeModule} from '@project-lib/theme/theme.module';
 import {AuthRoutingModule} from './auth-routing.module';
 import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 @NgModule({
-  declarations: [LoginComponent, AuthComponent],
+  declarations: [LoginComponent, AuthComponent, HomePageComponent, LoginPageComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
-    // ThemeModule,
+    ThemeModule,
     AuthRoutingModule,
     HttpClientModule,
     NbLayoutModule,

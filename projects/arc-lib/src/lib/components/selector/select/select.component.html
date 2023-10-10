@@ -1,12 +1,9 @@
-<nb-form-field
+<div
   class="select-container"
-  [class.disabled]="disabled"
-  (bizbookResize)="multiple && updateTagsCount()"
+  [class.disabled]="disabledDropdown"
   cdk-overlay-origin
-  
-  (click)="!disabled && toggleDropdown()"
+  (click)="!disabledDropdown && toggleDropdown()"
 >
-<!--6 #overlayOrigin="cdkOverlayOrigin" -->
   <div
     *ngIf="multiple && invisibleTags.length"
     nbSuffix
@@ -19,16 +16,17 @@
     nbSuffix
     class="close-icon"
     icon="close-outline"
-    *ngIf="!disabled && !isEmpty && showClearAll"
+    *ngIf="!disabledDropdown && !isEmpty && showClearAll"
     (click)="clearAll(); $event.stopPropagation()"
   ></nb-icon>
   <nb-icon
     [@rotate]="state"
-    *ngIf="!disabled"
+    *ngIf="!disabledDropdown"
     nbSuffix
-    (click)="toggleDropdown(); $event.stopPropagation()"
+    (click)="toggleDropdown()"
     icon="chevron-down"
   ></nb-icon>
+
   <nb-tag-list
     [ngStyle]="{padding}"
     *ngIf="multiple; else single"
@@ -38,26 +36,29 @@
     <nb-tag
       *ngFor="let item of visibleTags"
       [text]="asString(item && item[nameField])"
-      [ngStyle]="{
-        maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'
-      }"
-      [removable]="!disabled"
+      [ngStyle]="{maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'}"
+      [removable]="!disabledDropdown"
       (remove)="toggle(item); toggleDropdown()"
     ></nb-tag>
     <input
       type="text"
+      class="tag-input"
       nbTagInput
       fullWidth
       [placeholder]="placeholder"
       (keyup.enter)="selectOnEnter && autocompleteEnter(autoCompleteInput)"
       [hidden]="
-        (!allowInput && visibleTags.length !== 0) || (disabled && multiple)
+        (!allowInput && visibleTags.length !== 0) ||
+        (disabledDropdown && multiple && visibleTags.length !== 0)
       "
-      [readonly]="!allowInput"
+      [readonly]="!allowInput || disabledDropdown"
       #autoCompleteInput
       [class.cursor-pointer]="!allowInput"
       (input)="updateAutocompleteOptions(autoCompleteInput.value)"
-      (click)="$event.stopPropagation(); !allowInput && toggleDropdown()"
+      (click)="
+        $event.stopPropagation();
+        !disabledDropdown && !allowInput && toggleDropdown()
+      "
       [ngStyle]="{
         minWidth: inputMinWidth + 'px',
         marginRight: suffixCount * suffixWidth + 'px'
@@ -68,7 +69,7 @@
     <input
       type="text"
       class="cursor-pointer"
-      [class.no-disable-style]="!disabled"
+      [class.no-disable-style]="!disabledDropdown"
       nbInput
       fullWidth
       [value]="selectedItems.selected[0]?.[nameField] ?? ''"
@@ -76,23 +77,22 @@
       readonly
     />
   </ng-template>
-</nb-form-field>
+</div>
+
 <ng-template
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
+  cdkConnectedOverlayPanelClass="cdk-panel-select"
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
-  
   [cdkConnectedOverlayOpen]="state === states.Open"
   [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayWidth]="width"
+  [cdkConnectedOverlayWidth]="0"
   (backdropClick)="close()"
   (detach)="close()"
->
-<!--87 [cdkConnectedOverlayOrigin]="overlayOrigin" -->
-  <list
+  >
+  <!-- <app-list
     class="dropdown-panel"
     [options]="options"
     [nameField]="nameField"
@@ -106,30 +106,31 @@
     [searchPlaceholder]="searchPlaceholder"
     [disabledField]="disabledField"
     [selectOnEnter]="selectOnEnter"
-    [ngStyle]="{ height: dropdownHeight + 'px' }"
+    [ngStyle]="{height: dropdownHeight + 'px'}"
     [groupConfig]="groupConfig"
     [showIcon]="showIcon"
-  ></list>
+    
+   
+  ></app-list> -->
 </ng-template>
 <ng-template
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
+  cdkConnectedOverlayPanelClass="cdk-panel-select"
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
-  
   [cdkConnectedOverlayOpen]="
     !!currentPanel && currentPanel.state === states.Open
   "
   [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayWidth]="currentPanel?.width ?? 0"
+  [cdkConnectedOverlayWidth]="10"
   (backdropClick)="closePanel()"
   (detach)="closePanel()"
 >
-  <list
+  
+  <!-- <app-list
     class="dropdown-panel"
-    *ngIf="currentPanel?.list?.length"
     [options]="currentPanel?.list"
     [nameField]="nameField"
     [idField]="idField"
@@ -147,9 +148,9 @@
     [multiple]="false"
     [search]="false"
     [removal]="currentPanel?.removal ?? false"
-    [ngStyle]="{ height: (currentPanel?.height ?? 0) + 'px' }"
+    [ngStyle]="{height: (currentPanel?.height ?? 0) + 'px'}"
     (closed)="closePanel()"
     [groupConfig]="groupConfig"
-  ></list>
+    
+  ></app-list> -->
 </ng-template>
-<!-- 119 [cdkConnectedOverlayOrigin]="overlayOrigin" -->

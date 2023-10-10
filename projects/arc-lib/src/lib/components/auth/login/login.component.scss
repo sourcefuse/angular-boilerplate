@@ -1,9 +1,12 @@
 @use "sass:map";
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use "../../../theme/styles/variables" as *;
+@use "../../../../styles.scss" as *;
+@use "../../../../../../arc/src/themes.scss"  as *;
+
 
 :host {
   .logo {
-    padding-top: 15%;
+    padding-top: 10%;
   }
 
   .description {
@@ -11,13 +14,14 @@
   }
 
   .login-btn {
-    padding-top: 10%;
+    padding-top: 7%;
   }
 
   .footer {
-    padding-top: 15%;
+    padding-top: 7%;
   }
 }
+*{font-family: 'Montserrat,Open Sans,sans-serif',}
 
 .google-btn {
   width: 24.125rem;

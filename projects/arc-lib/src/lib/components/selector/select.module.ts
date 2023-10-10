@@ -8,7 +8,9 @@ import {
   NbFormFieldModule,
   NbIconModule,
   NbInputModule,
+  NbLayoutModule,
   NbTagModule,
+  NbThemeModule,
 } from '@nebular/theme';
 import { TranslateModule } from '@ngx-translate/core';
 import { ResizeModule } from '../resize/resize.module';
@@ -25,6 +27,7 @@ import {ListComponent} from './list/list.component';
     NbFormFieldModule,
     NbIconModule,
     NbTagModule,
+    NbLayoutModule,
     NbInputModule,
     NbCheckboxModule,
     ReactiveFormsModule,

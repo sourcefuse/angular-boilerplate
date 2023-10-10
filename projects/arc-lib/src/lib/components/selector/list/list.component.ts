@@ -22,7 +22,7 @@ import { ITEM_HEIGHT, PLACEHOLDER_ITEM } from '../constants';
 import { GroupConfig } from '../types';
 
 @Component({
-  selector: 'list',
+  selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -151,6 +151,8 @@ export class ListComponent<
    * It initializes the removed set, the visible list, and the search control
    */
   ngOnInit(): void {
+    debugger
+    console.log(this.options)
     this.removed = new Set();
     this.visibleList = Object.assign([], this.options);
     this.sortByGroups();
