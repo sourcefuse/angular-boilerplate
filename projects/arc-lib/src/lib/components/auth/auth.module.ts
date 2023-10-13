@@ -36,5 +36,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
       forms: {},
     }),
   ],
+  exports:[LoginPageComponent]
 })
 export class AuthModule {}

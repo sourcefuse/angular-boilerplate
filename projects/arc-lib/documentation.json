@@ -10444,7 +10444,7 @@
         },
         {
             "name": "ListComponent",
-            "id": "component-ListComponent-c51534d6b745d3071ce2f0d336ec650e1dce2ead5e1b306666f301a521ed0f4d32ea3c700de8ee6d4637c8f0916dabe67f6003ca8628ceb6c74c87c29be4490c",
+            "id": "component-ListComponent-9778d84d337c57ef09b7d26366ca7d64a8229aed90b316e2e01fabee35ed0753e6596db19c550d0595229f0aa6e0a800545c5f95b3b2aac410dc6e7aeb8a659d",
             "file": "projects/arc-lib/src/lib/components/selector/list/list.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -10824,8 +10824,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 4971,
-                                "end": 4975,
+                                "pos": 4963,
+                                "end": 4967,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -10836,8 +10836,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 4953,
-                                "end": 4958,
+                                "pos": 4945,
+                                "end": 4950,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -10846,22 +10846,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - the item that we&#39;re getting the name of</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 4959,
-                                "end": 4970,
+                                "pos": 4951,
+                                "end": 4962,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 4960,
-                                    "end": 4969,
+                                    "pos": 4952,
+                                    "end": 4961,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 4960,
-                                        "end": 4969,
+                                        "pos": 4952,
+                                        "end": 4961,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -10873,8 +10873,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 5036,
-                                "end": 5043,
+                                "pos": 5028,
+                                "end": 5035,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -10906,8 +10906,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5809,
-                                "end": 5813,
+                                "pos": 5801,
+                                "end": 5805,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -10918,8 +10918,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5791,
-                                "end": 5796,
+                                "pos": 5783,
+                                "end": 5788,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -10928,22 +10928,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - the item to check</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 5797,
-                                "end": 5808,
+                                "pos": 5789,
+                                "end": 5800,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 5798,
-                                    "end": 5807,
+                                    "pos": 5790,
+                                    "end": 5799,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 5798,
-                                        "end": 5807,
+                                        "pos": 5790,
+                                        "end": 5799,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -10955,8 +10955,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 5852,
-                                "end": 5859,
+                                "pos": 5844,
+                                "end": 5851,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -11040,8 +11040,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 5282,
-                                "end": 5286,
+                                "pos": 5274,
+                                "end": 5278,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -11052,8 +11052,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 5264,
-                                "end": 5269,
+                                "pos": 5256,
+                                "end": 5261,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -11062,22 +11062,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - the item to be removed from the list</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 5270,
-                                "end": 5281,
+                                "pos": 5262,
+                                "end": 5273,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 5271,
-                                    "end": 5280,
+                                    "pos": 5263,
+                                    "end": 5272,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 5271,
-                                        "end": 5280,
+                                        "pos": 5263,
+                                        "end": 5272,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -11120,8 +11120,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 4684,
-                                "end": 4688,
+                                "pos": 4676,
+                                "end": 4680,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -11132,8 +11132,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 4666,
-                                "end": 4671,
+                                "pos": 4658,
+                                "end": 4663,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -11142,22 +11142,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - the item that was clicked</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 4672,
-                                "end": 4683,
+                                "pos": 4664,
+                                "end": 4675,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 4673,
-                                    "end": 4682,
+                                    "pos": 4665,
+                                    "end": 4674,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 4673,
-                                        "end": 4682,
+                                        "pos": 4665,
+                                        "end": 4674,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -11179,7 +11179,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { SelectionModel } from '@angular/cdk/collections';\nimport { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChanges,\n  ViewChild,\n} from '@angular/core';\nimport { UntypedFormControl } from '@angular/forms';\n\n\nimport { NbFormFieldModule, NbListModule } from '@nebular/theme';\nimport { ITEM_HEIGHT, PLACEHOLDER_ITEM } from '../constants';\nimport { GroupConfig } from '../types';\n\n@Component({\n  selector: 'app-list',\n  templateUrl: './list.component.html',\n  styleUrls: ['./list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ListComponent<\n  InputType,\n  MultipleMode extends boolean,\n  Value extends InputType[IdField],\n  IdField extends keyof InputType,\n> implements OnInit, AfterViewInit, OnChanges {\n  constructor(private _cdr: ChangeDetectorRef) { }\n  /**\n   * The list of items to display.\n   */\n  @Input()\n  options?: InputType[] = [];\n\n  /**\n   * The name of the field in the generic type T that contains the name of the\n   * item to display. This is used to read the name of each item in the list.\n   */\n  @Input()\n  nameField: keyof InputType = 'name' as keyof InputType;\n\n  /**\n   * The field in the data item that uniquely identifies it.\n   */\n  @Input()\n  idField: IdField = 'id' as IdField;\n\n  /**\n   * The field to show disabled items in the list\n   */\n  @Input()\n  disabledField: keyof InputType = 'deleted' as keyof InputType;\n\n  /* height of the each items in the list. */\n  @Input()\n  itemHeight = ITEM_HEIGHT;\n\n  /* A boolean that is used to determine if the user can select multiple items in the list. */\n  @Input()\n  multiple: MultipleMode = false as MultipleMode;\n\n  /**\n   * Whether to show the search box.\n   */\n  @Input()\n  search = true;\n\n  /**\n   * The removal input is a boolean value that determines whether or not the\n   * component should be rendered in removal mode\n   */\n  @Input()\n  removal = false;\n\n  /* Placeholder for the search input */\n  @Input()\n  searchPlaceholder = 'search';\n\n  /**\n   * This is the search result text to be displayed when no search result is found.\n   */\n  @Input()\n  noSearchResultText = 'noResultLbl';\n\n  /**\n   * The text to display when no data is available\n   */\n  @Input()\n  noDataText = 'noDataLbl';\n\n  /* label to show to add a custom item in the dropdown */\n  @Input()\n  addTagString = 'createANewTag';\n\n  /* When the user presses enter while searching, the first item visible is selected */\n  @Input()\n  selectOnEnter = true;\n\n  /**\n   * Indicates whether custom the input is allowed.\n   */\n  @Input()\n  allowInput = false;\n\n  @Input()\n  selections!: SelectionModel<Value>;\n\n  /**\n   * @description\n   * Emits a value of true when the user clicks the close button.\n   */\n  @Output()\n  closed = new EventEmitter<boolean>();\n\n  /**\n   * Emits the selected value when the user toggles an option.\n   * @param value The value of the option that the user toggled.\n   */\n  @Output()\n  toggle = new EventEmitter<InputType>();\n\n  /* Emits an event when an item is removed */\n  @Output()\n  remove = new EventEmitter<InputType>();\n\n  @ViewChild('searchInput')\n  searchInput!: ElementRef;\n\n  @ViewChild(CdkVirtualScrollViewport)\n  viewport!: CdkVirtualScrollViewport;\n\n  visibleList: InputType[] = [];\n  searchControl!: UntypedFormControl;\n  removed!: Set<InputType>;\n\n  @Input()\n  showIcon!: boolean;\n\n  @Input()\n  groupConfig?: GroupConfig<InputType>[] = [];\n  groupIndexMap: Record<number, string> = {};\n  /**\n   * It initializes the removed set, the visible list, and the search control\n   */\n  ngOnInit(): void {\n    debugger\n    console.log(this.options)\n    this.removed = new Set();\n    this.visibleList = Object.assign([], this.options);\n    this.sortByGroups();\n    this.searchControl = new UntypedFormControl();\n    this.searchControl.valueChanges.subscribe(value => {\n      this.visibleList =\n        this.options?.filter(\n          item =>\n            !value ||\n            this.getName(item).toLowerCase().includes(value.toLowerCase()),\n        ) ?? [];\n      this.sortByGroups();\n    });\n  }\n\n  /**\n   * After the view is initialized, if the searchInput exists, focus on it.\n   */\n  ngAfterViewInit(): void {\n    if (this.searchInput) {\n      this.searchInput.nativeElement.focus();\n      this._cdr.detectChanges();\n    }\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    if (changes['options']) {\n      this.visibleList = Object.assign([], this.options);\n    }\n  }\n\n  /**\n   * The function takes an item of type T, and emits an event with the item as the payload\n   * @param {InputType} item - InputType - the item that was clicked\n   */\n  toggleItem(item: InputType) {\n    this.toggle.emit(item);\n    if (this.allowInput) {\n      this.closed.emit();\n    }\n  }\n\n  /**\n   * Get the name of the item by getting the value of the name field of the item.\n   * @param {InputType} item - InputType - the item that we're getting the name of\n   * @returns The name of the item.\n   */\n  getName(item: InputType) {\n    return item[this.nameField] as unknown as string;\n  }\n\n  /**\n   * It removes an item from the list, emits an event, and then checks if the list is empty\n   * @param {InputType} item - InputType - the item to be removed from the list\n   */\n  removeItem(item: InputType) {\n    this.removed.add(item);\n    this.remove.emit(item);\n    this.visibleList =\n      this.options?.filter(item => !this.removed.has(item)) ?? [];\n    if (this.visibleList.length) {\n      this.viewport?.checkViewportSize();\n    } else {\n      this.closed.emit(true);\n    }\n  }\n\n  /**\n   * If the id of the item is a string and it's equal to the placeholder item, then return true.\n   * Otherwise, return false\n   * @param {InputType} item - InputType - the item to check\n   * @returns A boolean value.\n   */\n  isPlaceholder(item: InputType) {\n    const id = item[this.idField];\n    if (typeof id === 'string' && id === PLACEHOLDER_ITEM) {\n      return true;\n    } else {\n      return false;\n    }\n  }\n\n  /**\n   * If the user presses enter on the search box, and there are items in the list, select the first item\n   * in the list\n   */\n  enterOnSearch() {\n    if (!this.removal && this.visibleList.length) {\n      this.toggleItem(this.visibleList[0]);\n    }\n  }\n\n  sortByGroups() {\n    if (this.groupConfig && this.groupConfig.length) {\n      let groupedData: InputType[][] = this.groupConfig.map(() => []);\n      this.visibleList?.forEach(option => {\n        const group = this.groupConfig!.findIndex(\n          group =>\n            (group.value === '*' && option[group.fieldName]) ||\n            option[group.fieldName] === group.value,\n        );\n        if (group !== -1) groupedData[group].push(option);\n      });\n      this.groupIndexMap = this.groupConfig.reduce(\n        (acc, obj, index) =>\n          obj.groupName ? { ...acc, [index]: obj.groupName } : acc,\n        {},\n      );\n      this.visibleList = groupedData.flat();\n    }\n  }\n}\n",
+            "sourceCode": "import { SelectionModel } from '@angular/cdk/collections';\nimport { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';\nimport {\n  AfterViewInit,\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChanges,\n  ViewChild,\n} from '@angular/core';\nimport { UntypedFormControl } from '@angular/forms';\n\n\nimport { NbFormFieldModule, NbListModule } from '@nebular/theme';\nimport { ITEM_HEIGHT, PLACEHOLDER_ITEM } from '../constants';\nimport { GroupConfig } from '../types';\n\n@Component({\n  selector: 'app-list',\n  templateUrl: './list.component.html',\n  styleUrls: ['./list.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class ListComponent<\n  InputType,\n  MultipleMode extends boolean,\n  Value extends InputType[IdField],\n  IdField extends keyof InputType,\n> implements OnInit, AfterViewInit, OnChanges {\n  constructor(private _cdr: ChangeDetectorRef) { }\n  /**\n   * The list of items to display.\n   */\n  @Input()\n  options?: InputType[] = [];\n\n  /**\n   * The name of the field in the generic type T that contains the name of the\n   * item to display. This is used to read the name of each item in the list.\n   */\n  @Input()\n  nameField: keyof InputType = 'name' as keyof InputType;\n\n  /**\n   * The field in the data item that uniquely identifies it.\n   */\n  @Input()\n  idField: IdField = 'id' as IdField;\n\n  /**\n   * The field to show disabled items in the list\n   */\n  @Input()\n  disabledField: keyof InputType = 'deleted' as keyof InputType;\n\n  /* height of the each items in the list. */\n  @Input()\n  itemHeight = ITEM_HEIGHT;\n\n  /* A boolean that is used to determine if the user can select multiple items in the list. */\n  @Input()\n  multiple: MultipleMode = false as MultipleMode;\n\n  /**\n   * Whether to show the search box.\n   */\n  @Input()\n  search = true;\n\n  /**\n   * The removal input is a boolean value that determines whether or not the\n   * component should be rendered in removal mode\n   */\n  @Input()\n  removal = false;\n\n  /* Placeholder for the search input */\n  @Input()\n  searchPlaceholder = 'search';\n\n  /**\n   * This is the search result text to be displayed when no search result is found.\n   */\n  @Input()\n  noSearchResultText = 'noResultLbl';\n\n  /**\n   * The text to display when no data is available\n   */\n  @Input()\n  noDataText = 'noDataLbl';\n\n  /* label to show to add a custom item in the dropdown */\n  @Input()\n  addTagString = 'createANewTag';\n\n  /* When the user presses enter while searching, the first item visible is selected */\n  @Input()\n  selectOnEnter = true;\n\n  /**\n   * Indicates whether custom the input is allowed.\n   */\n  @Input()\n  allowInput = false;\n\n  @Input()\n  selections!: SelectionModel<Value>;\n\n  /**\n   * @description\n   * Emits a value of true when the user clicks the close button.\n   */\n  @Output()\n  closed = new EventEmitter<boolean>();\n\n  /**\n   * Emits the selected value when the user toggles an option.\n   * @param value The value of the option that the user toggled.\n   */\n  @Output()\n  toggle = new EventEmitter<InputType>();\n\n  /* Emits an event when an item is removed */\n  @Output()\n  remove = new EventEmitter<InputType>();\n\n  @ViewChild('searchInput')\n  searchInput!: ElementRef;\n\n  @ViewChild(CdkVirtualScrollViewport)\n  viewport!: CdkVirtualScrollViewport;\n\n  visibleList: InputType[] = [];\n  searchControl!: UntypedFormControl;\n  removed!: Set<InputType>;\n\n  @Input()\n  showIcon!: boolean;\n\n  @Input()\n  groupConfig?: GroupConfig<InputType>[] = [];\n  groupIndexMap: Record<number, string> = {};\n  /**\n   * It initializes the removed set, the visible list, and the search control\n   */\n  ngOnInit(): void {\n    \n    console.log(this.options)\n    this.removed = new Set();\n    this.visibleList = Object.assign([], this.options);\n    this.sortByGroups();\n    this.searchControl = new UntypedFormControl();\n    this.searchControl.valueChanges.subscribe(value => {\n      this.visibleList =\n        this.options?.filter(\n          item =>\n            !value ||\n            this.getName(item).toLowerCase().includes(value.toLowerCase()),\n        ) ?? [];\n      this.sortByGroups();\n    });\n  }\n\n  /**\n   * After the view is initialized, if the searchInput exists, focus on it.\n   */\n  ngAfterViewInit(): void {\n    if (this.searchInput) {\n      this.searchInput.nativeElement.focus();\n      this._cdr.detectChanges();\n    }\n  }\n\n  ngOnChanges(changes: SimpleChanges) {\n    if (changes['options']) {\n      this.visibleList = Object.assign([], this.options);\n    }\n  }\n\n  /**\n   * The function takes an item of type T, and emits an event with the item as the payload\n   * @param {InputType} item - InputType - the item that was clicked\n   */\n  toggleItem(item: InputType) {\n    this.toggle.emit(item);\n    if (this.allowInput) {\n      this.closed.emit();\n    }\n  }\n\n  /**\n   * Get the name of the item by getting the value of the name field of the item.\n   * @param {InputType} item - InputType - the item that we're getting the name of\n   * @returns The name of the item.\n   */\n  getName(item: InputType) {\n    return item[this.nameField] as unknown as string;\n  }\n\n  /**\n   * It removes an item from the list, emits an event, and then checks if the list is empty\n   * @param {InputType} item - InputType - the item to be removed from the list\n   */\n  removeItem(item: InputType) {\n    this.removed.add(item);\n    this.remove.emit(item);\n    this.visibleList =\n      this.options?.filter(item => !this.removed.has(item)) ?? [];\n    if (this.visibleList.length) {\n      this.viewport?.checkViewportSize();\n    } else {\n      this.closed.emit(true);\n    }\n  }\n\n  /**\n   * If the id of the item is a string and it's equal to the placeholder item, then return true.\n   * Otherwise, return false\n   * @param {InputType} item - InputType - the item to check\n   * @returns A boolean value.\n   */\n  isPlaceholder(item: InputType) {\n    const id = item[this.idField];\n    if (typeof id === 'string' && id === PLACEHOLDER_ITEM) {\n      return true;\n    } else {\n      return false;\n    }\n  }\n\n  /**\n   * If the user presses enter on the search box, and there are items in the list, select the first item\n   * in the list\n   */\n  enterOnSearch() {\n    if (!this.removal && this.visibleList.length) {\n      this.toggleItem(this.visibleList[0]);\n    }\n  }\n\n  sortByGroups() {\n    if (this.groupConfig && this.groupConfig.length) {\n      let groupedData: InputType[][] = this.groupConfig.map(() => []);\n      this.visibleList?.forEach(option => {\n        const group = this.groupConfig!.findIndex(\n          group =>\n            (group.value === '*' && option[group.fieldName]) ||\n            option[group.fieldName] === group.value,\n        );\n        if (group !== -1) groupedData[group].push(option);\n      });\n      this.groupIndexMap = this.groupConfig.reduce(\n        (acc, obj, index) =>\n          obj.groupName ? { ...acc, [index]: obj.groupName } : acc,\n        {},\n      );\n      this.visibleList = groupedData.flat();\n    }\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11612,7 +11612,7 @@
         },
         {
             "name": "LoginPageComponent",
-            "id": "component-LoginPageComponent-93527239b2a8ab8295d9fae540ccf0bde7fc41988b4cb05d95a1b0f4a1cb1352dec9d60e53d9aed699bfd576dc01bd74a26c0e718dca208fde5d68d47e324ffc",
+            "id": "component-LoginPageComponent-d5b70d5111b924ceeed31a964bd824325c74bffea60b54f87db818acafa78806fa03665f02492c8c3f0af9b516135c4bcf8169173cb344582f84ce5a8298ed11",
             "file": "projects/arc-lib/src/lib/components/auth/login-page/login-page.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -11621,7 +11621,7 @@
             "providers": [],
             "selector": "lib-login-page",
             "styleUrls": [
-                "./login-page.component.css"
+                "./login-page.component.scss"
             ],
             "styles": [],
             "templateUrl": [
@@ -11642,16 +11642,16 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'lib-login-page',\n  templateUrl: './login-page.component.html',\n  styleUrls: ['./login-page.component.css']\n})\nexport class LoginPageComponent {\n\n  \n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'lib-login-page',\n  templateUrl: './login-page.component.html',\n  styleUrls: ['./login-page.component.scss']\n})\nexport class LoginPageComponent {\n\n  \n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
-                    "styleUrl": "./login-page.component.css"
+                    "data": ".main-section {\n    display: flex;\n}\n.first {\n    width: 50%;\n}\n.main-section .first .nb-card{\n   margin: 0;\n}",
+                    "styleUrl": "./login-page.component.scss"
                 }
             ],
             "stylesData": "",
-            "templateData": "<p>login-page works!</p>\n"
+            "templateData": "\n  <div class=\"main-section\">\n    <div class=\"first\">\n      <nb-card class=\"h-100 m-0\">\n        <nb-card-body class=\"p-0\">\n          <!-- Include the Login Component here -->\n          <login></login>\n      \n        \n        </nb-card-body>\n      </nb-card>\n    </div>\n\n    <div class=\"first\">\n      <nb-layout>\n        <nb-layout-column>\n          <div class=\"login-img\">\n            <img width=\"90%\" src=\"http://localhost:4200/assets/images/auth/login-img.png\" alt=\"loginImg\" />\n          </div>\n        </nb-layout-column>\n      </nb-layout>\n    </div>\n  </div>"
         },
         {
             "name": "PageComponent",
@@ -11738,7 +11738,7 @@
         },
         {
             "name": "SelectComponent",
-            "id": "component-SelectComponent-49cf7f5b0a102725c742a767eeb5044640ea026faef3c3174e7d99b98ba1a754d4f560376666364da16317e51f57401c61fe74616b4217ce8e22af91516afbb2",
+            "id": "component-SelectComponent-a2a2b0ddb390f9c2f0728a3f54f66d194f7318069b37a757f3429c4a74a59a045b7cdc4f6c353f9bafbfc4268550941ed42ea6edb9604ae446b66161ac496f7f",
             "file": "projects/arc-lib/src/lib/components/selector/select/select.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -12344,7 +12344,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 717,
+                    "line": 718,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\n_dropdownHeight() is a private function that calculates the panelHeight property based on the number\nof items in the data array and the `maxVisibleItems` property.\nIf the `search` property is true, then it adds the `searchHeight` property to the panelHeight.\n",
@@ -12387,7 +12387,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 704,
+                    "line": 705,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nIt sets the height of the `panel` div to the height of the number of items in the `invisibleTags`\narray, or the `maxVisibleItems` property, whichever is smaller\n",
@@ -12429,7 +12429,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 694,
+                    "line": 695,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\n\nIt updates the width of the panel overlay element.\n",
@@ -12483,7 +12483,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 728,
+                    "line": 729,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12534,8 +12534,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 16732,
-                                "end": 16737,
+                                "pos": 16591,
+                                "end": 16596,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12546,8 +12546,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 16726,
-                                "end": 16731,
+                                "pos": 16585,
+                                "end": 16590,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12574,6 +12574,21 @@
                     ]
                 },
                 {
+                    "name": "_updateWidth",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 686,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIt updates the width of the dropdown overlay element.\n",
+                    "description": "<p>It updates the width of the dropdown overlay element.</p>\n",
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
                     "name": "asString",
                     "args": [
                         {
@@ -12595,13 +12610,65 @@
                     "description": "<p>It takes an item of type T and returns it as a string</p>\n",
                     "jsdoctags": [
                         {
-                            "name": "item",
+                            "name": {
+                                "pos": 15513,
+                                "end": 15517,
+                                "flags": 8421376,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "item"
+                            },
                             "type": "T",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "text": "param"
+                                "pos": 15503,
+                                "end": 15508,
+                                "flags": 8421376,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "param"
+                            },
+                            "comment": "<ul>\n<li>T - The item to be converted to a string.</li>\n</ul>\n",
+                            "typeExpression": {
+                                "pos": 15509,
+                                "end": 15512,
+                                "flags": 8421376,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 312,
+                                "type": {
+                                    "pos": 15510,
+                                    "end": 15511,
+                                    "flags": 8388608,
+                                    "modifierFlagsCache": 0,
+                                    "transformFlags": 1,
+                                    "kind": 180,
+                                    "typeName": {
+                                        "pos": 15510,
+                                        "end": 15511,
+                                        "flags": 8388608,
+                                        "modifierFlagsCache": 0,
+                                        "transformFlags": 0,
+                                        "kind": 79,
+                                        "escapedText": "T"
+                                    }
+                                }
                             }
+                        },
+                        {
+                            "tagName": {
+                                "pos": 15566,
+                                "end": 15573,
+                                "flags": 8421376,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 79,
+                                "escapedText": "returns"
+                            },
+                            "comment": "<p>The item as a string.</p>\n"
                         }
                     ]
                 },
@@ -12626,8 +12693,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 12360,
-                                "end": 12365,
+                                "pos": 12357,
+                                "end": 12362,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12638,8 +12705,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 12335,
-                                "end": 12340,
+                                "pos": 12332,
+                                "end": 12337,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12648,22 +12715,22 @@
                             },
                             "comment": "<ul>\n<li>HTMLInputElement - the input element that the user is typing in</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 12341,
-                                "end": 12359,
+                                "pos": 12338,
+                                "end": 12356,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 12342,
-                                    "end": 12358,
+                                    "pos": 12339,
+                                    "end": 12355,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 12342,
-                                        "end": 12358,
+                                        "pos": 12339,
+                                        "end": 12355,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -12744,8 +12811,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 12807,
-                                "end": 12811,
+                                "pos": 12804,
+                                "end": 12808,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12756,8 +12823,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 12789,
-                                "end": 12794,
+                                "pos": 12786,
+                                "end": 12791,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12766,22 +12833,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - this is the item that was selected from the autocomplete\ndropdown.</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 12795,
-                                "end": 12806,
+                                "pos": 12792,
+                                "end": 12803,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 12796,
-                                    "end": 12805,
+                                    "pos": 12793,
+                                    "end": 12802,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 12796,
-                                        "end": 12805,
+                                        "pos": 12793,
+                                        "end": 12802,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -12814,8 +12881,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 15951,
-                                "end": 15955,
+                                "pos": 15810,
+                                "end": 15814,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12826,8 +12893,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 15933,
-                                "end": 15938,
+                                "pos": 15792,
+                                "end": 15797,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -12836,22 +12903,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - the item to check</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 15939,
-                                "end": 15950,
+                                "pos": 15798,
+                                "end": 15809,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 15940,
-                                    "end": 15949,
+                                    "pos": 15799,
+                                    "end": 15808,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 15940,
-                                        "end": 15949,
+                                        "pos": 15799,
+                                        "end": 15808,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -12863,8 +12930,8 @@
                         },
                         {
                             "tagName": {
-                                "pos": 15992,
-                                "end": 15999,
+                                "pos": 15851,
+                                "end": 15858,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -13076,8 +13143,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 8877,
-                                "end": 8881,
+                                "pos": 8874,
+                                "end": 8878,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -13088,8 +13155,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 8859,
-                                "end": 8864,
+                                "pos": 8856,
+                                "end": 8861,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -13098,22 +13165,22 @@
                             },
                             "comment": "<ul>\n<li>InputType - the item that was selected/deselected</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 8865,
-                                "end": 8876,
+                                "pos": 8862,
+                                "end": 8873,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 8866,
-                                    "end": 8875,
+                                    "pos": 8863,
+                                    "end": 8872,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
                                     "kind": 180,
                                     "typeName": {
-                                        "pos": 8866,
-                                        "end": 8875,
+                                        "pos": 8863,
+                                        "end": 8872,
                                         "flags": 8388608,
                                         "modifierFlagsCache": 0,
                                         "transformFlags": 0,
@@ -13188,8 +13255,8 @@
                     "jsdoctags": [
                         {
                             "name": {
-                                "pos": 11136,
-                                "end": 11141,
+                                "pos": 11133,
+                                "end": 11138,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -13200,8 +13267,8 @@
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
-                                "pos": 11121,
-                                "end": 11126,
+                                "pos": 11118,
+                                "end": 11123,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
@@ -13210,15 +13277,15 @@
                             },
                             "comment": "<ul>\n<li>string - the value of the input field</li>\n</ul>\n",
                             "typeExpression": {
-                                "pos": 11127,
-                                "end": 11135,
+                                "pos": 11124,
+                                "end": 11132,
                                 "flags": 8421376,
                                 "modifierFlagsCache": 0,
                                 "transformFlags": 0,
                                 "kind": 312,
                                 "type": {
-                                    "pos": 11128,
-                                    "end": 11134,
+                                    "pos": 11125,
+                                    "end": 11131,
                                     "flags": 8388608,
                                     "modifierFlagsCache": 0,
                                     "transformFlags": 1,
@@ -13242,6 +13309,18 @@
                     "modifierKind": [
                         121
                     ]
+                },
+                {
+                    "name": "updateTagsCount",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 539,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIt calculates the width of the tags and the input box and then decides which tags to show and which\nto hide\n",
+                    "description": "<p>It calculates the width of the tags and the input box and then decides which tags to show and which\nto hide</p>\n"
                 },
                 {
                     "name": "writeValue",
@@ -13320,7 +13399,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {SelectionModel} from '@angular/cdk/collections';\nimport {ConnectedPosition, Overlay, ViewportRuler} from '@angular/cdk/overlay';\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  QueryList,\n  SimpleChanges,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n} from '@angular/core';\nimport {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';\n\nimport {NbTagComponent} from '@nebular/theme';\nimport {cloneDeep, isEqual} from 'lodash';\nimport {takeUntil} from 'rxjs';\nimport {dropdownAnimation, rotateAnimation} from '../animations';\nimport {\n  INPUT_MIN_WIDTH,\n  ITEM_HEIGHT,\n  MIN_VISIBLE_ITEMS,\n  PLACEHOLDER_ITEM,\n  PanelType,\n  SEARCH_HEIGHT,\n  SUFFIX_WIDTH,\n  SelectState,\n  TAG_MARGIN,\n  TAG_PADDING,\n  panelConfigs,\n} from '../constants';\nimport {GroupConfig, ItemTemplate, Panel, ValueType} from '../types';\nimport { DIGITS } from '@project-lib/core/constants';\nimport { ComponentBaseDirective } from '@project-lib/core/component-base';\n@Component({\n  selector: 'selector',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss'],\n  animations: [dropdownAnimation, rotateAnimation],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      multi: true,\n      useExisting: SelectComponent,\n    },\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SelectComponent<\n    InputType,\n    MultipleMode extends boolean,\n    Value extends InputType[IdField],\n    IdField extends keyof InputType,\n  >\n  extends ComponentBaseDirective\n  implements ControlValueAccessor, OnInit, OnChanges\n{\n  constructor(\n    public overlay: Overlay,\n    public elementRef: ElementRef,\n    protected _viewportRuler: ViewportRuler,\n    private _cdr: ChangeDetectorRef,\n  ) {\n    super();\n    this.panels = cloneDeep(panelConfigs);\n  }\n\n  @ViewChildren(NbTagComponent)\n  tags: QueryList<NbTagComponent>;\n\n  @ViewChild('autoCompleteInput')\n  autoCompleteInput?: ElementRef<HTMLInputElement>;\n\n  selections: SelectionModel<Value> = new SelectionModel();\n  selectedItems: SelectionModel<InputType> = new SelectionModel();\n  visibleTags: InputType[] = [];\n  isEmpty = true;\n\n  /* Defining config for both kinds of panels */\n  panels: Record<PanelType, Panel<InputType>>;\n  currentPanel?: Panel<InputType>;\n  currentPanelType?: PanelType;\n\n  /* A type alias for states and panel type enum */\n  states = SelectState;\n  types = PanelType;\n  /* Setting the state of the dropdown to closed. */\n  state: SelectState = SelectState.Closed;\n\n  /* Setting the position of the dropdown. */\n  positions: ConnectedPosition[] = [\n    {\n      originX: 'start',\n      originY: 'bottom',\n      overlayX: 'start',\n      overlayY: 'top',\n      offsetY: 5,\n    },\n    {\n      originX: 'start',\n      originY: 'top',\n      overlayX: 'start',\n      overlayY: 'bottom',\n      panelClass: 'select-panel-above',\n    },\n  ];\n\n  // dropdown overlay width, this is set based on width of container\n  width = 0;\n\n  /* css dependent values, these are supposed to be changed whenever css is changed */\n  /* the padding of the tags container. */\n  padding = TAG_PADDING;\n  /* The margin between tags. */\n  tagMargin = TAG_MARGIN;\n  /* The height of each item in the dropdown. */\n  itemHeight = ITEM_HEIGHT;\n  /* The width of the cross, plus and chevron icons. */\n  suffixWidth = SUFFIX_WIDTH;\n  /* The height of the input box */\n  searchHeight = SEARCH_HEIGHT;\n\n  /* calculated values based on above values */\n  /* A variable that is used to set the height of the dropdown. */\n  dropdownHeight: number;\n  /* this could 1,2 or 3, based on the whether the cross, plus and chevrons */\n  suffixCount = 0;\n\n  /**\n   * The field in the data item that uniquely identifies it.\n   */\n  @Input()\n  idField: IdField = 'id' as IdField;\n\n  /**\n   * showIcon allows user to show initial of the option as an icon\n   */\n  @Input()\n  showIcon = false;\n  /**\n   * The name of the field in the generic type T that contains the name of the\n   * item to display. This is used to read the name of each item in the list.\n   */\n  @Input()\n  nameField: keyof InputType = 'name' as keyof InputType;\n\n  /**\n   * The field to show disabled items in the list\n   */\n  @Input()\n  disabledField: keyof InputType = 'deleted' as keyof InputType;\n\n  /**\n   * The text to be displayed in the input box when no value is entered.\n   */\n  @Input()\n  placeholder = '';\n\n  // Sets the minimum width for the input box, in pixels.\n  // Used to prevent the input box from shrinking when the container is very small.\n  @Input()\n  inputMinWidth = INPUT_MIN_WIDTH;\n\n  // This code sets the multiple mode for the Select component.\n  @Input()\n  multiple: MultipleMode = true as MultipleMode;\n\n  /**\n   * The options that will be displayed in the select.\n   */\n  @Input()\n  options?: InputType[];\n\n  /**\n   * Disable cross icon in input field.\n   */\n  @Input()\n  showClearAll = true;\n\n  /**\n   * Hide these options in list.\n   */\n  @Input()\n  hiddenValues?: Set<Value>;\n\n  /**\n   * Whether to show the search box.\n   */\n  @Input()\n  search = true;\n\n  // disable the dropdown\n  @Input()\n  disabledDropdown = false;\n\n\n\n\n/**\n   * Indicates whether custom the input is allowed.\n   */\n@Input()\nallowInput = false;\n\n/* Max number of items visible at a time in the dropdown, used to set the height */\n@Input()\nmaxVisibleItems = MIN_VISIBLE_ITEMS;\n\n/* label to show to add a custom item in the dropdown */\n@Input()\naddTagString = 'createANewTag';\n\n/* Placeholder for the search input */\n@Input()\nsearchPlaceholder = 'search';\n\n/* Used to get groupConfig from components to group data if needed */\n@Input()\ngroupConfig: GroupConfig<InputType>[] = [];\n/**\n * Whether to select the first option when the user presses enter\n */\n@Input()\nselectOnEnter = true;\n\n/* whether to show selected options on top */\n@Input()\nshowSelectedOnTop = false;\n\n@Input()\nitemTemplate: TemplateRef<ItemTemplate<InputType, keyof InputType>>;\n\n@Output()\nnewAdded = new EventEmitter<InputType>();\n\n@Output()\nnewRemoved = new EventEmitter<InputType>();\n\n@Output()\nadded = new EventEmitter<InputType>();\n\n@Output()\nremoved = new EventEmitter<InputType>();\n\n@Output()\ncleared = new EventEmitter<void>();\n\n@Output()\nvalueChange = new EventEmitter<ValueType<MultipleMode, Value>>();\n\n/* Control value accessor related properties */\nonChange = (value: ValueType<MultipleMode, Value>) => {};\n\nonTouched = () => {};\n\nregisterOnChange(onChange: (value: ValueType<MultipleMode, Value>) => {}) {\n  this.onChange = onChange;\n}\n\nregisterOnTouched(onTouched: () => {}) {\n  this.onTouched = onTouched;\n}\n\nwriteValue(value: ValueType<MultipleMode, Value>) {\n  this.value = value;\n}\n\nsetDisabledState(isDisabled: boolean) {\n  this.disabledDropdown = isDisabled;\n}\n\n/**\n * The function sets the value of the selection model to the value passed in\n * @param value - ValueType<MultipleMode, Value>\n */\n@Input()\nset value(value: ValueType<MultipleMode, Value>) {\n  this._initSelectionModel();\n  this._setSelections(value);\n  this.onChange(value);\n  this.onTouched();\n  // this.updateTagsCount();\n}\n\n/**\n * If the `multiple` property is true, return the `selected` property of the `selections` object as an\n * array. Otherwise, return the first element of the `selected` property of the `selections` object as\n * a single value\n * @returns The value of the selected item.\n */\nget value(): ValueType<MultipleMode, Value> {\n  if (this.multiple === true) {\n    return this.selections.selected as ValueType<MultipleMode, Value>;\n  } else {\n    return this.selections.selected[0] as ValueType<MultipleMode, Value>;\n  }\n}\n\n/**\n * It returns the list of invisible tags to be shown in tags panel\n * @returns The list of invisible tags.\n */\nget invisibleTags() {\n  return this.panels[PanelType.Extra].list;\n}\n\n/**\n * It sets the value of the invisibleTags property to the value of the value parameter.\n * @param {InputType[]} value - The value of the input.\n */\nset invisibleTags(value: InputType[]) {\n  this.panels[PanelType.Extra].list = Object.assign([], value);\n}\n\nngOnInit(): void {\n  console.log(this.options);\n  this._initSelectionModel();\n  /* Subscribing to the viewportRuler's change event and updating the width of the element. */\n  this._viewportRuler\n    .change()\n    .subscribe(() => {\n      // this._updateWidth();\n    });\n}\n\nngOnChanges(changes: SimpleChanges): void {\n\n  console.log(this.options)\n  if (changes['multiple'] && !changes['multiple'].isFirstChange()) {\n    this._initSelectionModel();\n  }\n  if (this.showSelectedOnTop) {\n    this._setIsSelectedOption(this.options!, false);\n  }\n  this._dropdownHeight();\n  this.updateSelectedItems();\n  // this.updateTagsCount();\n}\n\n/**\n * If the item is not a placeholder, toggle the item in the selections array. If the item is a\n * placeholder, and it is not selected, emit the item as a newRemoved event\n * @param {InputType} item - InputType - the item that was selected/deselected\n */\ntoggle(item: InputType) {\n  if (!this.multiple && this.selectedItems.isSelected(item)) {\n    return;\n  }\n  this.selectedItems.toggle(item);\n  if (!this.isPlaceholder(item)) {\n    this.selections.toggle(item[this.idField] as Value);\n    if (this.selections.isSelected(item[this.idField] as Value)) {\n      this.added.emit(item);\n    } else {\n      this.removed.emit(item);\n    }\n  } else if (!this.selectedItems.isSelected(item)) {\n    this.newRemoved.emit(item);\n  } else {\n    this.newAdded.emit(item);\n  }\n  const isSelectedOption = 'isSelected' as keyof InputType;\n  if (item[isSelectedOption] !== undefined) {\n    item[isSelectedOption] = !item[\n      isSelectedOption\n    ] as unknown as InputType[keyof InputType];\n  }\n  this._processChange();\n}\n\n/**\n * It clears the selections and selectedItems collections, then emits the cleared event\n */\nclearAll() {\n  if (this.options?.length) {\n    this._setIsSelectedOption(this.options, false);\n  }\n  this.selections.clear();\n  this.selectedItems.clear();\n  this._processChange();\n  this.cleared.emit();\n}\n\n/**\n * If the state is closed, open the dropdown, otherwise close it\n */\ntoggleDropdown() {\n  if (this.state === SelectState.Closed) {\n    this.open();\n  } else {\n    this.close();\n  }\n  this._cdr.detectChanges();\n}\n /**\n   * If the panel is closed, open it, otherwise close it\n   */\n togglePanel(type: PanelType) {\n  if (this.panels[type].state === SelectState.Closed) {\n    this.openPanel(type);\n  } else {\n    this.closePanel();\n  }\n}\n\nopenPanel(type: PanelType) {\n  this.panels[type].state = SelectState.Open;\n  this.currentPanel = this.panels[type];\n  this.currentPanelType = type;\n  this._panelWidth(type);\n  this._panelHeight(type, this.panels[type].list);\n  this._cdr.detectChanges();\n}\n\n/**\n * If there is a current panel, set its state to closed and clear the current panel and panel type\n */\nclosePanel() {\n  if (this.currentPanel) {\n    this.currentPanel.state = SelectState.Closed;\n    this.currentPanel = undefined;\n    this.currentPanelType = undefined;\n  }\n}\n\n/**\n * It filters the autocomplete options based on the value of the input, and adds a placeholder option\n * if the value is not found in the data\n * @param {string} value - string - the value of the input field\n */\nupdateAutocompleteOptions(value: string) {\n  let showAddOption = !this.selectedItems.selected.some(item =>\n    isEqual(item[this.nameField], value),\n  );\n  this.panels[PanelType.Autocomplete].list = [];\n  if (value) {\n    this.panels[PanelType.Autocomplete].list =\n      this.options?.filter?.(item => {\n        if (this.asString(item[this.nameField]) === value) {\n          showAddOption = false;\n        }\n        return (\n          !this.selections.isSelected(item[this.idField] as Value) &&\n          this.asString(item[this.nameField])\n            .toLowerCase()\n            .trim()\n            .indexOf(value.toLowerCase().trim()) > -1\n        );\n      }) ?? [];\n  }\n  if (showAddOption && value.length) {\n    this.panels[PanelType.Autocomplete].list.push({\n      [this.idField]: PLACEHOLDER_ITEM,\n      [this.nameField]: value,\n    } as unknown as InputType);\n  }\n  if (this.panels[PanelType.Autocomplete].list.length) {\n    this.openPanel(PanelType.Autocomplete);\n  } else {\n    this.closePanel();\n  }\n  this._cdr.detectChanges();\n}\n\n/**\n * If the user presses enter, clear the input and if there's an autocomplete suggestion, select it\n * @param {HTMLInputElement} input - HTMLInputElement - the input element that the user is typing in\n */\nautocompleteEnter(input: HTMLInputElement) {\n  input.value = '';\n  if (this.panels[PanelType.Autocomplete].list[0]) {\n    this.handleAutocompleteSelect(\n      this.panels[PanelType.Autocomplete].list[0],\n    );\n    this.closePanel();\n  }\n}\n\n/**\n * If the item is a placeholder, then select it and emit the newAdded event. Otherwise, toggle the item\n * @param {InputType} item - InputType - this is the item that was selected from the autocomplete\n * dropdown.\n */\nhandleAutocompleteSelect(item: InputType) {\n  if (this.isPlaceholder(item)) {\n    this.selectedItems.select(item);\n    this.newAdded.emit(item);\n  } else {\n    this.toggle(item);\n  }\n  this.panels[PanelType.Autocomplete].list = [];\n  if (this.autoCompleteInput) {\n    this.autoCompleteInput.nativeElement.value = '';\n  }\n  this._processChange();\n}\n\n/**\n * The funtion closes the dropdown, change detection is triggered internally by the update width method\n */\nopen() {\n  this.state = SelectState.Open;\n  // this._updateWidth();\n}\n\n/**\n * The function closes the dropdown and tells Angular to check for changes\n */\nclose() {\n  this.state = SelectState.Closed;\n  this._cdr.detectChanges();\n}\n\n/**\n * It emits the new value of the select box\n */\nemitNewValue() {\n  if (this.multiple === true) {\n    this.valueChange.emit(\n      this.selections.selected as ValueType<MultipleMode, Value>,\n    );\n  } else {\n    this.valueChange.emit(\n      this.selections.selected[0] as ValueType<MultipleMode, Value>,\n    );\n  }\n}\n\n/**\n * It calculates the width of the tags and the input box and then decides which tags to show and which\n * to hide\n */\n// updateTagsCount() {\n//   // for cross and chevron if not disabled\n//   this.suffixCount = this.disabledDropdown ? 0 : DIGITS.TWO;\n//   if (this.invisibleTags.length) {\n//     // for the counter box\n//     this.suffixCount += 1;\n//   }\n//   this.invisibleTags = [];\n//   this.visibleTags = Object.assign([], this.selectedItems.selected);\n//   this._cdr.detectChanges();\n//   const inputBuffer =\n//     this.allowInput && !this.disabledDropdown\n//       ? this.inputMinWidth + DIGITS.TWO * this.tagMargin\n//       : 0;\n//   const width = this.elementRef.nativeElement.getBoundingClientRect().width;\n//   const rightPadding = this.suffixWidth * this.suffixCount;\n//   const allowedWidth =\n//     width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);\n//   let combinedWidth = 0;\n//   let i;\n//   for (i = 0; i < this.tags.length; i++) {\n//     const tag = this.tags.get(i);\n//     if (!tag) {\n//       break;\n//     }\n//     combinedWidth =\n//       combinedWidth +\n//       tag._hostElement.nativeElement.getBoundingClientRect().width +\n//       DIGITS.TWO * this.tagMargin;\n//     if (combinedWidth > allowedWidth) {\n//       break;\n//     }\n//   }\n//   if (i === 0) {\n//     i = 1;\n//   }\n//   this.visibleTags = this.selectedItems.selected.slice(0, i);\n//   this.invisibleTags = this.selectedItems.selected.slice(i);\n//   // this required again to ensure proper width of input element\n//   if (this.invisibleTags.length) {\n//     // for the counter box\n//     this.suffixCount += 1;\n//   }\n//   this._cdr.detectChanges();\n// }\n\n/**\n * It takes an item of type T and returns it as a string\n * @param {T} item - T - The item to be converted to a string.\n * @returns The item as a string.\n */\nasString<T>(item: T) {\n  return item as unknown as string;\n}\n\n/**\n * If the id of the item is a string and it's equal to the placeholder item, then return true.\n * Otherwise, return false\n * @param {InputType} item - InputType - the item to check\n * @returns A boolean value.\n */\nisPlaceholder(item: InputType) {\n  const id = item[this.idField];\n  if (typeof id === 'string' && id === PLACEHOLDER_ITEM) {\n    return true;\n  } else {\n    return false;\n  }\n}\n /**\n   * A function that is called when the selection changes.\n   */\n private _processChange() {\n  this._updateEmptyState();\n  this.emitNewValue();\n  this.onChange(this.value);\n  // this triggers the detect changes\n  // this.updateTagsCount();\n  // this can only be called after tags have been updated\n  if (this.currentPanel && this.currentPanelType) {\n    this._panelHeight(this.currentPanelType, this.currentPanel.list);\n  }\n}\n\n/**\n * `this._setSelections` is a private function that updates the value of the selections\n * @param value - ValueType<MultipleMode, Value>\n */\nprivate _setSelections(value: ValueType<MultipleMode, Value>) {\n  if (this.multiple && Array.isArray(value)) {\n    this.selections.select(...(value as Value[]));\n  } else if (!this.multiple) {\n    this.selections.select(value as Value);\n  } else {\n    this.selections.clear();\n  }\n  this.updateSelectedItems();\n}\n\n/**\n * If the selectedItems.selected array is empty, then set the isEmpty variable to true. Otherwise, set\n * it to false\n */\nprivate _updateEmptyState() {\n  if (this.selectedItems.selected.length === 0) {\n    this.isEmpty = true;\n  } else {\n    this.isEmpty = false;\n  }\n}\n\n/**\n * It updates the selectedItems with the selected items\n */\nprivate updateSelectedItems() {\n  this.selectedItems.clear();\n  const ids = this.selections.selected;\n  if (this.multiple) {\n    const items = this.options?.filter?.(item =>\n      ids.includes(item[this.idField] as Value),\n    );\n    if (items?.length) {\n      this.selectedItems.select(...items);\n      this._setIsSelectedOption(items, true);\n    }\n  } else {\n    const item = this.options?.find?.(\n      item => item[this.idField] === ids[0],\n    ) as InputType;\n    if (item) {\n      this.selectedItems.select(item);\n    }\n  }\n  this._updateEmptyState();\n}\n\n/**\n * > Initialize the selection models based on the `multiple` property\n */\nprivate _initSelectionModel() {\n  this.selections = new SelectionModel(this.multiple);\n  this.selectedItems = new SelectionModel(this.multiple);\n}\n\n/**\n * It updates the width of the dropdown overlay element.\n */\n// private _updateWidth() {\n//   this.width = this.elementRef.nativeElement.getBoundingClientRect().width;\n//   this._cdr.detectChanges();\n// }\n\n/**\n * It updates the width of the panel overlay element.\n */\nprivate _panelWidth(type: PanelType) {\n  this.panels[type].width =\n    this.elementRef.nativeElement.getBoundingClientRect().width;\n  this._cdr.detectChanges();\n}\n\n/**\n * It sets the height of the `panel` div to the height of the number of items in the `invisibleTags`\n * array, or the `maxVisibleItems` property, whichever is smaller\n */\nprivate _panelHeight(type: PanelType, list: InputType[]) {\n  // this.panels[type].height =\n  //   list.length > this.maxVisibleItems\n  //     ? this.itemHeight * this.maxVisibleItems\n  //     : this.itemHeight * list.length;\n  // this._cdr.detectChanges();\n}\n\n/**\n * _dropdownHeight() is a private function that calculates the panelHeight property based on the number\n * of items in the data array and the `maxVisibleItems` property.\n * If the `search` property is true, then it adds the `searchHeight` property to the panelHeight.\n */\nprivate _dropdownHeight() {\n  // const minSize = this.options?.length ?? 1;\n  // this.dropdownHeight =\n  //   minSize > this.maxVisibleItems\n  //     ? this.itemHeight * this.maxVisibleItems\n  //     : this.itemHeight * minSize;\n  // if (this.search) {\n  //   this.dropdownHeight += this.searchHeight + 1;\n  // }\n}\n\nprivate _setIsSelectedOption(items: InputType[], value: boolean) {\n  if (this.showSelectedOnTop) {\n    items.forEach?.(item => {\n      item['isSelected' as keyof InputType] =\n        value as unknown as InputType[keyof InputType];\n    });\n  }\n}\n}",
+            "sourceCode": "import {SelectionModel} from '@angular/cdk/collections';\nimport {ConnectedPosition, Overlay, ViewportRuler} from '@angular/cdk/overlay';\nimport {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  QueryList,\n  SimpleChanges,\n  TemplateRef,\n  ViewChild,\n  ViewChildren,\n} from '@angular/core';\nimport {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';\n\nimport {NbTagComponent} from '@nebular/theme';\nimport {cloneDeep, isEqual} from 'lodash';\nimport {takeUntil} from 'rxjs';\nimport {dropdownAnimation, rotateAnimation} from '../animations';\nimport {\n  INPUT_MIN_WIDTH,\n  ITEM_HEIGHT,\n  MIN_VISIBLE_ITEMS,\n  PLACEHOLDER_ITEM,\n  PanelType,\n  SEARCH_HEIGHT,\n  SUFFIX_WIDTH,\n  SelectState,\n  TAG_MARGIN,\n  TAG_PADDING,\n  panelConfigs,\n} from '../constants';\nimport {GroupConfig, ItemTemplate, Panel, ValueType} from '../types';\nimport { DIGITS } from '@project-lib/core/constants';\nimport { ComponentBaseDirective } from '@project-lib/core/component-base';\n@Component({\n  selector: 'selector',\n  templateUrl: './select.component.html',\n  styleUrls: ['./select.component.scss'],\n  animations: [dropdownAnimation, rotateAnimation],\n  providers: [\n    {\n      provide: NG_VALUE_ACCESSOR,\n      multi: true,\n      useExisting: SelectComponent,\n    },\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class SelectComponent<\n    InputType,\n    MultipleMode extends boolean,\n    Value extends InputType[IdField],\n    IdField extends keyof InputType,\n  >\n  extends ComponentBaseDirective\n  implements ControlValueAccessor, OnInit, OnChanges\n{\n  constructor(\n    public overlay: Overlay,\n    public elementRef: ElementRef,\n    protected _viewportRuler: ViewportRuler,\n    private _cdr: ChangeDetectorRef,\n  ) {\n    super();\n    this.panels = cloneDeep(panelConfigs);\n  }\n\n  @ViewChildren(NbTagComponent)\n  tags: QueryList<NbTagComponent>;\n\n  @ViewChild('autoCompleteInput')\n  autoCompleteInput?: ElementRef<HTMLInputElement>;\n\n  selections: SelectionModel<Value> = new SelectionModel();\n  selectedItems: SelectionModel<InputType> = new SelectionModel();\n  visibleTags: InputType[] = [];\n  isEmpty = true;\n\n  /* Defining config for both kinds of panels */\n  panels: Record<PanelType, Panel<InputType>>;\n  currentPanel?: Panel<InputType>;\n  currentPanelType?: PanelType;\n\n  /* A type alias for states and panel type enum */\n  states = SelectState;\n  types = PanelType;\n  /* Setting the state of the dropdown to closed. */\n  state: SelectState = SelectState.Closed;\n\n  /* Setting the position of the dropdown. */\n  positions: ConnectedPosition[] = [\n    {\n      originX: 'start',\n      originY: 'bottom',\n      overlayX: 'start',\n      overlayY: 'top',\n      offsetY: 5,\n    },\n    {\n      originX: 'start',\n      originY: 'top',\n      overlayX: 'start',\n      overlayY: 'bottom',\n      panelClass: 'select-panel-above',\n    },\n  ];\n\n  // dropdown overlay width, this is set based on width of container\n  width = 0;\n\n  /* css dependent values, these are supposed to be changed whenever css is changed */\n  /* the padding of the tags container. */\n  padding = TAG_PADDING;\n  /* The margin between tags. */\n  tagMargin = TAG_MARGIN;\n  /* The height of each item in the dropdown. */\n  itemHeight = ITEM_HEIGHT;\n  /* The width of the cross, plus and chevron icons. */\n  suffixWidth = SUFFIX_WIDTH;\n  /* The height of the input box */\n  searchHeight = SEARCH_HEIGHT;\n\n  /* calculated values based on above values */\n  /* A variable that is used to set the height of the dropdown. */\n  dropdownHeight: number;\n  /* this could 1,2 or 3, based on the whether the cross, plus and chevrons */\n  suffixCount = 0;\n\n  /**\n   * The field in the data item that uniquely identifies it.\n   */\n  @Input()\n  idField: IdField = 'id' as IdField;\n\n  /**\n   * showIcon allows user to show initial of the option as an icon\n   */\n  @Input()\n  showIcon = false;\n  /**\n   * The name of the field in the generic type T that contains the name of the\n   * item to display. This is used to read the name of each item in the list.\n   */\n  @Input()\n  nameField: keyof InputType = 'name' as keyof InputType;\n\n  /**\n   * The field to show disabled items in the list\n   */\n  @Input()\n  disabledField: keyof InputType = 'deleted' as keyof InputType;\n\n  /**\n   * The text to be displayed in the input box when no value is entered.\n   */\n  @Input()\n  placeholder = '';\n\n  // Sets the minimum width for the input box, in pixels.\n  // Used to prevent the input box from shrinking when the container is very small.\n  @Input()\n  inputMinWidth = INPUT_MIN_WIDTH;\n\n  // This code sets the multiple mode for the Select component.\n  @Input()\n  multiple: MultipleMode = true as MultipleMode;\n\n  /**\n   * The options that will be displayed in the select.\n   */\n  @Input()\n  options?: InputType[];\n\n  /**\n   * Disable cross icon in input field.\n   */\n  @Input()\n  showClearAll = true;\n\n  /**\n   * Hide these options in list.\n   */\n  @Input()\n  hiddenValues?: Set<Value>;\n\n  /**\n   * Whether to show the search box.\n   */\n  @Input()\n  search = true;\n\n  // disable the dropdown\n  @Input()\n  disabledDropdown = false;\n\n\n\n\n/**\n   * Indicates whether custom the input is allowed.\n   */\n@Input()\nallowInput = false;\n\n/* Max number of items visible at a time in the dropdown, used to set the height */\n@Input()\nmaxVisibleItems = MIN_VISIBLE_ITEMS;\n\n/* label to show to add a custom item in the dropdown */\n@Input()\naddTagString = 'createANewTag';\n\n/* Placeholder for the search input */\n@Input()\nsearchPlaceholder = 'search';\n\n/* Used to get groupConfig from components to group data if needed */\n@Input()\ngroupConfig: GroupConfig<InputType>[] = [];\n/**\n * Whether to select the first option when the user presses enter\n */\n@Input()\nselectOnEnter = true;\n\n/* whether to show selected options on top */\n@Input()\nshowSelectedOnTop = false;\n\n@Input()\nitemTemplate: TemplateRef<ItemTemplate<InputType, keyof InputType>>;\n\n@Output()\nnewAdded = new EventEmitter<InputType>();\n\n@Output()\nnewRemoved = new EventEmitter<InputType>();\n\n@Output()\nadded = new EventEmitter<InputType>();\n\n@Output()\nremoved = new EventEmitter<InputType>();\n\n@Output()\ncleared = new EventEmitter<void>();\n\n@Output()\nvalueChange = new EventEmitter<ValueType<MultipleMode, Value>>();\n\n/* Control value accessor related properties */\nonChange = (value: ValueType<MultipleMode, Value>) => {};\n\nonTouched = () => {};\n\nregisterOnChange(onChange: (value: ValueType<MultipleMode, Value>) => {}) {\n  this.onChange = onChange;\n}\n\nregisterOnTouched(onTouched: () => {}) {\n  this.onTouched = onTouched;\n}\n\nwriteValue(value: ValueType<MultipleMode, Value>) {\n  this.value = value;\n}\n\nsetDisabledState(isDisabled: boolean) {\n  this.disabledDropdown = isDisabled;\n}\n\n/**\n * The function sets the value of the selection model to the value passed in\n * @param value - ValueType<MultipleMode, Value>\n */\n@Input()\nset value(value: ValueType<MultipleMode, Value>) {\n  this._initSelectionModel();\n  this._setSelections(value);\n  this.onChange(value);\n  this.onTouched();\n  // this.updateTagsCount();\n}\n\n/**\n * If the `multiple` property is true, return the `selected` property of the `selections` object as an\n * array. Otherwise, return the first element of the `selected` property of the `selections` object as\n * a single value\n * @returns The value of the selected item.\n */\nget value(): ValueType<MultipleMode, Value> {\n  if (this.multiple === true) {\n    return this.selections.selected as ValueType<MultipleMode, Value>;\n  } else {\n    return this.selections.selected[0] as ValueType<MultipleMode, Value>;\n  }\n}\n\n/**\n * It returns the list of invisible tags to be shown in tags panel\n * @returns The list of invisible tags.\n */\nget invisibleTags() {\n  return this.panels[PanelType.Extra].list;\n}\n\n/**\n * It sets the value of the invisibleTags property to the value of the value parameter.\n * @param {InputType[]} value - The value of the input.\n */\nset invisibleTags(value: InputType[]) {\n  this.panels[PanelType.Extra].list = Object.assign([], value);\n}\n\nngOnInit(): void {\n  console.log(this.options);\n  this._initSelectionModel();\n  /* Subscribing to the viewportRuler's change event and updating the width of the element. */\n  this._viewportRuler\n    .change()\n    .subscribe(() => {\n      // this._updateWidth();\n    });\n}\n\nngOnChanges(changes: SimpleChanges): void {\n\n  console.log(this.options)\n  if (changes['multiple'] && !changes['multiple'].isFirstChange()) {\n    this._initSelectionModel();\n  }\n  if (this.showSelectedOnTop) {\n    this._setIsSelectedOption(this.options!, false);\n  }\n  this._dropdownHeight();\n  this.updateSelectedItems();\n  this.updateTagsCount();\n}\n\n/**\n * If the item is not a placeholder, toggle the item in the selections array. If the item is a\n * placeholder, and it is not selected, emit the item as a newRemoved event\n * @param {InputType} item - InputType - the item that was selected/deselected\n */\ntoggle(item: InputType) {\n  if (!this.multiple && this.selectedItems.isSelected(item)) {\n    return;\n  }\n  this.selectedItems.toggle(item);\n  if (!this.isPlaceholder(item)) {\n    this.selections.toggle(item[this.idField] as Value);\n    if (this.selections.isSelected(item[this.idField] as Value)) {\n      this.added.emit(item);\n    } else {\n      this.removed.emit(item);\n    }\n  } else if (!this.selectedItems.isSelected(item)) {\n    this.newRemoved.emit(item);\n  } else {\n    this.newAdded.emit(item);\n  }\n  const isSelectedOption = 'isSelected' as keyof InputType;\n  if (item[isSelectedOption] !== undefined) {\n    item[isSelectedOption] = !item[\n      isSelectedOption\n    ] as unknown as InputType[keyof InputType];\n  }\n  this._processChange();\n}\n\n/**\n * It clears the selections and selectedItems collections, then emits the cleared event\n */\nclearAll() {\n  if (this.options?.length) {\n    this._setIsSelectedOption(this.options, false);\n  }\n  this.selections.clear();\n  this.selectedItems.clear();\n  this._processChange();\n  this.cleared.emit();\n}\n\n/**\n * If the state is closed, open the dropdown, otherwise close it\n */\ntoggleDropdown() {\n  if (this.state === SelectState.Closed) {\n    this.open();\n  } else {\n    this.close();\n  }\n  this._cdr.detectChanges();\n}\n /**\n   * If the panel is closed, open it, otherwise close it\n   */\n togglePanel(type: PanelType) {\n  if (this.panels[type].state === SelectState.Closed) {\n    this.openPanel(type);\n  } else {\n    this.closePanel();\n  }\n}\n\nopenPanel(type: PanelType) {\n  this.panels[type].state = SelectState.Open;\n  this.currentPanel = this.panels[type];\n  this.currentPanelType = type;\n  this._panelWidth(type);\n  this._panelHeight(type, this.panels[type].list);\n  this._cdr.detectChanges();\n}\n\n/**\n * If there is a current panel, set its state to closed and clear the current panel and panel type\n */\nclosePanel() {\n  if (this.currentPanel) {\n    this.currentPanel.state = SelectState.Closed;\n    this.currentPanel = undefined;\n    this.currentPanelType = undefined;\n  }\n}\n\n/**\n * It filters the autocomplete options based on the value of the input, and adds a placeholder option\n * if the value is not found in the data\n * @param {string} value - string - the value of the input field\n */\nupdateAutocompleteOptions(value: string) {\n  let showAddOption = !this.selectedItems.selected.some(item =>\n    isEqual(item[this.nameField], value),\n  );\n  this.panels[PanelType.Autocomplete].list = [];\n  if (value) {\n    this.panels[PanelType.Autocomplete].list =\n      this.options?.filter?.(item => {\n        if (this.asString(item[this.nameField]) === value) {\n          showAddOption = false;\n        }\n        return (\n          !this.selections.isSelected(item[this.idField] as Value) &&\n          this.asString(item[this.nameField])\n            .toLowerCase()\n            .trim()\n            .indexOf(value.toLowerCase().trim()) > -1\n        );\n      }) ?? [];\n  }\n  if (showAddOption && value.length) {\n    this.panels[PanelType.Autocomplete].list.push({\n      [this.idField]: PLACEHOLDER_ITEM,\n      [this.nameField]: value,\n    } as unknown as InputType);\n  }\n  if (this.panels[PanelType.Autocomplete].list.length) {\n    this.openPanel(PanelType.Autocomplete);\n  } else {\n    this.closePanel();\n  }\n  this._cdr.detectChanges();\n}\n\n/**\n * If the user presses enter, clear the input and if there's an autocomplete suggestion, select it\n * @param {HTMLInputElement} input - HTMLInputElement - the input element that the user is typing in\n */\nautocompleteEnter(input: HTMLInputElement) {\n  input.value = '';\n  if (this.panels[PanelType.Autocomplete].list[0]) {\n    this.handleAutocompleteSelect(\n      this.panels[PanelType.Autocomplete].list[0],\n    );\n    this.closePanel();\n  }\n}\n\n/**\n * If the item is a placeholder, then select it and emit the newAdded event. Otherwise, toggle the item\n * @param {InputType} item - InputType - this is the item that was selected from the autocomplete\n * dropdown.\n */\nhandleAutocompleteSelect(item: InputType) {\n  if (this.isPlaceholder(item)) {\n    this.selectedItems.select(item);\n    this.newAdded.emit(item);\n  } else {\n    this.toggle(item);\n  }\n  this.panels[PanelType.Autocomplete].list = [];\n  if (this.autoCompleteInput) {\n    this.autoCompleteInput.nativeElement.value = '';\n  }\n  this._processChange();\n}\n\n/**\n * The funtion closes the dropdown, change detection is triggered internally by the update width method\n */\nopen() {\n  this.state = SelectState.Open;\n  this._updateWidth();\n}\n\n/**\n * The function closes the dropdown and tells Angular to check for changes\n */\nclose() {\n  this.state = SelectState.Closed;\n  this._cdr.detectChanges();\n}\n\n/**\n * It emits the new value of the select box\n */\nemitNewValue() {\n  if (this.multiple === true) {\n    this.valueChange.emit(\n      this.selections.selected as ValueType<MultipleMode, Value>,\n    );\n  } else {\n    this.valueChange.emit(\n      this.selections.selected[0] as ValueType<MultipleMode, Value>,\n    );\n  }\n}\n\n/**\n * It calculates the width of the tags and the input box and then decides which tags to show and which\n * to hide\n */\nupdateTagsCount() {\n  // for cross and chevron if not disabled\n  this.suffixCount = this.disabledDropdown ? 0 : DIGITS.TWO;\n  if (this.invisibleTags.length) {\n    // for the counter box\n    this.suffixCount += 1;\n  }\n  this.invisibleTags = [];\n  this.visibleTags = Object.assign([], this.selectedItems.selected);\n  this._cdr.detectChanges();\n  const inputBuffer =\n    this.allowInput && !this.disabledDropdown\n      ? this.inputMinWidth + DIGITS.TWO * this.tagMargin\n      : 0;\n  const width = this.elementRef.nativeElement.getBoundingClientRect().width;\n  const rightPadding = this.suffixWidth * this.suffixCount;\n  const allowedWidth =\n    width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);\n  let combinedWidth = 0;\n  let i;\n  for (i = 0; i < this.tags.length; i++) {\n    const tag = this.tags.get(i);\n    if (!tag) {\n      break;\n    }\n    combinedWidth =\n      combinedWidth +\n      tag._hostElement.nativeElement.getBoundingClientRect().width +\n      DIGITS.TWO * this.tagMargin;\n    if (combinedWidth > allowedWidth) {\n      break;\n    }\n  }\n  if (i === 0) {\n    i = 1;\n  }\n  this.visibleTags = this.selectedItems.selected.slice(0, i);\n  this.invisibleTags = this.selectedItems.selected.slice(i);\n  // this required again to ensure proper width of input element\n  if (this.invisibleTags.length) {\n    // for the counter box\n    this.suffixCount += 1;\n  }\n  this._cdr.detectChanges();\n}\n\n/**\n * It takes an item of type T and returns it as a string\n * @param {T} item - T - The item to be converted to a string.\n * @returns The item as a string.\n */\nasString<T>(item: T) {\n  return item as unknown as string;\n}\n\n/**\n * If the id of the item is a string and it's equal to the placeholder item, then return true.\n * Otherwise, return false\n * @param {InputType} item - InputType - the item to check\n * @returns A boolean value.\n */\nisPlaceholder(item: InputType) {\n  const id = item[this.idField];\n  if (typeof id === 'string' && id === PLACEHOLDER_ITEM) {\n    return true;\n  } else {\n    return false;\n  }\n}\n /**\n   * A function that is called when the selection changes.\n   */\n private _processChange() {\n  this._updateEmptyState();\n  this.emitNewValue();\n  this.onChange(this.value);\n  // this triggers the detect changes\n  // this.updateTagsCount();\n  // this can only be called after tags have been updated\n  if (this.currentPanel && this.currentPanelType) {\n    this._panelHeight(this.currentPanelType, this.currentPanel.list);\n  }\n}\n\n/**\n * `this._setSelections` is a private function that updates the value of the selections\n * @param value - ValueType<MultipleMode, Value>\n */\nprivate _setSelections(value: ValueType<MultipleMode, Value>) {\n  if (this.multiple && Array.isArray(value)) {\n    this.selections.select(...(value as Value[]));\n  } else if (!this.multiple) {\n    this.selections.select(value as Value);\n  } else {\n    this.selections.clear();\n  }\n  this.updateSelectedItems();\n}\n\n/**\n * If the selectedItems.selected array is empty, then set the isEmpty variable to true. Otherwise, set\n * it to false\n */\nprivate _updateEmptyState() {\n  if (this.selectedItems.selected.length === 0) {\n    this.isEmpty = true;\n  } else {\n    this.isEmpty = false;\n  }\n}\n\n/**\n * It updates the selectedItems with the selected items\n */\nprivate updateSelectedItems() {\n  this.selectedItems.clear();\n  const ids = this.selections.selected;\n  if (this.multiple) {\n    const items = this.options?.filter?.(item =>\n      ids.includes(item[this.idField] as Value),\n    );\n    if (items?.length) {\n      this.selectedItems.select(...items);\n      this._setIsSelectedOption(items, true);\n    }\n  } else {\n    const item = this.options?.find?.(\n      item => item[this.idField] === ids[0],\n    ) as InputType;\n    if (item) {\n      this.selectedItems.select(item);\n    }\n  }\n  this._updateEmptyState();\n}\n\n/**\n * > Initialize the selection models based on the `multiple` property\n */\nprivate _initSelectionModel() {\n  this.selections = new SelectionModel(this.multiple);\n  this.selectedItems = new SelectionModel(this.multiple);\n}\n\n/**\n * It updates the width of the dropdown overlay element.\n */\nprivate _updateWidth() {\n  \n  this.width = 100;\n  this._cdr.detectChanges();\n}\n\n/**\n * It updates the width of the panel overlay element.\n */\nprivate _panelWidth(type: PanelType) {\n  this.panels[type].width =100;\n    \n  this._cdr.detectChanges();\n}\n\n/**\n * It sets the height of the `panel` div to the height of the number of items in the `invisibleTags`\n * array, or the `maxVisibleItems` property, whichever is smaller\n */\nprivate _panelHeight(type: PanelType, list: InputType[]) {\n  // this.panels[type].height =\n  //   list.length > this.maxVisibleItems\n  //     ? this.itemHeight * this.maxVisibleItems\n  //     : this.itemHeight * list.length;\n  // this._cdr.detectChanges();\n}\n\n/**\n * _dropdownHeight() is a private function that calculates the panelHeight property based on the number\n * of items in the data array and the `maxVisibleItems` property.\n * If the `search` property is true, then it adds the `searchHeight` property to the panelHeight.\n */\nprivate _dropdownHeight() {\n  // const minSize = this.options?.length ?? 1;\n  // this.dropdownHeight =\n  //   minSize > this.maxVisibleItems\n  //     ? this.itemHeight * this.maxVisibleItems\n  //     : this.itemHeight * minSize;\n  // if (this.search) {\n  //   this.dropdownHeight += this.searchHeight + 1;\n  // }\n}\n\nprivate _setIsSelectedOption(items: InputType[], value: boolean) {\n  if (this.showSelectedOnTop) {\n    items.forEach?.(item => {\n      item['isSelected' as keyof InputType] =\n        value as unknown as InputType[keyof InputType];\n    });\n  }\n}\n}",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13591,7 +13670,7 @@
                     }
                 }
             },
-            "templateData": "<div\n  class=\"select-container\"\n  [class.disabled]=\"disabledDropdown\"\n  cdk-overlay-origin\n  (click)=\"!disabledDropdown && toggleDropdown()\"\n>\n  <div\n    *ngIf=\"multiple && invisibleTags.length\"\n    nbSuffix\n    class=\"count-box\"\n    (click)=\"togglePanel(types.Extra); $event.stopPropagation()\"\n  >\n    +{{ invisibleTags.length }}\n  </div>\n  <nb-icon\n    nbSuffix\n    class=\"close-icon\"\n    icon=\"close-outline\"\n    *ngIf=\"!disabledDropdown && !isEmpty && showClearAll\"\n    (click)=\"clearAll(); $event.stopPropagation()\"\n  ></nb-icon>\n  <nb-icon\n    [@rotate]=\"state\"\n    *ngIf=\"!disabledDropdown\"\n    nbSuffix\n    (click)=\"toggleDropdown()\"\n    icon=\"chevron-down\"\n  ></nb-icon>\n\n  <nb-tag-list\n    [ngStyle]=\"{padding}\"\n    *ngIf=\"multiple; else single\"\n    [class.active]=\"state === states.Open\"\n    [class.tag-list-padding]=\"visibleTags.length\"\n  >\n    <nb-tag\n      *ngFor=\"let item of visibleTags\"\n      [text]=\"asString(item && item[nameField])\"\n      [ngStyle]=\"{maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'}\"\n      [removable]=\"!disabledDropdown\"\n      (remove)=\"toggle(item); toggleDropdown()\"\n    ></nb-tag>\n    <input\n      type=\"text\"\n      class=\"tag-input\"\n      nbTagInput\n      fullWidth\n      [placeholder]=\"placeholder\"\n      (keyup.enter)=\"selectOnEnter && autocompleteEnter(autoCompleteInput)\"\n      [hidden]=\"\n        (!allowInput && visibleTags.length !== 0) ||\n        (disabledDropdown && multiple && visibleTags.length !== 0)\n      \"\n      [readonly]=\"!allowInput || disabledDropdown\"\n      #autoCompleteInput\n      [class.cursor-pointer]=\"!allowInput\"\n      (input)=\"updateAutocompleteOptions(autoCompleteInput.value)\"\n      (click)=\"\n        $event.stopPropagation();\n        !disabledDropdown && !allowInput && toggleDropdown()\n      \"\n      [ngStyle]=\"{\n        minWidth: inputMinWidth + 'px',\n        marginRight: suffixCount * suffixWidth + 'px'\n      }\"\n    />\n  </nb-tag-list>\n  <ng-template #single>\n    <input\n      type=\"text\"\n      class=\"cursor-pointer\"\n      [class.no-disable-style]=\"!disabledDropdown\"\n      nbInput\n      fullWidth\n      [value]=\"selectedItems.selected[0]?.[nameField] ?? ''\"\n      [placeholder]=\"placeholder\"\n      readonly\n    />\n  </ng-template>\n</div>\n\n<ng-template\n  cdk-connected-overlay\n  cdkConnectedOverlayLockPosition\n  cdkConnectedOverlayHasBackdrop\n  cdkConnectedOverlayBackdropClass=\"cdk-overlay-transparent-backdrop\"\n  cdkConnectedOverlayPanelClass=\"cdk-panel-select\"\n  [cdkConnectedOverlayScrollStrategy]=\"overlay.scrollStrategies.block()\"\n  [cdkConnectedOverlayOpen]=\"state === states.Open\"\n  [cdkConnectedOverlayPositions]=\"positions\"\n  [cdkConnectedOverlayWidth]=\"0\"\n  (backdropClick)=\"close()\"\n  (detach)=\"close()\"\n  >\n  <!-- <app-list\n    class=\"dropdown-panel\"\n    [options]=\"options\"\n    [nameField]=\"nameField\"\n    [idField]=\"idField\"\n    [itemHeight]=\"itemHeight\"\n    [@dropdownPanel]=\"state\"\n    (toggle)=\"toggle($event); !multiple && close()\"\n    [selections]=\"selections\"\n    [multiple]=\"multiple\"\n    [search]=\"search\"\n    [searchPlaceholder]=\"searchPlaceholder\"\n    [disabledField]=\"disabledField\"\n    [selectOnEnter]=\"selectOnEnter\"\n    [ngStyle]=\"{height: dropdownHeight + 'px'}\"\n    [groupConfig]=\"groupConfig\"\n    [showIcon]=\"showIcon\"\n    \n   \n  ></app-list> -->\n</ng-template>\n<ng-template\n  cdk-connected-overlay\n  cdkConnectedOverlayLockPosition\n  cdkConnectedOverlayHasBackdrop\n  cdkConnectedOverlayBackdropClass=\"cdk-overlay-transparent-backdrop\"\n  cdkConnectedOverlayPanelClass=\"cdk-panel-select\"\n  [cdkConnectedOverlayScrollStrategy]=\"overlay.scrollStrategies.block()\"\n  [cdkConnectedOverlayOpen]=\"\n    !!currentPanel && currentPanel.state === states.Open\n  \"\n  [cdkConnectedOverlayPositions]=\"positions\"\n  [cdkConnectedOverlayWidth]=\"10\"\n  (backdropClick)=\"closePanel()\"\n  (detach)=\"closePanel()\"\n>\n  \n  <!-- <app-list\n    class=\"dropdown-panel\"\n    [options]=\"currentPanel?.list\"\n    [nameField]=\"nameField\"\n    [idField]=\"idField\"\n    [itemHeight]=\"itemHeight\"\n    [@dropdownPanel]=\"currentPanel?.state\"\n    (toggle)=\"\n      currentPanel?.allowInput\n        ? handleAutocompleteSelect($event)\n        : toggle($event)\n    \"\n    (remove)=\"toggle($event)\"\n    [selections]=\"selections\"\n    [addTagString]=\"addTagString\"\n    [allowInput]=\"currentPanel?.allowInput ?? false\"\n    [multiple]=\"false\"\n    [search]=\"false\"\n    [removal]=\"currentPanel?.removal ?? false\"\n    [ngStyle]=\"{height: (currentPanel?.height ?? 0) + 'px'}\"\n    (closed)=\"closePanel()\"\n    [groupConfig]=\"groupConfig\"\n    \n  ></app-list> -->\n</ng-template>\n"
+            "templateData": "<div\n  class=\"select-container\"\n  [class.disabled]=\"disabledDropdown\"\n  cdk-overlay-origin\n  (click)=\"!disabledDropdown && toggleDropdown()\"\n>\n  <div\n    *ngIf=\"multiple && invisibleTags.length\"\n    nbSuffix\n    class=\"count-box\"\n    (click)=\"togglePanel(types.Extra); $event.stopPropagation()\"\n  >\n    +{{ invisibleTags.length }}\n  </div>\n  <nb-icon\n    nbSuffix\n    class=\"close-icon\"\n    icon=\"close-outline\"\n    *ngIf=\"!disabledDropdown && !isEmpty && showClearAll\"\n    (click)=\"clearAll(); $event.stopPropagation()\"\n  ></nb-icon>\n  <nb-icon\n    [@rotate]=\"state\"\n    *ngIf=\"!disabledDropdown\"\n    nbSuffix\n    (click)=\"toggleDropdown()\"\n    icon=\"chevron-down\"\n  ></nb-icon>\n\n  <nb-tag-list\n    [ngStyle]=\"{padding}\"\n    *ngIf=\"multiple; else single\"\n    [class.active]=\"state === states.Open\"\n    [class.tag-list-padding]=\"visibleTags.length\"\n  >\n    <nb-tag\n      *ngFor=\"let item of visibleTags\"\n      [text]=\"asString(item && item[nameField])\"\n      [ngStyle]=\"{maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'}\"\n      [removable]=\"!disabledDropdown\"\n      (remove)=\"toggle(item); toggleDropdown()\"\n    ></nb-tag>\n    <input\n      type=\"text\"\n      class=\"tag-input\"\n      nbTagInput\n      fullWidth\n      [placeholder]=\"placeholder\"\n      (keyup.enter)=\"selectOnEnter && autocompleteEnter(autoCompleteInput)\"\n      [hidden]=\"\n        (!allowInput && visibleTags.length !== 0) ||\n        (disabledDropdown && multiple && visibleTags.length !== 0)\n      \"\n      [readonly]=\"!allowInput || disabledDropdown\"\n      #autoCompleteInput\n      [class.cursor-pointer]=\"!allowInput\"\n      (input)=\"updateAutocompleteOptions(autoCompleteInput.value)\"\n      (click)=\"\n        $event.stopPropagation();\n        !disabledDropdown && !allowInput && toggleDropdown()\n      \"\n      [ngStyle]=\"{\n        minWidth: inputMinWidth + 'px',\n        marginRight: suffixCount * suffixWidth + 'px'\n      }\"\n    />\n  </nb-tag-list>\n  <ng-template #single>\n    <input\n      type=\"text\"\n      class=\"cursor-pointer\"\n      [class.no-disable-style]=\"!disabledDropdown\"\n      nbInput\n      fullWidth\n      [value]=\"selectedItems.selected[0]?.[nameField] ?? ''\"\n      [placeholder]=\"placeholder\"\n      readonly\n    />\n  </ng-template>\n</div>\n\n<ng-template\n  cdk-connected-overlay\n  cdkConnectedOverlayLockPosition\n  cdkConnectedOverlayHasBackdrop\n  cdkConnectedOverlayBackdropClass=\"cdk-overlay-transparent-backdrop\"\n  cdkConnectedOverlayPanelClass=\"cdk-panel-select\"\n  [cdkConnectedOverlayScrollStrategy]=\"overlay.scrollStrategies.block()\"\n  [cdkConnectedOverlayOpen]=\"state === states.Open\"\n  [cdkConnectedOverlayPositions]=\"positions\"\n  [cdkConnectedOverlayWidth]=\"width\"\n  (backdropClick)=\"close()\"\n  (detach)=\"close()\"\n  >\n  <!-- <app-list\n    class=\"dropdown-panel\"\n    [options]=\"options\"\n    [nameField]=\"nameField\"\n    [idField]=\"idField\"\n    [itemHeight]=\"itemHeight\"\n    [@dropdownPanel]=\"state\"\n    (toggle)=\"toggle($event); !multiple && close()\"\n    [selections]=\"selections\"\n    [multiple]=\"multiple\"\n    [search]=\"search\"\n    [searchPlaceholder]=\"searchPlaceholder\"\n    [disabledField]=\"disabledField\"\n    [selectOnEnter]=\"selectOnEnter\"\n    [ngStyle]=\"{height: dropdownHeight + 'px'}\"\n    [groupConfig]=\"groupConfig\"\n    [showIcon]=\"showIcon\"\n    \n   \n  ></app-list> -->\n</ng-template>\n<ng-template\n  cdk-connected-overlay\n  cdkConnectedOverlayLockPosition\n  cdkConnectedOverlayHasBackdrop\n  cdkConnectedOverlayBackdropClass=\"cdk-overlay-transparent-backdrop\"\n  cdkConnectedOverlayPanelClass=\"cdk-panel-select\"\n  [cdkConnectedOverlayScrollStrategy]=\"overlay.scrollStrategies.block()\"\n  [cdkConnectedOverlayOpen]=\"\n    !!currentPanel && currentPanel.state === states.Open\n  \"\n  [cdkConnectedOverlayPositions]=\"positions\"\n  [cdkConnectedOverlayWidth]=\"10\"\n  (backdropClick)=\"closePanel()\"\n  (detach)=\"closePanel()\"\n>\n  \n  <!-- <app-list\n    class=\"dropdown-panel\"\n    [options]=\"currentPanel?.list\"\n    [nameField]=\"nameField\"\n    [idField]=\"idField\"\n    [itemHeight]=\"itemHeight\"\n    [@dropdownPanel]=\"currentPanel?.state\"\n    (toggle)=\"\n      currentPanel?.allowInput\n        ? handleAutocompleteSelect($event)\n        : toggle($event)\n    \"\n    (remove)=\"toggle($event)\"\n    [selections]=\"selections\"\n    [addTagString]=\"addTagString\"\n    [allowInput]=\"currentPanel?.allowInput ?? false\"\n    [multiple]=\"false\"\n    [search]=\"false\"\n    [removal]=\"currentPanel?.removal ?? false\"\n    [ngStyle]=\"{height: (currentPanel?.height ?? 0) + 'px'}\"\n    (closed)=\"closePanel()\"\n    [groupConfig]=\"groupConfig\"\n    \n  ></app-list> -->\n</ng-template>\n"
         },
         {
             "name": "SelectTestComponent",
@@ -13740,13 +13819,13 @@
         },
         {
             "name": "AuthModule",
-            "id": "module-AuthModule-5adde7d3c138b18b8bb3ef2d1f664e8fd5f7c18d85ccb2603455de53af738e8779f9917eba2cf525c4dc1dac98eef8d607e6e1da6edd7afaeda32adbd989df54",
+            "id": "module-AuthModule-20cfc3754fd6b12c75a0eb1dacba44da6d84be8bd337adac7dedc313e08108d981b13d5bebf8608baf2722a0dffd9129dbb9b807f2351f10ca031893d9d7eada",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/arc-lib/src/lib/components/auth/auth.module.ts",
             "methods": [],
-            "sourceCode": "import {CommonModule} from '@angular/common';\nimport {HttpClientModule} from '@angular/common/http';\nimport {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';\nimport {FormsModule} from '@angular/forms';\nimport {RouterModule} from '@angular/router';\nimport {NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';\nimport {NbLayoutModule, NbThemeModule} from '@nebular/theme';\nimport {TranslateModule} from '@ngx-translate/core';\n\nimport {ThemeModule} from '@project-lib/theme/theme.module';\nimport {AuthRoutingModule} from './auth-routing.module';\nimport {AuthComponent} from './auth.component';\nimport {LoginComponent} from './login/login.component';\nimport { HomePageComponent } from './home-page/home-page.component';\nimport { LoginPageComponent } from './login-page/login-page.component';\n\n@NgModule({\n  declarations: [LoginComponent, AuthComponent, HomePageComponent, LoginPageComponent],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n  imports: [\n    CommonModule,\n    FormsModule,\n    RouterModule,\n    ThemeModule,\n    AuthRoutingModule,\n    HttpClientModule,\n    NbLayoutModule,\n    TranslateModule,\n    NbThemeModule.forRoot(),\n    NbAuthModule.forRoot({\n      strategies: [\n        NbPasswordAuthStrategy.setup({\n          name: 'email',\n        }),\n      ],\n      forms: {},\n    }),\n  ],\n})\nexport class AuthModule {}\n",
+            "sourceCode": "import {CommonModule} from '@angular/common';\nimport {HttpClientModule} from '@angular/common/http';\nimport {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';\nimport {FormsModule} from '@angular/forms';\nimport {RouterModule} from '@angular/router';\nimport {NbAuthModule, NbPasswordAuthStrategy} from '@nebular/auth';\nimport {NbLayoutModule, NbThemeModule} from '@nebular/theme';\nimport {TranslateModule} from '@ngx-translate/core';\n\nimport {ThemeModule} from '@project-lib/theme/theme.module';\nimport {AuthRoutingModule} from './auth-routing.module';\nimport {AuthComponent} from './auth.component';\nimport {LoginComponent} from './login/login.component';\nimport { HomePageComponent } from './home-page/home-page.component';\nimport { LoginPageComponent } from './login-page/login-page.component';\n\n@NgModule({\n  declarations: [LoginComponent, AuthComponent, HomePageComponent, LoginPageComponent],\n  schemas: [CUSTOM_ELEMENTS_SCHEMA],\n  imports: [\n    CommonModule,\n    FormsModule,\n    RouterModule,\n    ThemeModule,\n    AuthRoutingModule,\n    HttpClientModule,\n    NbLayoutModule,\n    TranslateModule,\n    NbThemeModule.forRoot(),\n    NbAuthModule.forRoot({\n      strategies: [\n        NbPasswordAuthStrategy.setup({\n          name: 'email',\n        }),\n      ],\n      forms: {},\n    }),\n  ],\n  exports:[LoginPageComponent]\n})\nexport class AuthModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -13782,7 +13861,11 @@
                 },
                 {
                     "type": "exports",
-                    "elements": []
+                    "elements": [
+                        {
+                            "name": "LoginPageComponent"
+                        }
+                    ]
                 },
                 {
                     "type": "bootstrap",
@@ -14767,6 +14850,16 @@
                 "defaultValue": "{\n  render: (args: Page) => ({\n    props: args,\n  }),\n}"
             },
             {
+                "name": "MainSection",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/arc-lib/src/stories/components/Login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "MAX_ALLOCATION",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -15075,6 +15168,16 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "(args: ListComponent<any, any, any, any>) => ({\n  component: ListComponent,\n  moduleMetadata: {\n    imports: [NbFormFieldModule, NbListModule], // Import any necessary modules\n  },\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/arc-lib/src/stories/components/Login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "() => ({\n  template: `\n    <div class=\"main-section\">\n      <div class=\"first\">\n        <nb-card class=\"h-100 m-0\">\n          <nb-card-body class=\"p-0\">\n            <!-- Include the Login Component here -->\n            <app-login></app-login>\n          </nb-card-body>\n        </nb-card>\n      </div>\n      <div class=\"first\">\n        <nb-layout>\n          <nb-layout-column>\n            <div class=\"login-img\">\n              <img width=\"90%\" src=\"http://localhost:4200/assets/images/auth/login-img.png\" alt=\"loginImg\" />\n            </div>\n          </nb-layout-column>\n        </nb-layout>\n      </div>\n    </div>\n  `,\n})"
             },
             {
                 "name": "Template",
@@ -16890,6 +16993,28 @@
                     "defaultValue": "{\n  title: 'Example/Page',\n  component: Page,\n  parameters: {\n    // More on how to position stories at: https://storybook.js.org/docs/angular/configure/story-layout\n    layout: 'fullscreen',\n  },\n  decorators: [\n    moduleMetadata({\n      declarations: [Button, Header],\n      imports: [CommonModule],\n    }),\n  ],\n}"
                 }
             ],
+            "projects/arc-lib/src/stories/components/Login.stories.ts": [
+                {
+                    "name": "MainSection",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/arc-lib/src/stories/components/Login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/arc-lib/src/stories/components/Login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "() => ({\n  template: `\n    <div class=\"main-section\">\n      <div class=\"first\">\n        <nb-card class=\"h-100 m-0\">\n          <nb-card-body class=\"p-0\">\n            <!-- Include the Login Component here -->\n            <app-login></app-login>\n          </nb-card-body>\n        </nb-card>\n      </div>\n      <div class=\"first\">\n        <nb-layout>\n          <nb-layout-column>\n            <div class=\"login-img\">\n              <img width=\"90%\" src=\"http://localhost:4200/assets/images/auth/login-img.png\" alt=\"loginImg\" />\n            </div>\n          </nb-layout-column>\n        </nb-layout>\n      </div>\n    </div>\n  `,\n})"
+                }
+            ],
             "projects/arc-lib/.storybook/preview.ts": [
                 {
                     "name": "preview",
@@ -18446,8 +18571,8 @@
                 "type": "component",
                 "linktype": "component",
                 "name": "SelectComponent",
-                "coveragePercent": 37,
-                "coverageCount": "33/87",
+                "coveragePercent": 39,
+                "coverageCount": "35/89",
                 "status": "medium"
             },
             {
@@ -19401,6 +19526,26 @@
             },
             {
                 "filePath": "projects/arc-lib/src/stories/components/List.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/arc-lib/src/stories/components/Login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MainSection",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/arc-lib/src/stories/components/Login.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

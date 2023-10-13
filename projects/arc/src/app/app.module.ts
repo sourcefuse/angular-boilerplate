@@ -21,7 +21,8 @@ import { ThemeModule } from '@project-lib/theme/theme.module';
 import { SelectModule } from '@project-lib/components/selector';
 import { NbLayoutModule, NbThemeModule } from '@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GanttModule } from '@project-lib/components/index';
+import { AuthModule, GanttModule } from '@project-lib/components/index';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,8 @@ import { GanttModule } from '@project-lib/components/index';
     HttpClientModule,
     LocalizationModule,
     CoreModule,
+    AuthModule,
+    MainModule,
     ThemeModule,
     NbThemeModule.forRoot(),
     NbLayoutModule,

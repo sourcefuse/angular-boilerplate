@@ -4,19 +4,19 @@ import {environment} from '../environments/environment';
 import {AuthGuard, LoggedInGuard} from '@project-lib/core/auth';
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('projects/arc-lib/src/lib/components/auth/auth.module').then(
-        m => m.AuthModule,
-      ),
-    canActivate: [LoggedInGuard],
-  },
-  {
-    path: 'main',
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'auth',
+  //   loadChildren: () =>
+  //     import('projects/arc-lib/src/lib/components/auth/auth.module').then(
+  //       m => m.AuthModule,
+  //     ),
+  //   // canActivate: [LoggedInGuard],
+  // },
+  // {
+  //   path: 'main',
+  //   loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+  // //  canActivate: [AuthGuard],
+  // },
   {
     path: '',
     redirectTo: environment.homePath,

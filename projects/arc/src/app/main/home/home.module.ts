@@ -9,6 +9,7 @@ import {APP_CONFIG} from '@project-lib/app-config';
 @NgModule({
   declarations: [HomeComponent],
   imports: [CommonModule, HomeRoutingModule, ThemeModule],
+  exports:[HomeComponent]
 })
 export class HomeModule {}
 

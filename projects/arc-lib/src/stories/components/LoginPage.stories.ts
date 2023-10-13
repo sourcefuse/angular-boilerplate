@@ -45,3 +45,16 @@ export default {
   
   export const Default = Template.bind({});
   Default.args = {};
+
+//   export const WithImage = Template.bind({});
+
+// WithImage.args:Story  = {
+
+//     render: () => {<img src="/images/Illustration.svg" alt="my image" />},
+//     loggedInUserDM: {
+//         /* Set your user data here if needed */
+//     },
+
+//     greeting: 'Hello, World!',
+// };
+

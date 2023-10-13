@@ -88,10 +88,11 @@
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
   [cdkConnectedOverlayOpen]="state === states.Open"
   [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayWidth]="0"
+  [cdkConnectedOverlayWidth]="width"
   (backdropClick)="close()"
   (detach)="close()"
   >
+  <div>Hello</div>
   <!-- <app-list
     class="dropdown-panel"
     [options]="options"

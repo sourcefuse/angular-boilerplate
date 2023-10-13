@@ -151,7 +151,7 @@ export class ListComponent<
    * It initializes the removed set, the visible list, and the search control
    */
   ngOnInit(): void {
-    debugger
+    
     console.log(this.options)
     this.removed = new Set();
     this.visibleList = Object.assign([], this.options);

@@ -1,39 +1,23 @@
-<div class="root">
-  <router-outlet automation-id="app_routeroutlet"></router-outlet>
-</div>
+<!-- <div class="root">
+ <router-outlet automation-id="app_routeroutlet"></router-outlet>
+</div>  -->
+<!-- <lib-home-page></lib-home-page> --> 
 
-<!-- <select
-  [options]="yourOptionsArray"
-  [idField]="'id'"
-  [nameField]="'name'"
-  [multiple]="false" 
-  [search]="true"
-  [placeholder]="'Select an option'"
-  value="selectedValue"
-  (valueChange)="onValueChange($event)"
-></select> -->
 
-<!-- <list
-  [options]="options"
-  [nameField]="'name'" 
-  [idField]="'id'"
-  [disabledField]="'deleted'" 
-  [itemHeight]="30"
-  [multiple]="false" 
-  [search]="true"
-  [removal]="false"
-  [searchPlaceholder]="'Search...'"
-  [noSearchResultText]="'No results found'"
-  [noDataText]="'No data available'"
-  [addTagString]="'Create a new item'"
-  [selectOnEnter]="true"
-  [allowInput]="false"
-  [selections]="selectedOptions"
-  [showIcon]="showIcon"
-  [groupConfig]="groupConfig"
-  (toggle)="onToggle($event)"
-  (remove)="onRemove($event)"
- ></list> -->
+<nb-layout>
+  <nb-layout-header>
+    <selector [options]="yourOptionsArray" [idField]="'id'" [nameField]="'name'" [search]="true"
+      [placeholder]="'Select'" value="selectedValue" (valueChange)="onValueChange($event)"></selector>
+  </nb-layout-header>
+</nb-layout>
+
+<!-- <arc-main-home></arc-main-home> -->
+<!-- <lib-login-page></lib-login-page> -->
+<!-- <app-list [options]="options" [nameField]="'name'" [idField]="'id'" [disabledField]="'deleted'" [itemHeight]="30"
+  [multiple]="false" [search]="true" [removal]="false" [searchPlaceholder]="'Search...'"
+  [noSearchResultText]="'No results found'" [noDataText]="'No data available'" [addTagString]="'Create a new item'"
+  [selectOnEnter]="true" [allowInput]="true" [selections]="selectedOptions" [showIcon]="showIcon"
+  [groupConfig]="groupConfig" (toggle)="onToggle($event)" (remove)="onRemove($event)"></app-list> -->
 <!-- <gantt-tooltip [item]="'yourItemData'"></gantt-tooltip> -->
 <!-- 
 <gantt-header [desc]="true" [name]="'Project Gantt Chart'" [showSearch]="true"></gantt-header> -->
@@ -47,7 +31,7 @@
     [showOverallocatedIcon]="'showOverallocatedIconOption'"
     [contextItemFilter]="'itemFilter'"
   ></gantt-column> -->
-  <!-- <gantt-header
+<!-- <gantt-header
   [desc]="true"
   [name]="'Your Gantt Chart'"
   [showSearch]="true"

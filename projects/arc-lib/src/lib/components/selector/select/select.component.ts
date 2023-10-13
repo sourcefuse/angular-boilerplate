@@ -340,7 +340,7 @@ ngOnChanges(changes: SimpleChanges): void {
   }
   this._dropdownHeight();
   this.updateSelectedItems();
-  // this.updateTagsCount();
+  this.updateTagsCount();
 }
 
 /**
@@ -506,7 +506,7 @@ handleAutocompleteSelect(item: InputType) {
  */
 open() {
   this.state = SelectState.Open;
-  // this._updateWidth();
+  this._updateWidth();
 }
 
 /**
@@ -536,51 +536,51 @@ emitNewValue() {
  * It calculates the width of the tags and the input box and then decides which tags to show and which
  * to hide
  */
-// updateTagsCount() {
-//   // for cross and chevron if not disabled
-//   this.suffixCount = this.disabledDropdown ? 0 : DIGITS.TWO;
-//   if (this.invisibleTags.length) {
-//     // for the counter box
-//     this.suffixCount += 1;
-//   }
-//   this.invisibleTags = [];
-//   this.visibleTags = Object.assign([], this.selectedItems.selected);
-//   this._cdr.detectChanges();
-//   const inputBuffer =
-//     this.allowInput && !this.disabledDropdown
-//       ? this.inputMinWidth + DIGITS.TWO * this.tagMargin
-//       : 0;
-//   const width = this.elementRef.nativeElement.getBoundingClientRect().width;
-//   const rightPadding = this.suffixWidth * this.suffixCount;
-//   const allowedWidth =
-//     width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);
-//   let combinedWidth = 0;
-//   let i;
-//   for (i = 0; i < this.tags.length; i++) {
-//     const tag = this.tags.get(i);
-//     if (!tag) {
-//       break;
-//     }
-//     combinedWidth =
-//       combinedWidth +
-//       tag._hostElement.nativeElement.getBoundingClientRect().width +
-//       DIGITS.TWO * this.tagMargin;
-//     if (combinedWidth > allowedWidth) {
-//       break;
-//     }
-//   }
-//   if (i === 0) {
-//     i = 1;
-//   }
-//   this.visibleTags = this.selectedItems.selected.slice(0, i);
-//   this.invisibleTags = this.selectedItems.selected.slice(i);
-//   // this required again to ensure proper width of input element
-//   if (this.invisibleTags.length) {
-//     // for the counter box
-//     this.suffixCount += 1;
-//   }
-//   this._cdr.detectChanges();
-// }
+updateTagsCount() {
+  // for cross and chevron if not disabled
+  this.suffixCount = this.disabledDropdown ? 0 : DIGITS.TWO;
+  if (this.invisibleTags.length) {
+    // for the counter box
+    this.suffixCount += 1;
+  }
+  this.invisibleTags = [];
+  this.visibleTags = Object.assign([], this.selectedItems.selected);
+  this._cdr.detectChanges();
+  const inputBuffer =
+    this.allowInput && !this.disabledDropdown
+      ? this.inputMinWidth + DIGITS.TWO * this.tagMargin
+      : 0;
+  const width = this.elementRef.nativeElement.getBoundingClientRect().width;
+  const rightPadding = this.suffixWidth * this.suffixCount;
+  const allowedWidth =
+    width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);
+  let combinedWidth = 0;
+  let i;
+  for (i = 0; i < this.tags.length; i++) {
+    const tag = this.tags.get(i);
+    if (!tag) {
+      break;
+    }
+    combinedWidth =
+      combinedWidth +
+      tag._hostElement.nativeElement.getBoundingClientRect().width +
+      DIGITS.TWO * this.tagMargin;
+    if (combinedWidth > allowedWidth) {
+      break;
+    }
+  }
+  if (i === 0) {
+    i = 1;
+  }
+  this.visibleTags = this.selectedItems.selected.slice(0, i);
+  this.invisibleTags = this.selectedItems.selected.slice(i);
+  // this required again to ensure proper width of input element
+  if (this.invisibleTags.length) {
+    // for the counter box
+    this.suffixCount += 1;
+  }
+  this._cdr.detectChanges();
+}
 
 /**
  * It takes an item of type T and returns it as a string
@@ -683,17 +683,18 @@ private _initSelectionModel() {
 /**
  * It updates the width of the dropdown overlay element.
  */
-// private _updateWidth() {
-//   this.width = this.elementRef.nativeElement.getBoundingClientRect().width;
-//   this._cdr.detectChanges();
-// }
+private _updateWidth() {
+  
+  this.width = 100;
+  this._cdr.detectChanges();
+}
 
 /**
  * It updates the width of the panel overlay element.
  */
 private _panelWidth(type: PanelType) {
-  this.panels[type].width =
-    this.elementRef.nativeElement.getBoundingClientRect().width;
+  this.panels[type].width =100;
+    
   this._cdr.detectChanges();
 }
 
