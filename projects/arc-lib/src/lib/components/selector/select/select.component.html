@@ -1,7 +1,9 @@
-<div
+<nb-form-field
   class="select-container"
   [class.disabled]="disabledDropdown"
+  (Resize)="multiple && updateTagsCount()"
   cdk-overlay-origin
+  #overlayOrigin="cdkOverlayOrigin"
   (click)="!disabledDropdown && toggleDropdown()"
 >
   <div
@@ -23,10 +25,9 @@
     [@rotate]="state"
     *ngIf="!disabledDropdown"
     nbSuffix
-    (click)="toggleDropdown()"
+    (click)="toggleDropdown(); $event.stopPropagation()"
     icon="chevron-down"
   ></nb-icon>
-
   <nb-tag-list
     [ngStyle]="{padding}"
     *ngIf="multiple; else single"
@@ -77,23 +78,23 @@
       readonly
     />
   </ng-template>
-</div>
+</nb-form-field>
 
 <ng-template
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayPanelClass="cdk-panel-select"
+  cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
   [cdkConnectedOverlayOpen]="state === states.Open"
   [cdkConnectedOverlayPositions]="positions"
   [cdkConnectedOverlayWidth]="width"
   (backdropClick)="close()"
   (detach)="close()"
-  >
-  <div>Hello</div>
-  <!-- <app-list
+>
+  <app-list
     class="dropdown-panel"
     [options]="options"
     [nameField]="nameField"
@@ -110,27 +111,29 @@
     [ngStyle]="{height: dropdownHeight + 'px'}"
     [groupConfig]="groupConfig"
     [showIcon]="showIcon"
-    
-   
-  ></app-list> -->
+    [showSelectedOnTop]="showSelectedOnTop"
+    [hiddenValues]="hiddenValues"
+    [disabled]="disabledDropdown"
+    [itemTemplate]="itemTemplate"
+  ></app-list>
 </ng-template>
 <ng-template
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
   cdkConnectedOverlayHasBackdrop
   cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
-  cdkConnectedOverlayPanelClass="cdk-panel-select"
+  cdkConnectedOverlayPanelClass="cdk-panel-bizbook-select"
   [cdkConnectedOverlayScrollStrategy]="overlay.scrollStrategies.block()"
+  [cdkConnectedOverlayOrigin]="overlayOrigin"
   [cdkConnectedOverlayOpen]="
     !!currentPanel && currentPanel.state === states.Open
   "
   [cdkConnectedOverlayPositions]="positions"
-  [cdkConnectedOverlayWidth]="10"
+  [cdkConnectedOverlayWidth]="currentPanel?.width ?? 0"
   (backdropClick)="closePanel()"
   (detach)="closePanel()"
 >
-  
-  <!-- <app-list
+  <app-list
     class="dropdown-panel"
     [options]="currentPanel?.list"
     [nameField]="nameField"
@@ -152,6 +155,8 @@
     [ngStyle]="{height: (currentPanel?.height ?? 0) + 'px'}"
     (closed)="closePanel()"
     [groupConfig]="groupConfig"
-    
-  ></app-list> -->
+    [showSelectedOnTop]="showSelectedOnTop"
+    [hiddenValues]="hiddenValues"
+    [disabled]="disabledDropdown"
+  ></app-list>
 </ng-template>

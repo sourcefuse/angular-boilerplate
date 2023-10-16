@@ -1,15 +1,25 @@
 <!-- <div class="root">
  <router-outlet automation-id="app_routeroutlet"></router-outlet>
 </div>  -->
-<!-- <lib-home-page></lib-home-page> --> 
+<!-- <lib-home-page></lib-home-page> -->
 
-
-<nb-layout>
-  <nb-layout-header>
-    <selector [options]="yourOptionsArray" [idField]="'id'" [nameField]="'name'" [search]="true"
-      [placeholder]="'Select'" value="selectedValue" (valueChange)="onValueChange($event)"></selector>
-  </nb-layout-header>
-</nb-layout>
+<div>
+  <nb-layout>
+    <nb-layout-header>
+      <selector
+        [options]="yourOptionsArray"
+        [idField]="'id'"
+        [nameField]="'name'"
+        [search]="true"
+        [placeholder]="'Select'"
+        value="selectedValue"
+        [multiple]="true"
+        (valueChange)="onValueChange($event)"
+        style="width: 100%"
+      ></selector>
+    </nb-layout-header>
+  </nb-layout>
+</div>
 
 <!-- <arc-main-home></arc-main-home> -->
 <!-- <lib-login-page></lib-login-page> -->
