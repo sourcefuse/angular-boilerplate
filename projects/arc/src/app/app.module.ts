@@ -18,7 +18,12 @@ import {CoreModule} from '@project-lib/core/core.module';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
+import {SelectModule} from '@project-lib/components/selector';
 import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AuthModule, GanttModule} from '@project-lib/components/index';
+import {MainModule} from './main/main.module';
+import {Overlay, OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,9 +34,15 @@ import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
     HttpClientModule,
     LocalizationModule,
     CoreModule,
+    AuthModule,
+    MainModule,
     ThemeModule,
     NbThemeModule.forRoot(),
     NbLayoutModule,
+    OverlayModule,
+    SelectModule,
+    GanttModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     TranslationService,

@@ -1,9 +1,10 @@
 import {Location} from '@angular/common';
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit,inject} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {takeUntil} from 'rxjs';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
   selector: 'home',
@@ -25,6 +26,7 @@ export class HomeComponent
 
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
   greeting = '';
+  // imagePath="assets/images/Illustration.svg";
 
   ngOnInit(): void {
     this.authService
@@ -38,6 +40,7 @@ export class HomeComponent
 
   getGreetingText() {
     // Intentionally ignored as this is needed to be done sequentially
+
     // sonarignore:start
     const data = [
         [21, 'Good Night'],
@@ -48,7 +51,7 @@ export class HomeComponent
       ],
       hr = new Date().getHours();
     for (let i = 0; i < data.length; i++) {
-      if (hr >= data[i][0]) {
+      if (hr >= +data[i][0]) {
         return data[i][1] as string;
       }
     }
@@ -56,3 +59,7 @@ export class HomeComponent
     return 'Good morning';
   }
 }
+
+
+
+

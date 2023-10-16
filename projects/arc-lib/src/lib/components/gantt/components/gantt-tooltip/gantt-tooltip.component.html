@@ -1,13 +1,13 @@
 <div class="gantt-tooltip" gantt-hover="tooltip" *ngIf="item">
   <div class="key">
     <div>Start Date</div>
-    <div *ngIf="item.startDate">
+    <div>
       {{ formatDate(item.startDate) | date : "dd/MM/YYYY" }}
     </div>
   </div>
   <div class="key">
     <div>End Date</div>
-    <div *ngIf="item.endDate">
+    <div>
       {{ formatDate(item.endDate) | date : "dd/MM/YYYY" }}
     </div>
   </div>
@@ -21,7 +21,7 @@
   </div>
   <hr />
   <div class="key">
-    <div>{{ "currentAllocationsLbl" | translate }}</div>
+    <div>Current Allocations</div>
     <div [ngClass]="item.allocation > maxAllocation ? 'over-allocated' : ''">
       <div *ngIf="item.allocation > maxAllocation">
         <span class="arrow">&#8593;</span>

@@ -12,12 +12,11 @@ import {
   Output,
   QueryList,
   SimpleChanges,
+  TemplateRef,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {DIGITS} from '@project-lib/core/constants';
-import {ComponentBaseDirective} from '@project-lib/core/component-base';
 import {NbTagComponent} from '@nebular/theme';
 import {cloneDeep, isEqual} from 'lodash';
 import {takeUntil} from 'rxjs';
@@ -26,18 +25,21 @@ import {
   INPUT_MIN_WIDTH,
   ITEM_HEIGHT,
   MIN_VISIBLE_ITEMS,
-  panelConfigs,
-  PanelType,
   PLACEHOLDER_ITEM,
+  PanelType,
   SEARCH_HEIGHT,
-  SelectState,
   SUFFIX_WIDTH,
+  SelectState,
   TAG_MARGIN,
   TAG_PADDING,
+  panelConfigs,
 } from '../constants';
-import {GroupConfig, Panel, ValueType} from '../types';
+import {ItemTemplate, Panel, ValueType} from '../types';
+import {ComponentBaseDirective} from '@project-lib/core/component-base';
+import {GroupConfig} from '@project-lib/components/selector/types';
+import {DIGITS} from '@project-lib/core/constants';
 @Component({
-  selector: 'select',
+  selector: 'selector',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   animations: [dropdownAnimation, rotateAnimation],
@@ -66,11 +68,10 @@ export class SelectComponent<
     private _cdr: ChangeDetectorRef,
   ) {
     super();
-    this.panels = cloneDeep(panelConfigs);
   }
 
   @ViewChildren(NbTagComponent)
-  tags!: QueryList<NbTagComponent>;
+  tags: QueryList<NbTagComponent>;
 
   @ViewChild('autoCompleteInput')
   autoCompleteInput?: ElementRef<HTMLInputElement>;
@@ -81,7 +82,7 @@ export class SelectComponent<
   isEmpty = true;
 
   /* Defining config for both kinds of panels */
-  panels: Record<PanelType, Panel<InputType>>;
+  panels: Record<PanelType, Panel<InputType>> = cloneDeep(panelConfigs);
   currentPanel?: Panel<InputType>;
   currentPanelType?: PanelType;
 
@@ -126,7 +127,7 @@ export class SelectComponent<
 
   /* calculated values based on above values */
   /* A variable that is used to set the height of the dropdown. */
-  dropdownHeight!: number;
+  dropdownHeight: number;
   /* this could 1,2 or 3, based on the whether the cross, plus and chevrons */
   suffixCount = 0;
 
@@ -175,8 +176,17 @@ export class SelectComponent<
   @Input()
   options?: InputType[];
 
+  /**
+   * Disable cross icon in input field.
+   */
   @Input()
   showClearAll = true;
+
+  /**
+   * Hide these options in list.
+   */
+  @Input()
+  hiddenValues?: Set<Value>;
 
   /**
    * Whether to show the search box.
@@ -186,7 +196,7 @@ export class SelectComponent<
 
   // disable the dropdown
   @Input()
-  disabled = false;
+  disabledDropdown = false;
 
   /**
    * Indicates whether custom the input is allowed.
@@ -214,6 +224,13 @@ export class SelectComponent<
    */
   @Input()
   selectOnEnter = true;
+
+  /* whether to show selected options on top */
+  @Input()
+  showSelectedOnTop = false;
+
+  @Input()
+  itemTemplate: TemplateRef<ItemTemplate<InputType, keyof InputType>>;
 
   @Output()
   newAdded = new EventEmitter<InputType>();
@@ -251,7 +268,7 @@ export class SelectComponent<
   }
 
   setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+    this.disabledDropdown = isDisabled;
   }
 
   /**
@@ -264,7 +281,7 @@ export class SelectComponent<
     this._setSelections(value);
     this.onChange(value);
     this.onTouched();
-    this.updateTagsCount();
+    setTimeout(() => this.updateTagsCount(), 0);
   }
 
   /**
@@ -312,6 +329,9 @@ export class SelectComponent<
     if (changes['multiple'] && !changes['multiple'].isFirstChange()) {
       this._initSelectionModel();
     }
+    if (this.showSelectedOnTop) {
+      this._setIsSelectedOption(this.options!, false);
+    }
     this._dropdownHeight();
     this.updateSelectedItems();
     this.updateTagsCount();
@@ -323,6 +343,9 @@ export class SelectComponent<
    * @param {InputType} item - InputType - the item that was selected/deselected
    */
   toggle(item: InputType) {
+    if (!this.multiple && this.selectedItems.isSelected(item)) {
+      return;
+    }
     this.selectedItems.toggle(item);
     if (!this.isPlaceholder(item)) {
       this.selections.toggle(item[this.idField] as Value);
@@ -336,6 +359,12 @@ export class SelectComponent<
     } else {
       this.newAdded.emit(item);
     }
+    const isSelectedOption = 'isSelected' as keyof InputType;
+    if (item[isSelectedOption] !== undefined) {
+      item[isSelectedOption] = !item[
+        isSelectedOption
+      ] as unknown as InputType[keyof InputType];
+    }
     this._processChange();
   }
 
@@ -343,6 +372,9 @@ export class SelectComponent<
    * It clears the selections and selectedItems collections, then emits the cleared event
    */
   clearAll() {
+    if (this.options?.length) {
+      this._setIsSelectedOption(this.options, false);
+    }
     this.selections.clear();
     this.selectedItems.clear();
     this._processChange();
@@ -404,7 +436,7 @@ export class SelectComponent<
     this.panels[PanelType.Autocomplete].list = [];
     if (value) {
       this.panels[PanelType.Autocomplete].list =
-        this.options?.filter(item => {
+        this.options?.filter?.(item => {
           if (this.asString(item[this.nameField]) === value) {
             showAddOption = false;
           }
@@ -501,7 +533,7 @@ export class SelectComponent<
    */
   updateTagsCount() {
     // for cross and chevron if not disabled
-    this.suffixCount = this.disabled ? 0 : DIGITS.TWO;
+    this.suffixCount = this.disabledDropdown ? 0 : DIGITS.TWO;
     if (this.invisibleTags.length) {
       // for the counter box
       this.suffixCount += 1;
@@ -510,7 +542,7 @@ export class SelectComponent<
     this.visibleTags = Object.assign([], this.selectedItems.selected);
     this._cdr.detectChanges();
     const inputBuffer =
-      this.allowInput && !this.disabled
+      this.allowInput && !this.disabledDropdown
         ? this.inputMinWidth + DIGITS.TWO * this.tagMargin
         : 0;
     const width = this.elementRef.nativeElement.getBoundingClientRect().width;
@@ -519,7 +551,7 @@ export class SelectComponent<
       width - (this.padding * DIGITS.TWO + rightPadding + inputBuffer);
     let combinedWidth = 0;
     let i;
-    for (i = 0; i < this.tags.length; i++) {
+    for (i = 0; i < this.tags?.length; i++) {
       const tag = this.tags.get(i);
       if (!tag) {
         break;
@@ -618,14 +650,15 @@ export class SelectComponent<
     this.selectedItems.clear();
     const ids = this.selections.selected;
     if (this.multiple) {
-      const items = this.options?.filter(item =>
+      const items = this.options?.filter?.(item =>
         ids.includes(item[this.idField] as Value),
       );
       if (items?.length) {
         this.selectedItems.select(...items);
+        this._setIsSelectedOption(items, true);
       }
     } else {
-      const item = this.options?.find(
+      const item = this.options?.find?.(
         item => item[this.idField] === ids[0],
       ) as InputType;
       if (item) {
@@ -678,13 +711,22 @@ export class SelectComponent<
    * If the `search` property is true, then it adds the `searchHeight` property to the panelHeight.
    */
   private _dropdownHeight() {
-    const minSize = this.options?.length || 1;
+    const minSize = this.options?.length ?? 1;
     this.dropdownHeight =
       minSize > this.maxVisibleItems
         ? this.itemHeight * this.maxVisibleItems
         : this.itemHeight * minSize;
     if (this.search) {
       this.dropdownHeight += this.searchHeight + 1;
+    }
+  }
+
+  private _setIsSelectedOption(items: InputType[], value: boolean) {
+    if (this.showSelectedOnTop) {
+      items.forEach?.(item => {
+        item['isSelected' as keyof InputType] =
+          value as unknown as InputType[keyof InputType];
+      });
     }
   }
 }

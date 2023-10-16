@@ -1,10 +1,10 @@
 <nb-form-field
   class="select-container"
-  [class.disabled]="disabled"
-  (bizbookResize)="multiple && updateTagsCount()"
+  [class.disabled]="disabledDropdown"
+  (Resize)="multiple && updateTagsCount()"
   cdk-overlay-origin
   #overlayOrigin="cdkOverlayOrigin"
-  (click)="!disabled && toggleDropdown()"
+  (click)="!disabledDropdown && toggleDropdown()"
 >
   <div
     *ngIf="multiple && invisibleTags.length"
@@ -18,12 +18,12 @@
     nbSuffix
     class="close-icon"
     icon="close-outline"
-    *ngIf="!disabled && !isEmpty && showClearAll"
+    *ngIf="!disabledDropdown && !isEmpty && showClearAll"
     (click)="clearAll(); $event.stopPropagation()"
   ></nb-icon>
   <nb-icon
     [@rotate]="state"
-    *ngIf="!disabled"
+    *ngIf="!disabledDropdown"
     nbSuffix
     (click)="toggleDropdown(); $event.stopPropagation()"
     icon="chevron-down"
@@ -37,26 +37,29 @@
     <nb-tag
       *ngFor="let item of visibleTags"
       [text]="asString(item && item[nameField])"
-      [ngStyle]="{
-        maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'
-      }"
-      [removable]="!disabled"
+      [ngStyle]="{maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'}"
+      [removable]="!disabledDropdown"
       (remove)="toggle(item); toggleDropdown()"
     ></nb-tag>
     <input
       type="text"
+      class="tag-input"
       nbTagInput
       fullWidth
       [placeholder]="placeholder"
       (keyup.enter)="selectOnEnter && autocompleteEnter(autoCompleteInput)"
       [hidden]="
-        (!allowInput && visibleTags.length !== 0) || (disabled && multiple)
+        (!allowInput && visibleTags.length !== 0) ||
+        (disabledDropdown && multiple && visibleTags.length !== 0)
       "
-      [readonly]="!allowInput"
+      [readonly]="!allowInput || disabledDropdown"
       #autoCompleteInput
       [class.cursor-pointer]="!allowInput"
       (input)="updateAutocompleteOptions(autoCompleteInput.value)"
-      (click)="$event.stopPropagation(); !allowInput && toggleDropdown()"
+      (click)="
+        $event.stopPropagation();
+        !disabledDropdown && !allowInput && toggleDropdown()
+      "
       [ngStyle]="{
         minWidth: inputMinWidth + 'px',
         marginRight: suffixCount * suffixWidth + 'px'
@@ -67,7 +70,7 @@
     <input
       type="text"
       class="cursor-pointer"
-      [class.no-disable-style]="!disabled"
+      [class.no-disable-style]="!disabledDropdown"
       nbInput
       fullWidth
       [value]="selectedItems.selected[0]?.[nameField] ?? ''"
@@ -76,6 +79,7 @@
     />
   </ng-template>
 </nb-form-field>
+
 <ng-template
   cdk-connected-overlay
   cdkConnectedOverlayLockPosition
@@ -90,7 +94,7 @@
   (backdropClick)="close()"
   (detach)="close()"
 >
-  <list
+  <app-list
     class="dropdown-panel"
     [options]="options"
     [nameField]="nameField"
@@ -104,10 +108,14 @@
     [searchPlaceholder]="searchPlaceholder"
     [disabledField]="disabledField"
     [selectOnEnter]="selectOnEnter"
-    [ngStyle]="{ height: dropdownHeight + 'px' }"
+    [ngStyle]="{height: dropdownHeight + 'px'}"
     [groupConfig]="groupConfig"
     [showIcon]="showIcon"
-  ></list>
+    [showSelectedOnTop]="showSelectedOnTop"
+    [hiddenValues]="hiddenValues"
+    [disabled]="disabledDropdown"
+    [itemTemplate]="itemTemplate"
+  ></app-list>
 </ng-template>
 <ng-template
   cdk-connected-overlay
@@ -125,9 +133,8 @@
   (backdropClick)="closePanel()"
   (detach)="closePanel()"
 >
-  <list
+  <app-list
     class="dropdown-panel"
-    *ngIf="currentPanel?.list?.length"
     [options]="currentPanel?.list"
     [nameField]="nameField"
     [idField]="idField"
@@ -145,8 +152,11 @@
     [multiple]="false"
     [search]="false"
     [removal]="currentPanel?.removal ?? false"
-    [ngStyle]="{ height: (currentPanel?.height ?? 0) + 'px' }"
+    [ngStyle]="{height: (currentPanel?.height ?? 0) + 'px'}"
     (closed)="closePanel()"
     [groupConfig]="groupConfig"
-  ></list>
+    [showSelectedOnTop]="showSelectedOnTop"
+    [hiddenValues]="hiddenValues"
+    [disabled]="disabledDropdown"
+  ></app-list>
 </ng-template>

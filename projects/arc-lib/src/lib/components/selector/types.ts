@@ -17,3 +17,7 @@ export interface GroupConfig<T> {
   fieldName: keyof T;
   value: T[keyof T] | '*';
 }
+export type ItemTemplate<T, F extends keyof T> = {
+  item: T;
+  name: T[F];
+};
