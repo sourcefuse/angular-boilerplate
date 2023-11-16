@@ -1,30 +1,84 @@
 import {Location} from '@angular/common';
 import {Component, Inject} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { concatMap, throwError } from 'rxjs';
 
-// import { APP_BASE_HREF } from '@angular/common';
 
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent extends RouteComponentBaseDirective {
+  loginForm: FormGroup;
+  imageUrl: string;
+  altText: string;
   constructor(
     override readonly route: ActivatedRoute,
     override readonly location: Location,
     private readonly authService: AuthService,
-  //   @Inject(APP_BASE_HREF)
-  //   private baseHref: string
+    private readonly router: Router,
+    private fb: FormBuilder
+ 
   ) {
     super(route, location);
+    this.imageUrl = '../../../assets/images/auth/ARC_logo.png'; 
+  this.altText = 'logo';
+  this.loginForm = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  })
+}
+
+  signIn(){
+    // this.authService.login("deepika.mahindroo@sourcefuse.com","Abcd_1234").subscribe(()=>{})
   }
- image="../../../assets/images/auth/angular.png"
-//  ""
-//  projects/arc-lib/src/lib/assets/images/auth/angular.png
+  
+  showPassword = false;
+
+  getInputType() {
+    if (this.showPassword) {
+      return 'text';
+    }
+    return 'password';
+  }
+  
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+
   loginViaGoogle() {
     this.authService.loginViaGoogle();
+  }
+
+  onSubmit() {
+    debugger;  // Set a breakpoint here
+    if (this.loginForm.valid) {
+      const credentials = this.loginForm.value;
+      console.log(credentials);
+      this.authService.login(credentials.email,credentials.password).pipe(
+        concatMap(response => {
+          if (response.body && response.body.code) {
+            return this.authService.authorize(response.body.code);
+          }
+          return throwError('Unauthorized');
+        }),
+      ).subscribe(
+        () => { 
+          debugger;  // Set a breakpoint here
+          // Handle successful login response
+          console.log('Login successful:');
+        },
+        (error) => {
+          debugger;  // Set a breakpoint here
+          // Handle login error
+          console.error('Login error:', error);
+        }
+      );
+    }
   }
 }

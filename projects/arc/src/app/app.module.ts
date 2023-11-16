@@ -25,6 +25,8 @@ import {AuthModule, GanttModule} from '@project-lib/components/index';
 import {MainModule} from './main/main.module';
 import {Overlay, OverlayModule} from '@angular/cdk/overlay';
 
+
+
 @NgModule({
   declarations: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -43,6 +45,7 @@ import {Overlay, OverlayModule} from '@angular/cdk/overlay';
     SelectModule,
     GanttModule,
     BrowserAnimationsModule,
+    
   ],
   providers: [
     TranslationService,

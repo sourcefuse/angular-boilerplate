@@ -1,46 +1,55 @@
-import { moduleMetadata } from '@storybook/angular';
+import { Meta, moduleMetadata, StoryObj } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { NbLayoutModule, NbCardModule, NbStatusService, NbThemeService } from '@nebular/theme';
-import { Meta, Story } from '@storybook/angular';
 import { LoginComponent } from '@project-lib/components/auth/login/login.component';
+import { LoginPageComponent } from '@project-lib/components/auth/login-page/login-page.component';
+import { AuthModule, ThemeModule } from '../../public-api';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@project-lib/core/auth';
+ // Adjust the import path
 
-// Import your components
-// Replace with the actual path
-
-export default {
-  title: 'Main Section',
+const meta= {
+  title: 'Examples/LoginPage',
+  component: LoginPageComponent,
   decorators: [
     moduleMetadata({
-      declarations: [], // Add your components here
-      imports: [CommonModule, NbLayoutModule, NbCardModule],
-      providers:[NbStatusService,NbThemeService]
+      declarations: [],
+      imports: [CommonModule,AuthModule,ThemeModule],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            /* Mock ActivatedRoute data here if needed */
+           },
+        },
+        {
+          provide: Location,
+          useValue: {
+            /* Mock Location methods here if needed */
+          },
+        },
+        {
+          provide: AuthService,
+          useValue: {
+            /* Mock AuthService methods here if needed */
+          },
+        },
+      ], // You may need to import necessary modules
     }),
   ],
 } as Meta;
 
-const Template: Story = () => ({
-  template: `
-    <div class="main-section">
-      <div class="first">
-        <nb-card class="h-100 m-0">
-          <nb-card-body class="p-0">
-            <!-- Include the Login Component here -->
-            <app-login></app-login>
-          </nb-card-body>
-        </nb-card>
-      </div>
-      <div class="first">
-        <nb-layout>
-          <nb-layout-column>
-            <div class="login-img">
-              <img width="90%" src="http://localhost:4200/assets/images/auth/login-img.png" alt="loginImg" />
-            </div>
-          </nb-layout-column>
-        </nb-layout>
-      </div>
-    </div>
-  `,
-});
+export default meta;
 
-export const MainSection = Template.bind({});
+/// from official docs
+type Story = StoryObj<typeof meta>;
+
+//append the path of image relative to the staticdir in main.ts
+export const WithAnImage: Story = {
+  render: () => ({
+    props: {
+      imageUrl: '/images/auth/angular.png',
+      altText: 'my image',
+    },
+  }),
+};
 

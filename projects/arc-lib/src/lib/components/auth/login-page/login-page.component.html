@@ -4,7 +4,9 @@
       <nb-card class="h-100 m-0">
         <nb-card-body class="p-0">
           <!-- Include the Login Component here -->
-          <login></login>
+          <app-login>
+
+          </app-login>
       
         
         </nb-card-body>
@@ -15,7 +17,7 @@
       <nb-layout>
         <nb-layout-column>
           <div class="login-img">
-            <img width="90%" src="http://localhost:4200/assets/images/auth/login-img.png" alt="loginImg" />
+            <img width="90%" [src]="image" [alt]="altText" />
           </div>
         </nb-layout-column>
       </nb-layout>

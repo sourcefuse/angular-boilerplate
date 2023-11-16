@@ -1,12 +1,17 @@
 <nb-layout>
-  <nb-layout-column class="p-0">
-    <nb-auth-block class="h-100">
-      <router-outlet></router-outlet>
-    </nb-auth-block>
-  </nb-layout-column>
   <nb-layout-column>
     <div class="login-img">
-      <img width="90%" src="http://localhost:4200/assets/images/auth/login-img.png" alt="loginImg" />
+      <img
+        width="100%"
+        height="100%"
+        src="../../../assets/images/auth/loginimg.png"
+        alt="loginImg"
+      />
     </div>
+  </nb-layout-column>
+  <nb-layout-column class="p-0 card-row">
+    <nb-auth-block class="h-100 m-0">
+      <router-outlet></router-outlet>
+    </nb-auth-block>
   </nb-layout-column>
 </nb-layout>

@@ -166,9 +166,9 @@ export class AuthService {
       data: {
         username: username.toLowerCase(),
         password,
-        clientId: this.appConfig.clientId,
-        clientSecret: this.appConfig.publicKey,
-      },
+        client_id: this.appConfig.clientId,
+        client_secret: this.appConfig.publicKey,
+      } as any,
       observe: 'response',
       headers: this.authTokenSkipHeader,
     };

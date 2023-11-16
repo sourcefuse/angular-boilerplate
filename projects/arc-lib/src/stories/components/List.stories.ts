@@ -1,17 +1,38 @@
 import { Meta, moduleMetadata } from '@storybook/angular';
 import { SelectionModel } from '@angular/cdk/collections';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { NbFormFieldModule, NbListModule } from '@nebular/theme';
+import { NbFocusMonitor, NbFormFieldModule, NbListModule, NbStatusService } from '@nebular/theme';
 
 import { SelectModule } from '@project-lib/components/selector';
 import { ListComponent } from '@project-lib/components/selector/list/list.component';
+import { TranslateLoader, TranslateService, TranslateStore ,TranslateModule} from '@ngx-translate/core';
+import { of } from 'rxjs';
+
+class MockTranslateLoader implements TranslateLoader {
+  getTranslation(lang) {
+    // Provide a mock translation object
+    return of({
+      // Your translations here...
+    });
+  }
+}
+
 
 export default {
   title: 'Components/List',
   component: ListComponent,
   decorators: [
     moduleMetadata({
-      imports: [SelectModule,NbFormFieldModule, NbListModule], // Import any necessary modules
+      imports: [
+        SelectModule,
+        NbFormFieldModule,
+         NbListModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useClass: MockTranslateLoader },
+        }),], // Import any necessary modules
+      providers: [NbStatusService,NbFocusMonitor,TranslateService,TranslateStore
+       
+      ],
     }),
   ],
 } as Meta;

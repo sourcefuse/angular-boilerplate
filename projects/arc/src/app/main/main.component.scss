@@ -1,6 +1,6 @@
-@use "sass:map";
-@use "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
-@use "@nebular/theme/styles/theming" as *;
+@use 'sass:map';
+@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
+@use '@nebular/theme/styles/theming' as *;
 
 @include nb-install-component() {
   .nav-container {
@@ -42,11 +42,11 @@
 
   nb-sidebar {
     z-index: 1038;
-    border-right: 0.063rem solid map.get($color, "border-basic");
-    border-top: 0.063rem solid map.get($color, "border-basic");
+    border-right: 0.063rem solid map.get($color, 'border-basic');
+    border-top: 0.063rem solid map.get($color, 'border-basic');
 
     nb-sidebar-footer {
-      border-top: 0.063rem solid map.get($color, "border-basic");
+      border-top: 0.063rem solid map.get($color, 'border-basic');
     }
 
     nb-menu {
@@ -71,4 +71,7 @@
       text-decoration: none;
     }
   }
+}
+.hi {
+  text-align: center;
 }

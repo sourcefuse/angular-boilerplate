@@ -1,9 +1,9 @@
-<!-- <div class="root">
- <router-outlet automation-id="app_routeroutlet"></router-outlet>
-</div>  -->
-<!-- <lib-home-page></lib-home-page> -->
+<div class="root">
+  <router-outlet automation-id="app_routeroutlet"></router-outlet>
+</div>
 
-<div>
+
+<!-- <div>
   <nb-layout>
     <nb-layout-header>
       <selector
@@ -15,19 +15,41 @@
         value="selectedValue"
         [multiple]="true"
         (valueChange)="onValueChange($event)"
-        style="width: 100%"
+        style="width: 30%"
       ></selector>
     </nb-layout-header>
   </nb-layout>
-</div>
+</div> -->
 
 <!-- <arc-main-home></arc-main-home> -->
 <!-- <lib-login-page></lib-login-page> -->
-<!-- <app-list [options]="options" [nameField]="'name'" [idField]="'id'" [disabledField]="'deleted'" [itemHeight]="30"
-  [multiple]="false" [search]="true" [removal]="false" [searchPlaceholder]="'Search...'"
-  [noSearchResultText]="'No results found'" [noDataText]="'No data available'" [addTagString]="'Create a new item'"
-  [selectOnEnter]="true" [allowInput]="true" [selections]="selectedOptions" [showIcon]="showIcon"
-  [groupConfig]="groupConfig" (toggle)="onToggle($event)" (remove)="onRemove($event)"></app-list> -->
+<!-- <div>
+  <nb-layout>
+    <nb-layout-header>
+      <app-list
+        [options]="options"
+        [nameField]="'name'"
+        [idField]="'id'"
+        [disabledField]="'deleted'"
+        [itemHeight]="30"
+        [multiple]="false"
+        [search]="true"
+        [removal]="false"
+        [searchPlaceholder]="'Search...'"
+        [noSearchResultText]="'No results found'"
+        [noDataText]="'No data available'"
+        [addTagString]="'Create a new item'"
+        [selectOnEnter]="true"
+        [allowInput]="true"
+        [selections]="selectedOptions"
+        [showIcon]="showIcon"
+        [groupConfig]="groupConfig"
+        (toggle)="onToggle($event)"
+        (remove)="onRemove($event)"
+      ></app-list>
+    </nb-layout-header>
+  </nb-layout>
+</div> -->
 <!-- <gantt-tooltip [item]="'yourItemData'"></gantt-tooltip> -->
 <!-- 
 <gantt-header [desc]="true" [name]="'Project Gantt Chart'" [showSearch]="true"></gantt-header> -->
@@ -41,8 +63,14 @@
     [showOverallocatedIcon]="'showOverallocatedIconOption'"
     [contextItemFilter]="'itemFilter'"
   ></gantt-column> -->
+<!-- <div>
+    <nb-layout>
+      <nb-layout-header> -->
 <!-- <gantt-header
   [desc]="true"
   [name]="'Your Gantt Chart'"
   [showSearch]="true"
-></gantt-header> -->
+></gantt-header>  -->
+<!-- </nb-layout-header>
+</nb-layout>
+</div> -->
