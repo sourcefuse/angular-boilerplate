@@ -44,7 +44,7 @@ export class SignupComponent extends RouteComponentBaseDirective {
       {
         console.log(credentials);
       }
-      // this.authService.si("", "").subscribe(
+      // this.authService.signup("", "").subscribe(
       //   (response) => {
       //     debugger;  // Set a breakpoint here
       //     // Handle successful login response

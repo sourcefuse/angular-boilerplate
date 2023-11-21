@@ -22,7 +22,7 @@
       <span>Email</span>
     </div>
     <div class="input">
-      <input type="text" placeholder="Email" nbInput fieldSize="medium" formControlName="email"/>
+      <input type="text" placeholder="Email" nbInput fieldSize="medium" formControlName="email" required/>
     </div>
     <div *ngIf="loginForm.get('email').hasError('required') && loginForm.get('email').touched">
       Email is required.
@@ -37,8 +37,8 @@
       <span>Password</span>
     </div>
     <div class="input">
-      <input placeholder=" Enter New Password" [type]="getInputType()" formControlName="password" nbInput>
-         <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+      <input placeholder=" Enter New Password" [type]="getInputType()" formControlName="password" required nbInput>
+         <button type="button" nbSuffix nbButton ghost (click)="toggleShowPassword()">
            <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
                     pack="eva"
                     [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
@@ -55,7 +55,7 @@
       Password must be at least 6 characters.
     </div>
     </div>
-
+   
 
     <div class="loginbtn">
       <button
@@ -64,7 +64,8 @@
         size="medium"
         type="submit"
         status="basic"
-        [disabled]="loginForm.valid"
+        [disabled]="!loginForm.valid"
+        (click)="onSubmit()"
          >
         Sign In
       </button>
@@ -81,7 +82,7 @@
           src="../../../assets/images/auth/image.png"
           alt="googlelogo"
           margin-let="5px"
-          draggable="false"
+          draggable="false" 
         />
         Sign In with Google
       </button>

@@ -11,6 +11,7 @@ import { Observable, throwError } from 'rxjs';
 import { AuthTokenSkipHeader } from '../constants';
 import { UserSessionStoreService } from '../store';
 
+
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
@@ -23,6 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+  
     if (req.headers.has(AuthTokenSkipHeader) || req.url.includes('i18n/')) {
       const headers = req.headers.delete(AuthTokenSkipHeader);
       return next.handle(req.clone({ headers }));

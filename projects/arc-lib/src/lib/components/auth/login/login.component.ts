@@ -39,6 +39,32 @@ export class LoginComponent extends RouteComponentBaseDirective {
   
   showPassword = false;
 
+  onSubmit() {
+  // Set a breakpoint here
+    if (this.loginForm.valid) {
+      const credentials = this.loginForm.value;
+      this.authService.login(credentials.email,credentials.password).pipe(
+        concatMap(response => {
+          if (response.body && response.body.code) {
+             this.authService.authorize(response.body.code).subscribe();
+          }
+          return throwError('Unauthorized');
+        }),
+      ).subscribe(
+        () => { 
+        // Set a breakpoint here
+          // Handle successful login response
+          console.log('Login successful:');
+        },
+        (error) => {
+          // Set a breakpoint here
+          // Handle login error
+          console.error('Login error:', error);
+        }
+      );
+    }
+  }
+
   getInputType() {
     if (this.showPassword) {
       return 'text';
@@ -53,32 +79,5 @@ export class LoginComponent extends RouteComponentBaseDirective {
 
   loginViaGoogle() {
     this.authService.loginViaGoogle();
-  }
-
-  onSubmit() {
-    debugger;  // Set a breakpoint here
-    if (this.loginForm.valid) {
-      const credentials = this.loginForm.value;
-      console.log(credentials);
-      this.authService.login(credentials.email,credentials.password).pipe(
-        concatMap(response => {
-          if (response.body && response.body.code) {
-            return this.authService.authorize(response.body.code);
-          }
-          return throwError('Unauthorized');
-        }),
-      ).subscribe(
-        () => { 
-          debugger;  // Set a breakpoint here
-          // Handle successful login response
-          console.log('Login successful:');
-        },
-        (error) => {
-          debugger;  // Set a breakpoint here
-          // Handle login error
-          console.error('Login error:', error);
-        }
-      );
-    }
   }
 }
