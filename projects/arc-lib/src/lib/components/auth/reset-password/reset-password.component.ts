@@ -3,7 +3,8 @@ import {Location} from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@project-lib/core/auth';
 import { RouteComponentBaseDirective } from '@project-lib/core/route-component-base';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidators } from '@project-lib/core/validators';
 
 @Component({
   selector: 'lib-reset-password',
@@ -12,6 +13,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ResetPasswordComponent extends RouteComponentBaseDirective {
   resetPasswordForm: FormGroup;
+  showPassword = false;
+  showConfirmPassword = false;
     imageUrl: string;
     altText: string;
     constructor(
@@ -28,37 +31,69 @@ export class ResetPasswordComponent extends RouteComponentBaseDirective {
     }
 
     ngOnInit() {
-      this.resetPasswordForm = this.fb.group({
-        newPassword: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', Validators.required],
-      });
+      // 
+      this.resetPasswordForm = new FormGroup(
+        {
+          password: new FormControl('', [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.pattern(
+              '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#])[A-Za-zd$@$!%*?&].{7,}',
+            ),
+          ]),
+          confirmPassword: new FormControl('', [
+            Validators.required,
+            Validators.minLength(6),
+          ]),
+        },
+        [CustomValidators.match2Validators('password', 'confirmPassword')],
+      );
     }
 
     onSubmit() {
       debugger;
       if (this.resetPasswordForm.valid) {
+
+        const creds = this.resetPasswordForm.value;
         // Perform API call to set the new password
-        const newPassword = this.resetPasswordForm.value.newPassword;
-    
-        // Call your service to set the new password
-        // For demonstration purposes, you can log the new password to the console
-        console.log('New Password set:', newPassword);
+      this.authService.resetPassword("123",creds.password).subscribe((resp)=>{
+        console.log(resp,"reset password successfull");
+      });
       }
+      
     }
 
-  resetPassword(){}
+  // resetPassword(){}
 
-  showPassword = false;
-
-  getInputType() {
-    if (this.showPassword) {
-      return 'text';
-    }
-    return 'password';
-  }
   
 
-  toggleShowPassword() {
-    this.showPassword = !this.showPassword;
-  }
+
+toggleShowPassword() {
+  this.showPassword = !this.showPassword;
 }
+toggleShowConfirmPassword() {
+  this.showConfirmPassword = !this.showConfirmPassword;
+}
+
+getInputTypeShowPassword() {
+  return this.showPassword ? 'text' : 'password';
+}
+getInputTypeConfirmShowPassword() {
+  return this.showConfirmPassword ? 'text' : 'password';
+}
+
+}
+  
+
+  // getInputType() {
+  //   if (this.showPassword) {
+  //     return 'text';
+  //   }
+  //   return 'password';
+  // }
+  
+
+  // toggleShowPassword() {
+  //   this.showPassword = !this.showPassword;
+  // }
+

@@ -4,6 +4,7 @@ import { AuthService } from '@project-lib/core/auth';
 import { RouteComponentBaseDirective } from '@project-lib/core/route-component-base';
 import {Location} from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { concatMap, throwError } from 'rxjs';
 
 @Component({
   selector: 'lib-signup',
@@ -38,24 +39,24 @@ export class SignupComponent extends RouteComponentBaseDirective {
   }
 
   onSubmit(){
-    debugger;  // Set a breakpoint here
+   // Set a breakpoint here
     if (this.signupForm.valid) {
-      const credentials = this.signupForm.value;
-      {
-        console.log(credentials);
-      }
-      // this.authService.signup("", "").subscribe(
-      //   (response) => {
-      //     debugger;  // Set a breakpoint here
-      //     // Handle successful login response
-      //     console.log('Login successful:', response);
-      //   },
-      //   (error) => {
-      //     debugger;  // Set a breakpoint here
-      //     // Handle login error
-      //     console.error('Login error:', error);
-      //   }
-      // );
+      const userData = this.signupForm.value;
+      // this.authService.createToken(userData).pipe(
+      //   concatMap(response => {
+          // if (response.body && response.body.code) {
+            this.authService.createExternalUser(userData).subscribe(
+        (resp)=>{
+        // Set a breakpoint here
+          // Handle successful login response
+          console.log('Login successful:', resp);
+        },
+        (error) => {
+          debugger;  // Set a breakpoint here
+          // Handle login error
+          console.error('Login error:', error);
+        }
+      );
     }
   }
   
