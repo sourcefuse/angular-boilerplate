@@ -3,7 +3,7 @@
     <div>
       <img [src]="imageUrl" [alt]="altText" draggable="false" />
 
-      <!-- src="baseHref + 'images/auth/angular.png'"  -->
+      
     </div>
     <div class="main-wrapper">
       <div>
@@ -17,6 +17,7 @@
     </div>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email field -->
     <div>
     <div class="input-title">
       <span>Email</span>
@@ -32,6 +33,7 @@
     </div>
     </div>
     
+    <!-- Password field -->
     <div>
     <div class="input-title">
       <span>Password</span>
@@ -44,6 +46,7 @@
                     [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
            </nb-icon>
            </button>
+           <!-- forgot password link -->
       <div class="forgot-password">
         <a [routerLink]="['/auth/forgotpassword']">Forgot Password</a>
       </div>
@@ -56,7 +59,7 @@
     </div>
     </div>
    
-
+<!-- login button -->
     <div class="loginbtn">
       <button
         nbButton
@@ -76,6 +79,7 @@
       <span> You can also Sign In via </span>
     </div>
 
+    <!-- Social login button -->
     <div class="sign-in-button">
       <button nbButton shape="round" size="medium" (click)="loginViaGoogle()">
         <img

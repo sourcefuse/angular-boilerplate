@@ -63,11 +63,8 @@ export class ResetPasswordComponent extends RouteComponentBaseDirective {
       
     }
 
-  // resetPassword(){}
 
-  
-
-
+    // to show and hide password 
 toggleShowPassword() {
   this.showPassword = !this.showPassword;
 }
@@ -83,17 +80,4 @@ getInputTypeConfirmShowPassword() {
 }
 
 }
-  
-
-  // getInputType() {
-  //   if (this.showPassword) {
-  //     return 'text';
-  //   }
-  //   return 'password';
-  // }
-  
-
-  // toggleShowPassword() {
-  //   this.showPassword = !this.showPassword;
-  // }
 

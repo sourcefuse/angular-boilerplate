@@ -34,12 +34,10 @@ export class SignupComponent extends RouteComponentBaseDirective {
   })
   }
 
-  signUp(){
-    // this.router.navigate(['auth/login']);
-  }
+  
 
   onSubmit(){
-   // Set a breakpoint here
+ 
     if (this.signupForm.valid) {
       const userData = this.signupForm.value;
       // this.authService.createToken(userData).pipe(
@@ -47,14 +45,14 @@ export class SignupComponent extends RouteComponentBaseDirective {
           // if (response.body && response.body.code) {
             this.authService.createExternalUser(userData).subscribe(
         (resp)=>{
-        // Set a breakpoint here
           // Handle successful login response
-          console.log('Login successful:', resp);
+          console.log('signup successful:', resp);
+          this.router.navigate(['/auth/login']);
         },
         (error) => {
           debugger;  // Set a breakpoint here
           // Handle login error
-          console.error('Login error:', error);
+          console.error('signup error:', error);
         }
       );
     }

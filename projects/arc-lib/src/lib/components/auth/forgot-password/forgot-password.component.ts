@@ -33,15 +33,6 @@ export class ForgotPasswordComponent  extends RouteComponentBaseDirective implem
   }
 
   onSubmit() {
-    debugger;
-    // if (this.forgotPasswordForm.valid) {
-    //   // Perform API call to send reset password link
-    //   const email = this.forgotPasswordForm.value.email;
-  
-    //   // Call your service to send the reset password link
-    //   // For demonstration purposes, you can log the email to the console
-    //   console.log('Reset Password link sent to:', email);
-    // }
     if (this.forgotPasswordForm.valid) {
       const email = this.forgotPasswordForm.value.email;
       this.authService.forgetPasswordReq(email).subscribe(

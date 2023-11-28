@@ -26,21 +26,17 @@ export class LoginComponent extends RouteComponentBaseDirective {
   ) {
     super(route, location);
     this.imageUrl = '../../../assets/images/auth/ARC_logo.png'; 
-  this.altText = 'logo';
-  this.loginForm = this.fb.group({
+    this.altText = 'logo';
+    this.loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   })
 }
 
-  signIn(){
-    // this.authService.login("deepika.mahindroo@sourcefuse.com","Abcd_1234").subscribe(()=>{})
-  }
   
   showPassword = false;
 
   onSubmit() {
-  // Set a breakpoint here
     if (this.loginForm.valid) {
       const credentials = this.loginForm.value;
       this.authService.login(credentials.email,credentials.password).pipe(
@@ -52,12 +48,10 @@ export class LoginComponent extends RouteComponentBaseDirective {
         }),
       ).subscribe(
         () => { 
-        // Set a breakpoint here
           // Handle successful login response
           console.log('Login successful:');
         },
         (error) => {
-          // Set a breakpoint here
           // Handle login error
           console.error('Login error:', error);
         }
@@ -65,6 +59,7 @@ export class LoginComponent extends RouteComponentBaseDirective {
     }
   }
 
+  // function to show and hide password
   getInputType() {
     if (this.showPassword) {
       return 'text';
@@ -77,6 +72,7 @@ export class LoginComponent extends RouteComponentBaseDirective {
     this.showPassword = !this.showPassword;
   }
 
+  // function for login via google
   loginViaGoogle() {
     this.authService.loginViaGoogle();
   }

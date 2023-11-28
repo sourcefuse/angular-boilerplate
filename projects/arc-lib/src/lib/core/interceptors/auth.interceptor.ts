@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
       const headers = req.headers.delete(AuthTokenSkipHeader);
       return next.handle(req.clone({ headers }));
     }
-    const authToken = this.sessionStore.getAccessToken() || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpbnlqb0BleGFtcGxlLmNvbSIsImlhdCI6MTcwMDY2MzM1MSwiZXhwIjoxNzAwNjY1MTUxLCJpc3MiOiJzb3VyY2VmdXNlIiwic3ViIjoidGlueWpvQGV4YW1wbGUuY29tIn0.PYEW3viqGjZsXpLKV9R5L_uKH6raSHXQEogwtKnlqNQ';
+    const authToken = this.sessionStore.getAccessToken() || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZlcnJ5QGV4YW1wbGUuY29tIiwiaWF0IjoxNzAxMTgyNDA0LCJleHAiOjE3MDExODQyMDQsImlzcyI6InNvdXJjZWZ1c2UiLCJzdWIiOiJmZXJyeUBleGFtcGxlLmNvbSJ9.ZYq7Y_77_4FYD9YMUKtZQjUc2G1VkpVRy2O1gLPXrIE';
 
     if (authToken) {
       return next.handle(

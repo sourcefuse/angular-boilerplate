@@ -14,6 +14,7 @@
                 
           </div>
  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">        
+  <!-- input fields -->
         <div class="input-wrapper">
             <div>
           <div class = "input-title">
@@ -45,13 +46,15 @@
           <div class = input>
             <input type="Password" placeholder="Password" fieldSize="medium" status=“info” formControlName="password" nbInput />
           </div>
+
+          <!-- signup button -->
           <div class="loginbtn">
             <button
               nbButton
               shape="round"
               size="medium"
               status="basic"
-              (click)="signUp()"
+              type="submit"
             >
               Sign Up
             </button>
@@ -61,7 +64,7 @@
             <span> You can also Sign up via 
             </span>
           </div>
-      
+      <!-- signup  by google -->
           <div class="sign-up-button">
             <button nbButton shape="round" size="medium" (click)="loginViaGoogle()">
               <img src="../../../assets/images/auth/image.png" alt="googlelogo" margin-let="5px" draggable="false" /> Sign In with Google
