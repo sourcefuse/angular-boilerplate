@@ -19,6 +19,12 @@ import {APP_CONFIG} from '@project-lib/app-config';
 import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GanttModule } from '@project-lib/components/index';
+import { SelectModule } from '@project-lib/components/selector';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +38,11 @@ import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
     ThemeModule,
     NbThemeModule.forRoot(),
     NbLayoutModule,
+    OverlayModule,
+    SelectModule,
+    GanttModule,
+    BrowserAnimationsModule,
+    
   ],
   providers: [
     TranslationService,

@@ -1,5 +1,7 @@
-@use "sass:map";
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use 'sass:map';
+@use '../../../theme/styles/variables' as *;
+@use '../../../../../../arc/src/styles.scss' as *;
+@use '../../../../../../arc/src/themes.scss' as *;
 
 :host {
   .logo {
@@ -27,15 +29,124 @@
   font-family: #{nb-theme(font-family-primary)};
   font-weight: 600;
   line-height: 1.5rem;
-  background-color: map.get($font, "light");
-  border: 0.063rem solid map.get($color, "border-disable");
+  background-color: map.get($font, 'light');
+  border: 0.063rem solid map.get($color, 'border-disable');
   position: absolute;
 
   &:hover {
-    border-color: map-get($font, "placeholder");
+    border-color: map-get($font, 'placeholder');
   }
 
   &:active {
-    border-color: map-get($font, "primary");
+    border-color: map-get($font, 'primary');
   }
 }
+.card-row {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+
+.card-col {
+  flex: 1 0 calc(50% - 1rem);
+  margin: 0 0.5rem;
+}
+.card-row {
+  margin: 0;
+  padding: 30px 70px;
+  .sign-in-title {
+    h2 {
+      font-size: 36px;
+      margin: 50px 0 10px 0;
+    }
+    h3 {
+      font-size: 24px;
+      color: #525252;
+      margin: 0;
+    }
+    p {
+      font-size: 16px;
+      margin: 0 0 30px 0;
+    }
+  }
+}
+.input {
+  input {
+    width: 80%;
+    margin: 10px 0;
+    max-width: inherit;
+    border-radius: 0;
+    background: #fff;
+  }
+}
+.input-title {
+  margin-top: 10px;
+  span {
+    font-size: 13px;
+  }
+}
+.loginbtn {
+  margin: 20px 0;
+  button {
+    background: #8f8f8f;
+    color: #fff;
+    text-transform: inherit;
+    &:hover {
+      color: rgb(41, 40, 40);
+      border: 1px solid #8f8f8f;
+    }
+  }
+}
+.sign-in-button {
+  button {
+    font-weight: normal;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+    text-transform: inherit;
+    font-size: 13px;
+    &:hover {
+      border: 1px solid #8f8f8f;
+    }
+    img {
+      margin-right: 5px;
+    }
+  }
+}
+.footer {
+  color: #525252;
+  a {
+    text-decoration: none;
+    color: #19a5ff;
+    font-weight: 700;
+  }
+}
+.devider {
+  color: #525252;
+  font-size: 13px;
+  margin: 0 10px 20px;
+  &:before {
+    content: '';
+    height: 1px;
+    background: #d9d9d9;
+    width: 110px;
+    margin-right: 10px;
+  }
+
+  &:after {
+    content: '';
+    height: 1px;
+    background: #d9d9d9;
+    width: 110px;
+    margin-left: 10px;
+  }
+}
+.forgot-password {
+  a {
+    text-decoration: none;
+    color: #19a5ff;
+  }
+}
+
+.main-wrapper {
+    padding-top: 118px;
+  }
+  

@@ -1,0 +1,82 @@
+<nb-card class="h-100 card-row">
+    <nb-card-body class="m-0">
+        <div>
+            <img [src]="imageUrl" [alt]="altText" draggable="false" />
+
+        </div>
+        <div class="main-wrapper">
+            <div>
+        <div class="sign-in-title">
+            <h2>Sign Up</h2>
+            <h3>Welcome to Arc by SourceFuse</h3>
+            <p>
+                Cut down your application development process to 60% Create Your account now !</p>
+                
+          </div>
+ <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">        
+  <!-- input fields -->
+        <div class="input-wrapper">
+            <div>
+          <div class = "input-title">
+           <span>First Name</span>
+           </div>
+           <div class="inputTags">
+            <input type="text" placeholder="First Name" status=“info” formControlName="firstName" nbInput />
+          </div>
+            </div>
+            <div>
+          <div class = "input-title">
+            <span>Last Name</span>
+            </div>
+          <div class = inputTags >
+            <input type="text" placeholder="Last Name" status=“info” formControlName="lastName" nbInput />
+          </div>
+        </div>
+        </div>
+          <div class = "input-title">
+            <span>Email</span>
+            </div>
+          <div class = input >
+            <input type="Email" placeholder="Email" status=“info” fieldSize="medium" formControlName="email" nbInput />
+          </div>
+
+          <div class = "input-title">
+            <span>Password</span>
+            </div>
+          <div class = input>
+            <input type="Password" placeholder="Password" fieldSize="medium" status=“info” formControlName="password" nbInput />
+          </div>
+
+          <!-- signup button -->
+          <div class="loginbtn">
+            <button
+              nbButton
+              shape="round"
+              size="medium"
+              status="basic"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </div>
+    </form>
+          <div class="devider align-center">
+            <span> You can also Sign up via 
+            </span>
+          </div>
+      <!-- signup  by google -->
+          <div class="sign-up-button">
+            <button nbButton shape="round" size="medium" (click)="loginViaGoogle()">
+              <img src="../../../assets/images/auth/image.png" alt="googlelogo" margin-let="5px" draggable="false" /> Sign In with Google
+            </button>
+          </div>
+          <div class="align-center footer footer">
+            <span class="text-center">
+              I already have an account in Arc by SourceFuse
+              <a [routerLink]="['/login']">Sign In</a>
+            </span>
+          </div>
+          </div>
+          </div>
+    </nb-card-body>
+</nb-card>

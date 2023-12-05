@@ -1,6 +1,6 @@
-@use "sass:map";
+@use 'sass:map';
 // @import "../../../theme/styles/variables";
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
 
 .select-panel {
   font-family: $main-font-family;
@@ -83,12 +83,26 @@
 
 .list-icon {
   display: inline-block;
-  background: map.get($color, "menu-item-active");
-  color: map.get($font, "primary");
+  background: map.get($color, 'menu-item-active');
+  color: map.get($font, 'primary');
   width: 2rem;
   height: 2rem !important;
   margin-right: 0.5rem;
   line-height: 2rem;
   text-align: center;
   border-radius: 50%;
+}
+.search-input {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  padding: 7px;
+  min-width: 25%;
+  font-size: 15px;
+  &:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
 }
