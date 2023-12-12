@@ -52,7 +52,7 @@ export class LoggedInUserDM {
       this.userTenantId = data.userTenantId;
       this.role = data.role;
     } else if (data) {
-      // throw new Error('Mandatory fields missing for LoggedInUser model');
+      throw new Error('Mandatory fields missing for LoggedInUser model');
     } else {
       // Do nothing
     }

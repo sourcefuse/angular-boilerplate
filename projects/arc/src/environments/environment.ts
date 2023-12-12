@@ -1,10 +1,10 @@
 export const environment = {
   production: false,
-  clientId: "test_client_id",
-  publicKey: "test_client_secret",
+  clientId: "",
+  publicKey: "",
   homePath: '/main/home',
-  baseApiUrl: 'http://localhost:3002',
+  baseApiUrl: '',
   authServiceUrl: '',
-  userServiceUrl: 'user',
+  userServiceUrl: '',
   logLevel: 5,
 };

@@ -15,8 +15,6 @@ export class AuthComponent extends NbAuthComponent {
     override readonly location: Location,
   ) {
     super(auth, location);
-    this.image="../../../images/auth/login-img.png";
-    this.altText="loginImg";
 
   }
 }

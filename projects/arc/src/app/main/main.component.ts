@@ -38,7 +38,8 @@ export class MainComponent
       link: '/main/home',
       home: true,
       pathMatch: 'prefix',
-    },
+    }
+    
   ];
 
   toggle() {

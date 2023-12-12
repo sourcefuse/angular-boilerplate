@@ -11,7 +11,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2019",
-  
+    "typeRoots": ["node_modules/@types"],
     "lib": ["ES2019", "dom"],
     "paths": {
       "@main-project/boiler/env/*": [

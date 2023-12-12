@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@project-lib/core/auth';
 import { RouteComponentBaseDirective } from '@project-lib/core/route-component-base';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'lib-forgot-password',
@@ -19,7 +20,8 @@ export class ForgotPasswordComponent  extends RouteComponentBaseDirective implem
     override readonly location: Location,
     private readonly authService: AuthService,
     private readonly router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastrService: NbToastrService 
  
   ) {
     super(route, location);
@@ -32,21 +34,36 @@ export class ForgotPasswordComponent  extends RouteComponentBaseDirective implem
     });
   }
 
+  // onSubmit() {
+  //   if (this.forgotPasswordForm.valid) {
+  //     const email = this.forgotPasswordForm.value.email;
+  //     this.authService.forgetPasswordReq(email).subscribe(
+  //       (response) => {
+  //         // Handle successful link sending
+  //         console.log('Reset Password link sent successfully:', response);
+
+  //       },
+  //       (error) => {
+  //         // Handle error
+  //         console.error('Error sending reset password link:', error);
+  //       }
+  //     );
+  //   }
+  // }
   onSubmit() {
     if (this.forgotPasswordForm.valid) {
       const email = this.forgotPasswordForm.value.email;
       this.authService.forgetPasswordReq(email).subscribe(
         (response) => {
           // Handle successful link sending
-          console.log('Reset Password link sent successfully:', response);
+          this.toastrService.success('Reset Password link sent successfully', 'Success');
         },
         (error) => {
           // Handle error
-          console.error('Error sending reset password link:', error);
+          this.toastrService.danger('Error sending reset password link', 'Error');
         }
       );
     }
   }
-
 
 }

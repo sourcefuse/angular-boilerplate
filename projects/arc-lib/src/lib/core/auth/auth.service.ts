@@ -207,17 +207,10 @@ export class AuthService {
       this.appConfig,
     );
     
-    // const token = new HttpHeaders({
-     
-    //   'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRpbnlqb2VAZXhhbXBsZS5jb20iLCJpYXQiOjE3MDA2NTk2NTgsImV4cCI6MTcwMDY2MTQ1OCwiaXNzIjoic291cmNlZnVzZSIsInN1YiI6InRpbnlqb2VAZXhhbXBsZS5jb20ifQ.dep1UOseV6XbHRI6SQUUK_kHAqqOOHLXflSyRiogGmA', // Add your authorization token if needed
-    //   // Add other headers as needed
-    // });
-    // command.parameters.headers=headers;
-
+  
    
     command.parameters = {
       data: user,
-      // headers:token
     };
 
     return command.execute();
