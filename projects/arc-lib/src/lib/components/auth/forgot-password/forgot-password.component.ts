@@ -34,22 +34,6 @@ export class ForgotPasswordComponent  extends RouteComponentBaseDirective implem
     });
   }
 
-  // onSubmit() {
-  //   if (this.forgotPasswordForm.valid) {
-  //     const email = this.forgotPasswordForm.value.email;
-  //     this.authService.forgetPasswordReq(email).subscribe(
-  //       (response) => {
-  //         // Handle successful link sending
-  //         console.log('Reset Password link sent successfully:', response);
-
-  //       },
-  //       (error) => {
-  //         // Handle error
-  //         console.error('Error sending reset password link:', error);
-  //       }
-  //     );
-  //   }
-  // }
   onSubmit() {
     if (this.forgotPasswordForm.valid) {
       const email = this.forgotPasswordForm.value.email;

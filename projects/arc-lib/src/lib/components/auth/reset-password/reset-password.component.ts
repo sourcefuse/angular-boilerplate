@@ -5,6 +5,7 @@ import { AuthService } from '@project-lib/core/auth';
 import { RouteComponentBaseDirective } from '@project-lib/core/route-component-base';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators } from '@project-lib/core/validators';
+import { NbToastrService } from '@nebular/theme';
 
 @Component({
   selector: 'lib-reset-password',
@@ -22,7 +23,9 @@ export class ResetPasswordComponent extends RouteComponentBaseDirective {
       override readonly location: Location,
       private readonly authService: AuthService,
       private readonly router: Router,
-      private fb: FormBuilder
+      private fb: FormBuilder,
+      private toastrService: NbToastrService 
+
    
     ) {
       super(route, location);
@@ -31,7 +34,7 @@ export class ResetPasswordComponent extends RouteComponentBaseDirective {
     }
 
     ngOnInit() {
-      // 
+      
       this.resetPasswordForm = new FormGroup(
         {
           password: new FormControl('', [
@@ -51,13 +54,12 @@ export class ResetPasswordComponent extends RouteComponentBaseDirective {
     }
 
     onSubmit() {
-      debugger;
       if (this.resetPasswordForm.valid) {
 
         const creds = this.resetPasswordForm.value;
         // Perform API call to set the new password
       this.authService.resetPassword("123",creds.password).subscribe((resp)=>{
-        console.log(resp,"reset password successfull");
+        this.toastrService.success(' Password Resetting successfull', 'Success');
       });
       }
       

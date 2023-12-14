@@ -33,19 +33,31 @@
           </div>
         </div>
         </div>
+  <!-- email -->
+        <div>
           <div class = "input-title">
             <span>Email</span>
             </div>
           <div class = input >
             <input type="Email" placeholder="Email" status=“info” fieldSize="medium" formControlName="email" nbInput />
           </div>
+          <div *ngIf="signupForm.get('email').hasError('required') && signupForm.get('email').touched">
+            Email is required.
+          </div>
+          <div *ngIf="signupForm.get('email').hasError('email') && signupForm.get('email').touched">
+            Invalid email format.
+          </div>
+        </div>
 
+        <!-- Password -->
+        <div>
           <div class = "input-title">
             <span>Password</span>
             </div>
           <div class = input>
             <input type="Password" placeholder="Password" fieldSize="medium" status=“info” formControlName="password" nbInput />
           </div>
+        </div>
 
           <!-- signup button -->
           <div class="loginbtn">
@@ -54,6 +66,7 @@
               shape="round"
               size="medium"
               status="basic"
+              [disabled]="!signupForm.valid"
               type="submit"
             >
               Sign Up

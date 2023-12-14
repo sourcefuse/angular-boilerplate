@@ -30,7 +30,12 @@ export class SignupComponent extends RouteComponentBaseDirective {
     firstName: ['',[Validators.required]],
     lastName: ['',Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password:['',[ Validators.required,
+      Validators.minLength(6),
+      Validators.pattern(
+        '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#])[A-Za-zd$@$!%*?&].{7,}',
+      ),
+    ]],
   })
   }
 
@@ -40,19 +45,14 @@ export class SignupComponent extends RouteComponentBaseDirective {
  
     if (this.signupForm.valid) {
       const userData = this.signupForm.value;
-      // this.authService.createToken(userData).pipe(
-      //   concatMap(response => {
-          // if (response.body && response.body.code) {
             this.authService.createExternalUser(userData).subscribe(
         (resp)=>{
           // Handle successful login response
-          console.log('signup successful:', resp);
           this.router.navigate(['/auth/login']);
         },
         (error) => {
-          debugger;  // Set a breakpoint here
           // Handle login error
-          console.error('signup error:', error);
+          console.error('signup error:', error); //NOSONAR 
         }
       );
     }

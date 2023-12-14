@@ -38,9 +38,8 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
     return this.apiService
       .post(
         this.uri,
-      //  this.adapter.adaptFromModel(this.parameters.data),
-      this.parameters.data,
-        options
+        this.adapter.adaptFromModel(this.parameters.data),
+        this.parameters.data,
       )
       .pipe(
         map((resp) => {

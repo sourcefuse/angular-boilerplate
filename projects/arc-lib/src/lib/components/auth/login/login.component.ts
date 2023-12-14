@@ -28,7 +28,12 @@ export class LoginComponent extends RouteComponentBaseDirective {
     this.altText = 'logo';
     this.loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password:['',[ Validators.required,
+      Validators.minLength(6),
+      Validators.pattern(
+        '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&#])[A-Za-zd$@$!%*?&].{7,}',
+      ),
+    ]]
   })
 }
 
@@ -48,11 +53,10 @@ export class LoginComponent extends RouteComponentBaseDirective {
       ).subscribe(
         () => { 
           // Handle successful login response
-          console.log('Login successful:');
         },
         (error) => {
           // Handle login error
-          console.error('Login error:', error);
+          console.error('Login error:', error); //NOSONAR 
         }
       );
     }
