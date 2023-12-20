@@ -50,21 +50,6 @@
   }
 }
 
-.sign-in-button {
-  button {
-    font-weight: normal;
-    border: 1px solid #d9d9d9;
-    background: #fff;
-    text-transform: inherit;
-    font-size: 13px;
-    &:hover {
-      border: 1px solid #8f8f8f;
-    }
-    img {
-      margin-right: 5px;
-    }
-  }
-}
 .footer {
   color: #525252;
   a {
