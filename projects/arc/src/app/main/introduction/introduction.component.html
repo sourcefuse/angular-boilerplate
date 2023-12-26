@@ -1,0 +1,31 @@
+<div class="comp-wrapper">
+    <div class="row border-bottom">
+        <div class="col-md-6">
+            <div class="left-section">
+                <h1>Components</h1>
+                <span>
+                    <p class="mt-2">Reduce Development Time to Market</p>
+                    <p>with Pre-Built Catalog of Services for Large Enterprises</p>
+                </span>
+            </div>
+         </div>
+        <div class="col-md-4">
+            <img src="../../../assets/images/home/components.png" alt="introImg">
+         </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="card-row">
+            <div class="card-col" *ngFor="let c of config" (click)="redirectComponent(c)">
+              <nb-card size="tiny">
+                <nb-card-header>
+                   <div class="card-title">{{ c.title }}</div>
+                </nb-card-header>
+                <nb-card-body>
+                    <div class="card-body"><img src="{{ c.image }}"></div>
+                </nb-card-body> 
+              </nb-card>
+            </div>
+    </div>
+    </div>
+</div>

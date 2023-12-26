@@ -23,6 +23,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GanttModule } from '@project-lib/components/index';
 import { SelectModule } from '@project-lib/components/selector';
+import { GANTT_ADAPTER, GanttAdapter } from '@project-lib/components/gantt';
 
 
 
@@ -43,6 +44,7 @@ import { SelectModule } from '@project-lib/components/selector';
     GanttModule,
     BrowserAnimationsModule,
     
+    
   ],
   providers: [
     TranslationService,
@@ -56,7 +58,7 @@ import { SelectModule } from '@project-lib/components/selector';
       provide: APP_CONFIG,
       useValue: environment,
     },
-    // other providers...
+   
   ],
   bootstrap: [AppComponent],
 })
