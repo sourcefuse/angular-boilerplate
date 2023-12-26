@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  clientId: '',
-  publicKey: '',
+  clientId: "",
+  publicKey: "",
   homePath: '/main/home',
   baseApiUrl: '',
   authServiceUrl: '',

@@ -1,0 +1,43 @@
+@use 'sass:map';
+@use '../../../theme/styles/variables' as *;
+@use '../../../../../../arc/src/styles.scss' as *;
+@use '../../../../../../arc/src/themes.scss' as *;
+
+:host {
+  .logo {
+    padding-top: 10%;
+  }
+
+  .description {
+    padding-top: 10%;
+  }
+
+  .login-btn {
+    padding-top: 7%;
+  }
+
+  .footer {
+    padding-top: 7%;
+  }
+}
+
+.input-wrapper{
+    display: flex;
+    gap:10px;
+}
+
+.inputTags{
+    input{
+      
+        margin: 5px 0;
+        width: 100%;
+        max-width: inherit;
+        border-radius: 0;
+        background: #fff;
+    }
+}
+
+
+.main-wrapper {
+      padding-top: 118px;
+    }

@@ -31,6 +31,9 @@ import {
 import {LoggedInUserDM, LoginModel} from './models';
 import {AnyAdapter, ApiService} from '../api';
 import {APP_CONFIG} from '@project-lib/app-config';
+import { CreateExternalUserCommand } from './commands/create-external-user.command';
+import { SignUpAdapter } from './adapters/signup-adapter.service';
+import { CreateTokenCommand } from './commands/create-token.command';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -48,6 +51,7 @@ export class AuthService {
     private readonly router: Router,
     private readonly store: UserSessionStoreService,
     private readonly apiService: ApiService,
+    private readonly signUpAdapter: SignUpAdapter,
     private readonly currentUserAdapter: LoggedInUserAdapterService,
     private readonly loginAdapter: LoginAdapterService,
     private readonly anyAdapter: AnyAdapter,
@@ -166,9 +170,9 @@ export class AuthService {
       data: {
         username: username.toLowerCase(),
         password,
-        clientId: this.appConfig.clientId,
-        clientSecret: this.appConfig.publicKey,
-      },
+        client_id: this.appConfig.clientId,
+        client_secret: this.appConfig.publicKey,
+      } as any,
       observe: 'response',
       headers: this.authTokenSkipHeader,
     };
@@ -195,6 +199,38 @@ export class AuthService {
     document.body.appendChild(form);
     form.submit();
   }
+
+  createExternalUser(user) {
+    const command = new CreateExternalUserCommand(
+      this.apiService,
+      this.signUpAdapter,
+      this.appConfig,
+    );
+    
+  
+   
+    command.parameters = {
+      data: user,
+    };
+
+    return command.execute();
+  }
+
+  createToken(email){
+    const command = new CreateTokenCommand(
+      this.apiService,
+      this.signUpAdapter,
+      this.appConfig,
+    );
+    
+    command.parameters = {
+      data: email,
+    };
+
+    return command.execute();
+  }
+  
+
 
   public authorize(secret: string): Observable<boolean> {
     if (!secret) {

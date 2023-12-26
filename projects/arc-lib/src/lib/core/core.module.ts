@@ -14,10 +14,12 @@ import {StoreModule} from './store';
 import {ToasterModule} from './toaster/toaster.module';
 import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
 import {ComponentBaseDirective} from './component-base';
+import { HttpInterceptorProviders } from './interceptors';
+
 
 @NgModule({
   declarations: [ComponentBaseDirective],
-  providers: [],
+  providers: [HttpInterceptorProviders],
   imports: [
     CommonModule,
     NgxPermissionsModule.forRoot(),

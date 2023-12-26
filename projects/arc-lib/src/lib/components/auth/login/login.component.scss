@@ -1,5 +1,7 @@
-@use "sass:map";
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
+@use 'sass:map';
+@use '../../../theme/styles/variables' as *;
+@use '../../../../../../arc/src/styles.scss' as *;
+@use '../../../../../../arc/src/themes.scss' as *;
 
 :host {
   .logo {
@@ -19,23 +21,14 @@
   }
 }
 
-.google-btn {
-  width: 24.125rem;
-  height: 4rem;
-  border-radius: 0.375rem;
-  font-size: 1.25rem;
-  font-family: #{nb-theme(font-family-primary)};
-  font-weight: 600;
-  line-height: 1.5rem;
-  background-color: map.get($font, "light");
-  border: 0.063rem solid map.get($color, "border-disable");
-  position: absolute;
-
-  &:hover {
-    border-color: map-get($font, "placeholder");
-  }
-
-  &:active {
-    border-color: map-get($font, "primary");
+.forgot-password {
+  a {
+    text-decoration: none;
+    color: #19a5ff;
   }
 }
+
+.main-wrapper {
+    padding-top: 118px;
+  }
+  

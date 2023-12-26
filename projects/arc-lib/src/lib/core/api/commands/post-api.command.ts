@@ -17,7 +17,7 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
   ) {}
 
   parameters!: {
-    data: T;
+    data: any;
     headers?: HttpHeaders;
     observe?: HttpObserve;
     query?: HttpParams;
@@ -39,7 +39,7 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
       .post(
         this.uri,
         this.adapter.adaptFromModel(this.parameters.data),
-        options
+        this.parameters.data,
       )
       .pipe(
         map((resp) => {

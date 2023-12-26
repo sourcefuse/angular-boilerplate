@@ -29,7 +29,7 @@ export class MainComponent
     this.iconMgr.registerSvgs();
   }
 
-  loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
+  loggedInUserDM: LoggedInUserDM  = new LoggedInUserDM();
   userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
   menu: NbMenuItem[] = [
     {
@@ -38,7 +38,8 @@ export class MainComponent
       link: '/main/home',
       home: true,
       pathMatch: 'prefix',
-    },
+    }
+    
   ];
 
   toggle() {
