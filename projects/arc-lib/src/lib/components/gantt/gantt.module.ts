@@ -13,23 +13,18 @@ import {GANTT_SCALES} from './const';
 import {MonthlyScaleService} from './services/timeline-scales/monthly-scale.service';
 import {QuarterlyScaleService} from './services/timeline-scales/quarterly-scale.service';
 import {WeeklyScaleService} from './services/timeline-scales/weekly-scale.service';
-import {GanttAdapter} from './types';
+import { GanttAdapter} from './types';
+import { GanttRoutingModule } from './gantt-routing.module';
+import { GanttService } from './services';
+import { GanttBarsModule } from './components/gantt-bars/gantt-bars.module';
 
 @NgModule({
   declarations: [
     BbGanttComponent,
-    GanttBarsComponent,
-    GanttColumnComponent,
-    GanttHeaderComponent,
-    GanttTooltipComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule, ThemeModule],
+  imports: [CommonModule, ReactiveFormsModule, ThemeModule,GanttRoutingModule,GanttBarsModule],
   exports: [
     BbGanttComponent,
-    GanttBarsComponent,
-    GanttColumnComponent,
-    GanttHeaderComponent,
-    GanttTooltipComponent,
   ],
   providers: [
     {
@@ -47,6 +42,8 @@ import {GanttAdapter} from './types';
       multi: true,
       useClass: QuarterlyScaleService,
     },
+    
+     
   ],
 })
 export class GanttModule {}

@@ -24,7 +24,8 @@ export class HomeComponent
     private readonly authService: AuthService,
   ) {
     super(route, location);
-    this.imageUrl='../../../assets/images/Illustration.svg';
+    this.imageUrl='../../../assets/images/home/home-banner.png';
+    
  this.altText='homepage-illustration';
   }
  

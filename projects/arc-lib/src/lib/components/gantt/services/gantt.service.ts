@@ -32,17 +32,21 @@ import {
 } from '../const';
 import {GanttEventTypes} from '../enum';
 import {
+  
   GanttAdapter,
   GanttEvent,
-  GanttLib,
+  GanttLib as gantt,
   GanttRenderOptions,
   GanttScaleOptions,
   GanttScaleService,
   GanttTaskValue,
   Timelines,
+  GanttLib,
 } from '../types';
 
-@Injectable()
+@Injectable({
+  providedIn:'root'
+})
 export class GanttService<T extends AnyObject, S extends AnyObject> {
   private _data!: GanttTaskValue<T>[];
   private _overlays: OverlayRef[] = [];
@@ -57,7 +61,8 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     return this._events.asObservable();
   }
   constructor(
-    private adapter: GanttAdapter<T>,
+    // @Inject(GANTT_ADAPTER)
+    // private adapter: GanttAdapter<T>,
     @Inject(GANTT)
     private readonly gantt: GanttLib,
     @Inject(GANTT_SCALES)
@@ -197,7 +202,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
    * @param {T[]} data - The data that you want to feed to the Gantt chart.
    */
   feed(data: T[]) {
-    this._data = this.adapter.adaptFrom(data);
+    //this._data = this.adapter.adaptFrom(data);
     this._refresh();
   }
 

@@ -13,7 +13,7 @@
             href="javascript:void(0)"
             (click)="navigateHome('/main/home')"
           >
-            <img src="" alt="logo" />
+            <img src="../../../assets/images/home/ARC_logo.png" alt="logo" />
           </a>
         </div>
       </div>
@@ -36,7 +36,9 @@
     </div>
   </nb-layout-header>
   <nb-sidebar>
-    <nb-menu [items]="menu"></nb-menu>
+    <nb-menu [items]="menu">
+     
+    </nb-menu>
     <nb-sidebar-footer
       class="footer"
       [ngStyle]="{visibility: toggleFooter ? 'hidden' : 'visible'}"
@@ -59,3 +61,5 @@
     <router-outlet class="main-router"></router-outlet>
   </nb-layout-column>
 </nb-layout>
+
+

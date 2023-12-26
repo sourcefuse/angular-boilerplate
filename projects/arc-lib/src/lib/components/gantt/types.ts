@@ -1,4 +1,4 @@
-import {TemplateRef, Type, ViewContainerRef} from '@angular/core';
+import {InjectionToken, TemplateRef, Type, ViewContainerRef} from '@angular/core';
 import {AnyObject} from '@project-lib/core/api';
 import {DIGITS, ONE_MIN} from '@project-lib/core/constants';
 import {NbMenuItem} from '@nebular/theme';
@@ -137,7 +137,6 @@ export const GanttTimelineMap: {
   [Timelines.Quarterly]: 'Quarterly',
   [Timelines.Custom]: 'Custom',
 };
-
 export abstract class GanttAdapter<T> {
   abstract adaptFrom(data: T[]): GanttTaskValue<T>[];
 
@@ -171,6 +170,33 @@ export abstract class GanttAdapter<T> {
       .substring(DIGITS.TWO, DIGITS.NINE);
   }
 }
+
+export class CustomGanttAdapter<T> extends GanttAdapter<T> {
+  // Implement the abstract method adaptFrom
+  adaptFrom(data: T[]): GanttTaskValue<T>[] {
+    // Your implementation logic here to adapt data to GanttTaskValue
+    // ...
+
+    return ;
+  }
+
+  // You can optionally override or use the inherited protected methods
+  protected _nextDay(date: Date) {
+    // Custom implementation or call the parent method
+    return super._nextDay(date);
+  }
+
+  protected _addTimezoneOffset(date: string | Date) {
+    // Custom implementation or call the parent method
+    return super._addTimezoneOffset(date);
+  }
+
+  protected _randomId() {
+    // Custom implementation or call the parent method
+    return super._randomId();
+  }
+}
+
 
 export type CustomMouseEvent = {
   target: HTMLElement;
