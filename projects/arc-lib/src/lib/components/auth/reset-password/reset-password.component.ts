@@ -15,6 +15,7 @@ import { NbToastrService } from '@nebular/theme';
 export class ResetPasswordComponent extends RouteComponentBaseDirective {
   resetPasswordForm: FormGroup;
   showPassword = false;
+  reqEmail='';
   showConfirmPassword = false;
     imageUrl: string;
     altText: string;
@@ -30,14 +31,14 @@ export class ResetPasswordComponent extends RouteComponentBaseDirective {
     ) {
       super(route, location);
       this.imageUrl = '../../../assets/images/auth/ARC_logo.png'; 
-    this.altText = 'logo';
+      this.altText = 'logo';
     }
 
     ngOnInit() {
       
       this.resetPasswordForm = new FormGroup(
         {
-          password: new FormControl('', [
+            password: new FormControl('', [
             Validators.required,
             Validators.minLength(6),
             Validators.pattern(

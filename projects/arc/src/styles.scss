@@ -1,5 +1,5 @@
 @use './themes' as *;
-@use "sass:map";
+@use 'sass:map';
 @use 'projects/arc-lib/src/lib/theme/styles/index' as *;
 @use '@nebular/theme/styles/globals' as *;
 @use '@nebular/auth/styles/globals' as *;
@@ -21,11 +21,22 @@ router-outlet.main-router + * {
   height: 100%;
 }
 // common scss
+
+// input
 .loginbtn {
   margin: 20px 0;
-  button {
-    background: #8f8f8f;
-    color: #F4001F;
+  button.appearance-filled.status-basic {
+    color: #fff !important ;
+    background: #f4001f !important;
+    text-transform: inherit;
+    &:hover {
+      color: rgb(41, 40, 40);
+      border: 1px solid #8f8f8f;
+    }
+  }
+  button.appearance-filled.status-basic.btn-disabled {
+    color: #000 !important ;
+    background: #edf1f7 !important;
     text-transform: inherit;
     &:hover {
       color: rgb(41, 40, 40);
@@ -36,9 +47,9 @@ router-outlet.main-router + * {
 
 .input {
   input {
-    width: 90%;
+    width: 92%;
     margin: 10px 0;
-    max-width: inherit;
+    max-width: inherit !important;
     border-radius: 0;
     background: #fff;
   }
@@ -80,9 +91,18 @@ router-outlet.main-router + * {
     &:hover {
       border: 1px solid #8f8f8f;
     }
-    img{
-        margin-right: 5px;
+    img {
+      margin-right: 5px;
     }
+  }
+}
+
+.footer {
+  color: #525252;
+  a {
+    text-decoration: none;
+    color: #19a5ff;
+    font-weight: 700;
   }
 }
 
@@ -103,6 +123,56 @@ h5,
 
 .border {
   border: none !important;
+}
+
+.devider {
+  color: #525252;
+  font-size: 13px;
+  margin: 0 10px 20px;
+  &:before {
+    content: '';
+    height: 1px;
+    background: #d9d9d9;
+    width: 110px;
+    margin-right: 10px;
+  }
+
+  &:after {
+    content: '';
+    height: 1px;
+    background: #d9d9d9;
+    width: 110px;
+    margin-left: 10px;
+  }
+}
+
+.card-row {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+
+.card-col {
+  flex: 1 0 calc(50% - 1rem);
+  margin: 0 0.5rem;
+}
+.card-row {
+  margin: 0;
+  padding: 30px 70px;
+  .sign-in-title {
+    h2 {
+      font-size: 36px;
+      margin: 50px 0 10px 0;
+    }
+    h3 {
+      font-size: 24px;
+      color: #525252;
+      margin: 0;
+    }
+    p {
+      font-size: 16px;
+      margin: 0 0 30px 0;
+    }
+  }
 }
 
 .route-tabset .route-tab a.tab-link:before {
