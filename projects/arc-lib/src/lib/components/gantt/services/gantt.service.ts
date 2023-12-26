@@ -61,8 +61,6 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     return this._events.asObservable();
   }
   constructor(
-    // @Inject(GANTT_ADAPTER)
-    // private adapter: GanttAdapter<T>,
     @Inject(GANTT)
     private readonly gantt: GanttLib,
     @Inject(GANTT_SCALES)
