@@ -278,3 +278,13 @@ nb-toast.status-success .icon-container {
     }
   }
 }
+
+.parent-class {
+  // border-bottom: 1px solid #d9d9d9;
+  .inner-div {
+    height: fit-content;
+  }
+  .layout {
+    background: #fff;
+  }
+}

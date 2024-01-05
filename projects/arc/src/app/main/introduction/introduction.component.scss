@@ -1,12 +1,8 @@
-.parent-class {
-    // border-bottom: 1px solid #d9d9d9;
-    .inner-div {
-      height: fit-content;
-    }
-    .layout {
-      background: #fff;
-    }
-  }
+@use 'sass:map';
+@use '../../../../../arc-lib/src/lib/theme/styles/variables' as *;
+@use '../../../styles.scss' as *;
+@use '../../../themes.scss' as *;
+
 .comp-wrapper {
     background: #fff;
     padding: 20px;
@@ -49,7 +45,6 @@
 
   :host {
     display: block;
-    // max-height: 25rem;
     overflow-x: hidden;
     overflow-y: auto;
   }

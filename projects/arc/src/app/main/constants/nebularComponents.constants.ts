@@ -23,8 +23,9 @@ export const NEBULAR_COMP_ITEMS = [
       },
       {
         title: 'Radio Button',
-        // url:'https://akveo.github.io/nebular/docs/components/radio/examples#nbradiocomponent',
-        link: '/main/components/nebular-comp',
+        url:'https://akveo.github.io/nebular/docs/components/radio/examples#nbradiocomponent',
+        // if we want to see components in Card layout we can use this link 
+        // link: '/main/components/nebular-comp',  
         home: true,
         pathMatch: 'prefix',
         image : '../../../assets/images/components/Checkbox.svg'

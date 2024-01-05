@@ -14,7 +14,6 @@ export class IntroductionComponent {
   }
 
   ngOnInit(){
-    console.log(this.router.url)
     this.router.events.subscribe((param)=>{
       this.loadConfig();
     })
@@ -31,10 +30,7 @@ export class IntroductionComponent {
   }
 
  redirectComponent(c)
-  {
-  //    console.log(c);
-  //    window.open(c.url, "_blank");
-  // }     
+  {    
 if (c.url) {
   // Open external URL in a new tab
   window.open(c.url, '_blank');
