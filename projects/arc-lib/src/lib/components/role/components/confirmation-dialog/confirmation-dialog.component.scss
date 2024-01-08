@@ -1,0 +1,39 @@
+.confirmation-dialog {
+  .title {
+    color: #000;
+    height: auto;
+    line-height: normal;
+    font-size: 36px;
+    padding: 36px 36px 0;
+    &::before {
+      display: none;
+    }
+    @media (max-width: 1400px) {
+      font-size: 28px;
+      padding: 24px 24px 0;
+    }
+  }
+  .dialog-content {
+    padding: 36px;
+    color: #000;
+    @media (max-width: 1400px) {
+      padding: 24px;
+    }
+    p {
+      font-size: 16px;
+      margin: 0;
+      @media (max-width: 1400px) {
+        font-size: 14px;
+      }
+    }
+  }
+  .dialog-action {
+    padding: 0 36px 36px;
+    @media (max-width: 1400px) {
+      padding: 0 24px 24px;
+    }
+    .dialog-action-items {
+      width: 100%;
+    }
+  }
+}

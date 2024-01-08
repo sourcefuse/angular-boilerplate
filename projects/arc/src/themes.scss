@@ -16,14 +16,13 @@ $nb-themes: nb-register-theme(
     border-radius: 0.25rem,
 
     // Font
-    font-family-primary: 'Montserrat,Open Sans,sans-serif',
+    font-family-primary: 'Gotham,Open Sans,sans-serif',
 
     // Background related
     background-basic-color-3: map.get($bb-color, 'background-basic'),
     ag-header-background-color: inherit,
 
     // Layout related
-    layout-padding: 1.25rem map.get($bb-font-size, 'large'),
     // Header related
     header-height: 3.25rem,
     header-padding: map.get($bb-font-size, 'medium'),
@@ -72,7 +71,7 @@ $nb-themes: nb-register-theme(
     sidebar-text-color: map.get($bb-font, 'dark2'),
     sidebar-text-font-size: map.get($bb-font-size, 'medium'),
     sidebar-shadow: none,
-    sidebar-width: 10.688rem,
+    sidebar-width: 13.688rem,
     sidebar-padding: map.get($bb-font-size, 'medium'),
     sidebar-width-compact: 3.5rem,
     // Nb-user
@@ -100,7 +99,7 @@ $nb-themes: nb-register-theme(
 
     // Button related
     button-filled-basic-background-color: map.get($bb-color, 'light'),
-    button-medium-text-font-size: map.get($bb-font-size, 'small'),
+    button-medium-text-font-size: map.get($bb-font-size, 'medium'),
     color-primary-default: map.get($bb-font, 'primary'),
     color-primary-focus: map.get($bb-font, 'primary-active'),
     color-primary-focus-border: map.get($bb-font, 'primary-active'),
@@ -123,6 +122,10 @@ $nb-themes: nb-register-theme(
     button-filled-basic-focus-background-color: map.get($bb-color, 'light'),
     button-filled-basic-border-color: map.get($bb-color, 'input-border-basic'),
     button-filled-basic-active-border-color: map.get($bb-color, 'primary-focus'),
+    button-filled-primary-hover-background-color:
+      map.get($bb-color, 'primary-hover'),
+    button-filled-primary-hover-border-color:
+      map.get($bb-color, 'primary-hover'),
     button-filled-basic-focus-border-color: map.get($bb-color, 'primary-focus'),
     button-filled-medium-padding: map.get($bb-padding, 'large') 0.914rem,
     button-filled-basic-hover-border-color:

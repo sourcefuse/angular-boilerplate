@@ -12,12 +12,18 @@ import {AuthRoutingModule} from './auth-routing.module';
 import {AuthComponent} from './auth.component';
 import {LoginComponent} from './login/login.component';
 
-import { SignupComponent } from './signup/signup.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import {SignupComponent} from './signup/signup.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {ResetPasswordComponent} from './reset-password/reset-password.component';
 
 @NgModule({
-  declarations: [LoginComponent, AuthComponent, SignupComponent, ForgotPasswordComponent, ResetPasswordComponent],
+  declarations: [
+    LoginComponent,
+    AuthComponent,
+    SignupComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
@@ -29,7 +35,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     HttpClientModule,
     NbLayoutModule,
     TranslateModule,
-    NbThemeModule.forRoot(),
+    NbThemeModule.forRoot({name: 'boiler'}),
     NbAuthModule.forRoot({
       strategies: [
         NbPasswordAuthStrategy.setup({

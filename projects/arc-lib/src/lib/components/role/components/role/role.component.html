@@ -1,0 +1,91 @@
+<div class="inner-content-wrapper">
+  <div class="breadcrumb-wrapper">
+    <span class="breadcrumb-text ellipsis"> Management </span>
+    <nb-icon
+      class="stroke"
+      icon="arrow-ios-forward-outline"
+      pack="eva"
+      nbSuffix
+    >
+    </nb-icon>
+    <span class="breadcrumb-text ellipsis"> Role Management </span>
+  </div>
+  <div class="title-n-filter">
+    <div class="title-container">
+      <h1 class="page-title color-primary">Role Management</h1>
+    </div>
+    <div class="search">
+      <nb-form-field>
+        <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+        <input type="text" nbInput placeholder="Search" />
+      </nb-form-field>
+      <div>
+        <button status="primary" nbButton routerLink="/main/role/add">
+          Add Role
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="list-container">
+    <table mat-table [dataSource]="roles">
+      <!-- <ng-container cdkColumnDef="name">
+        <th cdk-header-cell *cdkHeaderCellDef>Name</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="createdOn">
+        <th cdk-header-cell *cdkHeaderCellDef>Created On</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.createdOn }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="description">
+        <th cdk-header-cell *cdkHeaderCellDef>Description</th>
+        <td cdk-cell *cdkCellDef="let element">{{ element.description }}</td>
+      </ng-container>
+
+      <ng-container cdkColumnDef="actions">
+        <th cdk-header-cell *cdkHeaderCellDef>Actions</th>
+        <button mat-icon-button color="primary">
+          <mat-icon aria-label="Example icon-button with a heart icon"
+            >device_hub</mat-icon
+          >
+        </button>
+      </ng-container>
+
+      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr> -->
+      <ng-container
+        matColumnDef="{{ column }}"
+        *ngFor="let column of displayedColumns"
+      >
+        <ng-container *ngIf="column !== 'action'; else action">
+          <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+          <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
+        </ng-container>
+        <ng-template #action>
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element" class="actions">
+            <nb-icon
+              icon="edit"
+              pack="eva"
+              nbSuffix
+              class="cursor-pointer action-icon"
+              (click)="editRole(element.id)"
+            >
+            </nb-icon>
+            <nb-icon
+              icon="trash-outline"
+              pack="eva"
+              nbSuffix
+              class="cursor-pointer custom-icon"
+              (click)="deleteRole(element.id)"
+            >
+            </nb-icon>
+          </td>
+        </ng-template>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

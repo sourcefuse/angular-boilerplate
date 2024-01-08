@@ -9,7 +9,42 @@
   @include nb-theme-global();
   @include nb-auth-global();
 }
+// Fonts From Local
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 100;
+  src: url('../../arc-lib/src/lib/assets/fonts/gotham/Gotham-Medium.ttf')
+      format('truetype'),
+    url('../../arc-lib/src/lib/assets/fonts/gotham/Gotham-Medium.woff')
+      format('woff'),
+    url('../../arc-lib/src/lib/assets/fonts/gotham/Gotham-Medium.woff2')
+      format('woff2');
+  font-display: swap;
+}
 
+//gogal style set
+body,
+html,
+p,
+div,
+span,
+form,
+input,
+button,
+a,
+ul,
+li,
+table,
+ul,
+li,
+table,
+tr,
+th,
+td,
+.mat-expansion-panel-header {
+  font-family: 'Gotham', sans-serif !important;
+}
 /* You can add global styles to this file, and also import other style files */
 .kebab-menu ul.menu-items {
   text-align: left !important;
@@ -101,14 +136,13 @@ router-outlet.main-router + * {
   color: #525252;
   a {
     text-decoration: none;
-    color: #19a5ff;
-    font-weight: 700;
+    font-weight: 500;
   }
 }
 
 h1,
 .h1 {
-  font-size: 2.25rem !important;
+  font-size: 2.25rem;
 }
 
 h3,
@@ -206,6 +240,7 @@ nb-select[readonly] > button {
 nb-sidebar,
 nb-sidebar > div.main-container {
   transition: width 0.3s;
+  background: #fff;
 }
 
 input[disabled],
@@ -286,5 +321,93 @@ nb-toast.status-success .icon-container {
   }
   .layout {
     background: #fff;
+  }
+}
+.inner-content-wrapper {
+  padding: 0;
+  .breadcrumb-wrapper {
+    margin: 0;
+  }
+  .list-container {
+    ::ng-deep .ag-grid-main {
+      height: calc(100vh - 194px);
+      .status-column {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+  .title-n-filter {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    .title-container {
+      width: calc(100% - 350px);
+      @media (max-width: 1200px) {
+        width: 100%;
+      }
+      .page-title {
+        margin: 0;
+        font-size: 1.5rem;
+        font-family: Gotham;
+        line-height: normal;
+        @media (max-width: 1400px) {
+          font-size: 1.5rem;
+          margin-bottom: 10px;
+        }
+      }
+    }
+    .search {
+      width: 345px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: flex-end;
+      @media (max-width: 1200px) {
+        width: 100%;
+      }
+    }
+  }
+}
+.list-container {
+  width: 100%;
+  overflow: auto;
+  .actions {
+    min-width: 100px;
+    .cursor-pointer {
+      margin: 0 5px;
+    }
+  }
+}
+.layout-container {
+  .main-container {
+    .scrollable {
+      padding: 10px 0 !important;
+      .menu-items {
+        .menu-item {
+          a {
+            padding: 15px;
+            font-weight: 500;
+          }
+          > .menu-items {
+            padding: 10px 0;
+            .menu-item {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .left.expanded {
+    @media (max-width: 1200px) {
+      position: fixed;
+    }
+    .scrollable {
+      background: #fff;
+    }
   }
 }
