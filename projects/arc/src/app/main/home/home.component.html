@@ -1,24 +1,122 @@
-<nb-card>
-  <nb-card-body class="pb-0">
-    <div class="row">
-      <div class="col-md-8 align-center">
-        <div>
-          <h1>
-            {{ greeting }},
-            <span class="text-primary">{{ loggedInUserDM.firstName }}!</span>
-          </h1>
-          <p class="text-basic2">
-            Hello welcome to the home page of our boiler plate.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <img
-          class="illustration"
-         [src]="imageUrl"
-          [alt]="altText"
-        />
+<div class="container">
+  <div class="row border-bottom">
+    <div class="col-md-6">
+      <div class="banner-left-section">
+        <h1>
+          {{ greeting }},
+          <span class="text-primary">{{ loggedInUserDM.firstName }}!</span>
+        </h1>
+
+        <h1>ARC by SourceFuse,</h1>
+        <h1>Rapid Application Development</h1>
+
+        <span>
+          <p class="mt-2">Reduce Development Time to Market</p>
+          <p>with Pre-Built Catalog of Services for Large Enterprises</p>
+        </span>
       </div>
     </div>
-  </nb-card-body>
-</nb-card>
+    <div class="col-md-4">
+      <img class="illustration" [src]="imageUrl" [alt]="altText" />
+    </div>
+  </div>
+
+  <!-- components Section -->
+  <div class="row border-bottom py-2">
+    <div class="col-md-5 bg-color">
+      <div class="row">
+        <div class="col-md-6">
+          <img
+            src="../../../assets/images/home/components.png"
+            alt="section1"
+          />
+        </div>
+        <div class="col-md-4 py-3 explore">
+          <h2>Components</h2>
+          <p>
+            The components that are fundamental to RAD are interfaces, objects
+            that implement those interfaces.
+          </p>
+          <a  [routerLink]="['/main/components']">Explore Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5 bg-color ml-2">
+      <div class="row">
+        <div class="col-md-5">
+          <img
+            src="../../../assets/images/home/widget-img.png"
+            alt="section2"
+          />
+        </div>
+        <div class="col-md-5 py-3 explore">
+          <h2>Widgets</h2>
+          <p>
+            Widgets are simple, easy-to-use software applications intended for
+            one or more platforms. Widgets can easily be embedded into the body
+            of a wesite or app.
+          </p>
+          <a>Explore Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Foundation Section -->
+  <div class="row">
+    <div class="col-md-6">
+    <h2 class="foundation-sec">Foundation</h2>
+    <p> The components that are fundamental to RAD are interfaces, objects that implement</p>
+    </div>
+  </div>
+  <div class="row py-2">
+    <div class="col-md-3 bg-color">
+      <div class="row py-1">
+        <div class="col-md-6 explore">
+          <div class="color-scheme">
+            <h2 class="fw-bold">Color Scheme</h2>
+            <p>The components that are fundamental to RAD are interfaces,.</p>
+            <a>Explore Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 m-15 frame">
+          <img src="../../../assets/images/home/Frame.svg" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 bg-color ml-2">
+      <div class="row py-1">
+        <div class="col-md-6 explore">
+          <div class="color-scheme">
+            <h2 class="mt-3 fw-bold">Iconography</h2>
+            <p>The components that are fundamental to RAD are interfaces,</p>
+            <a>Explore Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 py-4">
+          <img
+            src="../../../assets/images/home/image 3.png"
+            class="img-fluid"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3 bg-color ml-2">
+      <div class="row py-1">
+        <div class="col-md-6 explore">
+          <div class="color-scheme">
+            <h2 class="mt-3 fw-bold">Typography</h2>
+            <p>The components that are fundamental to RAD are interfaces,</p>
+            <a>Explore Now</a>
+          </div>
+        </div>
+        <div class="col-md-3 py-5">
+          <img src="../../../assets/images/home/Aa.svg" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

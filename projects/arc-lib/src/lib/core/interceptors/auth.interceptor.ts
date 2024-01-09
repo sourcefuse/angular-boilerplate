@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
       const headers = req.headers.delete(AuthTokenSkipHeader);
       return next.handle(req.clone({ headers }));
     }
-    const authToken = this.sessionStore.getAccessToken() ;
+    const authToken = this.sessionStore.getAccessToken();
 
     if (authToken) {
       return next.handle(
