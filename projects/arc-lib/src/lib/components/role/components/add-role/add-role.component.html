@@ -1,0 +1,134 @@
+<div class="inner-content-wrapper">
+  <div class="breadcrumb-wrapper">
+    <span class="breadcrumb-text ellipsis"> Management </span>
+    <nb-icon
+      class="stroke"
+      icon="arrow-ios-forward-outline"
+      pack="eva"
+      nbSuffix
+    >
+    </nb-icon>
+    <span class="breadcrumb-text ellipsis"> Role Management </span>
+    <nb-icon
+      class="stroke"
+      icon="arrow-ios-forward-outline"
+      pack="eva"
+      nbSuffix
+    >
+    </nb-icon>
+    <span class="breadcrumb-text ellipsis">{{
+      roleId ? 'Update Role' : 'New Role'
+    }}</span>
+  </div>
+  <div class="title-n-filter">
+    <div class="title-container">
+      <h1 class="page-title">
+        {{ roleId ? 'Update Role' : 'New Role' }}
+      </h1>
+    </div>
+  </div>
+  <div class="inner-content">
+    <form #form="ngForm">
+      <div class="register-feilds">
+        <mat-form-field appearance="outline" class="px-5">
+          <mat-label>Role name</mat-label>
+          <input
+            type="text"
+            matInput
+            name="roleName"
+            [required]="true"
+            maxlength="30"
+            #roleName
+            [(ngModel)]="role.name"
+            placeholder="Enter role name"
+          />
+          <mat-error
+            *ngIf="
+              form.form.controls['roleName']?.invalid &&
+              form.form.controls['roleName']?.errors?.required
+            "
+            >Name is required</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="px-5">
+          <mat-label>Role Description</mat-label>
+          <input
+            type="text"
+            matInput
+            name="description"
+            maxlength="100"
+            #description
+            placeholder="Enter role description"
+            [(ngModel)]="role.description"
+          />
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="role-permission-wrapper">
+      <div class="title">Role Permissions</div>
+      <div class="role-permission-panels">
+        <mat-accordion class="permission-accordion" multi>
+          <mat-expansion-panel
+            class="mat-elevation-z0"
+            *ngFor="let action of featureActions"
+          >
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div
+                  class="role-hdr"
+                  fxLayout="row"
+                  fxLayoutAlign="space-between center"
+                >
+                  <div class="role-hdr-content">
+                    <mat-checkbox
+                      color="primary"
+                      [disableRipple]="true"
+                      (click)="$event.stopPropagation()"
+                      (change)="selectFeature(action, $event)"
+                      [checked]="action.enabled"
+                    >
+                      {{ action.name }}
+                    </mat-checkbox>
+                  </div>
+                  <div
+                    class="panel-indicator color-primary"
+                    fxLayout="row"
+                    fxLayoutAlign="start center"
+                  >
+                    See all Permissions
+                  </div>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div
+              class="role-inner-content"
+              fxLayout="row"
+              fxLayoutAlign="space-between center"
+              *ngFor="let item of action.actions"
+            >
+              <div class="role-item" fxFlex="25">
+                <mat-checkbox
+                  color="primary"
+                  [disableRipple]="true"
+                  (click)="$event.stopPropagation()"
+                  (change)="actionChanged(item.key, $event, action)"
+                  [checked]="item.enabled"
+                >
+                  {{ item.action }}
+                </mat-checkbox>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+    <div class="form-action-button">
+      <button status="secondary" nbButton (click)="openDialog()">
+        Discard
+      </button>
+      <button status="primary" nbButton (click)="createRole()">
+        {{ roleId ? 'Update Role' : 'Add Role' }}
+      </button>
+    </div>
+  </div>
+</div>

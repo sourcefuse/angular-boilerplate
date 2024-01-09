@@ -31,9 +31,9 @@ import {
 import {LoggedInUserDM, LoginModel} from './models';
 import {AnyAdapter, ApiService} from '../api';
 import {APP_CONFIG} from '@project-lib/app-config';
-import { CreateExternalUserCommand } from './commands/create-external-user.command';
-import { SignUpAdapter } from './adapters/signup-adapter.service';
-import { CreateTokenCommand } from './commands/create-token.command';
+import {CreateExternalUserCommand} from './commands/create-external-user.command';
+import {SignUpAdapter} from './adapters/signup-adapter.service';
+import {CreateTokenCommand} from './commands/create-token.command';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -170,11 +170,11 @@ export class AuthService {
       data: {
         username: username.toLowerCase(),
         password,
-        client_id: this.appConfig.clientId,
-        client_secret: this.appConfig.publicKey,
+        clientId: this.appConfig.clientId,
+        clientSecret: this.appConfig.publicKey,
       } as any,
       observe: 'response',
-      headers: this.authTokenSkipHeader,
+      headers: new HttpHeaders().set(AuthTokenSkipHeader, ''),
     };
     return command.execute();
   }
@@ -206,9 +206,7 @@ export class AuthService {
       this.signUpAdapter,
       this.appConfig,
     );
-    
-  
-   
+
     command.parameters = {
       data: user,
     };
@@ -216,21 +214,19 @@ export class AuthService {
     return command.execute();
   }
 
-  createToken(email){
+  createToken(email) {
     const command = new CreateTokenCommand(
       this.apiService,
       this.signUpAdapter,
       this.appConfig,
     );
-    
+
     command.parameters = {
       data: email,
     };
 
     return command.execute();
   }
-  
-
 
   public authorize(secret: string): Observable<boolean> {
     if (!secret) {

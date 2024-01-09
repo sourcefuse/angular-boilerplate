@@ -6,8 +6,8 @@ import {takeUntil} from 'rxjs';
 import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {IconPacksManagerService} from '@project-lib/theme/services';
-import { COMPONENTS_ITEMS } from './constants/components.constant';
-import { NEBULAR_COMP_ITEMS } from './constants/nebularComponents.constants';
+import {COMPONENTS_ITEMS} from './constants/components.constant';
+import {NEBULAR_COMP_ITEMS} from './constants/nebularComponents.constants';
 
 @Component({
   selector: 'main',
@@ -26,13 +26,13 @@ export class MainComponent
     private readonly authService: AuthService,
     private readonly menuService: NbMenuService,
     private readonly iconMgr: IconPacksManagerService,
-    private router: Router
+    private router: Router,
   ) {
     super(route, location);
     this.iconMgr.registerSvgs();
   }
 
-  loggedInUserDM: LoggedInUserDM  = new LoggedInUserDM();
+  loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
   userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
   menu: NbMenuItem[] = [
     {
@@ -48,20 +48,33 @@ export class MainComponent
       link: '/main/components',
       home: true,
       pathMatch: 'prefix',
-      children:[
+      children: [
         {
-          title:'Nebular Components',
-          link:'/nebular-comp',
-          children:NEBULAR_COMP_ITEMS as NbMenuItem[]
+          title: 'Nebular Components',
+          link: '/nebular-comp',
+          children: NEBULAR_COMP_ITEMS as NbMenuItem[],
         },
         {
-          title:' Arc Components',
-          link:'/arc-comp',
-          children:COMPONENTS_ITEMS as NbMenuItem[]
-        }
-
-      ]
-      
+          title: ' Arc Components',
+          link: '/arc-comp',
+          children: COMPONENTS_ITEMS as NbMenuItem[],
+        },
+      ],
+    },
+    {
+      title: 'ARC-Back',
+      icon: 'book-outline',
+      home: true,
+      pathMatch: 'prefix',
+      children: [
+        {
+          title: 'Role',
+          icon: 'book-outline',
+          link: '/main/role',
+          home: true,
+          pathMatch: 'prefix',
+        },
+      ],
     },
   ];
 

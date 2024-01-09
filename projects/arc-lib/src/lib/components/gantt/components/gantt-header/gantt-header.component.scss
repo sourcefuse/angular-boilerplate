@@ -1,6 +1,6 @@
 // @use "../../../../theme/styles/variables" as *;
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
-@use "sass:map";
+@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
+@use 'sass:map';
 .header-container {
   line-height: 1;
   width: 100%;
@@ -15,7 +15,7 @@
     nb-form-field {
       flex-grow: 1;
     }
-    nb-icon[icon="menu-arrow-outline"] {
+    nb-icon[icon='menu-arrow-outline'] {
       height: 100%;
       margin: 0 1rem;
       cursor: pointer;

@@ -1,0 +1,40 @@
+$primary-color: #0469e3;
+$secondary-font: Gotham;
+
+.page-title {
+  color: #000;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Gotham;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+.breadcrumb-wrapper {
+  .breadcrumb-text {
+    color: #525252;
+    font-family: $secondary-font;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.stroke {
+  font-size: smaller;
+}

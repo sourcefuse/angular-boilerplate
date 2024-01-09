@@ -19,13 +19,11 @@ import {APP_CONFIG} from '@project-lib/app-config';
 import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GanttModule } from '@project-lib/components/index';
-import { SelectModule } from '@project-lib/components/selector';
-import {  GanttAdapter } from '@project-lib/components/gantt';
-
-
+import {OverlayModule} from '@angular/cdk/overlay';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {GanttModule} from '@project-lib/components/index';
+import {SelectModule} from '@project-lib/components/selector';
+import {GanttAdapter} from '@project-lib/components/gantt';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,14 +35,12 @@ import {  GanttAdapter } from '@project-lib/components/gantt';
     LocalizationModule,
     CoreModule,
     ThemeModule,
-    NbThemeModule.forRoot(),
+    NbThemeModule.forRoot({name: 'boiler'}),
     NbLayoutModule,
     OverlayModule,
     SelectModule,
     GanttModule,
     BrowserAnimationsModule,
-    
-    
   ],
   providers: [
     TranslationService,
@@ -58,7 +54,6 @@ import {  GanttAdapter } from '@project-lib/components/gantt';
       provide: APP_CONFIG,
       useValue: environment,
     },
-   
   ],
   bootstrap: [AppComponent],
 })
