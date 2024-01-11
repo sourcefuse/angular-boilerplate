@@ -34,7 +34,6 @@ import {
 import {TranslateModule} from '@ngx-translate/core';
 import {TOASTER_SERVICE_KEY} from '../core';
 import {ToasterAdapterService, ToasterService} from './toaster';
-import {IconPacksManagerService} from './services';
 
 const themeModules = [
   NbLayoutModule,

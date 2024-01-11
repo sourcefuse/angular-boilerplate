@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { GanttScaleUnits } from '../../enum';
-import { GanttScaleService, Timelines } from '../../types';
+import {Injectable} from '@angular/core';
+import {GanttScaleUnits} from '../../enum';
+import {GanttScaleService, Timelines} from '../../types';
 
 @Injectable()
 export class WeeklyScaleService implements GanttScaleService {
@@ -16,7 +16,7 @@ export class WeeklyScaleService implements GanttScaleService {
         unit: GanttScaleUnits.Day,
         step: 1,
         format: (date: Date) =>
-          date.toLocaleString('default', { weekday: 'short' }).charAt(0),
+          date.toLocaleString('default', {weekday: 'short'}).charAt(0),
         css: (date: Date) => this._attachWeekendClass(date),
       },
     ];
@@ -24,7 +24,7 @@ export class WeeklyScaleService implements GanttScaleService {
 
   private _formatWeeklyScale(date: Date) {
     const noOfDigits = 2;
-    return `${date.toLocaleString('default', { month: 'short' })} ${date
+    return `${date.toLocaleString('default', {month: 'short'})} ${date
       .getDate()
       .toString()
       .padStart(noOfDigits, '0')}, ${date.toLocaleString('default', {

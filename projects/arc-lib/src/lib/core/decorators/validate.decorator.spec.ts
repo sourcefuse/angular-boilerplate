@@ -1,5 +1,6 @@
-import { required } from './required.decorator';
-import { validate } from './validate.decorator';
+import {IAnyObject} from '../i-any-object';
+import {required} from './required.decorator';
+import {validate} from './validate.decorator';
 
 @validate()
 class MockModel {
@@ -22,7 +23,10 @@ class MockModelNotParamerterized {
 describe('@validate', () => {
   let errorLogged = false;
   // sonarignore:start
-  let orginalConsoleErrorFn: (message?: any, ...optionalParams: any[]) => void;
+  let orginalConsoleErrorFn: (
+    message?: IAnyObject,
+    ...optionalParams: IAnyObject[]
+  ) => void;
   // sonarignore:end
 
   beforeAll(() => {
@@ -55,7 +59,7 @@ describe('@validate', () => {
   });
 
   it('should log error when required property is null', () => {
-    let x: string | null = null;
+    const x: string | null = null;
     // sonarignore:start
     new MockModel({
       x: x as unknown as string,
@@ -79,7 +83,9 @@ describe('@validate', () => {
       new MockModelNotParamerterized();
       // sonarignore:end
     }).toThrow(
-      new Error(`Can only use validate decorator with paramterized constructor`)
+      new Error(
+        `Can only use validate decorator with paramterized constructor`,
+      ),
     );
   });
 });

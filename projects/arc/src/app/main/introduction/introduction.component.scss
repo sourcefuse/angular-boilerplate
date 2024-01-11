@@ -4,70 +4,69 @@
 @use '../../../themes.scss' as *;
 
 .comp-wrapper {
-    background: #fff;
-    padding: 20px;
-    
-    .row {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    .col-md-6 {
-        width: 60%;
-      }
-    .col-md-4 {
-        width: 40%;
-      }
-    .col-md-3 {
-        width: 33%;
-      }
+  background: #fff;
+  padding: 20px;
+
+  .row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .col-md-6 {
+    width: 60%;
+  }
+  .col-md-4 {
+    width: 40%;
+  }
+  .col-md-3 {
+    width: 33%;
+  }
 }
 .border-bottom {
-    border-bottom: 1px solid #d9d9d9;
- }
- .mt-2 {
-    margin-top: 20px !important;
-  }
+  border-bottom: 1px solid #d9d9d9;
+}
+.mt-2 {
+  margin-top: 20px !important;
+}
 
-  .left-section{
-    h1,
-    p {
-      margin: 0;
-    }
+.left-section {
+  h1,
+  p {
+    margin: 0;
   }
+}
 
-  .color-wrapper{
-    background: #f6f6f6;
-    border-radius: 5px;
-    border: 1px solid #ededed;
-    
-  }
+.color-wrapper {
+  background: #f6f6f6;
+  border-radius: 5px;
+  border: 1px solid #ededed;
+}
 
-  :host {
-    display: block;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-  
-  .card-row {
-    display: flex;
-    margin: 0 -0.5rem;
-    flex-wrap: wrap;
-    width:100%;
-  }
-  
-  .card-col {
-    flex: 1 0 calc(25% - 1rem);
-    margin: 0 0.5rem;
-  }
+:host {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
-  .card-title{
-    text-align: center;
-  }
+.card-row {
+  display: flex;
+  margin: 0 -0.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
 
-  .card-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 125px;
-  }
+.card-col {
+  flex: 1 0 calc(25% - 1rem);
+  margin: 0 0.5rem;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 125px;
+}

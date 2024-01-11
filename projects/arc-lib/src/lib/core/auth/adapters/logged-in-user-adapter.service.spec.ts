@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { CoreAuthModule } from '../auth.module';
-import { LoggedInUserAdapterService } from './logged-in-user-adapter.service';
+import {CoreAuthModule} from '../auth.module';
+import {LoggedInUserAdapterService} from './logged-in-user-adapter.service';
 
 describe('LoggedInUserAdapterService', () => {
   let service: LoggedInUserAdapterService;

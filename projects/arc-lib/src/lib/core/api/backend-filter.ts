@@ -1,4 +1,5 @@
 export interface AnyObject {
+  // eslint-disable-next-line
   [property: string]: any;
 }
 export declare type ShortHandEqualType = string | number | boolean | Date;

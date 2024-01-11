@@ -1,9 +1,9 @@
-import { InjectionToken } from '@angular/core';
+import {InjectionToken} from '@angular/core';
 
-import { IToaster } from './i-toaster';
+import {IToaster} from './i-toaster';
 
 export const TOASTER_SERVICE_KEY = new InjectionToken<IToaster>(
-  'Identifier for ToasterService class'
+  'Identifier for ToasterService class',
 );
 
 export class ToasterConfig {

@@ -1,4 +1,4 @@
-import { AnyObject } from '../api';
+import {AnyObject} from '../api';
 import 'reflect-metadata';
 
 export const requiredMetadataKey = Symbol('required');
@@ -15,7 +15,7 @@ export function required<T extends Object = AnyObject>() {
     Reflect.defineMetadata(
       requiredMetadataKey,
       requiredProps,
-      target.constructor
+      target.constructor,
     );
   };
 }

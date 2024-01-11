@@ -5,18 +5,18 @@ import {
   HttpInterceptor,
   HttpRequest,
 } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { catchError, Observable, Subject, switchMap, throwError } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {catchError, Observable, Subject, switchMap, throwError} from 'rxjs';
 
-import { STATUS_CODE } from '../api';
-import { AuthService } from '../auth';
-import { UserSessionStoreService } from '../store';
+import {STATUS_CODE} from '../api';
+import {AuthService} from '../auth';
+import {UserSessionStoreService} from '../store';
 
 @Injectable()
 export class SessionRecoveryInterceptor implements HttpInterceptor {
   constructor(
     private readonly store: UserSessionStoreService,
-    private readonly sessionService: AuthService
+    private readonly sessionService: AuthService,
   ) {}
 
   private _refreshSubject: Subject<any> = new Subject<any>();
@@ -50,7 +50,7 @@ export class SessionRecoveryInterceptor implements HttpInterceptor {
 
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     if (
       req.url.endsWith('/token-refresh') ||
@@ -63,14 +63,14 @@ export class SessionRecoveryInterceptor implements HttpInterceptor {
           if (error instanceof HttpErrorResponse) {
             if (this._checkTokenExpiryErr(error)) {
               return this._ifTokenExpired().pipe(
-                switchMap(() => next.handle(this.updateHeader(req)))
+                switchMap(() => next.handle(this.updateHeader(req))),
               );
             } else {
               return throwError(() => error);
             }
           }
           return caught;
-        })
+        }),
       );
     }
   }
@@ -79,7 +79,7 @@ export class SessionRecoveryInterceptor implements HttpInterceptor {
     const authToken = this.store.getAccessToken();
     if (req.url.endsWith('/logout')) {
       req = req.clone({
-        body: { refreshToken: this.store.getRefreshToken() },
+        body: {refreshToken: this.store.getRefreshToken()},
         headers: req.headers.set('Authorization', `Bearer ${authToken}`),
       });
     } else {

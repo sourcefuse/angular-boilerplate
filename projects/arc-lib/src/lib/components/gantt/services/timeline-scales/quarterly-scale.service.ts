@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { MONTHS_IN_QUARTER } from '../../const';
-import { GanttScaleUnits } from '../../enum';
-import { GanttScaleService, Timelines } from '../../types';
+import {Injectable} from '@angular/core';
+import {MONTHS_IN_QUARTER} from '../../const';
+import {GanttScaleUnits} from '../../enum';
+import {GanttScaleService, Timelines} from '../../types';
 
 @Injectable()
 export class QuarterlyScaleService implements GanttScaleService {
@@ -17,7 +17,7 @@ export class QuarterlyScaleService implements GanttScaleService {
         unit: GanttScaleUnits.Month,
         step: 1,
         format: (date: Date) =>
-          date.toLocaleString('default', { month: 'short' }),
+          date.toLocaleString('default', {month: 'short'}),
       },
     ];
   }

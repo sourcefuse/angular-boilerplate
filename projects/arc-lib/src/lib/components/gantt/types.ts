@@ -1,4 +1,4 @@
-import {InjectionToken, TemplateRef, Type, ViewContainerRef} from '@angular/core';
+import {TemplateRef, Type, ViewContainerRef} from '@angular/core';
 import {AnyObject} from '@project-lib/core/api';
 import {DIGITS, ONE_MIN} from '@project-lib/core/constants';
 import {NbMenuItem} from '@nebular/theme';
@@ -78,7 +78,7 @@ export type GanttScaleService = {
 };
 
 // will be required for custom scale
-export type GanttScaleOptions = {};
+export type GanttScaleOptions = unknown;
 
 export type ContextItemClickEvent<T> = {
   event: NbMenuItem;
@@ -158,7 +158,7 @@ export abstract class GanttAdapter<T> {
    * @returns A new Date object with the timezone offset added to the time.
    */
   protected _addTimezoneOffset(date: string | Date) {
-    let dateObject = new Date(date);
+    const dateObject = new Date(date);
     return new Date(
       dateObject.getTime() + dateObject.getTimezoneOffset() * ONE_MIN,
     );
@@ -173,11 +173,11 @@ export abstract class GanttAdapter<T> {
 
 export class CustomGanttAdapter<T> extends GanttAdapter<T> {
   // Implement the abstract method adaptFrom
-  adaptFrom(data: T[]): GanttTaskValue<T>[] {
+  adaptFrom(): GanttTaskValue<T>[] {
     // Your implementation logic here to adapt data to GanttTaskValue
     // ...
 
-    return ;
+    return;
   }
 
   // You can optionally override or use the inherited protected methods
@@ -196,7 +196,6 @@ export class CustomGanttAdapter<T> extends GanttAdapter<T> {
     return super._randomId();
   }
 }
-
 
 export type CustomMouseEvent = {
   target: HTMLElement;

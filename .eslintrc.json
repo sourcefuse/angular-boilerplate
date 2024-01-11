@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+    },
+    "ignorePatterns": [
+    "*-adapter.service.ts",
+    "api.service.ts",
+    "i-api-service.ts",
+    "*-adapter.ts",
+    "*-command.ts",
+    "*.command.ts",
+    "*.decorator.ts",
+    "*.interceptor.ts",
+    "*.directive.ts",
+    "i-any-object.ts"]
+}
+  

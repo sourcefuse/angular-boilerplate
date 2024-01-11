@@ -32,8 +32,6 @@ import {
 } from '../const';
 import {GanttEventTypes} from '../enum';
 import {
-  
-  GanttAdapter,
   GanttEvent,
   GanttLib as gantt,
   GanttRenderOptions,
@@ -41,13 +39,12 @@ import {
   GanttScaleService,
   GanttTaskValue,
   Timelines,
-  GanttLib,
 } from '../types';
 
 @Injectable({
-  providedIn:'root'
+  providedIn: 'root',
 })
-export class GanttService<T extends AnyObject, S extends AnyObject> {
+export class GanttService<T extends AnyObject> {
   private _data!: GanttTaskValue<T>[];
   private _overlays: OverlayRef[] = [];
   private _tooltipOverlay!: OverlayRef;
@@ -62,7 +59,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
   }
   constructor(
     @Inject(GANTT)
-    private readonly gantt: GanttLib,
+    private readonly gantt: gantt,
     @Inject(GANTT_SCALES)
     private readonly scales: GanttScaleService[],
     // will have to use this for now
@@ -84,8 +81,8 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     this._setColumnHeaders(options);
     this.gantt.templates.task_text = (start, end, task) =>
       this._renderComponent(options.barComponent, {item: task});
-    this.gantt.templates.grid_open = task => '';
-    this.gantt.templates.grid_folder = task => '';
+    this.gantt.templates.grid_open = () => '';
+    this.gantt.templates.grid_folder = () => '';
 
     this._moveToToday = options.moveToToday;
     this._highlightRange = options.highlightRange;
@@ -164,6 +161,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
     const debounceTimeinMS = 100;
     hoverObservable
       .pipe(debounceTime(debounceTimeinMS))
+      // eslint-disable-next-line
       .subscribe(([id, event]) => {
         this._hoverEventHandler(event, options);
       });
@@ -172,7 +170,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
       this.gantt.attachEvent(
         'onBeforeGanttRender',
         () => {
-          let range = this.gantt.getSubtaskDates();
+          const range = this.gantt.getSubtaskDates();
           if (range.start_date && range.end_date) {
             const today = new Date();
             today.setDate(today.getDate() + BUFFER_FOR_TODAY);
@@ -199,7 +197,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
    * It also calls the adapter to convert the data to the format that the Gantt chart expects.
    * @param {T[]} data - The data that you want to feed to the Gantt chart.
    */
-  feed(data: T[]) {
+  feed() {
     //this._data = this.adapter.adaptFrom(data);
     this._refresh();
   }
@@ -236,7 +234,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
    */
   clear() {
     this.gantt.clearAll();
-    for (let handlers of this._eventHandlers) {
+    for (const handlers of this._eventHandlers) {
       this.gantt.detachEvent(handlers);
     }
   }
@@ -245,7 +243,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
    * It closes the current overlay
    */
   closeContextMenu() {
-    for (let overlay of this._overlays) {
+    for (const overlay of this._overlays) {
       overlay.dispose();
     }
   }
@@ -326,12 +324,12 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
         return;
       }
       const attribute = target.getAttribute('data-gantt-click');
+      const task = this.gantt.getTask(id);
       switch (attribute) {
         case GanttEventTypes.Kebab:
           this._handleKebabClick(id, event, options);
           break;
         case GanttEventTypes.Expand:
-          const task = this.gantt.getTask(id);
           if (!task.$open) {
             this.gantt.open(id);
           } else {
@@ -409,7 +407,7 @@ export class GanttService<T extends AnyObject, S extends AnyObject> {
   ) {
     if (event.target && isHTMLELement(event.target) && options.showTooltip) {
       const target = event.target.closest('[gantt-hover]');
-      const attribute = target?.getAttribute('gantt-hover')!;
+      const attribute = target?.getAttribute('gantt-hover');
       if (target) {
         switch (attribute) {
           case GanttEventTypes.Bar:

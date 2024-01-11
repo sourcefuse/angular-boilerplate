@@ -13,7 +13,6 @@ import {takeUntil} from 'rxjs';
 export class HomeComponent
   extends RouteComponentBaseDirective
   implements OnInit
-  
 {
   imageUrl: string;
   altText: string;
@@ -24,11 +23,11 @@ export class HomeComponent
     private readonly authService: AuthService,
   ) {
     super(route, location);
-    this.imageUrl='../../../assets/images/home/home-banner.png';
-    
- this.altText='homepage-illustration';
+    this.imageUrl = '../../../assets/images/home/home-banner.png';
+
+    this.altText = 'homepage-illustration';
   }
- 
+
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
   greeting = '';
 

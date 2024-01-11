@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { map, Observable, of } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
+import {map, Observable, of} from 'rxjs';
 
-import { LanguageTranslation } from './language.enum';
-import { LocalizationModule } from './localization.module';
+import {LanguageTranslation} from './language.enum';
+import {LocalizationModule} from './localization.module';
 
 const enum LanguagePreferences {
   UserPreference,

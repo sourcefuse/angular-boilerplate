@@ -1,5 +1,5 @@
-import { Directive, OnDestroy } from '@angular/core';
-import { Subject } from 'rxjs';
+import {Directive, OnDestroy} from '@angular/core';
+import {Subject} from 'rxjs';
 
 @Directive({
   selector: 'app-dir',

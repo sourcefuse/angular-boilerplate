@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ApiModule } from '../api.module';
-import { NameId } from '../models';
-import { NameIdAdapter } from './name-id-adapter.service';
+import {ApiModule} from '../api.module';
+import {NameId} from '../models';
+import {NameIdAdapter} from './name-id-adapter.service';
 
 describe('NameIdAdapterService', () => {
   const testData = {
@@ -14,7 +14,7 @@ describe('NameIdAdapterService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [ApiModule],
-    })
+    }),
   );
 
   it('should be created', () => {

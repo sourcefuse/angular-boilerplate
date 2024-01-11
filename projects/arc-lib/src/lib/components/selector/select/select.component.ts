@@ -234,15 +234,16 @@ export class SelectComponent<
   valueChange = new EventEmitter<ValueType<MultipleMode, Value>>();
 
   /* Control value accessor related properties */
-  onChange = (value: ValueType<MultipleMode, Value>) => {};
+  onChange: CallableFunction;
+  onTouched: CallableFunction;
 
-  onTouched = () => {};
-
-  registerOnChange(onChange: (value: ValueType<MultipleMode, Value>) => {}) {
+  registerOnChange(
+    onChange: (value: ValueType<MultipleMode, Value>) => object,
+  ) {
     this.onChange = onChange;
   }
 
-  registerOnTouched(onTouched: () => {}) {
+  registerOnTouched(onTouched: () => object) {
     this.onTouched = onTouched;
   }
 

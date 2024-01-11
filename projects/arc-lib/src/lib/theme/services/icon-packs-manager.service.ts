@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { NbIconLibraries } from '@nebular/theme';
+import {Injectable} from '@angular/core';
+import {NbIconLibraries} from '@nebular/theme';
 
-import { ThemeModule } from '../theme.module';
-import { KEBAB_SVG } from './icons';
+import {ThemeModule} from '../theme.module';
+import {KEBAB_SVG} from './icons';
 
 @Injectable({
   providedIn: ThemeModule,
@@ -26,7 +26,7 @@ export class IconPacksManagerService {
    * @param params - The `params` parameter is an object that can contain the following optional
    * iconClassPrefix properties:
    */
-  registerPack(name: string, params: { iconClassPrefix?: string }) {
+  registerPack(name: string, params: {iconClassPrefix?: string}) {
     this.iconLibraries.registerFontPack(name, params);
   }
   /**

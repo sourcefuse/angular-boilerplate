@@ -1,5 +1,4 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {By} from '@angular/platform-browser';
 import {AnyObject} from '@project-lib/core/api';
 import {TranslationService} from '@project-lib/core/localization';
 import {
@@ -27,7 +26,6 @@ describe('GanttBarsComponent', () => {
         }),
       ],
     }).compileComponents();
-    exports: [];
   });
 
   beforeEach(() => {

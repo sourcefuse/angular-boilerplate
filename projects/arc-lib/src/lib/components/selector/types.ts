@@ -1,4 +1,4 @@
-import { SelectState } from './constants';
+import {SelectState} from './constants';
 
 export type ValueType<Mode, ResulType> =
   | (Mode extends true ? ResulType[] : ResulType)

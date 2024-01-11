@@ -1,7 +1,7 @@
-@use "_mixins" as *;
-@use "_variables" as *;
-@use "sass:map";
-@import "dhtmlx-gantt/codebase/dhtmlxgantt.css";
+@use '_mixins' as *;
+@use '_variables' as *;
+@use 'sass:map';
+@import 'dhtmlx-gantt/codebase/dhtmlxgantt.css';
 
 // style for gantt container to fill container
 .gantt-component {

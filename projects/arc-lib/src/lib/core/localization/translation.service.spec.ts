@@ -1,13 +1,13 @@
-import { TestBed } from '@angular/core/testing';
-import { take } from 'rxjs';
+import {TestBed} from '@angular/core/testing';
+import {take} from 'rxjs';
 
-import { LanguageTranslation } from './language.enum';
-import { LocalizationModule } from './localization.module';
-import { TranslationService } from './translation.service';
+import {LanguageTranslation} from './language.enum';
+import {LocalizationModule} from './localization.module';
+import {TranslationService} from './translation.service';
 
 describe('TranslationService', () => {
   let service: TranslationService;
-  let languages = [
+  const languages = [
     LanguageTranslation.ENGLISH,
     LanguageTranslation.SPANISH,
     LanguageTranslation.JAPANESE,
@@ -39,12 +39,12 @@ describe('TranslationService', () => {
     expect(service.browserPreference as string).toEqual(navigator.language);
   });
 
-  it('should set current language as per user preference if provided', (done) => {
+  it('should set current language as per user preference if provided', done => {
     service.userPreference = LanguageTranslation.SPANISH;
     service
       .reset()
       .pipe(take(1))
-      .subscribe((langSet) => {
+      .subscribe(langSet => {
         const currentLang = service.translate.currentLang;
         expect(currentLang).toEqual(LanguageTranslation.SPANISH);
         expect(langSet).toEqual(LanguageTranslation.SPANISH);
@@ -52,13 +52,13 @@ describe('TranslationService', () => {
       });
   });
 
-  it('should set current language as per user preference even if tenant preference is different', (done) => {
+  it('should set current language as per user preference even if tenant preference is different', done => {
     service.userPreference = LanguageTranslation.SPANISH;
     service.tenantPreference = LanguageTranslation.JAPANESE;
     service
       .reset()
       .pipe(take(1))
-      .subscribe((langSet) => {
+      .subscribe(langSet => {
         const currentLang = service.translate.currentLang;
         expect(currentLang).toEqual(LanguageTranslation.SPANISH);
         expect(langSet).toEqual(LanguageTranslation.SPANISH);
@@ -66,13 +66,13 @@ describe('TranslationService', () => {
       });
   });
 
-  it('should set current language as per tenant preference if user preference not provided', (done) => {
+  it('should set current language as per tenant preference if user preference not provided', done => {
     service.userPreference = undefined;
     service.tenantPreference = LanguageTranslation.SPANISH;
     service
       .reset()
       .pipe(take(1))
-      .subscribe((langSet) => {
+      .subscribe(langSet => {
         const currentLang = service.translate.currentLang;
         expect(currentLang).toEqual(LanguageTranslation.SPANISH);
         expect(langSet).toEqual(LanguageTranslation.SPANISH);
@@ -80,14 +80,14 @@ describe('TranslationService', () => {
       });
   });
 
-  it('should set current language as per tenant preference if user preference not provided and env preference is provided', (done) => {
+  it('should set current language as per tenant preference if user preference not provided and env preference is provided', done => {
     service.userPreference = undefined;
     service.tenantPreference = LanguageTranslation.SPANISH;
     service.envPreference = LanguageTranslation.JAPANESE;
     service
       .reset()
       .pipe(take(1))
-      .subscribe((langSet) => {
+      .subscribe(langSet => {
         const currentLang = service.translate.currentLang;
         expect(currentLang).toEqual(LanguageTranslation.SPANISH);
         expect(langSet).toEqual(LanguageTranslation.SPANISH);
@@ -95,14 +95,14 @@ describe('TranslationService', () => {
       });
   });
 
-  it('should set current language as per env preference if user & tenant preference not provided', (done) => {
+  it('should set current language as per env preference if user & tenant preference not provided', done => {
     service.userPreference = undefined;
     service.tenantPreference = undefined;
     service.envPreference = LanguageTranslation.JAPANESE;
     service
       .reset()
       .pipe(take(1))
-      .subscribe((langSet) => {
+      .subscribe(langSet => {
         const currentLang = service.translate.currentLang;
         expect(currentLang).toEqual(LanguageTranslation.JAPANESE);
         expect(langSet).toEqual(LanguageTranslation.JAPANESE);
@@ -110,14 +110,14 @@ describe('TranslationService', () => {
       });
   });
 
-  it('should fallback to browser preference if no other preference is provided', (done) => {
+  it('should fallback to browser preference if no other preference is provided', done => {
     service.userPreference = undefined;
     service.tenantPreference = undefined;
     service.envPreference = undefined;
     service
       .reset()
       .pipe(take(1))
-      .subscribe((langSet) => {
+      .subscribe(langSet => {
         const currentLang = service.translate.currentLang;
         expect(currentLang).toEqual(LanguageTranslation.ENGLISH);
         expect(langSet).toEqual(LanguageTranslation.ENGLISH);

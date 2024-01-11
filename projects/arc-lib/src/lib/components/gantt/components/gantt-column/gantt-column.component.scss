@@ -1,6 +1,6 @@
 // @use "../../../../theme/styles/variables" as *;
-@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss" as *;
-@use "sass:map";
+@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
+@use 'sass:map';
 .column-container {
   .kebab-container {
     position: absolute;
@@ -34,8 +34,8 @@
     min-width: 2.375rem;
     height: 2.375rem;
     border-radius: 50%;
-    background: map.get($color, "menu-item-active");
-    color: map.get($font, "primary");
+    background: map.get($color, 'menu-item-active');
+    color: map.get($font, 'primary');
     display: flex;
     margin: auto 0rem;
     line-height: 2.175rem;

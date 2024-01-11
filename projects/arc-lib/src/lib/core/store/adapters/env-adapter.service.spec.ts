@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { StoreModule } from '../store.module';
-import { EnvAdapterService } from './env-adapter.service';
+import {StoreModule} from '../store.module';
+import {EnvAdapterService} from './env-adapter.service';
 
 describe('EnvAdapterService', () => {
   let service: EnvAdapterService;

@@ -1,6 +1,6 @@
-@use "_mixins" as *;
-@use "_variables" as *;
-@use "sass:map";
+@use '_mixins' as *;
+@use '_variables' as *;
+@use 'sass:map';
 
 .p-0 {
   @include padding();
@@ -127,7 +127,7 @@
 }
 
 .border-basic-bottom {
-  border-bottom: 0.063rem solid map.get($color, "border-basic") !important;
+  border-bottom: 0.063rem solid map.get($color, 'border-basic') !important;
 }
 
 .align-center {
@@ -137,11 +137,11 @@
 }
 
 .text-basic2 {
-  color: map.get($font, "dark2");
+  color: map.get($font, 'dark2');
 }
 
 .text-disable {
-  color: map.get($font, "disable");
+  color: map.get($font, 'disable');
 }
 
 .circle {
@@ -149,7 +149,7 @@
 }
 
 .background-basic {
-  background-color: map.get($color, "background-basic");
+  background-color: map.get($color, 'background-basic');
 }
 
 .cursor-pointer {
@@ -161,18 +161,18 @@
 @include font-weight-classes($font-weight);
 
 .color-icon {
-  color: map.get($color, "icon");
+  color: map.get($color, 'icon');
 }
 
 .color-dark {
-  color: map.get($font, "dark");
+  color: map.get($font, 'dark');
 }
 .color-primary {
-  color: map.get($font, "primary");
+  color: map.get($font, 'primary');
 }
 
 .color-primary-hover {
-  color: map.get($color, "primary-hover");
+  color: map.get($color, 'primary-hover');
 }
 
 .margin-top-11 {
@@ -184,7 +184,7 @@
 }
 
 .color-placeholder {
-  color: map.get($font, "placeholder");
+  color: map.get($font, 'placeholder');
 }
 
 .border-radius-10 {
@@ -219,12 +219,12 @@
 }
 
 .icon-btn-white:not(.status-primary) {
-  background: map.get($color, "light");
-  border-color: map.get($color, "border-disable");
+  background: map.get($color, 'light');
+  border-color: map.get($color, 'border-disable');
   border-radius: var(--border-radius);
 
   nb-icon {
-    color: map.get($font, "primary");
+    color: map.get($font, 'primary');
   }
 }
 
@@ -268,8 +268,8 @@
 }
 
 .bold-blue-link {
-  color: map.get($color, "primary");
-  font-weight: map.get($font-weight, "bold");
+  color: map.get($color, 'primary');
+  font-weight: map.get($font-weight, 'bold');
   text-decoration: none;
 }
 .dialog-label {
@@ -277,25 +277,25 @@
 }
 
 .edit-warning-banner {
-  background-color: map.get($color, "warning-banner");
+  background-color: map.get($color, 'warning-banner');
 }
 
 .edit-warning-color {
-  color: map.get($color, "gray20");
+  color: map.get($color, 'gray20');
 }
 
 .warning-color {
-  color: map.get($color, "warning") !important;
+  color: map.get($color, 'warning') !important;
 }
 .button-border {
-  border: 0.063rem solid map.get($color, "warning") !important;
+  border: 0.063rem solid map.get($color, 'warning') !important;
 }
 .button-background {
-  background-color: map.get($color, "warning") !important;
+  background-color: map.get($color, 'warning') !important;
 }
 
 .border-top {
-  border-top: 0.063rem solid map.get($color, "warning-footer") !important;
+  border-top: 0.063rem solid map.get($color, 'warning-footer') !important;
 }
 
 .w-500 {

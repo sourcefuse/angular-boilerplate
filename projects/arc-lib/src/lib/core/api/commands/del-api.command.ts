@@ -1,17 +1,17 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpHeaders, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { IAdapter } from '../adapters/i-adapter';
-import { IApiService } from '../i-api-service';
-import { HttpObserve } from '../types';
-import { ICommand } from './i-command';
+import {IAdapter} from '../adapters/i-adapter';
+import {IApiService} from '../i-api-service';
+import {HttpObserve} from '../types';
+import {ICommand} from './i-command';
 
 export abstract class DelAPICommand<T> implements ICommand {
   constructor(
     protected readonly apiService: IApiService,
     protected readonly adapter: IAdapter<T>,
-    protected readonly uri: string
+    protected readonly uri: string,
   ) {}
 
   parameters?: {
@@ -40,6 +40,6 @@ export abstract class DelAPICommand<T> implements ICommand {
     }
     return this.apiService
       .delete(this.uri, options)
-      .pipe(map((resp) => this.adapter.adaptToModel(resp)));
+      .pipe(map(resp => this.adapter.adaptToModel(resp)));
   }
 }
