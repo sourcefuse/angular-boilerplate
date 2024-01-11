@@ -3,6 +3,7 @@
 @use '@nebular/theme/styles/globals' as *;
 @use '@nebular/auth/styles/globals' as *;
 @use 'projects/arc-lib/src/lib/theme/styles/variables' as *;
+// @import '~ngx-monaco-editor-v2/assets/editor/editor.main.css';
 
 @include nb-install() {
   @include nb-theme-global();

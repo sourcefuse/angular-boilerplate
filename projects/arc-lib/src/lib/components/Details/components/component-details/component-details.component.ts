@@ -1,4 +1,37 @@
-<nb-card class="h-100 card-row">
+import {
+  Component,
+  ComponentFactoryResolver,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {HomeComponent} from '@main-project/boiler/main/home/home.component';
+import {NbMenuItem} from '@nebular/theme';
+import {COMPONENTS_DETAILS} from '../../constants/details.constant';
+
+@Component({
+  selector: 'lib-component-details',
+  templateUrl: './component-details.component.html',
+  styleUrls: ['./component-details.component.scss'],
+})
+export class ComponentDetailsComponent {
+  [x: string]: any;
+  config = {};
+  // @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef;
+  // dynamicContentContainer!: ViewContainerRef;
+  private _counter = 1;
+
+  constructor(
+    private route: ActivatedRoute,
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) {}
+
+  editorOptions = {theme: 'vs-dark', language: 'angular'};
+  // code: string= '<button>Hello</button>';
+  code: string = `<nb-card class="h-100 card-row">
   <nb-card-body class="m-0">
     <div>
       <img
@@ -151,3 +184,57 @@
     </div>
   </nb-card-body>
 </nb-card>
+
+`;
+  @Output() codeChange = new EventEmitter<string>();
+
+  // @Input() htmlcode:string;
+  // @Input() heading: string;
+  // @Input()Desc :string;
+  ngOnInit() {
+    // var abc = this.router.url.split('/');
+    // var x = abc[abc.length - 1];
+    // console.log(this.router.url);
+    // console.log(abc);
+    // console.log(x);
+    // this.router.events.subscribe(param => {
+    this.loadConfig();
+    // });
+  }
+
+  loadConfig() {
+    this.config = COMPONENTS_DETAILS['gantt-bars'];
+    // if (this.x.includes('gantt-bars')) {
+
+    // } else if (this.router.url.includes('gantt-columns')) {
+    //   this.config = COMPONENTS_DETAILS['gantt-columns'];
+    // } else if (this.router.url.includes('gantt-header')) {
+    //   this.config = COMPONENTS_DETAILS['gantt-header'];
+    // } else if (this.router.url.includes('gantt-tooltip')) {
+    //   this.config = COMPONENTS_DETAILS['gantt-tooltip'];
+    // }
+  }
+
+  // ngAfterContentInit(){
+  //    // create the component factory
+  //     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(HomeComponent);
+
+  //     // // add the component to the view
+  //     const componentRef = this.container.createComponent(componentFactory);
+
+  // }
+
+  onCodeChange() {
+    this.codeChange.emit(this.code);
+  }
+  items: NbMenuItem[] = [
+    {
+      title: 'home',
+      link: '/',
+    },
+    {
+      title: 'dashboard',
+      link: 'dashboard',
+    },
+  ];
+}

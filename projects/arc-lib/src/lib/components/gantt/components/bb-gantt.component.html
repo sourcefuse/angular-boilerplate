@@ -6,9 +6,11 @@
     #gantt
   ></div>
 </div>
+<router-outlet> </router-outlet>
 
 <ng-template #menu let-item="item" let-contextItems="contextItems">
   <div class="gantt-menu">
     <nb-menu [items]="contextItems" [tag]="item"></nb-menu>
   </div>
 </ng-template>
+<lib-component-details></lib-component-details>

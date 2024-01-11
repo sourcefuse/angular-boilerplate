@@ -25,12 +25,13 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/arc/src/favicon.ico",
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" },
               {
                 "glob": "**/*",
                 "input": "projects/arc-lib/src/lib/assets/",
                 "output": "/assets/"
               }
-            ],
+                            ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/eva-icons/style/scss/eva-icons.scss",

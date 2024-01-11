@@ -17,9 +17,13 @@ const routes: Routes = [
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
     canActivate: [AuthGuard],
   },
+
   {
-    path: 'gantt',
-    loadChildren: () => import('../../../arc-lib/src/lib/components/gantt/gantt.module').then(m => m.GanttModule),
+    path: 'details',
+    loadChildren: () =>
+      import('../../../arc-lib/src/lib/components/Details/details.module').then(
+        m => m.DetailsModule,
+      ),
     canActivate: [AuthGuard],
   },
   {

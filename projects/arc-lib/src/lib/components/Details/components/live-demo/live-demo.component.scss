@@ -1,0 +1,46 @@
+@use 'sass:map';
+
+@use '../../../../theme/styles/variables' as *;
+@use '../../../../../../../arc/src/styles.scss' as *;
+@use '../../../../../../../arc/src/themes.scss' as *;
+
+:host {
+  display: block;
+}
+
+// .code {
+//   padding: 10px 20px;
+//   font-size: 16px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   background-color: #007bff;
+//   color: #ffffff;
+//   transition: background-color 0.3s ease;
+
+//   &:hover {
+//     background-color: #0056b3;
+//   }
+
+//   &:active {
+//     background-color: #004080;
+//   }
+// }
+// .code {
+//   padding: 10px 20px;
+//   font-size: 16px;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   background-color: #007bff;
+//   color: #ffffff;
+//   transition: background-color 0.3s ease;
+
+//   &:hover {
+//     background-color: #0056b3;
+//   }
+
+//   &:active {
+//     background-color: #004080;
+//   }
+// }

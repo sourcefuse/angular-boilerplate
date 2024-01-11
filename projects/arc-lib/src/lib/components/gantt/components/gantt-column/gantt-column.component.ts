@@ -10,7 +10,17 @@ import {ContextItemFilter, GanttTaskValue} from '../../types';
 })
 export class GanttColumnComponent<T extends AnyObject> {
   @Input()
-  item!: GanttTaskValue<T>;
+  item: GanttTaskValue<T> = {
+    allocation: 5,
+    id: 1,
+    start_date: new Date(),
+    end_date: new Date(),
+    name: 'robin',
+    type: '',
+    hasChildren: false,
+    isParent: true,
+    payload: {} as any,
+  };
 
   @Input()
   contextItems: NbMenuItem[] = [];

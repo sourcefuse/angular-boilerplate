@@ -1,0 +1,40 @@
+.nb-tab {
+    padding: 1.25rem;
+  }
+
+  .wrapper{
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .sourceTitle{
+    margin-left: 1.5rem;
+  }
+
+  .tab-text{
+    margin-left: 15px;
+  }
+  .tabs-wrapper{
+    ul{
+        padding: 10px 0;
+       
+        li{
+            margin-right: 10px;
+        }
+        &:hover {
+          background-color: #0056b3;
+        }
+      
+        &:active {
+          background-color: #004080;
+        }
+    }
+  
+    .monaco-wrapper{
+        border: 1px solid #ccc;
+        margin: 10px;
+        padding: 20px; 
+    }
+   
+  }

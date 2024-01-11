@@ -9,7 +9,10 @@ import {SubAllocation} from '../../types';
   styleUrls: ['./gantt-tooltip.component.scss'],
 })
 export class GanttTooltipComponent {
-  item!: SubAllocation;
+  item: SubAllocation = {
+    percent: 90,
+    allocation: 2,
+  };
   maxAllocation = MAX_ALLOCATION;
 
   constructor(private translate: TranslateService) {}

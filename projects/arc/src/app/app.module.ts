@@ -24,8 +24,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GanttModule } from '@project-lib/components/index';
 import { SelectModule } from '@project-lib/components/selector';
 import {  GanttAdapter } from '@project-lib/components/gantt';
-
-
+import { ComponentDetailsComponent } from '@project-lib/components/Details/components/component-details/component-details.component';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
+import { DetailsModule } from '@project-lib/components/Details/details.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,7 +44,8 @@ import {  GanttAdapter } from '@project-lib/components/gantt';
     SelectModule,
     GanttModule,
     BrowserAnimationsModule,
-    
+    MonacoEditorModule.forRoot(),
+    DetailsModule
     
   ],
   providers: [
@@ -58,7 +60,7 @@ import {  GanttAdapter } from '@project-lib/components/gantt';
       provide: APP_CONFIG,
       useValue: environment,
     },
-   
+       
   ],
   bootstrap: [AppComponent],
 })

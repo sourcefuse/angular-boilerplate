@@ -4,7 +4,7 @@ export const NEBULAR_COMP_ITEMS = [
       url: 'https://akveo.github.io/nebular/docs/components/button/overview#nbbuttoncomponent',
       home: true,
       pathMatch: 'prefix',
-      image : '../../../assets/images/components/Default button.svg'
+      image : '../../../assets/images/components/Default button.svg',
       
     },
     {
@@ -57,7 +57,8 @@ export const NEBULAR_COMP_ITEMS = [
         pathMatch: 'prefix',
         image : '../../../assets/images/components/menu.png'
       },
-
-
-      
 ]
+
+
+
+

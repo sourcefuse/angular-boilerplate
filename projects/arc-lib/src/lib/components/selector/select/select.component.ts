@@ -37,7 +37,7 @@ import {
 } from '../constants';
 import {GroupConfig, Panel, ValueType} from '../types';
 @Component({
-  selector: 'select',
+  selector: 'app-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   animations: [dropdownAnimation, rotateAnimation],

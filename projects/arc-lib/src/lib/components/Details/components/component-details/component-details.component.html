@@ -1,0 +1,26 @@
+<!-- <div *ngFor="let c of config" (click)="redirectComponent(c)"> -->
+
+<div>
+  <h1>button</h1>
+  <h5>hi button</h5>
+</div>
+<div #container></div>
+<div class="wrapper">
+  <nb-tabset class="tabs-wrapper">
+    <nb-tab tabTitle="DEMO">
+      <div class="monaco-wrapper">
+        <!--dynamic component  -->
+
+        <lib-live-demo [code]="code"></lib-live-demo>
+      </div>
+    </nb-tab>
+    <nb-tab class="sourceTitle" tabTitle="SOURCE">
+      <div class="monaco-wrapper">
+        <ngx-monaco-editor
+          [options]="editorOptions"
+          [(ngModel)]="code"
+        ></ngx-monaco-editor>
+      </div>
+    </nb-tab>
+  </nb-tabset>
+</div>

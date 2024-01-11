@@ -19,7 +19,7 @@ import {ITEM_HEIGHT, PLACEHOLDER_ITEM} from '../selector';
 import {GroupConfig} from '../selector/types';
 
 @Component({
-  selector: 'list',
+  selector: 'app-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,6 +35,8 @@ export class ListComponent<
   /**
    * The list of items to display.
    */
+  name:string="List"
+  desc:string="hi i m list happie new year"
   @Input()
   options?: InputType[] = [];
 
@@ -145,6 +147,8 @@ export class ListComponent<
   @Input()
   groupConfig?: GroupConfig<InputType>[] = [];
   groupIndexMap: Record<number, string> = {};
+
+  
   /**
    * It initializes the removed set, the visible list, and the search control
    */

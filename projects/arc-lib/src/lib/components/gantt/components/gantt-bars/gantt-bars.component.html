@@ -47,7 +47,7 @@
             <div class="actual-hours">
               {{
                 formatAllocation(
-                  allocationBar["allocatedHours"] ?? allocationBar.allocation
+                  allocationBar['allocatedHours'] ?? allocationBar.allocation
                 )
               }}
             </div>
@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="actual-rate" *ngIf="item.payload['billingRate']">
-              {{ formatter(item.payload["billingRate"]) }}
+              {{ formatter(item.payload['billingRate']) }}
             </div>
           </div>
         </ng-container>
