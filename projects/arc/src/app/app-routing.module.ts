@@ -19,7 +19,10 @@ const routes: Routes = [
   },
   {
     path: 'gantt',
-    loadChildren: () => import('../../../arc-lib/src/lib/components/gantt/gantt.module').then(m => m.GanttModule),
+    loadChildren: () =>
+      import('../../../arc-lib/src/lib/components/gantt/gantt.module').then(
+        m => m.GanttModule,
+      ),
     canActivate: [AuthGuard],
   },
   {

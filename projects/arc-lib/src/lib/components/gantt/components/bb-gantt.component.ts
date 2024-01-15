@@ -37,7 +37,7 @@ import {GanttColumnComponent} from './gantt-column/gantt-column.component';
   templateUrl: './bb-gantt.component.html',
   styleUrls: ['./bb-gantt.component.scss'],
 })
-export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
+export class BbGanttComponent<T extends AnyObject>
   extends ComponentBaseDirective
   implements OnChanges, OnInit, AfterViewInit, OnDestroy, GanttRenderOptions<T>
 {
@@ -119,7 +119,7 @@ export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
   childIndent = true;
 
   constructor(
-    private readonly ganttSvc: GanttService<T, S>,
+    private readonly ganttSvc: GanttService<T>,
     private readonly menuService: NbMenuService,
     public readonly viewContainerRef: ViewContainerRef,
   ) {
@@ -143,7 +143,7 @@ export class BbGanttComponent<T extends AnyObject, S extends AnyObject>
   }
 
   ngOnChanges() {
-    this.ganttSvc.feed(this.data);
+    this.ganttSvc.feed();
   }
 
   ngAfterViewInit() {

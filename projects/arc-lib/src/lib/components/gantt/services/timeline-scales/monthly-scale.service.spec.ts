@@ -1,5 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-import { MonthlyScaleService } from './monthly-scale.service';
+import {TestBed} from '@angular/core/testing';
+import {MonthlyScaleService} from './monthly-scale.service';
 
 describe('MonthlyScaleService', () => {
   let service: MonthlyScaleService;

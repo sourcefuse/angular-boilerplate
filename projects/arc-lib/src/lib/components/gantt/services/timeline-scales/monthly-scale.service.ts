@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { GanttScaleUnits } from '../../enum';
-import { GanttScaleService, Timelines } from '../../types';
+import {Injectable} from '@angular/core';
+import {GanttScaleUnits} from '../../enum';
+import {GanttScaleService, Timelines} from '../../types';
 
 @Injectable()
 export class MonthlyScaleService implements GanttScaleService {
@@ -11,13 +11,13 @@ export class MonthlyScaleService implements GanttScaleService {
         unit: GanttScaleUnits.Month,
         step: 1,
         format: (date: Date) =>
-          date.toLocaleString('default', { month: 'long', year: 'numeric' }),
+          date.toLocaleString('default', {month: 'long', year: 'numeric'}),
       },
       {
         unit: GanttScaleUnits.Week,
         step: 1,
         format: (date: Date) =>
-          date.toLocaleString('default', { day: '2-digit' }),
+          date.toLocaleString('default', {day: '2-digit'}),
       },
     ];
   }

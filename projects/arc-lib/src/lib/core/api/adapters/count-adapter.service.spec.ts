@@ -1,8 +1,8 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ApiModule } from '../api.module';
-import { Count } from '../models';
-import { CountAdapter } from './count-adapter.service';
+import {ApiModule} from '../api.module';
+import {Count} from '../models';
+import {CountAdapter} from './count-adapter.service';
 
 describe('CountAdapterService', () => {
   const testData = {
@@ -11,7 +11,7 @@ describe('CountAdapterService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [ApiModule],
-    })
+    }),
   );
 
   it('should be created', () => {

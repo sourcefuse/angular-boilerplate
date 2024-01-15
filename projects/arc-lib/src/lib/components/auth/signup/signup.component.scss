@@ -21,23 +21,21 @@
   }
 }
 
-.input-wrapper{
-    display: flex;
-    gap:10px;
+.input-wrapper {
+  display: flex;
+  gap: 10px;
 }
 
-.inputTags{
-    input{
-      
-        margin: 5px 0;
-        width: 100%;
-        max-width: inherit;
-        border-radius: 0;
-        background: #fff;
-    }
+.inputTags {
+  input {
+    margin: 5px 0;
+    width: 100%;
+    max-width: inherit;
+    border-radius: 0;
+    background: #fff;
+  }
 }
-
 
 .main-wrapper {
-padding-top: 118px;
-    }
+  padding-top: 118px;
+}

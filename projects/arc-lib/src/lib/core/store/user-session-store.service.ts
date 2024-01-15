@@ -1,10 +1,10 @@
-import { Inject, Injectable } from '@angular/core';
-import { InMemoryStorageService, StorageService } from 'ngx-webstorage-service';
+import {Inject, Injectable} from '@angular/core';
+import {InMemoryStorageService, StorageService} from 'ngx-webstorage-service';
 
-import { LoggedInUserDM } from '../auth/models';
-import { APPLICATION_STORE, APP_SESSION_STORE } from './keys';
-import { StoreKeys } from './store-keys.enum';
-import { StoreModule } from './store.module';
+import {LoggedInUserDM} from '../auth/models';
+import {APPLICATION_STORE, APP_SESSION_STORE} from './keys';
+import {StoreKeys} from './store-keys.enum';
+import {StoreModule} from './store.module';
 
 @Injectable({
   providedIn: StoreModule,
@@ -14,7 +14,7 @@ export class UserSessionStoreService {
     @Inject(APPLICATION_STORE) private readonly store: StorageService,
     @Inject(APP_SESSION_STORE) private readonly sessionStore: StorageService,
 
-    private readonly inMemoryStore: InMemoryStorageService
+    private readonly inMemoryStore: InMemoryStorageService,
   ) {}
 
   public saveAccessToken(token: string): boolean {

@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ApiModule } from '../api.module';
-import { AnyAdapter } from './any-adapter.service';
+import {ApiModule} from '../api.module';
+import {AnyAdapter} from './any-adapter.service';
 
 describe('AnyAdapterService', () => {
   const testData = {
@@ -11,7 +11,7 @@ describe('AnyAdapterService', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
       imports: [ApiModule],
-    })
+    }),
   );
 
   it('should be created', () => {

@@ -1,4 +1,4 @@
-import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpHeaders} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthTokenSkipHeader, ErrToastSkipHeader} from '../constants';
@@ -31,9 +31,10 @@ import {
 import {LoggedInUserDM, LoginModel} from './models';
 import {AnyAdapter, ApiService} from '../api';
 import {APP_CONFIG} from '@project-lib/app-config';
-import { CreateExternalUserCommand } from './commands/create-external-user.command';
-import { SignUpAdapter } from './adapters/signup-adapter.service';
-import { CreateTokenCommand } from './commands/create-token.command';
+import {CreateExternalUserCommand} from './commands/create-external-user.command';
+import {SignUpAdapter} from './adapters/signup-adapter.service';
+import {CreateTokenCommand} from './commands/create-token.command';
+import {IAnyObject} from '../i-any-object';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -56,7 +57,7 @@ export class AuthService {
     private readonly loginAdapter: LoginAdapterService,
     private readonly anyAdapter: AnyAdapter,
     private readonly permissionsService: NgxPermissionsService,
-    @Inject(APP_CONFIG) private readonly appConfig: any,
+    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
 
   public isLoggedIn(): Observable<boolean> {
@@ -95,12 +96,13 @@ export class AuthService {
   }
 
   // sonarignore:start
-  public forgetPasswordReq(email: string): Observable<any> {
-    const command: ForgetPasswordCommand<any> = new ForgetPasswordCommand(
-      this.apiService,
-      this.anyAdapter,
-      this.appConfig,
-    );
+  public forgetPasswordReq(email: string): Observable<IAnyObject> {
+    const command: ForgetPasswordCommand<IAnyObject> =
+      new ForgetPasswordCommand(
+        this.apiService,
+        this.anyAdapter,
+        this.appConfig,
+      );
     // sonarignore:end
     command.parameters = {
       data: {
@@ -115,8 +117,8 @@ export class AuthService {
   }
 
   // sonarignore:start
-  public verifyResetPasswordLink(token: string): Observable<any> {
-    const command: VerifyResetPasswordLinkCommand<any> =
+  public verifyResetPasswordLink(token: string): Observable<IAnyObject> {
+    const command: VerifyResetPasswordLinkCommand<IAnyObject> =
       new VerifyResetPasswordLinkCommand(
         this.apiService,
         this.anyAdapter,
@@ -135,8 +137,11 @@ export class AuthService {
   }
 
   // sonarignore:start
-  public resetPassword(token: string, password: string): Observable<any> {
-    const command: ResetPasswordCommand<any> = new ResetPasswordCommand(
+  public resetPassword(
+    token: string,
+    password: string,
+  ): Observable<IAnyObject> {
+    const command: ResetPasswordCommand<IAnyObject> = new ResetPasswordCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
@@ -156,7 +161,7 @@ export class AuthService {
   }
 
   // sonarignore:start
-  public login(username: string, password: string): Observable<any> {
+  public login(username: string, password: string): Observable<IAnyObject> {
     // sonarignore:end
     this.store.setUser({
       username,
@@ -172,7 +177,7 @@ export class AuthService {
         password,
         client_id: this.appConfig.clientId,
         client_secret: this.appConfig.publicKey,
-      } as any,
+      },
       observe: 'response',
       headers: this.authTokenSkipHeader,
     };
@@ -206,9 +211,7 @@ export class AuthService {
       this.signUpAdapter,
       this.appConfig,
     );
-    
-  
-   
+
     command.parameters = {
       data: user,
     };
@@ -216,28 +219,26 @@ export class AuthService {
     return command.execute();
   }
 
-  createToken(email){
+  createToken(email) {
     const command = new CreateTokenCommand(
       this.apiService,
       this.signUpAdapter,
       this.appConfig,
     );
-    
+
     command.parameters = {
       data: email,
     };
 
     return command.execute();
   }
-  
-
 
   public authorize(secret: string): Observable<boolean> {
     if (!secret) {
       this.router.navigate(['auth/login']);
     }
     // sonarignore:start
-    const command: GetTokenCommand<any> = new GetTokenCommand(
+    const command: GetTokenCommand<IAnyObject> = new GetTokenCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
@@ -267,14 +268,14 @@ export class AuthService {
   }
 
   // sonarignore:start
-  public refreshToken(): Observable<any> {
+  public refreshToken(): Observable<IAnyObject | boolean> {
     // sonarignore:end
     const refreshToken = this.store.getRefreshToken();
     if (!refreshToken) {
       return of(false);
     }
     // sonarignore:start
-    const command: RefreshTokenCommand<any> = new RefreshTokenCommand(
+    const command: RefreshTokenCommand<IAnyObject> = new RefreshTokenCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
@@ -377,7 +378,7 @@ export class AuthService {
     window.location.href = 'login';
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError() {
     return throwError(
       () => new Error('Something bad happened; please try again later.'),
     );

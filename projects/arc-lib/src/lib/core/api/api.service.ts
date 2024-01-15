@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
-import { ApiModule } from './api.module';
-import { IApiService } from './i-api-service';
+import {ApiModule} from './api.module';
+import {IApiService} from './i-api-service';
 
 @Injectable({
   providedIn: ApiModule,
@@ -14,7 +14,7 @@ export class ApiService implements IApiService {
   public post(
     url: string,
     payload: any | null,
-    options?: object
+    options?: object,
   ): Observable<any> {
     return this.http.post(`${url}`, payload, options);
   }
@@ -26,7 +26,7 @@ export class ApiService implements IApiService {
   public patch(
     url: string,
     payload: any | null,
-    options?: object
+    options?: object,
   ): Observable<any> {
     return this.http.patch(`${url}`, payload, options);
   }
@@ -34,7 +34,7 @@ export class ApiService implements IApiService {
   public put(
     url: string,
     payload: any | null,
-    options?: object
+    options?: object,
   ): Observable<any> {
     return this.http.put(`${url}`, payload, options);
   }

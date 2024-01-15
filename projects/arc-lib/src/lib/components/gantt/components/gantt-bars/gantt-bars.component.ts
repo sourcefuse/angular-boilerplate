@@ -16,7 +16,7 @@ import {
 })
 export class GanttBarsComponent<T extends AnyObject> {
   item!: GanttTaskValue<T>;
-  allocationTypes: any = {};
+  allocationTypes: AnyObject;
   allocationBase = MAX_ALLOCATION;
   private translate: TranslateService;
   constructor(private translateSvc: TranslationService) {

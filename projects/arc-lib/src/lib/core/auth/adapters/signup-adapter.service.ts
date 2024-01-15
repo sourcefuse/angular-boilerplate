@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import { IAdapter } from '@project-lib/core/api';
-import { SignUpModel } from '../models/signup.model';
-import { CoreAuthModule } from '../auth.module';
-
+import {IAdapter} from '@project-lib/core/api';
+import {SignUpModel} from '../models/signup.model';
+import {CoreAuthModule} from '../auth.module';
 
 @Injectable({
   providedIn: CoreAuthModule,

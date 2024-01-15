@@ -14,7 +14,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ResizeModule} from '../resize/resize.module';
 import {ListComponent} from '../list/list.component';
 import {SelectComponent} from './select/select.component';
-import { SelectRoutingModule } from './select-routing.module';
+import {SelectRoutingModule} from './select-routing.module';
 
 @NgModule({
   declarations: [SelectComponent, ListComponent],
@@ -31,7 +31,7 @@ import { SelectRoutingModule } from './select-routing.module';
     ScrollingModule,
     TranslateModule,
     OverlayModule,
-    SelectRoutingModule
+    SelectRoutingModule,
   ],
   exports: [SelectComponent, ListComponent],
 })

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { IAdapter } from '../..';
-import { CoreAuthModule } from '../auth.module';
-import { LoginModel } from '../models';
+import {IAdapter} from '../..';
+import {CoreAuthModule} from '../auth.module';
+import {LoginModel} from '../models';
 
 @Injectable({
   providedIn: CoreAuthModule,

@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ThemeModule } from '../theme.module';
-import { IconPacksManagerService } from './icon-packs-manager.service';
+import {ThemeModule} from '../theme.module';
+import {IconPacksManagerService} from './icon-packs-manager.service';
 
 describe('IconPacksManagerService', () => {
   let service: IconPacksManagerService;

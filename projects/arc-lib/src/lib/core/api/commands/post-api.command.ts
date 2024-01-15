@@ -1,11 +1,11 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {HttpHeaders, HttpParams} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {map} from 'rxjs/operators';
 
-import { IAdapter } from '../adapters/i-adapter';
-import { IApiService } from '../i-api-service';
-import { HttpObserve } from '../types';
-import { ICommand } from './i-command';
+import {IAdapter} from '../adapters/i-adapter';
+import {IApiService} from '../i-api-service';
+import {HttpObserve} from '../types';
+import {ICommand} from './i-command';
 
 export abstract class PostAPICommand<T extends Partial<R>, R = T>
   implements ICommand
@@ -13,7 +13,7 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
   constructor(
     protected readonly apiService: IApiService,
     protected readonly adapter: IAdapter<T, R>,
-    protected readonly uri: string
+    protected readonly uri: string,
   ) {}
 
   parameters!: {
@@ -42,13 +42,13 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
         this.parameters.data,
       )
       .pipe(
-        map((resp) => {
+        map(resp => {
           if (!options.reportProgress) {
             return this.adapter.adaptToModel(resp);
           } else {
             return resp;
           }
-        })
+        }),
       );
   }
 }

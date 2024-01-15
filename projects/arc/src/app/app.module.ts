@@ -11,7 +11,6 @@ import {
   TranslationService,
 } from '@project-lib/core/localization';
 import {SystemStoreFacadeService} from '@project-lib/core/store';
-import {InMemoryStorageService} from 'ngx-webstorage-service';
 import {EnvAdapterService} from '@project-lib/core/store/adapters';
 import {ApiService} from '@project-lib/core/api';
 import {CoreModule} from '@project-lib/core/core.module';
@@ -19,13 +18,10 @@ import {APP_CONFIG} from '@project-lib/app-config';
 import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
-import { OverlayModule } from '@angular/cdk/overlay';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GanttModule } from '@project-lib/components/index';
-import { SelectModule } from '@project-lib/components/selector';
-import {  GanttAdapter } from '@project-lib/components/gantt';
-
-
+import {OverlayModule} from '@angular/cdk/overlay';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {GanttModule} from '@project-lib/components/index';
+import {SelectModule} from '@project-lib/components/selector';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,8 +39,6 @@ import {  GanttAdapter } from '@project-lib/components/gantt';
     SelectModule,
     GanttModule,
     BrowserAnimationsModule,
-    
-    
   ],
   providers: [
     TranslationService,
@@ -58,7 +52,6 @@ import {  GanttAdapter } from '@project-lib/components/gantt';
       provide: APP_CONFIG,
       useValue: environment,
     },
-   
   ],
   bootstrap: [AppComponent],
 })

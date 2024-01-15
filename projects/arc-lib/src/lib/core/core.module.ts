@@ -4,7 +4,6 @@ import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NgxPermissionsModule} from 'ngx-permissions';
-import {AuthModule} from '../components';
 import {ApiModule} from './api/api.module';
 import {CoreAuthModule} from './auth';
 import {EnsureModuleLoadedOnce} from './ensure-module-loaded-once';
@@ -14,8 +13,7 @@ import {StoreModule} from './store';
 import {ToasterModule} from './toaster/toaster.module';
 import {LoggerModule, NgxLoggerLevel} from 'ngx-logger';
 import {ComponentBaseDirective} from './component-base';
-import { HttpInterceptorProviders } from './interceptors';
-
+import {HttpInterceptorProviders} from './interceptors';
 
 @NgModule({
   declarations: [ComponentBaseDirective],

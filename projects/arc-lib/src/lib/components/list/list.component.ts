@@ -25,11 +25,12 @@ import {GroupConfig} from '../selector/types';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent<
-  InputType,
-  MultipleMode extends boolean,
-  Value extends InputType[IdField],
-  IdField extends keyof InputType,
-> implements OnInit, AfterViewInit, OnChanges
+    InputType,
+    MultipleMode extends boolean,
+    Value extends InputType[IdField],
+    IdField extends keyof InputType,
+  >
+  implements OnInit, AfterViewInit, OnChanges
 {
   constructor(private _cdr: ChangeDetectorRef) {}
   /**
@@ -243,9 +244,9 @@ export class ListComponent<
 
   sortByGroups() {
     if (this.groupConfig && this.groupConfig.length) {
-      let groupedData: InputType[][] = this.groupConfig.map(() => []);
+      const groupedData: InputType[][] = this.groupConfig.map(() => []);
       this.visibleList?.forEach(option => {
-        const group = this.groupConfig!.findIndex(
+        const group = this.groupConfig?.findIndex(
           group =>
             (group.value === '*' && option[group.fieldName]) ||
             option[group.fieldName] === group.value,

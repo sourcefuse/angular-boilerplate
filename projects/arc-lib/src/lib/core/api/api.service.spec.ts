@@ -2,11 +2,11 @@ import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { ApiModule } from './api.module';
-import { ApiService } from './api.service';
-import { NameId } from './models';
+import {ApiModule} from './api.module';
+import {ApiService} from './api.service';
+import {NameId} from './models';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -29,7 +29,7 @@ describe('ApiService', () => {
     const testData: NameId = new NameId({
       name: 'Test Data',
     });
-    service.get(testUrl).subscribe((data) => {
+    service.get(testUrl).subscribe(data => {
       expect(data).toEqual(testData);
     });
 
@@ -44,7 +44,7 @@ describe('ApiService', () => {
     const testData: NameId = new NameId({
       name: 'Test Data',
     });
-    service.post(testUrl, testData).subscribe((data) => {
+    service.post(testUrl, testData).subscribe(data => {
       expect(data.id).toEqual(testData.id);
     });
 
@@ -61,7 +61,7 @@ describe('ApiService', () => {
     const testData: NameId = new NameId({
       name: 'Test Data New',
     });
-    service.patch(`${testUrl}/1`, testData).subscribe((data) => {
+    service.patch(`${testUrl}/1`, testData).subscribe(data => {
       expect(data.name).toEqual(testData.name);
     });
 
@@ -76,7 +76,7 @@ describe('ApiService', () => {
     const testData: NameId = new NameId({
       name: 'Test Data New',
     });
-    service.put(`${testUrl}/1`, testData).subscribe((data) => {
+    service.put(`${testUrl}/1`, testData).subscribe(data => {
       expect(data.name).toEqual(testData.name);
     });
 
@@ -88,7 +88,7 @@ describe('ApiService', () => {
   });
 
   it('should invoke DELETE API method when delete() is called', () => {
-    service.delete(`${testUrl}/1`).subscribe((data) => {
+    service.delete(`${testUrl}/1`).subscribe(data => {
       expect(data).toBeNull();
     });
 

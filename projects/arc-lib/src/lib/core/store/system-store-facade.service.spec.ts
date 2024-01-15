@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-import { CoreModule } from '../core.module';
+import {TestBed} from '@angular/core/testing';
+import {CoreModule} from '../core.module';
 
-import { SystemStoreFacadeService } from './system-store-facade.service';
+import {SystemStoreFacadeService} from './system-store-facade.service';
 
 describe('SystemStoreFacadeService', () => {
   let service: SystemStoreFacadeService;

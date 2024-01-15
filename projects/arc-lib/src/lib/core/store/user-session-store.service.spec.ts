@@ -1,7 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { StoreModule } from './store.module';
-import { UserSessionStoreService } from './user-session-store.service';
+import {StoreModule} from './store.module';
+import {UserSessionStoreService} from './user-session-store.service';
 
 describe('UserSessionStoreService', () => {
   let service: UserSessionStoreService;

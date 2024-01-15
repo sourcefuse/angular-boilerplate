@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { IAdapter } from '../../api/adapters';
-import { NameId } from '../../api/models';
-import { CoreAuthModule } from '../auth.module';
-import { LoggedInUserDM } from '../models';
+import {Injectable} from '@angular/core';
+import {IAdapter} from '../../api/adapters';
+import {NameId} from '../../api/models';
+import {CoreAuthModule} from '../auth.module';
+import {LoggedInUserDM} from '../models';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -22,7 +22,7 @@ export class LoggedInUserAdapterService implements IAdapter<LoggedInUserDM> {
       user.permissions = resp.permissions;
       user.lastLogin = resp.lastLogin;
       user.photo = resp.photoUrl;
-      user.tenant = new NameId({ id: resp.tenantId });
+      user.tenant = new NameId({id: resp.tenantId});
       user.userTenantId = resp.userTenantId;
       user.role = resp.role;
     }

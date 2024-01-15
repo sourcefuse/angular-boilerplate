@@ -1,7 +1,5 @@
-
-    export interface User {
-        username: any;
-        firstName: any;
-        lastName: any;
-    }
-    
+export interface User {
+  username: string;
+  firstName: string;
+  lastName: string;
+}

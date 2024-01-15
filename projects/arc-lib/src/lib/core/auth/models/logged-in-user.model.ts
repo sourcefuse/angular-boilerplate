@@ -1,4 +1,4 @@
-import { NameId } from '../..';
+import {NameId} from '../..';
 
 export class LoggedInUserDM {
   id!: string;

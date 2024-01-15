@@ -6,10 +6,14 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
-    "lint:fix": "./node_modules/.bin/prettier --write \"**/*\"",
+    "lint": "eslint projects/**/*.ts",
+    "lint:fix": "npm run lint -- --fix",
     "e2e": "ng e2e",
-    "config": "ts-node setenv.ts"
+    "config": "ts-node setenv.ts",
+    "prettier:cli": "prettier \"**/*.ts\" \"**/*.js\" \"**/*.html\" \"**/*.scss\"",
+    "prettier:check": "npm run prettier:cli -- -l",
+    "prettier:fix": "npm run prettier:cli -- --write",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -46,12 +50,23 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.6",
+    "@angular-eslint/builder": "15.2.1",
+    "@angular-eslint/eslint-plugin": "15.2.1",
+    "@angular-eslint/eslint-plugin-template": "15.2.1",
+    "@angular-eslint/schematics": "15.2.1",
+    "@angular-eslint/template-parser": "15.2.1",
     "@angular/cli": "~15.2.6",
     "@angular/compiler-cli": "^15.2.0",
     "@schematics/angular": "~15.2.6",
     "@types/date-fns": "^2.6.0",
     "@types/jasmine": "~4.3.0",
+    "@typescript-eslint/eslint-plugin": "5.48.2",
+    "@typescript-eslint/parser": "5.48.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^7.0.0",
     "dhtmlx-gantt": "^7.1.13",
+    "eslint": "^8.33.0",
+    "husky": "^8.0.3",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
@@ -59,7 +74,13 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "ng-packagr": "^15.2.2",
+    "prettier": "^3.1.1",
     "typescript": "~4.9.4",
     "webpack": "^5.89.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
   }
 }

@@ -106,7 +106,7 @@
     [searchPlaceholder]="searchPlaceholder"
     [disabledField]="disabledField"
     [selectOnEnter]="selectOnEnter"
-    [ngStyle]="{ height: dropdownHeight + 'px' }"
+    [ngStyle]="{height: dropdownHeight + 'px'}"
     [groupConfig]="groupConfig"
     [showIcon]="showIcon"
   ></list>
@@ -147,7 +147,7 @@
     [multiple]="false"
     [search]="false"
     [removal]="currentPanel?.removal ?? false"
-    [ngStyle]="{ height: (currentPanel?.height ?? 0) + 'px' }"
+    [ngStyle]="{height: (currentPanel?.height ?? 0) + 'px'}"
     (closed)="closePanel()"
     [groupConfig]="groupConfig"
   ></list>

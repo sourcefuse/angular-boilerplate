@@ -1,10 +1,10 @@
-@use "sass:map";
-@import "projects/arc-lib/src/lib/theme/styles/_variables.scss";
+@use 'sass:map';
+@import 'projects/arc-lib/src/lib/theme/styles/_variables.scss';
 //@use  "projects/arc-lib/src/lib/theme/styles/_variables.scss";
 
 .gantt-container {
   position: relative;
-  border-top: 0.063rem solid map.get( $color, gantt-lines);
+  border-top: 0.063rem solid map.get($color, gantt-lines);
   height: 100%;
 }
 

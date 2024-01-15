@@ -1,17 +1,17 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { AuthTokenSkipHeader } from '../../core/constants';
-import { clone } from 'lodash';
-import { NGXLogger } from 'ngx-logger';
-import { InMemoryStorageService } from 'ngx-webstorage-service';
-import { map, Observable, of } from 'rxjs';
-import { EnvAdapterService } from './adapters/env-adapter.service';
-import { GetEnvCommand } from './commands';
+import {HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {AuthTokenSkipHeader} from '../../core/constants';
+import {clone} from 'lodash';
+import {NGXLogger} from 'ngx-logger';
+import {InMemoryStorageService} from 'ngx-webstorage-service';
+import {map, Observable, of} from 'rxjs';
+import {EnvAdapterService} from './adapters/env-adapter.service';
+import {GetEnvCommand} from './commands';
 
-import { StoreKeys } from './store-keys.enum';
-import { StoreModule } from './store.module';
-import { ApiService } from '../api';
-import { environment } from '@main-project/boiler/env/environment.prod';
+import {StoreKeys} from './store-keys.enum';
+import {StoreModule} from './store.module';
+import {ApiService} from '../api';
+import {environment} from '@main-project/boiler/env/environment.prod';
 
 @Injectable({
   providedIn: StoreModule,
@@ -21,7 +21,7 @@ export class SystemStoreFacadeService {
     private readonly inMemoryStore: InMemoryStorageService,
     private readonly envAdapter: EnvAdapterService,
     private readonly apiService: ApiService,
-    private readonly logger: NGXLogger
+    private readonly logger: NGXLogger,
   ) {}
 
   getEnvConfig(reset = false): Observable<typeof environment> {
@@ -32,19 +32,19 @@ export class SystemStoreFacadeService {
     } else {
       const command: GetEnvCommand<typeof environment> = new GetEnvCommand(
         this.apiService,
-        this.envAdapter
+        this.envAdapter,
       );
       command.parameters = {
         headers: new HttpHeaders().set(AuthTokenSkipHeader, ''),
       };
       return command.execute().pipe(
-        map((data) => {
+        map(data => {
           Object.assign(environment, data);
           const clonedEnv = clone(environment);
           this.inMemoryStore.set(StoreKeys.ENV_CONFIG, clonedEnv);
           this._updateLogLevel();
           return clonedEnv;
-        })
+        }),
       );
     }
   }

@@ -1,8 +1,8 @@
 // tslint:disable:rule no-any
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-import { ApiModule } from '../api.module';
-import { IAdapter } from './i-adapter';
+import {ApiModule} from '../api.module';
+import {IAdapter} from './i-adapter';
 
 @Injectable({
   providedIn: ApiModule,

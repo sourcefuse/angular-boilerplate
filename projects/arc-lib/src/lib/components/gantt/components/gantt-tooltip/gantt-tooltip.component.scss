@@ -1,5 +1,5 @@
-@use "../../../../theme/styles/variables" as *;
-@use "sass:map";
+@use '../../../../theme/styles/variables' as *;
+@use 'sass:map';
 
 .gantt-tooltip {
   background-color: map.get($color, dark);

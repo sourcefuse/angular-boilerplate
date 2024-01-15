@@ -1,4 +1,4 @@
-import { required, requiredMetadataKey } from './required.decorator';
+import {required, requiredMetadataKey} from './required.decorator';
 
 class MockModel {
   @required()
@@ -12,7 +12,7 @@ describe('@required', () => {
   it('should add required meta data on property x', () => {
     const requireMetadata = Reflect.getOwnMetadata(
       requiredMetadataKey,
-      MockModel
+      MockModel,
     );
     expect(requireMetadata).toBeTruthy();
     expect(requireMetadata.length).toBe(1);

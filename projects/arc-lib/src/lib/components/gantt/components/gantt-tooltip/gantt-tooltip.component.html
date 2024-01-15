@@ -2,13 +2,13 @@
   <div class="key">
     <div>Start Date</div>
     <div *ngIf="item.startDate">
-      {{ formatDate(item.startDate) | date : "dd/MM/YYYY" }}
+      {{ formatDate(item.startDate) | date: 'dd/MM/YYYY' }}
     </div>
   </div>
   <div class="key">
     <div>End Date</div>
     <div *ngIf="item.endDate">
-      {{ formatDate(item.endDate) | date : "dd/MM/YYYY" }}
+      {{ formatDate(item.endDate) | date: 'dd/MM/YYYY' }}
     </div>
   </div>
   <div class="key">
@@ -21,7 +21,7 @@
   </div>
   <hr />
   <div class="key">
-    <div>{{ "currentAllocationsLbl" | translate }}</div>
+    <div>{{ 'currentAllocationsLbl' | translate }}</div>
     <div [ngClass]="item.allocation > maxAllocation ? 'over-allocated' : ''">
       <div *ngIf="item.allocation > maxAllocation">
         <span class="arrow">&#8593;</span>

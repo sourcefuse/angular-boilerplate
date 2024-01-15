@@ -1,5 +1,5 @@
-import { ResizeDirective } from './resize.directive';
-import { ResizeService } from './resize.service';
+import {ResizeDirective} from './resize.directive';
+import {ResizeService} from './resize.service';
 
 describe('ResizeDirective', () => {
   it('should create an instance', () => {
