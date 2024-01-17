@@ -1,6 +1,6 @@
 @use './themes' as *;
 @use 'sass:map';
-@use 'projects/arc-lib/src/lib/theme/styles/index' as *;
+@use '../../arc-lib/src/lib/theme/styles/index' as *;
 @use '@nebular/theme/styles/globals' as *;
 @use '@nebular/auth/styles/globals' as *;
 @use '../../arc-lib/src/lib/theme/styles/variables' as *;
