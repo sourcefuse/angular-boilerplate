@@ -10,13 +10,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "ES2019",
+    "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
     "lib": ["ES2019", "dom"],
+    "useDefineForClassFields": false,
     "paths": {
-      "@main-project/boiler/env/*": [
-        "projects/arc/src/environments/*"
-      ],
+      "@main-project/boiler/env/*": ["projects/arc/src/environments/*"],
       "@main-project/boiler/*": ["projects/arc/src/app/*"],
       "@project-lib/core/*": ["projects/arc-lib/src/lib/core/*"],
       "@project-lib/components/*": ["projects/arc-lib/src/lib/components/*"],

@@ -17,7 +17,6 @@ import {CoreModule} from '@project-lib/core/core.module';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
-import {NbLayoutModule, NbThemeModule} from '@nebular/theme';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GanttModule} from '@project-lib/components/index';
@@ -32,9 +31,7 @@ import {SelectModule} from '@project-lib/components/selector';
     HttpClientModule,
     LocalizationModule,
     CoreModule,
-    ThemeModule,
-    NbThemeModule.forRoot(),
-    NbLayoutModule,
+    ThemeModule.forRoot('default'),
     OverlayModule,
     SelectModule,
     GanttModule,
