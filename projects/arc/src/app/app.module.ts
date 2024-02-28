@@ -21,6 +21,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
+import {HeaderComponent} from 'projects/arc-lib/src/lib/shared/components/header/header.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import {SelectModule} from '@project-lib/components/selector';
     SelectModule,
     GanttModule,
     BrowserAnimationsModule,
+    HeaderComponent,
   ],
   providers: [
     TranslationService,

@@ -17,7 +17,6 @@
   ::ng-deep {
     nb-layout .layout .layout-container .content .columns nb-layout-column {
       padding: $auth-layout-padding;
-
       @include media-breakpoint-down(sm) {
         padding: 0;
       }
@@ -30,3 +29,15 @@
   flex-shrink: 0 !important;
   flex-basis: 35% !important;
 }
+
+@media (max-width: 1024px) {
+  .loginImg-wrapper {
+    display: none;
+  }
+  .card-row {
+    flex-grow: 1 !important;
+    flex-shrink: 0 !important;
+    flex-basis: 100% !important;
+  }
+}
+

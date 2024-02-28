@@ -47,7 +47,7 @@ router-outlet.main-router + * {
 
 .input {
   input {
-    width: 92%;
+    width: 100%;
     margin: 10px 0;
     max-width: inherit !important;
     border-radius: 0;
@@ -288,3 +288,31 @@ nb-toast.status-success .icon-container {
     background: #fff;
   }
 }
+
+
+@media (max-width: 576px) {
+  .card-row {
+    padding: 30px 20px;
+     .sign-in-title {
+    h2 {
+      font-size: 36px;
+      margin: 50px 0 10px 0;
+    }
+    h3 {
+      font-size: 18px;
+      color: #525252;
+      margin: 0;
+    }
+    p {
+      font-size: 14px;
+      margin: 0 0 30px 0;
+    }
+  }
+  }
+
+.main-wrapper {
+  padding-top: 0px !important;
+}
+
+}
+
