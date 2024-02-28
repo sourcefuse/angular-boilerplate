@@ -32,8 +32,8 @@ export class MainComponent
     this.iconMgr.registerSvgs();
   }
 
-  loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
-  userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
+  // loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
+  // userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
   menu: NbMenuItem[] = [
     {
       title: 'Home',
@@ -63,22 +63,22 @@ export class MainComponent
     },
   ];
 
-  navigate(link: string) {
-    this.router.navigate([link]);
-  }
+  // navigate(link: string) {
+  //   this.router.navigate([link]);
+  // }
 
-  toggle() {
-    this.sidebarService.toggle(true, 'right');
-    this.toggleFooter = !this.toggleFooter;
-  }
+  // toggle() {
+  //   this.sidebarService.toggle(true, 'right');
+  //   this.toggleFooter = !this.toggleFooter;
+  // }
 
   ngOnInit(): void {
-    this.authService
-      .currentUser()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(usr => {
-        this.loggedInUserDM = usr;
-      });
+    // this.authService
+    //   .currentUser()
+    //   .pipe(takeUntil(this._destroy$))
+    //   .subscribe(usr => {
+    //     this.loggedInUserDM = usr;
+    //   });
     this.menuService
       .onItemClick()
       .pipe(takeUntil(this._destroy$))

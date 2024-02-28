@@ -6,16 +6,16 @@ import {AuthGuard, LoggedInGuard} from '@project-lib/core/auth';
 const routes: Routes = [
   {
     path: 'auth',
-    loadChildren: () =>
-      import('projects/arc-lib/src/lib/components/auth/auth.module').then(
-        m => m.AuthModule,
-      ),
-    canActivate: [LoggedInGuard],
+  loadChildren: () =>
+  import('projects/arc-lib/src/lib/components/auth/auth.module').then(
+  m => m.AuthModule,
+  ),
+  // canActivate: [LoggedInGuard],
   },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'gantt',
@@ -23,7 +23,7 @@ const routes: Routes = [
       import('../../../arc-lib/src/lib/components/gantt/gantt.module').then(
         m => m.GanttModule,
       ),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: '',
