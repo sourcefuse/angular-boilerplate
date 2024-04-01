@@ -19,7 +19,7 @@ import {Location} from '@angular/common';
 export class HeaderComponent extends RouteComponentBaseDirective {
   toggleFooter = false;
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
-  userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
+
   constructor(
     override readonly route: ActivatedRoute,
     override readonly location: Location,
@@ -40,14 +40,5 @@ export class HeaderComponent extends RouteComponentBaseDirective {
   toggle() {
     this.sidebarService.toggle(true, 'right');
     this.toggleFooter = !this.toggleFooter;
-  }
-
-  ngOnInit(): void {
-    this.authService
-      .currentUser()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(usr => {
-        this.loggedInUserDM = usr;
-      });
   }
 }
