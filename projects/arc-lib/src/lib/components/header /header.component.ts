@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { ThemeModule } from '@project-lib/theme/theme.module';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NbSidebarService, NbMenuService, NbMenuItem } from '@nebular/theme';
-import { AuthService, LoggedInUserDM } from '@project-lib/core/auth';
-import { RouteComponentBaseDirective } from '@project-lib/core/route-component-base';
-import { IconPacksManagerService } from '@project-lib/theme/services';
-import { takeUntil } from 'rxjs';
+import {ThemeModule} from '@project-lib/theme/theme.module';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NbSidebarService, NbMenuService, NbMenuItem} from '@nebular/theme';
+import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
+import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
+import {IconPacksManagerService} from '@project-lib/theme/services';
+import {takeUntil} from 'rxjs';
 import {Location} from '@angular/common';
 
 @Component({
@@ -22,10 +22,7 @@ export class HeaderComponent
 {
   toggleFooter = false;
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
-  userMenu: NbMenuItem[] = [{ title: 'Log out', data: 'logout' }]; //dynamic krna hai ,
-  // dusry project mai b chala hai
-  //header place change   ------Done
-  //css variable
+  userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
   constructor(
     override readonly route: ActivatedRoute,
     override readonly location: Location,
@@ -55,14 +52,5 @@ export class HeaderComponent
       .subscribe(usr => {
         this.loggedInUserDM = usr;
       });
-    // this.menuService
-    //   .onItemClick()
-    //   .pipe(takeUntil(this._destroy$))
-    //   .subscribe(menu => {
-    //     console.log(menu);
-    //     if (menu.tag === 'userMenu' && menu.item.data === 'logout') {
-    //       this.authService.logout().pipe(takeUntil(this._destroy$)).subscribe();
-    //     }
-    //   });
   }
 }
