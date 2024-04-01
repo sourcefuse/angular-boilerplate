@@ -20,7 +20,7 @@
     justify-content: space-between;
     .feature-box {
       margin-bottom: 20px;
-      h2{
+      h2 {
         margin: 0;
         margin-bottom: 10px;
       }
@@ -33,12 +33,12 @@
     justify-content: space-between;
     .feature-detail-box {
       margin-bottom: 20px;
-      h2{
+      h2 {
         margin: 0;
         margin-bottom: 10px;
       }
     }
-  } //extra
+  } 
   .row {
     width: 100%;
     display: flex;
@@ -56,12 +56,15 @@
   .col-md-3 {
     width: 32%;
   }
-  .feature-img-wrapper img {
-    max-width: 100%;
+  .feature-img-wrapper {
+    width: 55%;
+    img {
+      max-width: 100%;
+    }
   }
- 
-  .feat-detail-img-wrapper img{   
-    max-width: 100%;
+
+  .feat-detail-img-wrapper img {
+    max-width: 80%;
   }
 
   .banner-left-section {
@@ -128,8 +131,9 @@
   }
 }
 .color-scheme {
-  margin: 0 25px;
+  margin: 0 10px;
   h2 {
+    font-size: 25px;
     margin: 15px 0 0;
   }
 }
@@ -142,9 +146,15 @@
     margin: 0;
   }
 }
+.feat-detail-box {
+  .row {
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+}
 
-
-@media (min-width: 769px) and (max-width:1024px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   .container {
     .col-md-6 {
       width: 100%;
@@ -159,28 +169,27 @@
       width: 49%;
     }
     .feature-box-wrapper {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-       h2{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      h2 {
         font-size: 24px;
       }
     }
-    .feat-detail-wrapper{ 
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-     .feat-detail-box{
-      margin-bottom: 20px;
+    .feat-detail-wrapper {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      .feat-detail-box {
+        margin-bottom: 20px;
+      }
     }
-    }  //extra
-    .col-md-3.feat-detail-img-wrapper{
-    width: 100% !important;
-    text-align: center;
+    .col-md-3.feat-detail-img-wrapper {
+      width: 100% !important;
+      text-align: center;
     }
   }
 }
-
 
 @media (max-width: 768px) {
   .container {
@@ -196,13 +205,16 @@
     .col-md-3 {
       width: 100%;
     }
-    .feat-detail-box{   
+    .feat-detail-box {
       margin-bottom: 20px;
-      .feat-detail-content{
-        h2{
-        font-size: 24px;
+      .row {
+        flex-wrap: wrap;
       }
-     }
+      .feat-detail-content {
+        h2 {
+          font-size: 24px;
+        }
+      }
     }
      .feat-detail-img-wrapper{  
     text-align: center;

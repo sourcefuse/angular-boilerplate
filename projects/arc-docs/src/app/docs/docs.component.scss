@@ -1,3 +1,71 @@
+@use 'sass:map';
+@use '../../../../arc-lib/src/lib/theme/styles/variables' as *;
+@use '@nebular/theme/styles/theming' as *;
+@use '../../styles.scss' as *;
+
 .colored-column-warning {
   background-color: aqua;
+}
+
+@include nb-install-component() {
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
+    user-select: none;
+  }
+
+  nb-action {
+    height: auto;
+    display: flex;
+    align-content: center;
+  }
+
+  nb-user {
+    cursor: pointer;
+  }
+
+  nb-sidebar {
+    z-index: 1038;
+    border-right: 0.063rem solid map.get($color, 'border-basic');
+    border-top: 0.063rem solid map.get($color, 'border-basic');
+
+    nb-sidebar-footer {
+      border-top: 0.063rem solid map.get($color, 'border-basic');
+    }
+
+    nb-menu {
+      margin: 0 !important;
+    }
+  }
+
+  .header-container {
+    display: flex;
+    align-items: center;
+    width: auto;
+
+    .menu-icon {
+      margin-left: 0.625rem;
+    }
+
+    .logo {
+      padding: 0 1.25rem;
+      padding-left: 0.625rem;
+      font-size: 1.75rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+  }
+}
+.hi {
+  text-align: center;
+}
+.header-wrapper {
+  width: 100%;
 }

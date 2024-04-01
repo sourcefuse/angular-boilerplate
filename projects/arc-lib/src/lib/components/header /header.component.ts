@@ -16,10 +16,7 @@ import {Location} from '@angular/common';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent
-  extends RouteComponentBaseDirective
-  implements OnInit
-{
+export class HeaderComponent extends RouteComponentBaseDirective {
   toggleFooter = false;
   loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
   userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];

@@ -15,20 +15,6 @@
     width: calc(#{nb-theme(sidebar-width)} - #{nb-theme(header-padding)});
     user-select: none;
   }
-  .footer {
-    font-size: 0.625rem;
-    white-space: nowrap;
-    transition: width 0.3s;
-    overflow: hidden;
-
-    .footer-links {
-      text-decoration: none;
-    }
-
-    .footer-divider {
-      border-left: 0.063rem solid #1a69df;
-    }
-  }
 
   nb-action {
     height: auto;
@@ -59,7 +45,6 @@
     align-items: center;
     width: auto;
 
-  
     .menu-icon {
       margin-left: 0.625rem;
     }
@@ -76,6 +61,8 @@
 .hi {
   text-align: center;
 }
-  .header-wrapper{
-      width: 100%;
-    }
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}

@@ -196,7 +196,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "projects/arc-docs/src/favicon.ico",
-              "projects/arc-docs/src/assets"
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" },
+              {
+                "glob": "**/*",
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
