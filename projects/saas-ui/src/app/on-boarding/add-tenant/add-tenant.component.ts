@@ -56,6 +56,4 @@ export class AddTenantComponent {
       console.log(domainData);
     }
   }
-
-  loginViaGoogle() {}
 }

@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-onboarding-tenant-list',
   templateUrl: './onboarding-tenant-list.component.html',
-  styleUrls: ['./onboarding-tenant-list.component.scss']
+  styleUrls: ['./onboarding-tenant-list.component.scss'],
 })
-export class OnboardingTenantListComponent {
-
-}
+export class OnboardingTenantListComponent {}

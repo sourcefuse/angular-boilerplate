@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { OnBoardingComponent } from './on-boarding.component';
+import {OnBoardingComponent} from './on-boarding.component';
 
 describe('OnBoardingComponent', () => {
   let component: OnBoardingComponent;
@@ -8,9 +8,8 @@ describe('OnBoardingComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OnBoardingComponent ]
-    })
-    .compileComponents();
+      declarations: [OnBoardingComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(OnBoardingComponent);
     component = fixture.componentInstance;

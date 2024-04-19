@@ -1,44 +1,43 @@
 <nb-layout>
-    <nb-layout-header fixed class="border-basic-bottom">
-      <div class="nav-container">
-        <div class="header-container">
-          <div class="logo-container">
-            <nb-icon
-              icon="menu-outline"
-              class="cursor-pointer menu-icon"
-              (click)="toggle()"
-            ></nb-icon>
-            <a class="logo" [routerLink]="['/main/home']">
-              <img src="../../../assets/images/home/ARC_logo.png" alt="logo" />
-            </a>
-          </div>
-        </div>
-  
-        <div class="header-container">
-          <nb-actions size="small">
-            <nb-action class="control-item" icon="bell-outline"></nb-action>
-            <nb-action class="user-action">
-              <nb-user
-                [nbContextMenu]="userMenu"
-                nbContextMenuTag="userMenu"
-                [name]="loggedInUserDM.fullName"
-                [picture]="
-                  loggedInUserDM.photo ?? '../../../assets/images/auth/avatar.png'
-                "
-                [title]="loggedInUserDM.role ?? 'Admin'"
-              >
-              </nb-user>
-            </nb-action>
-          </nb-actions>
+  <nb-layout-header fixed class="border-basic-bottom">
+    <div class="nav-container">
+      <div class="header-container">
+        <div class="logo-container">
+          <nb-icon
+            icon="menu-outline"
+            class="cursor-pointer menu-icon"
+            (click)="toggle()"
+          ></nb-icon>
+          <a class="logo" [routerLink]="['/main/home']">
+            <img src="../../../assets/images/home/ARC_logo.png" alt="logo" />
+          </a>
         </div>
       </div>
-    </nb-layout-header>
-    <nb-sidebar>
-      <nb-menu [items]="menu"> </nb-menu>
-    </nb-sidebar>
-  
-    <nb-layout-column>
-      <router-outlet class="main-router"></router-outlet>
-    </nb-layout-column>
-  </nb-layout>
-  
+
+      <div class="header-container">
+        <nb-actions size="small">
+          <nb-action class="control-item" icon="bell-outline"></nb-action>
+          <nb-action class="user-action">
+            <nb-user
+              [nbContextMenu]="userMenu"
+              nbContextMenuTag="userMenu"
+              [name]="loggedInUserDM.fullName"
+              [picture]="
+                loggedInUserDM.photo ?? '../../../assets/images/auth/avatar.png'
+              "
+              [title]="loggedInUserDM.role ?? 'Admin'"
+            >
+            </nb-user>
+          </nb-action>
+        </nb-actions>
+      </div>
+    </div>
+  </nb-layout-header>
+  <nb-sidebar>
+    <nb-menu [items]="menu"> </nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column>
+    <router-outlet class="main-router"></router-outlet>
+  </nb-layout-column>
+</nb-layout>

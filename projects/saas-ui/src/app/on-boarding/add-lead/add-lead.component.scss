@@ -1,5 +1,3 @@
-
-
 :host {
   .logo {
     padding-top: 10%;
@@ -20,16 +18,15 @@
 
 .input-wrapper {
   display: flex;
-    gap: 10px;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .input-box {
   width: 48%;
 
-  .input{
-     
+  .input {
     input {
       margin: 5px 0;
       width: 100% !important;
@@ -51,10 +48,9 @@
   //     }
   //   }
 
-
   // }
 
-  .inputTags{
+  .inputTags {
     input {
       margin: 5px 0;
       width: 100% !important;
@@ -63,22 +59,17 @@
       background: #fff;
     }
   }
-  
-
 }
 
-.add-lead-wrapper{
-  .btn{
+.add-lead-wrapper {
+  .btn {
     text-align: right;
   }
 }
 
-.address-input-box{
-  
-    width:100%;
-  
+.address-input-box {
+  width: 100%;
 }
-
 
 .main-wrapper {
   padding-top: 10px;
@@ -92,9 +83,8 @@
   display: none;
 }
 
-.add-lead-wrapper{
-
-  h2{
+.add-lead-wrapper {
+  h2 {
     margin-top: 0 !important;
   }
 }

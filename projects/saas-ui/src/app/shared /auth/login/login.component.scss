@@ -1,7 +1,6 @@
 @use 'sass:map';
 @use '../../../../../../arc-lib/src/lib/theme/styles/variables' as *;
 
-
 :host {
   .logo {
     padding-top: 15%;
@@ -27,8 +26,8 @@
   }
 }
 
-.login-content-wrapper{
-  padding:80px;
+.login-content-wrapper {
+  padding: 80px;
 }
 
 .main-wrapper {

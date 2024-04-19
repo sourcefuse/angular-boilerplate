@@ -1,14 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { AddLeadRoutingModule } from './add-lead-routing.module';
-
+import {AddLeadRoutingModule} from './add-lead-routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    AddLeadRoutingModule
-  ]
+  imports: [CommonModule, AddLeadRoutingModule],
 })
-export class AddLeadModule { }
+export class AddLeadModule {}

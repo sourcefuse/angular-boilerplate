@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use'../../../../arc-lib/src/lib/theme/styles/variables' as *;
+@use '../../../../arc-lib/src/lib/theme/styles/variables' as *;
 @use '@nebular/theme/styles/theming' as *;
 
 @include nb-install-component() {

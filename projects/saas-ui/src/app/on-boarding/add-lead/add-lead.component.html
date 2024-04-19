@@ -1,59 +1,59 @@
 <nb-card class="h-100 card-row">
-    <nb-card-body class="m-0">
-      <div class="main-wrapper add-lead-wrapper">
-        <div>
-          <div class="sign-in-title">
-            <h2>Add Lead</h2>
-            <h3>Welcome to SAAS UI by SourceFuse</h3>
-          </div>
-          <form [formGroup]="addLeadForm" (ngSubmit)="onSubmit()">
-            <!-- input fields -->
-            <div class="input-wrapper">
-              <div class="input-box">
-                <div class="input-title">
-                  <span>First Name</span>
-                </div>
-                <div class="inputTags">
-                  <input
-                    type="text"
-                    placeholder="Enter First Name"
-                    status="“info”"
-                    formControlName="firstname"
-                    nbInput
-                  />
-                </div>
+  <nb-card-body class="m-0">
+    <div class="main-wrapper add-lead-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>Add Lead</h2>
+          <h3>Welcome to SAAS UI by SourceFuse</h3>
+        </div>
+        <form [formGroup]="addLeadForm" (ngSubmit)="onSubmit()">
+          <!-- input fields -->
+          <div class="input-wrapper">
+            <div class="input-box">
+              <div class="input-title">
+                <span>First Name</span>
               </div>
+              <div class="inputTags">
+                <input
+                  type="text"
+                  placeholder="Enter First Name"
+                  status="“info”"
+                  formControlName="firstname"
+                  nbInput
+                />
+              </div>
+            </div>
 
-              <div class="input-box">
-                <div class="input-title">
-                  <span>Last Name</span>
-                </div>
-                <div class="inputTags">
-                  <input
-                    type="text"
-                    placeholder="Enter Last Name"
-                    status="“info”"
-                    formControlName="lastname"
-                    nbInput
-                  />
-                </div>
+            <div class="input-box">
+              <div class="input-title">
+                <span>Last Name</span>
               </div>
+              <div class="inputTags">
+                <input
+                  type="text"
+                  placeholder="Enter Last Name"
+                  status="“info”"
+                  formControlName="lastname"
+                  nbInput
+                />
+              </div>
+            </div>
 
-              <div class="input-box">
-                <div class="input-title">
-                  <span>Company Name</span>
-                </div>
-                <div class="inputTags">
-                  <input
-                    type="text"
-                    placeholder="Company Name"
-                    status="“info”"
-                    formControlName="companyName"
-                    nbInput
-                  />
-                </div>
+            <div class="input-box">
+              <div class="input-title">
+                <span>Company Name</span>
               </div>
-            
+              <div class="inputTags">
+                <input
+                  type="text"
+                  placeholder="Company Name"
+                  status="“info”"
+                  formControlName="companyName"
+                  nbInput
+                />
+              </div>
+            </div>
+
             <!-- email -->
             <div class="input-box">
               <div class="input-title">
@@ -87,86 +87,84 @@
               </div>
             </div>
             <!-- Validated or not  -->
-            
-              <!-- address-->
-              <div class="input-box address-input-box">
-                <div class="input-title">
-                  <span>Address</span>
-                </div>
-                <div class=" input address-input">
-                    <input
-                      type="text"
-                      placeholder="Enter Your Address"
-                      status="“info”"
-                      formControlName="address"
-                      nbInput
-                    />
-                  </div>
-                  </div>
 
-                <div class="input-box">
-                 <div class="input-title">
-                    <span>City</span>
-                 </div>
-                 <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Enter Your City"
-                      status="“info”"
-                      formControlName="city"
-                      nbInput
-                    />
-                  </div>
-                </div>
+            <!-- address-->
+            <div class="input-box address-input-box">
+              <div class="input-title">
+                <span>Address</span>
+              </div>
+              <div class="input address-input">
+                <input
+                  type="text"
+                  placeholder="Enter Your Address"
+                  status="“info”"
+                  formControlName="address"
+                  nbInput
+                />
+              </div>
+            </div>
 
-                <div class="input-box">
-                 <div class="input-title">
-                    <span>State</span>
-                 </div>
-                 <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Enter Your State"
-                      status="“info”"
-                      formControlName="state"
-                      nbInput
-                    />
-                  </div>
-                
-                </div>
+            <div class="input-box">
+              <div class="input-title">
+                <span>City</span>
+              </div>
+              <div class="input">
+                <input
+                  type="text"
+                  placeholder="Enter Your City"
+                  status="“info”"
+                  formControlName="city"
+                  nbInput
+                />
+              </div>
+            </div>
 
-                <div class="input-box">
-                 <div class="input-title">
-                    <span>Country</span>
-                 </div>
-                 <div class="input">
-                    <input
-                      type="text"
-                      placeholder="Enter your Country"
-                      status="“info”"
-                      formControlName="country"
-                      nbInput
-                    />
-                  </div>
-                 
-                  </div>
+            <div class="input-box">
+              <div class="input-title">
+                <span>State</span>
+              </div>
+              <div class="input">
+                <input
+                  type="text"
+                  placeholder="Enter Your State"
+                  status="“info”"
+                  formControlName="state"
+                  nbInput
+                />
+              </div>
+            </div>
 
-                  <div class="input-box">
-                    <div class="input-title">
-                      <span>Zip Code</span>
-                    </div>
-                    <div class="input">
-                      <input
-                        type="text"
-                        placeholder="Enter your Zip Code"
-                        status="“info”"
-                        formControlName="zip"
-                        nbInput
-                      />
-                    </div>
-                  </div>
-<!-- contacts -->
-                  <!-- <div class="input-box">
+            <div class="input-box">
+              <div class="input-title">
+                <span>Country</span>
+              </div>
+              <div class="input">
+                <input
+                  type="text"
+                  placeholder="Enter your Country"
+                  status="“info”"
+                  formControlName="country"
+                  nbInput
+                />
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Zip Code</span>
+              </div>
+              <div class="input">
+                <input
+                  type="text"
+                  placeholder="Enter your Zip Code"
+                  status="“info”"
+                  formControlName="zip"
+                  nbInput
+                />
+              </div>
+            </div>
+            <!-- contacts -->
+            <!-- <div class="input-box">
                     <div class="input-title">
                       <span>ID</span>
                     </div>
@@ -195,28 +193,23 @@
                       />
                     </div>
                   </div> -->
-            </div>
+          </div>
 
-        
-              
-
-            <!-- signup button -->
-            <div class="btn">
-              <button
-                nbButton
-                shape="round"
-                size="medium"
-                status="basic"
-                [disabled]="!addLeadForm.valid"
-                type="submit"
-              >
-                Add Lead
-              </button>
-            </div>
-          </form>
-        </div>
+          <!-- signup button -->
+          <div class="btn">
+            <button
+              nbButton
+              shape="round"
+              size="medium"
+              status="basic"
+              [disabled]="!addLeadForm.valid"
+              type="submit"
+            >
+              Add Lead
+            </button>
+          </div>
+        </form>
       </div>
-    </nb-card-body>
-  </nb-card>
-  
-  
+    </div>
+  </nb-card-body>
+</nb-card>

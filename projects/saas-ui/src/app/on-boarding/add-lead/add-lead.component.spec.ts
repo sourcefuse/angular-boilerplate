@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddLeadComponent } from './add-lead.component';
+import {AddLeadComponent} from './add-lead.component';
 
 describe('AddLeadComponent', () => {
   let component: AddLeadComponent;
@@ -8,9 +8,8 @@ describe('AddLeadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddLeadComponent ]
-    })
-    .compileComponents();
+      declarations: [AddLeadComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddLeadComponent);
     component = fixture.componentInstance;
