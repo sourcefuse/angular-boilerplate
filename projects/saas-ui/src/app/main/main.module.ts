@@ -8,12 +8,14 @@ import {TenantListComponent} from './tenant-list/tenant-list.component';
 import {NbRadioModule} from '@nebular/theme';
 import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding-tenant-list.component';
 import {AgGridModule} from 'ag-grid-angular';
+import { PlanItemsComponent } from './plan-items/plan-items.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     TenantListComponent,
     OnboardingTenantListComponent,
+    PlanItemsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,59 @@
+<nb-card class="h-100 card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>Plan Items</h2>
+        </div>
+        <form [formGroup]="addFeatureForm" (ngSubmit)="onSubmit()">
+          <!-- input fields -->
+          <div class="input-wrapper">
+            <div class="input-box">
+              <div class="input-title">
+                <span>Feature Name</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Enter Name"
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="featureName"
+                  nbInput
+                />
+              </div>
+            </div>
+            <!-- domain -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Feature Description</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Description"
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="featureDesc"
+                  nbInput
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- signup button -->
+          <div class="btn regbtn">
+            <button
+              nbButton
+              shape="round"
+              size="medium"
+              status="basic"
+              [disabled]="!addFeatureForm.valid"
+              type="submit"
+            >
+              Add Feature
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

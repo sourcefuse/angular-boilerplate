@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './main.component';
 import {TenantListComponent} from './tenant-list/tenant-list.component';
 import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding-tenant-list.component';
+import {PlanItemsComponent} from './plan-items/plan-items.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path: 'onboard-tenant-list',
         component: OnboardingTenantListComponent,
+      },
+      {
+        path: 'plan-items',
+        component: PlanItemsComponent,
       },
     ],
   },

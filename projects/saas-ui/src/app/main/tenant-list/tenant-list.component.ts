@@ -18,6 +18,7 @@ export class TenantListComponent
     {field: 'firstname'},
     {field: 'lastname'},
     {field: 'companyName'},
+    {field: 'email'},
     {field: 'address'},
     {field: 'country'},
     {field: 'state'},
@@ -29,7 +30,8 @@ export class TenantListComponent
     {
       firstname: 'Deepika',
       lastname: 'Mahindroo',
-      companyName: 'deepika.mahindroo@sourcefuse.com',
+      companyName: 'Sourcefuse',
+      email: 'deepika.mahindroo@sourcefuse.com',
       address: '#482,DeraBassi',
       country: 'India',
       state: 'Punjab',

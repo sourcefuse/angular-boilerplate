@@ -34,6 +34,8 @@
     "@ngx-translate/core": "^14.0.0",
     "@ngx-translate/http-loader": "^7.0.0",
     "@types/lodash": "^4.14.194",
+    "ag-grid-angular": "^31.2.1",
+    "ag-grid-community": "^31.2.1",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "eva-icons": "^1.1.3",

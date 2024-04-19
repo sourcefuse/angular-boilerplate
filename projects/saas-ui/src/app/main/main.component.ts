@@ -43,7 +43,21 @@ export class MainComponent
     {
       title: 'Tenants',
       icon: 'people-outline',
-      link: '/main/tenant',
+      link: '/main/tenant-list',
+      home: true,
+      pathMatch: 'prefix',
+    },
+    {
+      title: 'On-Board-Tenants',
+      icon: 'people-outline',
+      link: '/main/onboard-tenant-list',
+      home: true,
+      pathMatch: 'prefix',
+    },
+    {
+      title: 'Feature-Plans',
+      icon: 'people-outline',
+      link: '/main/plan-items',
       home: true,
       pathMatch: 'prefix',
     },
@@ -70,10 +84,10 @@ export class MainComponent
       .pipe(takeUntil(this._destroy$))
       .subscribe(menu => {
         if (menu.tag === 'userMenu' && menu.item.data === 'logout') {
-          // this.authService
-          //   .logout()
-          //   .pipe(concatMap(async () => await this.authService.logoutCognito()))
-          //   .subscribe();
+          this.authService
+            .logout()
+            .pipe(concatMap(async () => await this.authService.logoutCognito()))
+            .subscribe();
           console.log('login works');
         }
       });
