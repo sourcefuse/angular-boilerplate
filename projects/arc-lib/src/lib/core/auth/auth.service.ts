@@ -334,6 +334,48 @@ export class AuthService {
     );
   }
 
+  loginViaCognito(): void {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = `${this.appConfig.baseApiUrl}${this.appConfig.authServiceUrl}/auth/cognito`;
+    form.style.display = 'none';
+
+    const clientId = document.createElement('input');
+    clientId.type = 'hidden';
+    clientId.name = 'client_id';
+    clientId.value = this.appConfig.clientId;
+    form.appendChild(clientId);
+
+    const clientSecret = document.createElement('input');
+    clientSecret.type = 'hidden';
+    clientSecret.name = 'client_secret';
+    clientSecret.value = this.appConfig.publicKey;
+    form.appendChild(clientSecret);
+    document.body.appendChild(form);
+    form.submit();
+  }
+
+  logoutCognito() {
+    const form = document.createElement('form');
+    form.method = 'GET';
+    form.action = `https://tata-saas-poc.auth.us-east-1.amazoncognito.com/logout`;
+    form.style.display = 'none';
+
+    const clientId = document.createElement('input');
+    clientId.type = 'hidden';
+    clientId.name = 'client_id';
+    clientId.value = '3hcd79ut813reesb7mvlomnbrv';
+    form.appendChild(clientId);
+
+    const clientSecret = document.createElement('input');
+    clientSecret.type = 'hidden';
+    clientSecret.name = 'logout_uri';
+    clientSecret.value = 'http://localhost:4200/auth/login';
+    form.appendChild(clientSecret);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
   private _loadPermissions(permissions: string[]) {
     const perms = this.permissionsService.getPermissions();
     const entityPerms: string[] = [];

@@ -267,6 +267,110 @@
           }
         }
       }
+    },
+    "saas-ui": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/saas-ui",
+      "sourceRoot": "projects/saas-ui/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/saas-ui",
+            "index": "projects/saas-ui/src/index.html",
+            "main": "projects/saas-ui/src/main.ts",
+            "polyfills": [ "zone.js"],
+            "tsConfig": "projects/saas-ui/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/saas-ui/src/favicon.ico",
+              {
+                "glob": "**/*",
+                "input": "projects/arc-lib/src/lib/assets/",
+                "output": "/assets/"
+              }
+              
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/eva-icons/style/scss/eva-icons.scss",
+              "node_modules/@nebular/theme/styles/prebuilt/dark.css",
+              "projects/saas-ui/src/styles.scss"
+            ],
+            "scripts": [],
+            "allowedCommonJsDependencies": ["lodash", "eva-icons", "CommonJS"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "saas-ui:build:production"
+            },
+            "development": {
+              "browserTarget": "saas-ui:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "saas-ui:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/saas-ui/tsconfig.spec.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/saas-ui/src/favicon.ico",
+              "projects/saas-ui/src/assets"
+            ],
+            "styles": [
+              "projects/saas-ui/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "cli": {

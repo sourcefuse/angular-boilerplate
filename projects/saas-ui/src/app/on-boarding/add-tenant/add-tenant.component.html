@@ -1,0 +1,93 @@
+<nb-card class="h-100 card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>Please Complete Your registration</h2>
+        </div>
+        <form [formGroup]="addTenantForm" (ngSubmit)="onSubmit()">
+          <!-- input fields -->
+          <div class="input-wrapper">
+            <!-- key -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Key</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Enter Key"
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="key"
+                  nbInput
+                />
+              </div>
+            </div>
+            <!-- domain -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Domain</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Domain"
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="domain"
+                  nbInput
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Subscription Plans -->
+
+          <div class="plan-card-container">
+            <div class="input-title">
+              <span>Subscription Plan</span>
+            </div>
+            <div class="plan-card-wrapper">
+              <nb-card
+                class="plan-card-box"
+                accent="danger"
+                *ngFor="let plan of subscriptionPlans"
+              >
+                <nb-card-header>{{ plan.name }}</nb-card-header>
+                <nb-card-body>
+                  <p>Price: ${{ plan.price }}</p>
+                  <p>Features:</p>
+                  <ul>
+                    <li *ngFor="let feature of plan.features">{{ feature }}</li>
+                  </ul>
+                </nb-card-body>
+                <nb-card-footer>
+                  <nb-radio
+                    name="subscriptionPlan"
+                    formControlName="selectedPlan"
+                    [value]="plan.id"
+                  >
+                    {{ plan.name }}
+                  </nb-radio>
+                </nb-card-footer>
+              </nb-card>
+            </div>
+          </div>
+
+          <!-- signup button -->
+          <div class="btn regbtn">
+            <button
+              nbButton
+              shape="round"
+              size="medium"
+              status="basic"
+              [disabled]="!addTenantForm.valid"
+              type="submit"
+            >
+              Submit Registration
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

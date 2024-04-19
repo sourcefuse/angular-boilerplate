@@ -1,0 +1,28 @@
+<div class="login-content-wrapper">
+  <div class="login-arc-logo">
+    <img [src]="imageUrl" [alt]="altText" draggable="false" />
+  </div>
+  <div class="main-wrapper">
+    <div>
+      <div class="sign-in-title">
+        <h2>Sign In</h2>
+        <h3>Welcome to Arc by SourceFuse</h3>
+      </div>
+
+      <!-- Social login button -->
+      <div class="btn">
+        <button
+          nbButton
+          shape="round"
+          size="medium"
+          (click)="loginViaCognito()"
+        >
+          Sign In with Amazon Cognito
+        </button>
+        <button nbButton shape="round" size="medium" (click)="withoutLogin()">
+          Registration
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
