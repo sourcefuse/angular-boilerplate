@@ -21,6 +21,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./on-boarding/on-boarding.module').then(m => m.OnBoardingModule),
   },
+  {
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    redirectTo: '/auth/login',
+  },
 ];
 
 @NgModule({

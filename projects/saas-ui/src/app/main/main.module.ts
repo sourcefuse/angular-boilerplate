@@ -8,7 +8,8 @@ import {TenantListComponent} from './tenant-list/tenant-list.component';
 import {NbRadioModule} from '@nebular/theme';
 import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding-tenant-list.component';
 import {AgGridModule} from 'ag-grid-angular';
-import { PlanItemsComponent } from './plan-items/plan-items.component';
+import {PlanItemsComponent} from './plan-items/plan-items.component';
+import {ButtonRendererComponent} from './button-renderer/button-renderer.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { PlanItemsComponent } from './plan-items/plan-items.component';
     TenantListComponent,
     OnboardingTenantListComponent,
     PlanItemsComponent,
+    ButtonRendererComponent,
   ],
   imports: [
     CommonModule,
