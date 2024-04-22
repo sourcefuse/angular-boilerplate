@@ -10,7 +10,7 @@ import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding
 import {AgGridModule} from 'ag-grid-angular';
 import {PlanItemsComponent} from './plan-items/plan-items.component';
 import {ButtonRendererComponent} from './button-renderer/button-renderer.component';
-import { BillingPlanComponent } from './billing-plan/billing-plan.component';
+import {BillingPlanComponent} from './billing-plan/billing-plan.component';
 
 @NgModule({
   declarations: [
