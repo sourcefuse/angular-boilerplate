@@ -4,6 +4,7 @@ import {MainComponent} from './main.component';
 import {TenantListComponent} from './tenant-list/tenant-list.component';
 import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding-tenant-list.component';
 import {PlanItemsComponent} from './plan-items/plan-items.component';
+import {BillingPlanComponent} from './billing-plan/billing-plan.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: 'plan-items',
         component: PlanItemsComponent,
+      },
+      {
+        path: 'billing-plan',
+        component: BillingPlanComponent,
       },
     ],
   },

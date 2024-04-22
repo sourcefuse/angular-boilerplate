@@ -61,6 +61,13 @@ export class MainComponent
       home: true,
       pathMatch: 'prefix',
     },
+    {
+      title: 'Billing-Plans',
+      icon: 'people-outline',
+      link: '/main/billing-plan',
+      home: true,
+      pathMatch: 'prefix',
+    },
   ];
 
   navigate(link: string) {

@@ -81,4 +81,15 @@ export class PlanItemsComponent {
       selectedNode.setDataValue('editable', true); // Set row to editable mode
     }
   }
+
+  onAddButtonClick() {
+    const newItem = {
+      featureName: 'New feature', // Provide default values or make them empty strings
+      featureDescription: 'Description',
+      feature1: 'Detail 1',
+      feature2: 'Detail 2',
+    };
+    this.rowData.push(newItem);
+    this.gridApi.setRowData(this.rowData); // Update the grid data
+  }
 }
