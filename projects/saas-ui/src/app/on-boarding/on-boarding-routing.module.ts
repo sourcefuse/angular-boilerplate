@@ -16,7 +16,7 @@ const routes: Routes = [
         component: AddLeadComponent,
       },
       {
-        path: 'add-lead/emailverified',
+        path: 'add-lead/emailHasBeenSent',
         component: EmailVerificationComponent,
       },
       {

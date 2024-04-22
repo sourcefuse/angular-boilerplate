@@ -41,7 +41,7 @@ export class MainComponent
       pathMatch: 'prefix',
     },
     {
-      title: 'lead',
+      title: 'Lead',
       icon: 'people-outline',
       link: '/main/tenant-list',
       home: true,
