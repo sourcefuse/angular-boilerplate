@@ -24,15 +24,15 @@ export class OnboardingTenantListComponent
   ];
 
   rowData = [
-    {
-      firstname: 'Deepika',
-      lastname: 'Mahindroo',
-      companyName: 'SourceFuse',
-      email: '#482,DeraBassi',
-      status: 'Active',
-      startDate: '6th April 2024',
-      endDate: '6th May 2024',
-    },
+    // {
+    //   firstname: 'Deepika',
+    //   lastname: 'Mahindroo',
+    //   companyName: 'SourceFuse',
+    //   email: '#482,DeraBassi',
+    //   status: 'Active',
+    //   startDate: '6th April 2024',
+    //   endDate: '6th May 2024',
+    // },
   ];
 
   constructor(
@@ -53,7 +53,7 @@ export class OnboardingTenantListComponent
     //   .getTenantList()
     //   .pipe(takeUntil(this._destroy$))
     //   .subscribe(res => {
-    //     this.tenants = res;
+    //     this.rowData = res;
     //   });
   }
 }

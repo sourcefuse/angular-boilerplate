@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {OnBoardingService} from '../on-boarding-service';
 
 @Component({
   selector: 'app-add-lead',
@@ -14,6 +15,7 @@ export class AddLeadComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private readonly onBoardingService: OnBoardingService,
     private toastrService: NbToastrService,
     private readonly router: Router,
     private location: Location,
@@ -38,6 +40,19 @@ export class AddLeadComponent {
     if (this.addLeadForm.valid) {
       const userData = this.addLeadForm.value;
       console.log(userData);
+
+      this.onBoardingService.addLead(userData).subscribe(
+        () => {
+          this.router.navigate(['/add-lead/emailHasBeenSent']);
+        },
+        (error: string) => {
+          console.error('Login error:', error); //NOSONAR
+          this.toastrService.show(
+            'Unable to add lead. Please check your input and try again.',
+            'Failure',
+          );
+        },
+      );
     }
   }
 }

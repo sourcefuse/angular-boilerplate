@@ -25,7 +25,9 @@ const routes: Routes = [
       },
       {
         path: 'add-tenant',
+        // path: 'verify/:leadId',
         component: AddTenantComponent,
+        // canActivate: [EmailVerifyGuard],
       },
     ],
   },
