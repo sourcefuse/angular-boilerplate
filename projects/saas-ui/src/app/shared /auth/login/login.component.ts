@@ -3,8 +3,9 @@ import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {concatMap, throwError} from 'rxjs';
-import {AuthService} from '@project-lib/core/auth';
+
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',

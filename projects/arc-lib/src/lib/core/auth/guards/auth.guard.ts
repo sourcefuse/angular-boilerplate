@@ -11,11 +11,12 @@ import {
 } from '@angular/router';
 
 import {catchError, concatMap, Observable, of} from 'rxjs';
-import {AuthService} from '../auth.service';
+
 import {
   SystemStoreFacadeService,
   UserSessionStoreService,
 } from '@project-lib/core/store';
+import {AuthService} from 'projects/saas-ui/src/app/shared /auth/auth.service';
 
 @Injectable({
   providedIn: 'root',

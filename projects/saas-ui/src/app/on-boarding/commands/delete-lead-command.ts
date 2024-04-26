@@ -1,13 +1,22 @@
-import {ApiService, IAdapter} from '@project-lib/core/api';
+import {IAdapter} from '@project-lib/core/api';
 import {DelAPICommand} from '../../shared /auth/commands';
-import {environment} from 'projects/saas-ui/src/environment';
+
+import {ApiService} from '../../shared /api/api.service';
+import {Inject} from '@angular/core';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 
 export class DeleteLeadCommand<T> extends DelAPICommand<T> {
-  constructor(apiService: ApiService, adapter: IAdapter<T>, tenantId: string) {
+  constructor(
+    apiService: ApiService,
+    adapter: IAdapter<T>,
+    tenantId: string,
+    @Inject(APP_CONFIG) private readonly appConfig?: IAnyObject,
+  ) {
     super(
       apiService,
       adapter,
-      `${environment.baseApiUrl}/${environment.userServiceUrl}/tenants/${tenantId}`,
+      `${appConfig.baseApiUrl}/${appConfig.userServiceUrl}/tenants/${tenantId}`,
     );
   }
 }

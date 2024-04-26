@@ -9,6 +9,8 @@ import {NbRadioModule} from '@nebular/theme';
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
 import {VerificationCompleteComponent} from './verification-complete/verification-complete.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {OnBoardingService} from './on-boarding-service';
+import {TenantFacadeService} from '../main/tenant-list/tenant-list-facade.service';
 
 @NgModule({
   declarations: [
@@ -24,5 +26,6 @@ import {ReactiveFormsModule} from '@angular/forms';
     NbRadioModule,
     ReactiveFormsModule,
   ],
+  providers: [OnBoardingService, TenantFacadeService],
 })
 export class OnBoardingModule {}

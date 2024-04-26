@@ -2,10 +2,11 @@ import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbMenuItem, NbMenuService, NbSidebarService} from '@nebular/theme';
-import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
+import { LoggedInUserDM} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {concatMap, takeUntil} from 'rxjs';
+import { AuthService } from '../shared /auth/auth.service';
 
 @Component({
   selector: 'main',

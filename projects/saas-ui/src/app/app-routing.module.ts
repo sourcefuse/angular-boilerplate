@@ -9,12 +9,12 @@ const routes: Routes = [
       import('projects/saas-ui/src/app/shared /auth/auth.module').then(
         m => m.AuthModule,
       ),
-    // canActivate: [LoggedInGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    // canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'tenant', // for onboading module /adding tenant

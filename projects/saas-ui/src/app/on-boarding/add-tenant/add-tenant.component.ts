@@ -15,7 +15,8 @@ import {TenantFacadeService} from '../../main/tenant-list/tenant-list-facade.ser
 export class AddTenantComponent {
   [x: string]: any;
   addTenantForm: FormGroup;
-  leadId = this.getRouteParam('leadId') ?? '';
+  leadId = '';
+  // this.getRouteParam('leadId') ?? '';
   constructor(
     private route: ActivatedRoute,
     private toastrService: NbToastrService,

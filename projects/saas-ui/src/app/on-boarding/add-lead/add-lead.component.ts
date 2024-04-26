@@ -22,8 +22,8 @@ export class AddLeadComponent {
     private fb: FormBuilder,
   ) {
     this.addLeadForm = this.fb.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
       companyName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
@@ -40,8 +40,21 @@ export class AddLeadComponent {
     if (this.addLeadForm.valid) {
       const userData = this.addLeadForm.value;
       console.log(userData);
+      let user = {
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        companyName: userData.companyName,
+        email: userData.email,
+        address: {
+          address: userData.address,
+          city: userData.city,
+          state: userData.state,
+          zip: userData.zip,
+          country: userData.country,
+        },
+      };
 
-      this.onBoardingService.addLead(userData).subscribe(
+      this.onBoardingService.addLead(user).subscribe(
         () => {
           this.router.navigate(['/add-lead/emailHasBeenSent']);
         },

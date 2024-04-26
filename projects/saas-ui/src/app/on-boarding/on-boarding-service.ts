@@ -1,6 +1,6 @@
 import {HttpHeaders} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
-import {ApiService, AnyAdapter} from '@project-lib/core/api';
+import {Injectable} from '@angular/core';
+import {AnyAdapter, AnyObject} from '@project-lib/core/api';
 import {AuthTokenSkipHeader} from '@project-lib/core/constants';
 import {Observable, Subject, map, of} from 'rxjs';
 import {
@@ -13,6 +13,7 @@ import {
 } from './commands';
 import {ValidateLeadAdapter, GetPlanAdapter} from './adapters';
 import {Lead, Tenant, Plan} from './models';
+import {ApiService} from '../shared /api/api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -87,7 +88,7 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  addLead(lead: Lead): Observable<Lead> {
+  addLead(lead: AnyObject): Observable<Lead> {
     lead.address = {country: lead.country};
     delete lead.country;
     const command: AddLeadCommand<Lead> = new AddLeadCommand(
@@ -102,7 +103,7 @@ export class OnBoardingService {
   }
 
   getLeadList() {
-    const command: GetLeadListCommand<Lead> = new GetLeadListCommand(
+    const command: GetLeadListCommand<AnyObject> = new GetLeadListCommand(
       this.apiService,
       this.anyAdapter,
     );

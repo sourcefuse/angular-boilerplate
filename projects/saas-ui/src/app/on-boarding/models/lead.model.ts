@@ -1,4 +1,5 @@
 import {AnyObject} from '@project-lib/core/api';
+import {Address} from './address.model';
 
 export class Lead {
   id?: string;
@@ -6,6 +7,6 @@ export class Lead {
   companyName!: string;
   email!: string;
   isValidated!: boolean;
-  address!: AnyObject;
+  address!: Address;
   country?: string;
 }

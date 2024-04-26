@@ -4,6 +4,9 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {AgGridAngular} from 'ag-grid-angular'; // AG Grid Component
 import {ColDef} from 'ag-grid-community';
 import {Location} from '@angular/common';
+import {TenantFacadeService} from './tenant-list-facade.service';
+import {takeUntil} from 'rxjs';
+import {OnBoardingService} from '../../on-boarding/on-boarding-service';
 
 @Component({
   selector: 'app-tenant',
@@ -15,36 +18,27 @@ export class TenantListComponent
   implements OnInit
 {
   colDefs: ColDef[] = [
-    {field: 'firstname'},
-    {field: 'lastname'},
+    {field: 'firstName'},
+    {field: 'lastName'},
     {field: 'companyName'},
     {field: 'email'},
-    {field: 'address'},
+    {field: 'addressId'},
     {field: 'country'},
-    {field: 'state'},
-    {field: 'city'},
-    {field: 'zip'},
   ];
-
-  rowData = [
-    {
-      firstname: 'Deepika',
-      lastname: 'Mahindroo',
-      companyName: 'Sourcefuse',
-      email: 'deepika.mahindroo@sourcefuse.com',
-      address: '#482,DeraBassi',
-      country: 'India',
-      state: 'Punjab',
-      city: 'Dera Bassi',
-      zip: '140507',
-    },
-  ];
+  // id!: string;
+  // name!: string;
+  // description!: string;
+  // domain!: string;
+  // primaryContactName!: string;
+  // primaryContactEmail!: string;
+  rowData = [];
+  tenants: import('/home/surbhi.sharma1/angular-boilerplate/projects/arc-lib/src/public-api').AnyObject[];
 
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
-    // private readonly tenantFacade: TenantFacadeService,
     private readonly router: Router,
+    private readonly onboardingService: OnBoardingService,
   ) {
     super(route, location);
   }
@@ -54,11 +48,11 @@ export class TenantListComponent
   }
 
   getTenants() {
-    // this.tenantFacade
-    //   .getTenantList()
-    //   .pipe(takeUntil(this._destroy$))
-    //   .subscribe(res => {
-    //     this.tenants = res;
-    //   });
+    this.onboardingService
+      .getLeadList()
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(res => {
+        this.rowData = res;
+      });
   }
 }
