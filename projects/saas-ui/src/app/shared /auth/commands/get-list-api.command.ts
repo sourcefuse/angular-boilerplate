@@ -28,10 +28,11 @@ export abstract class GetListAPICommand<T, R = T> implements ICommand {
         options.params = this.parameters.query;
       }
     }
-    return this.apiService
+    const response = this.apiService
       .get(this.uri, options)
       .pipe(
         map(resp => resp.map((data: any) => this.adapter.adaptToModel(data))),
       );
+    return response;
   }
 }

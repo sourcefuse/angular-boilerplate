@@ -9,8 +9,8 @@ import {NbRadioModule} from '@nebular/theme';
 import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding-tenant-list.component';
 import {AgGridModule} from 'ag-grid-angular';
 import {PlanItemsComponent} from './plan-items/plan-items.component';
-import {ButtonRendererComponent} from './button-renderer/button-renderer.component';
 import {BillingPlanComponent} from './billing-plan/billing-plan.component';
+import {TenantFacadeService} from './tenant-list/tenant-list-facade.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import {BillingPlanComponent} from './billing-plan/billing-plan.component';
     TenantListComponent,
     OnboardingTenantListComponent,
     PlanItemsComponent,
-    ButtonRendererComponent,
     BillingPlanComponent,
   ],
   imports: [
@@ -28,5 +27,6 @@ import {BillingPlanComponent} from './billing-plan/billing-plan.component';
     NbRadioModule,
     AgGridModule,
   ],
+  providers: [TenantFacadeService],
 })
 export class MainModule {}

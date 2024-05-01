@@ -27,6 +27,8 @@ module.exports = {
   scopes: [
     {name: 'arc'},
     {name: 'arc-lib'},
+    {name: 'arc-doc'},
+    {name: 'arc-saas'},
     {name: 'test cases'},
     {name: 'config changes'},
     {name: 'sonar fixes'},

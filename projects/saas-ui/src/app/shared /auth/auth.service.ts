@@ -1,40 +1,44 @@
 import {HttpHeaders} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthTokenSkipHeader, ErrToastSkipHeader} from '../constants';
-import {UserSessionStoreService} from '../store';
+import {APP_CONFIG} from '@project-lib/app-config';
+
+import {
+  CoreAuthModule,
+  LoggedInUserAdapterService,
+  LoginAdapterService,
+  LoggedInUserDM,
+  ForgetPasswordCommand,
+  VerifyResetPasswordLinkCommand,
+  ResetPasswordCommand,
+  LoginCommand,
+  LoginModel,
+  RefreshTokenCommand,
+  LogoutCommand,
+} from '@project-lib/core/auth';
+import {SignUpAdapter} from '@project-lib/core/auth/adapters/signup-adapter.service';
+import {CreateExternalUserCommand} from '@project-lib/core/auth/commands/create-external-user.command';
+import {CreateTokenCommand} from '@project-lib/core/auth/commands/create-token.command';
+import {
+  AuthTokenSkipHeader,
+  ErrToastSkipHeader,
+} from '@project-lib/core/constants';
+import {IAnyObject} from '@project-lib/core/i-any-object';
+import {AnyAdapter, UserSessionStoreService} from '@project-lib/core/index';
 import {NgxPermissionsService} from 'ngx-permissions';
 import {
-  catchError,
-  from,
-  map,
   Observable,
-  of,
   switchMap,
-  take,
-  tap,
+  of,
   throwError,
+  tap,
+  map,
+  catchError,
+  take,
+  from,
 } from 'rxjs';
-
-import {LoggedInUserAdapterService, LoginAdapterService} from './adapters';
-import {CoreAuthModule} from './auth.module';
-import {
-  ForgetPasswordCommand,
-  GetCurrentUserCommand,
-  GetTokenCommand,
-  LoginCommand,
-  LogoutCommand,
-  RefreshTokenCommand,
-  ResetPasswordCommand,
-  VerifyResetPasswordLinkCommand,
-} from './commands';
-import {LoggedInUserDM, LoginModel} from './models';
-import {AnyAdapter, ApiService} from '../api';
-import {APP_CONFIG} from '@project-lib/app-config';
-import {CreateExternalUserCommand} from './commands/create-external-user.command';
-import {SignUpAdapter} from './adapters/signup-adapter.service';
-import {CreateTokenCommand} from './commands/create-token.command';
-import {IAnyObject} from '../i-any-object';
+import {ApiService} from '../api/api.service';
+import {GetCurrentUserCommand, GetTokenCommand} from './commands';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -255,6 +259,7 @@ export class AuthService {
       map(response => {
         const redirectTo =
           this.store.getLastAccessedUrl() ?? this.appConfig.homePath;
+
         if (response.accessToken && response.refreshToken) {
           this.store.saveAccessToken(response.accessToken);
           this.store.saveRefreshToken(response.refreshToken);
@@ -337,7 +342,7 @@ export class AuthService {
   loginViaCognito(): void {
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = `http://localhost:3000/auth/cognito`;
+    form.action = `${this.appConfig.baseApiUrl}${this.appConfig.authServiceUrl}/cognito`;
     form.style.display = 'none';
 
     const clientId = document.createElement('input');

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {ApiService, AnyAdapter, AnyObject} from '@project-lib/core/api';
+import {AnyAdapter, AnyObject} from '@project-lib/core/api';
 import {Observable} from 'rxjs';
 import {Tenant} from '../../on-boarding/models';
 import {
@@ -9,6 +9,7 @@ import {
   EditTenantCommand,
   DeleteTenantCommand,
 } from './commands';
+import {ApiService} from '../../shared /api/api.service';
 
 @Injectable()
 export class TenantFacadeService {

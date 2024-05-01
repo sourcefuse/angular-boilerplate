@@ -63,12 +63,7 @@ export class PlanItemsComponent {
     //     this.tenants = res;
     //   });
   }
-  onSubmit() {
-    //   if (this.addFeatureForm.valid) {
-    //     const domainData = this.addFeatureForm.value;
-    //     console.log(domainData);
-    //   }
-  }
+
   onGridReady(params) {
     this.gridApi = params.api;
   }

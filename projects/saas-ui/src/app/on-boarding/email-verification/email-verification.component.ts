@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '@project-lib/core/auth';
+
 import {Location} from '@angular/common';
+import {AuthService} from '../../shared /auth/auth.service';
 
 @Component({
   selector: 'app-email-verification',
