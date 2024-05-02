@@ -5,7 +5,7 @@ export class GetTokenCommand<T> extends PostAPICommand<T> {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.authServiceUrl}/auth/token`,
+      `${appConfig.baseApiUrl}${appConfig.authServiceUrl}/token`,
     );
   }
 }

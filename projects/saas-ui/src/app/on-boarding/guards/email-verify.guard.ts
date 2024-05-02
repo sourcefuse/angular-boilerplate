@@ -28,7 +28,6 @@ export class EmailVerifyGuard implements CanActivate {
       if (code) {
         return this.onboardingService.validateEmail(code, leadId).pipe(
           map(response => {
-            //this.onboardingService.setValidateLead(response); -- try this later
             if (response.token) {
               this.store.saveAccessToken(response.token);
               return true;

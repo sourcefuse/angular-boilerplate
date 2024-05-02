@@ -1,0 +1,8 @@
+export enum TenantStatus {
+  ACTIVE = 0,
+  PENDING_PROVISION = 1,
+  PROVISIONING = 2,
+  PROVISION_FAILED = 3,
+  DEPROVISIONING = 4,
+  INACTIVE = 5,
+}

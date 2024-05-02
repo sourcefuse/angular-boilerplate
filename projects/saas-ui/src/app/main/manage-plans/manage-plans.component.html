@@ -1,5 +1,5 @@
 <ag-grid-angular
-  style="width: 1100px; height: 500px"
+  style="width: 1300px; height: 700px"
   class="ag-theme-quartz"
   [rowData]="rowData"
   [columnDefs]="colDefs"
@@ -8,14 +8,3 @@
   (rowEditingStopped)="(onRowEditingStopped)"
 >
 </ag-grid-angular>
-
-<button
-  nbButton
-  (click)="onAddButtonClick()"
-  shape="round"
-  size="medium"
-  class="btn btn-primary"
-  status="basic"
->
-  Add New Feature
-</button>

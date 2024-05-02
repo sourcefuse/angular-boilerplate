@@ -16,6 +16,9 @@ export class GetPlanAdapter implements IAdapter<any> {
         name: resp.name,
         id: resp.id,
         price: resp.price,
+        tier: resp.tier,
+        billingCycleId: resp.billingCycleId,
+        currencyId: resp.currencyId,
       };
       plans.push(plan);
     });

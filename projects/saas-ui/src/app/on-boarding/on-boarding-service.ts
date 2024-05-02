@@ -1,8 +1,15 @@
-import {HttpHeaders} from '@angular/common/http';
-import {Inject, Injectable} from '@angular/core';
-import {ApiService, AnyAdapter} from '@project-lib/core/api';
+import {HttpHeaders, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {
+  AnyAdapter,
+  AnyObject,
+  ApiService,
+  Fields,
+  Inclusion,
+  Where,
+} from '@project-lib/core/api';
 import {AuthTokenSkipHeader} from '@project-lib/core/constants';
-import {Observable, Subject, map, of} from 'rxjs';
+import {Observable, Subject, filter, map, of} from 'rxjs';
 import {
   VerifyEmailCommand,
   GetLeadByIdCommand,
@@ -14,6 +21,16 @@ import {
 import {ValidateLeadAdapter, GetPlanAdapter} from './adapters';
 import {Lead, Tenant, Plan} from './models';
 
+import {GetBillingDetails} from '../main/lead-list/commands/get-billing.command';
+interface BackendFilter<MT extends object = AnyObject> {
+  where?: Where<MT>;
+  fields?: Fields<MT> | (keyof MT)[];
+  order?: string[];
+  limit?: number;
+  skip?: number;
+  offset?: number;
+  include?: Inclusion[];
+}
 @Injectable({
   providedIn: 'root',
 })
@@ -52,7 +69,6 @@ export class OnBoardingService {
         .set(AuthTokenSkipHeader, '-')
         .set('Authorization', `Bearer ${code}`),
     };
-    // return of({} as Lead);
     return command.execute().pipe(res => res);
   }
 
@@ -66,9 +82,7 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  addTenant(tenant: Tenant, leadId: string): Observable<Tenant> {
-    console.log(tenant);
-
+  addTenant(tenant: Tenant, leadId: string) {
     const command: AddTenantFromLeadCommand<Tenant> =
       new AddTenantFromLeadCommand(this.apiService, this.anyAdapter, leadId);
     command.parameters = {
@@ -77,17 +91,32 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  getPlanOptions(): Observable<Plan[]> {
+  getPlanOptions(
+    offset?: number,
+    limit?: number,
+    filter?: BackendFilter<AnyObject>,
+    order?: string,
+  ) {
     const command: GetPlanCommand<Plan[]> = new GetPlanCommand(
       this.apiService,
-      this.getPlanAdapter,
+      this.anyAdapter,
     );
-
-    command.parameters = {};
+    const backendFilter: BackendFilter<AnyObject> = filter
+      ? {
+          where: filter.where,
+          offset: filter.offset,
+          limit: filter.limit,
+          order: filter.order,
+          include: filter.include || [],
+        }
+      : {};
+    command.parameters = {
+      query: new HttpParams().set('filter', JSON.stringify(backendFilter)),
+    };
     return command.execute();
   }
 
-  addLead(lead: Lead): Observable<Lead> {
+  addLead(lead: AnyObject): Observable<Lead> {
     lead.address = {country: lead.country};
     delete lead.country;
     const command: AddLeadCommand<Lead> = new AddLeadCommand(
@@ -101,12 +130,27 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  getLeadList() {
+  getLeadList(
+    offset?: number,
+    limit?: number,
+    filter?: BackendFilter<Lead>,
+    order?: string,
+  ) {
     const command: GetLeadListCommand<Lead> = new GetLeadListCommand(
       this.apiService,
       this.anyAdapter,
     );
 
+    const backendFilter: BackendFilter<Lead> = {
+      where: filter.where,
+      offset: filter.offset,
+      limit: filter.limit,
+      order: filter.order,
+      include: filter.include || [],
+    };
+    command.parameters = {
+      query: new HttpParams().set('filter', JSON.stringify(backendFilter)),
+    };
     return command.execute();
   }
 }

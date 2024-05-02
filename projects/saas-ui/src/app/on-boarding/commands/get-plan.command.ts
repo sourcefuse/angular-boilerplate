@@ -1,19 +1,15 @@
-import {IApiService, IAdapter} from '@project-lib/core/api';
-import {GetAPICommand} from '../../shared /auth/commands';
-import {environment} from 'projects/saas-ui/src/environment';
-import {Observable} from 'rxjs';
+import {IApiService, IAdapter, GetAPICommand} from '@project-lib/core/api';
 import {Plan} from '../models';
+import {Inject} from '@angular/core';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 
 export class GetPlanCommand<T> extends GetAPICommand<Plan[]> {
-  parameters: {};
-  execute(): Observable<Plan[]> {
-    throw new Error('Method not implemented.');
-  }
-  constructor(apiService: IApiService, adapter: IAdapter<Plan[]>) {
-    super(
-      apiService,
-      adapter,
-      `${environment.baseApiUrl}${environment.subscriptionServiceUrl}/plans`,
-    );
+  constructor(
+    apiService: IApiService,
+    adapter: IAdapter<Plan[]>,
+    @Inject(APP_CONFIG) private readonly appConfig?: IAnyObject,
+  ) {
+    super(apiService, adapter, `${appConfig.subscriptionServiceUrl}/plans`);
   }
 }

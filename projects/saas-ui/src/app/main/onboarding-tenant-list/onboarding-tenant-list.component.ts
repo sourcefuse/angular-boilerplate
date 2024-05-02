@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {ColDef} from 'ag-grid-community';
 import {Location} from '@angular/common';
+import {takeUntil} from 'rxjs';
+import {TenantFacadeService} from '../lead-list/tenant-list-facade.service';
+import {Tenant} from '../../on-boarding/models';
+import {BackendFilter} from '@project-lib/core/api';
+import {TenantStatus} from '../enums/tenant-status.enum';
 
 @Component({
   selector: 'app-onboarding-tenant-list',
@@ -14,32 +19,22 @@ export class OnboardingTenantListComponent
   implements OnInit
 {
   colDefs: ColDef[] = [
-    {field: 'firstname'},
-    {field: 'lastname'},
-    {field: 'companyName'},
-    {field: 'email'},
-    {field: 'status'},
-    {field: 'startDate'},
-    {field: 'endDate'},
+    {field: 'name', headerName: 'Company Name', width: 200, minWidth: 20},
+    {field: 'domains', width: 200, minWidth: 20},
+    {field: 'address', width: 300, minWidth: 20},
+    {field: 'status', width: 200, minWidth: 20},
   ];
 
-  rowData = [
-    // {
-    //   firstname: 'Deepika',
-    //   lastname: 'Mahindroo',
-    //   companyName: 'SourceFuse',
-    //   email: '#482,DeraBassi',
-    //   status: 'Active',
-    //   startDate: '6th April 2024',
-    //   endDate: '6th May 2024',
-    // },
-  ];
-
+  rowData = [];
+  tenants: any;
+  leads: any;
+  filter: BackendFilter<Tenant> = {
+    include: [{relation: 'address'}],
+  };
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
-    // private readonly tenantFacade: TenantFacadeService,
-    private readonly router: Router,
+    private readonly tenantFacade: TenantFacadeService,
   ) {
     super(route, location);
   }
@@ -49,11 +44,19 @@ export class OnboardingTenantListComponent
   }
 
   getOnBoardingTenants() {
-    // this.tenantFacade
-    //   .getTenantList()
-    //   .pipe(takeUntil(this._destroy$))
-    //   .subscribe(res => {
-    //     this.rowData = res;
-    //   });
+    this.tenantFacade
+      .getTenantList(null, null, this.filter)
+      .pipe(takeUntil(this._destroy$))
+      .subscribe(res => {
+        this.rowData = res.map(item => {
+          const addressString = `${item.address.city}, ${item.address.state}, ${item.address.zip}, ${item.address.country}`;
+          return {
+            name: item.name,
+            domains: item.domains.join(', '),
+            address: addressString,
+            status: TenantStatus[item.status],
+          };
+        });
+      });
   }
 }

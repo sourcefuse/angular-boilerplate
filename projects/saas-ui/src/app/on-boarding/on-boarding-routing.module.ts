@@ -2,9 +2,9 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AddLeadComponent} from './add-lead/add-lead.component';
 import {OnBoardingComponent} from './on-boarding.component';
-import {AddTenantComponent} from './add-tenant/add-tenant.component';
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
 import {VerificationCompleteComponent} from './verification-complete/verification-complete.component';
+import {EmailVerifyGuard} from './guards';
 
 const routes: Routes = [
   {
@@ -22,12 +22,6 @@ const routes: Routes = [
       {
         path: 'registration/complete',
         component: VerificationCompleteComponent,
-      },
-      {
-        path: 'add-tenant',
-        // path: 'verify/:leadId',
-        component: AddTenantComponent,
-        // canActivate: [EmailVerifyGuard],
       },
     ],
   },

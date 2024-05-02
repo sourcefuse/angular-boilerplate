@@ -12,7 +12,7 @@ import {
   TranslationService,
 } from '@project-lib/core/localization';
 import {ThemeModule} from '@project-lib/theme/theme.module';
-import {environment} from '@main-project/boiler/env/environment';
+
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {ApiService} from '@project-lib/core/api';
@@ -22,6 +22,7 @@ import {IconPacksManagerService} from '@project-lib/theme/services';
 import {OnBoardingComponent} from './on-boarding/on-boarding.component';
 import {NbRadioModule} from '@nebular/theme';
 import {AgGridModule} from 'ag-grid-angular';
+import {environment} from '../environment';
 
 @NgModule({
   declarations: [AppComponent, OnBoardingComponent],
