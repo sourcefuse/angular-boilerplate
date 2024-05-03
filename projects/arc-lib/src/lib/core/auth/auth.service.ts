@@ -337,7 +337,7 @@ export class AuthService {
   loginViaCognito(): void {
     const form = document.createElement('form');
     form.method = 'POST';
-    form.action = `http://localhost:3000/auth/cognito`;
+    form.action = `${this.appConfig.authServiceUrl}/auth/cognito`;
     form.style.display = 'none';
 
     const clientId = document.createElement('input');

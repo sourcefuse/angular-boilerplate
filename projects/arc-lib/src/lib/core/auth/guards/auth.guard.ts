@@ -16,7 +16,7 @@ import {
   SystemStoreFacadeService,
   UserSessionStoreService,
 } from '@project-lib/core/store';
-import {AuthService} from 'projects/saas-ui/src/app/shared /auth/auth.service';
+import {AuthService} from '../auth.service';
 
 @Injectable({
   providedIn: 'root',
