@@ -49,7 +49,6 @@ export class LeadListComponent
       .pipe(takeUntil(this._destroy$))
       .subscribe(res => {
         const data = res;
-        console.log(data);
         this.rowData = data.map(item => ({
           firstName: item.firstName,
           lastName: item.lastName,

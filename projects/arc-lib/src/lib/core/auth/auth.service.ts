@@ -343,13 +343,13 @@ export class AuthService {
     const clientId = document.createElement('input');
     clientId.type = 'hidden';
     clientId.name = 'client_id';
-    clientId.value = 'test_client_id';
+    clientId.value = this.appConfig.clientId;
     form.appendChild(clientId);
 
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'client_secret';
-    clientSecret.value = 'test_client_secret';
+    clientSecret.value = this.appConfig.publicKey;
     form.appendChild(clientSecret);
     document.body.appendChild(form);
     form.submit();
@@ -358,24 +358,24 @@ export class AuthService {
   logoutCognito() {
     const form = document.createElement('form');
     form.method = 'GET';
-    form.action = `https://tata-saas-poc.auth.us-east-1.amazoncognito.com/logout`;
+    form.action = `${this.appConfig.cognitoLogoutUrl}/logout`;
     form.style.display = 'none';
 
     const clientId = document.createElement('input');
     clientId.type = 'hidden';
     clientId.name = 'client_id';
-    clientId.value = '3hcd79ut813reesb7mvlomnbrv';
+    clientId.value = this.appConfig.clientId;
     form.appendChild(clientId);
 
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'logout_uri';
-    clientSecret.value = 'http://localhost:4200/auth/login';
+    clientSecret.value = this.appConfig.publicKey;
     form.appendChild(clientSecret);
-
     document.body.appendChild(form);
     form.submit();
   }
+
   private _loadPermissions(permissions: string[]) {
     const perms = this.permissionsService.getPermissions();
     const entityPerms: string[] = [];

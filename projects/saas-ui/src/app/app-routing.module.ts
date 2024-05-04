@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('projects/saas-ui/src/app/shared /auth/auth.module').then(
+      import('projects/saas-ui/src/app/shared/auth/auth.module').then(
         m => m.AuthModule,
       ),
     canActivate: [LoggedInGuard],

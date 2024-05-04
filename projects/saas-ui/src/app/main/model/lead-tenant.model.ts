@@ -1,4 +1,4 @@
-export class Tenant {
+export class Leadtenant {
   id!: string;
   name!: string;
   domains!: string[];

@@ -1,10 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AddLeadComponent} from './add-lead/add-lead.component';
-import {OnBoardingComponent} from './on-boarding.component';
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
+import {OnBoardingComponent} from './on-boarding.component';
 import {VerificationCompleteComponent} from './verification-complete/verification-complete.component';
-import {EmailVerifyGuard} from './guards';
 
 const routes: Routes = [
   {

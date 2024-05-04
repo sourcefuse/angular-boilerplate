@@ -6,9 +6,6 @@ import {Inject} from '@angular/core';
 import {Observable} from 'rxjs';
 
 export class DeleteTenantCommand<T> extends DelAPICommand<T> {
-  execute(): Observable<T> {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     apiService: ApiService,
     adapter: IAdapter<T>,

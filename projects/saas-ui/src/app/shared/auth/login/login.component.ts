@@ -2,7 +2,6 @@ import {Location} from '@angular/common';
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {concatMap, throwError} from 'rxjs';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {AuthService} from '@project-lib/core/auth/auth.service';
 
@@ -41,10 +40,6 @@ export class LoginComponent extends RouteComponentBaseDirective {
   }
 
   showPassword = false;
-
-  onSubmit() {
-    // TOdo
-  }
 
   // function to show and hide password
   getInputType() {

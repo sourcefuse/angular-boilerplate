@@ -6,9 +6,6 @@ import {Inject} from '@angular/core';
 import {Observable} from 'rxjs';
 
 export class GetTenantByIdCommand<T> extends GetAPICommand<T> {
-  execute(): Observable<T> {
-    throw new Error('Method not implemented.');
-  }
   constructor(
     apiService: ApiService,
     adapter: IAdapter<T>,

@@ -18,7 +18,7 @@ import {
   AddLeadCommand,
   GetLeadListCommand,
 } from './commands';
-import {ValidateLeadAdapter, GetPlanAdapter} from './adapters';
+import {GetPlanAdapter} from './adapters';
 import {Lead, Tenant, Plan} from './models';
 
 import {GetBillingDetails} from '../main/lead-list/commands/get-billing.command';
@@ -44,23 +44,15 @@ export class OnBoardingService {
   constructor(
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
-    private readonly validateLeadAdapter: ValidateLeadAdapter,
     private readonly getPlanAdapter: GetPlanAdapter,
   ) {}
-
-  getValidateLead(): Subject<Lead> {
-    return this.validateLead$;
-  }
-  setValidateLead(lead: Lead) {
-    this.validateLead$.next(lead);
-  }
 
   public validateEmail(
     code: string,
     leadId: string,
   ): Observable<{leadId: string; token: string}> {
     const command: VerifyEmailCommand<{leadId: string; token: string}> =
-      new VerifyEmailCommand(this.apiService, this.validateLeadAdapter, leadId);
+      new VerifyEmailCommand(this.apiService, this.anyAdapter, leadId);
     // sonarignore:end
     command.parameters = {
       data: {},

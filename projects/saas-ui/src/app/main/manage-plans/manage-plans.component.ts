@@ -52,7 +52,6 @@ export class ManagePlansComponent
       .pipe(takeUntil(this._destroy$))
       .subscribe(res => {
         this.rowData = res.map(item => {
-          console.log(res[0]);
           return {
             name: item.name,
             description: item.description,

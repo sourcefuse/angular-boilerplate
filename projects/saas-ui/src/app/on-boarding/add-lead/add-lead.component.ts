@@ -39,7 +39,6 @@ export class AddLeadComponent {
   onSubmit() {
     if (this.addLeadForm.valid) {
       const userData = this.addLeadForm.value;
-      console.log(userData);
       const user = {
         firstName: userData.firstName,
         lastName: userData.lastName,
