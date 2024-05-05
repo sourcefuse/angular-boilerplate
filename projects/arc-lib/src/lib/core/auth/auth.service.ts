@@ -352,13 +352,13 @@ export class AuthService {
     const clientId = document.createElement('input');
     clientId.type = 'hidden';
     clientId.name = 'client_id';
-    clientId.value = this.appConfig.clientId;
+    clientId.value = 'test_client_id';
     form.appendChild(clientId);
 
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'client_secret';
-    clientSecret.value = this.appConfig.publicKey;
+    clientSecret.value = 'test_client_secret';
     form.appendChild(clientSecret);
     document.body.appendChild(form);
     form.submit();
