@@ -43,7 +43,6 @@ export class AddPlanComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrencyDetails();
     this.getBillingCycleDetails();
-    console.log(this.appConfig.subscriptionServiceUrl);
   }
   onSubmit() {
     if (this.addPlanForm.valid) {

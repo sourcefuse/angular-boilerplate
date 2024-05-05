@@ -10,6 +10,10 @@ export class AddPlanCommand<T> extends PostAPICommand<Plan> {
     adapter: IAdapter<Plan>,
     appConfig: IAnyObject,
   ) {
-    super(apiService, adapter, `${appConfig.subscriptionServiceUrl}/plans`);
+    super(
+      apiService,
+      adapter,
+      `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans`,
+    );
   }
 }

@@ -124,8 +124,6 @@ export class OnBoardingService {
   }
 
   addLead(lead: AnyObject): Observable<Lead> {
-    lead.address = {country: lead.country};
-    delete lead.country;
     const command: AddLeadCommand<Lead> = new AddLeadCommand(
       this.apiService,
       this.anyAdapter,

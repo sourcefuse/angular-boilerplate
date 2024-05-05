@@ -22,7 +22,7 @@ export class LeadListComponent
     {field: 'firstName', width: 200, minWidth: 20},
     {field: 'lastName', width: 200, minWidth: 20},
     {field: 'companyName', width: 200, minWidth: 20},
-    {field: 'email', width: 200, minWidth: 20},
+    {field: 'email', width: 300, minWidth: 20},
     {field: 'country', width: 200, minWidth: 20},
   ];
 

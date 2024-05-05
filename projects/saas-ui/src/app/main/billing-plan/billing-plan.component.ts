@@ -5,9 +5,7 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {ColDef} from 'ag-grid-community';
 import {takeUntil} from 'rxjs';
 import {Location} from '@angular/common';
-import {OnBoardingService} from '../../on-boarding/on-boarding-service';
 import {SubscriptionStatus} from '../enums/subscription-status.enum';
-import {TenantFacadeService} from '../lead-list/tenant-list-facade.service';
 import {BillingPlanService} from '../services/billing-plan-service';
 
 @Component({
@@ -35,10 +33,7 @@ export class BillingPlanComponent
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
-    private readonly onboardingService: OnBoardingService,
     private readonly billingplanService: BillingPlanService,
-    private readonly router: Router,
-    private readonly tenantFacade: TenantFacadeService,
   ) {
     super(route, location);
   }
