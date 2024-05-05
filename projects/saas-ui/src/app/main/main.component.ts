@@ -43,7 +43,7 @@ export class MainComponent
     {
       title: 'Lead',
       icon: 'people-outline',
-      link: '/main/tenant-list',
+      link: '/main/lead-list',
       home: true,
       pathMatch: 'prefix',
     },

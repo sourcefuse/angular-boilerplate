@@ -1,21 +1,18 @@
 import {ApiService, GetAPICommand, IAdapter} from '@project-lib/core/api';
 
-import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
-import {Inject} from '@angular/core';
-import {Observable} from 'rxjs';
 
 export class GetTenantByIdCommand<T> extends GetAPICommand<T> {
   constructor(
     apiService: ApiService,
     adapter: IAdapter<T>,
     tenantId: string,
-    @Inject(APP_CONFIG) private readonly appConfig?: IAnyObject,
+    appConfig: IAnyObject,
   ) {
     super(
       apiService,
       adapter,
-      `${appConfig.tenantmgmtServiceUrl}/tenants/${tenantId}}`,
+      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/tenants/${tenantId}}`,
     );
   }
 }

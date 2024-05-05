@@ -1,5 +1,5 @@
 import {HttpHeaders, HttpParams} from '@angular/common/http';
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {
   AnyAdapter,
   AnyObject,
@@ -22,6 +22,8 @@ import {GetPlanAdapter} from './adapters';
 import {Lead, Tenant, Plan} from './models';
 
 import {GetBillingDetails} from '../main/lead-list/commands/get-billing.command';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
   fields?: Fields<MT> | (keyof MT)[];
@@ -45,6 +47,7 @@ export class OnBoardingService {
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
     private readonly getPlanAdapter: GetPlanAdapter,
+    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
 
   public validateEmail(
@@ -52,7 +55,12 @@ export class OnBoardingService {
     leadId: string,
   ): Observable<{leadId: string; token: string}> {
     const command: VerifyEmailCommand<{leadId: string; token: string}> =
-      new VerifyEmailCommand(this.apiService, this.anyAdapter, leadId);
+      new VerifyEmailCommand(
+        this.apiService,
+        this.anyAdapter,
+        leadId,
+        this.appConfig,
+      );
     // sonarignore:end
     command.parameters = {
       data: {},
@@ -69,6 +77,7 @@ export class OnBoardingService {
       this.apiService,
       this.anyAdapter,
       leadId,
+      this.appConfig,
     );
 
     return command.execute();
@@ -76,7 +85,12 @@ export class OnBoardingService {
 
   addTenant(tenant: Tenant, leadId: string) {
     const command: AddTenantFromLeadCommand<Tenant> =
-      new AddTenantFromLeadCommand(this.apiService, this.anyAdapter, leadId);
+      new AddTenantFromLeadCommand(
+        this.apiService,
+        this.anyAdapter,
+        leadId,
+        this.appConfig,
+      );
     command.parameters = {
       data: tenant,
     };
@@ -92,6 +106,7 @@ export class OnBoardingService {
     const command: GetPlanCommand<Plan[]> = new GetPlanCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig,
     );
     const backendFilter: BackendFilter<AnyObject> = filter
       ? {
@@ -114,6 +129,7 @@ export class OnBoardingService {
     const command: AddLeadCommand<Lead> = new AddLeadCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig,
     );
     command.parameters = {
       headers: new HttpHeaders().set(AuthTokenSkipHeader, '-'),
@@ -131,6 +147,7 @@ export class OnBoardingService {
     const command: GetLeadListCommand<Lead> = new GetLeadListCommand(
       this.apiService,
       this.anyAdapter,
+      this.appConfig,
     );
 
     const backendFilter: BackendFilter<Lead> = {

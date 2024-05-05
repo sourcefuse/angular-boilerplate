@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {
   AnyAdapter,
   AnyObject,
@@ -16,12 +16,15 @@ import {
 } from './commands';
 
 import {HttpParams} from '@angular/common/http';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 
 @Injectable()
 export class TenantFacadeService {
   constructor(
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
+    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
 
   getTenantList(
@@ -31,7 +34,11 @@ export class TenantFacadeService {
     order?: string,
   ) {
     const command: GetTenantLeadListCommand<AnyObject> =
-      new GetTenantLeadListCommand(this.apiService, this.anyAdapter);
+      new GetTenantLeadListCommand(
+        this.apiService,
+        this.anyAdapter,
+        this.appConfig,
+      );
 
     const backendFilter: BackendFilter<Tenant> = {
       where: filter.where,
@@ -51,6 +58,7 @@ export class TenantFacadeService {
       this.apiService,
       this.anyAdapter,
       tenantId,
+      this.appConfig,
     );
 
     return command.execute();
@@ -61,6 +69,7 @@ export class TenantFacadeService {
       this.apiService,
       this.anyAdapter,
       tenant.id,
+      this.appConfig,
     );
     command.parameters = {
       data: tenant,
@@ -74,6 +83,7 @@ export class TenantFacadeService {
       this.apiService,
       this.anyAdapter,
       tenant.id,
+      this.appConfig,
     );
     return command.execute();
   }

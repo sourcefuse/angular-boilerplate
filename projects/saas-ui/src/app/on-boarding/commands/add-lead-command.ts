@@ -1,15 +1,18 @@
 import {ApiService, IAdapter, PostAPICommand} from '@project-lib/core/api';
 import {Lead} from '../models';
-import {Inject} from '@angular/core';
-import {APP_CONFIG} from '@project-lib/app-config';
+
 import {IAnyObject} from '@project-lib/core/i-any-object';
 
 export class AddLeadCommand<T> extends PostAPICommand<Lead> {
   constructor(
     apiService: ApiService,
     adapter: IAdapter<Lead>,
-    @Inject(APP_CONFIG) private readonly appConfig?: IAnyObject,
+    appConfig: IAnyObject,
   ) {
-    super(apiService, adapter, `${appConfig.tenantmgmtServiceUrl}/leads`);
+    super(
+      apiService,
+      adapter,
+      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/leads`,
+    );
   }
 }

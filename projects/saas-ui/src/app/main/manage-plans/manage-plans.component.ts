@@ -43,10 +43,10 @@ export class ManagePlansComponent
   }
 
   ngOnInit(): void {
-    this.getOnBoardingTenants();
+    this.getPlans();
   }
 
-  getOnBoardingTenants() {
+  getPlans() {
     this.onboardingService
       .getPlanOptions(null, null, this.filter)
       .pipe(takeUntil(this._destroy$))
