@@ -9,12 +9,14 @@ import {VerificationCompleteComponent} from './verification-complete/verificatio
 import {ReactiveFormsModule} from '@angular/forms';
 import {OnBoardingService} from './on-boarding-service';
 import {TenantFacadeService} from '../main/lead-list/tenant-list-facade.service';
+import {AddTenantComponent} from './add-tenant/add-tenant.component';
 
 @NgModule({
   declarations: [
     AddLeadComponent,
     EmailVerificationComponent,
     VerificationCompleteComponent,
+    AddTenantComponent,
   ],
   imports: [
     CommonModule,
