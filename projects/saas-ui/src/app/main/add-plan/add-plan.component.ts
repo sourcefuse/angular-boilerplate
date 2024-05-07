@@ -21,14 +21,15 @@ export class AddPlanComponent implements OnInit {
   currencyOptions: AnyObject;
   billingOptions: AnyObject;
   tierOptions = [
-    {name: 'POOLED', value: '0'},
-    {name: 'SILO', value: '1'},
+    {name: 'Pooled Compute', value: '0'},
+    {name: 'Silo Storage', value: '1'},
   ];
   constructor(
     private fb: FormBuilder,
     private readonly onboardingService: OnBoardingService,
     private readonly toasterService: NbToastrService,
     private readonly billingplanService: BillingPlanService,
+    private readonly router: Router,
     @Inject(APP_CONFIG) private readonly appConfig?: IAnyObject,
   ) {
     this.addPlanForm = this.fb.group({
@@ -52,6 +53,7 @@ export class AddPlanComponent implements OnInit {
       this.billingplanService.addPlan(domainData).subscribe(
         () => {
           this.toasterService.show('Plan added Successfully');
+          this.router.navigate(['/main/plan-items']);
         },
         (error: string) => {
           console.error('Login error:', error); //NOSONAR

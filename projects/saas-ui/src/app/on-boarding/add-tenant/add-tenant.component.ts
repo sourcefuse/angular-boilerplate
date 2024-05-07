@@ -15,9 +15,8 @@ import {Location} from '@angular/common';
 export class AddTenantComponent implements OnInit {
   [x: string]: any;
   addTenantForm: FormGroup;
-  leadId = '';
   subscriptionPlans = [];
-  //getRouteParam('leadId') ?? '';
+  leadId = '';
   constructor(
     private route: ActivatedRoute,
     private toastrService: NbToastrService,
@@ -25,18 +24,17 @@ export class AddTenantComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     private onboardingService: OnBoardingService,
-    private tenantFacade: TenantFacadeService,
   ) {
     this.addTenantForm = this.fb.group({
       key: ['', Validators.required],
-      domain: ['', Validators.required],
-      selectedPlan: [null],
+      domains: ['', Validators.required],
+      planId: [null],
     });
   }
   ngOnInit() {
     this.getRadioOptions();
     this.route.params.subscribe(params => {
-      this.leadId = params.id;
+      this.leadId = params['leadId'];
     });
   }
 
@@ -48,12 +46,14 @@ export class AddTenantComponent implements OnInit {
   onSubmit() {
     if (this.addTenantForm.valid) {
       const domainData = this.addTenantForm.value;
-      console.log(domainData);
+      if (typeof domainData.domains === 'string') {
+        domainData.domains = [domainData.domains];
+      }
       this.onboardingService
         .addTenant(domainData, this.leadId)
-        .pipe(takeUntil(this._destroy$))
+
         .subscribe(() => {
-          this.router.navigate(['/tenant/verify/complete']);
+          this.router.navigate(['/tenant/registration/complete']);
         });
     }
   }

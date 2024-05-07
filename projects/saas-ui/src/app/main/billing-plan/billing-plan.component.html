@@ -1,7 +1,15 @@
-<ag-grid-angular
-  style="width: 1300px; height: 700px"
-  class="ag-theme-quartz"
-  [rowData]="rowData"
-  [columnDefs]="colDefs"
->
-</ag-grid-angular>
+<div>
+  <nb-card accent="danger">
+    <nb-card-body>
+      <h2>Billing Details</h2>
+      <!-- ag-grid -->
+      <ag-grid-angular
+        style="width: 1100px; height: 700px"
+        class="ag-theme-quartz"
+        [rowData]="rowData"
+        [columnDefs]="colDefs"
+      >
+      </ag-grid-angular>
+    </nb-card-body>
+  </nb-card>
+</div>

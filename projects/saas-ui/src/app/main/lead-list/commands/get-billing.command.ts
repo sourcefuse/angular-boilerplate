@@ -8,6 +8,10 @@ export class GetBillingDetails<T> extends GetAPICommand<T> {
     adapter: IAdapter<T>,
     appConfig: IAnyObject,
   ) {
-    super(apiService, adapter, `${appConfig.tenantMgmtFacadeUrl}/tenant/Bills`);
+    super(
+      apiService,
+      adapter,
+      `${appConfig.baseApiUrl}${appConfig.tenantMgmtFacadeUrl}/tenant/Bills`,
+    );
   }
 }

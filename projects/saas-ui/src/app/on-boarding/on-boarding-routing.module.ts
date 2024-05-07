@@ -25,7 +25,7 @@ const routes: Routes = [
         component: VerificationCompleteComponent,
       },
       {
-        path: 'add-tenant',
+        path: 'add-tenant/:leadId',
         component: AddTenantComponent,
         canActivate: [EmailVerifyGuard],
       },

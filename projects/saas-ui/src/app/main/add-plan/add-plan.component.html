@@ -75,36 +75,48 @@
                 </nb-select>
               </div>
             </div>
-          </div>
 
-          <!-- Plan Tier -->
-          <div class="input-box">
-            <div class="input-title">
-              <span>Tier</span>
-            </div>
-            <div class="radioselect">
-              <nb-radio-group formControlName="tier">
-                <nb-radio *ngFor="let tier of tierOptions" [value]="tier.value">
-                  {{ tier.name }}
-                </nb-radio>
-              </nb-radio-group>
-            </div>
-          </div>
-
-          <!-- Billing Plan -->
-          <div class="input-box">
-            <div class="input-title input-radio">
-              <span>BillingPlan Name</span>
-            </div>
-            <div class="radioselect">
-              <nb-radio-group formControlName="billingCycleId">
-                <nb-radio
-                  *ngFor="let billingOption of billingOptions"
-                  [value]="billingOption.id"
+            <!-- Plan Tier in select -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Tier</span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="currency-wrapper"
+                  placeholder="Basic"
+                  status="basic"
+                  formControlName="tier"
                 >
-                  {{ billingOption.cycleName }}
-                </nb-radio>
-              </nb-radio-group>
+                  <nb-option
+                    *ngFor="let tier of tierOptions"
+                    [value]="tier.value"
+                  >
+                    {{ tier.name }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <!-- Billing Plan  in select-->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Billing Plan</span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="currency-wrapper"
+                  placeholder="Basic"
+                  status="basic"
+                  formControlName="billingCycleId"
+                >
+                  <nb-option
+                    *ngFor="let billingOption of billingOptions"
+                    [value]="billingOption.id"
+                  >
+                    {{ billingOption.cycleName }}
+                  </nb-option>
+                </nb-select>
+              </div>
             </div>
           </div>
           <!-- signup button -->

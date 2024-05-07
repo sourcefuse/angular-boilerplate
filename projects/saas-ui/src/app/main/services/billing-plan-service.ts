@@ -20,6 +20,9 @@ import {GetBillingDetails} from '../lead-list/commands/get-billing.command';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {AddPlanCommand} from '../commands/add-plan.command';
+import {DeletePlanCommand} from '../commands/delete-plan.command';
+import {EditPlanCommand} from '../commands/edit-plan.command';
+import {GetPlanByIdCommand} from '../commands/get-plan-by-id.command';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
@@ -105,6 +108,36 @@ export class BillingPlanService {
     command.parameters = {
       data: plan,
     };
+    return command.execute();
+  }
+  getPlanById(planId: string) {
+    const command: GetPlanByIdCommand<Tenant> = new GetPlanByIdCommand(
+      this.apiService,
+      this.anyAdapter,
+      planId,
+      this.appConfig,
+    );
+    return command.execute();
+  }
+  editTenant(plan: Plan) {
+    const command: EditPlanCommand<Tenant> = new EditPlanCommand(
+      this.apiService,
+      this.anyAdapter,
+      plan.id,
+      this.appConfig,
+    );
+    command.parameters = {
+      data: plan,
+    };
+    return command.execute();
+  }
+  deletePlan(planId: 'string') {
+    const command: DeletePlanCommand<Tenant> = new DeletePlanCommand(
+      this.apiService,
+      this.anyAdapter,
+      planId,
+      this.appConfig,
+    );
     return command.execute();
   }
 }

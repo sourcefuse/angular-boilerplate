@@ -12,6 +12,7 @@ import {ManagePlansComponent} from './manage-plans/manage-plans.component';
 import {BillingPlanComponent} from './billing-plan/billing-plan.component';
 import {AddPlanComponent} from './add-plan/add-plan.component';
 import {BillingPlanService} from './services/billing-plan-service';
+import {ToasterService} from '@project-lib/theme/toaster';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,6 @@ import {BillingPlanService} from './services/billing-plan-service';
     NbRadioModule,
     AgGridModule,
   ],
-  providers: [TenantFacadeService, BillingPlanService],
+  providers: [TenantFacadeService, BillingPlanService, ToasterService],
 })
 export class MainModule {}

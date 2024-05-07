@@ -20,7 +20,7 @@ import {SystemStoreFacadeService} from '@project-lib/core/index';
 import {EnvAdapterService} from '@project-lib/core/store/adapters';
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {OnBoardingComponent} from './on-boarding/on-boarding.component';
-import {NbRadioModule} from '@nebular/theme';
+import {NbLayoutModule, NbRadioModule} from '@nebular/theme';
 import {AgGridModule} from 'ag-grid-angular';
 import {environment} from '../environment';
 
@@ -37,6 +37,7 @@ import {environment} from '../environment';
     BrowserAnimationsModule,
     NbRadioModule,
     AgGridModule,
+    NbLayoutModule,
   ],
   providers: [
     TranslationService,

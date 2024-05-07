@@ -37,12 +37,6 @@ interface BackendFilter<MT extends object = AnyObject> {
   providedIn: 'root',
 })
 export class OnBoardingService {
-  private readonly authTokenSkipHeader = new HttpHeaders().set(
-    AuthTokenSkipHeader,
-    '',
-  );
-
-  private validateLead$ = new Subject<Lead>();
   constructor(
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
@@ -50,10 +44,7 @@ export class OnBoardingService {
     @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
 
-  public validateEmail(
-    code: string,
-    leadId: string,
-  ): Observable<{leadId: string; token: string}> {
+  public validateEmail(code: string, leadId: string) {
     const command: VerifyEmailCommand<{leadId: string; token: string}> =
       new VerifyEmailCommand(
         this.apiService,
@@ -64,12 +55,12 @@ export class OnBoardingService {
     // sonarignore:end
     command.parameters = {
       data: {},
-      observe: 'response',
+
       headers: new HttpHeaders()
         .set(AuthTokenSkipHeader, '-')
         .set('Authorization', `Bearer ${code}`),
     };
-    return command.execute().pipe(res => res);
+    return command.execute();
   }
 
   getLeadDetails(leadId: string): Observable<Lead> {

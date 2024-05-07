@@ -20,6 +20,7 @@ import {AddTenantComponent} from './add-tenant/add-tenant.component';
   ],
   imports: [
     CommonModule,
+
     OnBoardingRoutingModule,
     ThemeModule,
     NbRadioModule,

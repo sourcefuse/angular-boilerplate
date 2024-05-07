@@ -12,7 +12,7 @@ export class AddLeadCommand<T> extends PostAPICommand<Lead> {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/leads`,
+      `${appConfig.baseApiUrl}${appConfig.tenantMgmtFacadeUrl}/leads`,
     );
   }
 }
