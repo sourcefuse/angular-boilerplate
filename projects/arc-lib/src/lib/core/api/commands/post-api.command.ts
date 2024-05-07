@@ -2,10 +2,8 @@ import {HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-import {IAdapter} from '../adapters/i-adapter';
-import {IApiService} from '../i-api-service';
-import {HttpObserve} from '../types';
-import {ICommand} from './i-command';
+import {IApiService, IAdapter, HttpObserve} from '@project-lib/core/api';
+import {ICommand} from '@project-lib/core/api/commands/i-command';
 
 export abstract class PostAPICommand<T extends Partial<R>, R = T>
   implements ICommand
@@ -39,7 +37,7 @@ export abstract class PostAPICommand<T extends Partial<R>, R = T>
       .post(
         this.uri,
         this.adapter.adaptFromModel(this.parameters.data),
-        this.parameters.data,
+        options,
       )
       .pipe(
         map(resp => {

@@ -1,0 +1,24 @@
+/* registration-complete.component.css */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+nb-card {
+  width: 400px;
+  text-align: center;
+}
+
+nb-icon {
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 20px;
+}

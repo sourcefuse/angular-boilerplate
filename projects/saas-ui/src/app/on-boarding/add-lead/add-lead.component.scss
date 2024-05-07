@@ -1,0 +1,76 @@
+:host {
+  .logo {
+    padding-top: 10%;
+  }
+
+  .description {
+    padding-top: 10%;
+  }
+
+  .login-btn {
+    padding-top: 7%;
+  }
+
+  .footer {
+    padding-top: 7%;
+  }
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.input-box {
+  width: 48%;
+
+  .input {
+    input {
+      margin: 5px 0;
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 0;
+      background: #fff;
+    }
+  }
+
+  .inputTags {
+    input {
+      margin: 5px 0;
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 0;
+      background: #fff;
+    }
+  }
+}
+
+.add-lead-wrapper {
+  .btn {
+    text-align: right;
+  }
+}
+
+.address-input-box {
+  width: 100%;
+}
+
+.main-wrapper {
+  padding-top: 10px;
+}
+
+.green-icon {
+  color: green;
+}
+
+.invisible-icon {
+  display: none;
+}
+
+.add-lead-wrapper {
+  h2 {
+    margin-top: 0 !important;
+  }
+}

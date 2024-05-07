@@ -1,0 +1,40 @@
+@use 'sass:map';
+@use '../../../../../../arc-lib/src/lib/theme/styles/variables' as *;
+
+:host {
+  .logo {
+    padding-top: 15%;
+  }
+
+  .description {
+    padding-top: 10%;
+  }
+
+  .login-btn {
+    padding-top: 10%;
+  }
+
+  .footer {
+    padding-top: 15%;
+  }
+}
+
+.forgot-password {
+  a {
+    text-decoration: none;
+    color: #19a5ff;
+  }
+}
+
+.login-content-wrapper {
+  padding: 80px;
+}
+
+.main-wrapper {
+  padding-top: 50px;
+}
+.aws-icon {
+  padding-top: 5px;
+  height: 19px;
+  width: 25px;
+}

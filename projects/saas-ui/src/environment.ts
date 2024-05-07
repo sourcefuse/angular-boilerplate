@@ -1,0 +1,15 @@
+export const environment = {
+  baseApiUrl: 'http://localhost:',
+  clientId: 'test_client_id',
+  client_secret: 'test_client_secret',
+  publicKey: 'test_client_secret',
+  authServiceUrl: '3000',
+  userServiceUrl: '',
+  homePath: '/main/home',
+  home: '/me',
+  logLevel: '',
+  tenantMgmtFacadeUrl: '4005',
+  tenantmgmtServiceUrl: '3002',
+  subscriptionServiceUrl: '3001',
+  cognitoLogoutUrl: '',
+};
