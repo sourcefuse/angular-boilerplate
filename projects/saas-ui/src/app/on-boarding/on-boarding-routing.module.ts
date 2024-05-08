@@ -4,6 +4,8 @@ import {AddLeadComponent} from './add-lead/add-lead.component';
 import {EmailVerificationComponent} from './email-verification/email-verification.component';
 import {OnBoardingComponent} from './on-boarding.component';
 import {VerificationCompleteComponent} from './verification-complete/verification-complete.component';
+import {AddTenantComponent} from './add-tenant/add-tenant.component';
+import {EmailVerifyGuard} from './guards/email-verify.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +23,11 @@ const routes: Routes = [
       {
         path: 'registration/complete',
         component: VerificationCompleteComponent,
+      },
+      {
+        path: 'add-tenant/:leadId',
+        component: AddTenantComponent,
+        canActivate: [EmailVerifyGuard],
       },
     ],
   },

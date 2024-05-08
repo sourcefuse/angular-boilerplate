@@ -2,13 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ColDef, GridApi} from 'ag-grid-community';
 import {OnBoardingService} from '../../on-boarding/on-boarding-service';
-
+import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Plan} from '../../on-boarding/models';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {AnyObject, BackendFilter} from '@project-lib/core/api';
+import {BillingPlanService} from '../services/billing-plan-service';
+import {ToasterService} from '@project-lib/theme/toaster';
 @Component({
   selector: 'app-manage-plans',
   templateUrl: './manage-plans.component.html',
@@ -26,8 +28,10 @@ export class ManagePlansComponent
     {field: 'currencyName', width: 200, minWidth: 20},
     {field: 'price', width: 200, minWidth: 20},
   ];
+
   gridApi: GridApi;
   rowData = [];
+  public rowSelection: 'single' | 'multiple' = 'single';
   tenants: AnyObject[];
   filter: BackendFilter<AnyObject> = {
     include: [{relation: 'currency'}, {relation: 'billingCycle'}],
@@ -35,6 +39,8 @@ export class ManagePlansComponent
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
+    private toastrService: ToasterService,
+    private readonly billingPlanService: BillingPlanService,
     private readonly onboardingService: OnBoardingService,
     private readonly router: Router,
     private fb: FormBuilder,
@@ -53,6 +59,7 @@ export class ManagePlansComponent
       .subscribe(res => {
         this.rowData = res.map(item => {
           return {
+            id: item.id,
             name: item.name,
             description: item.description,
             cycleName: item['billingCycle'].cycleName,
@@ -65,5 +72,40 @@ export class ManagePlansComponent
 
   onGridReady(params) {
     this.gridApi = params.api;
+  }
+  showManagePlan() {
+    this.router.navigate(['/main/add-plan']);
+  }
+
+  onSelectionChanged(e) {
+    const selectedNodes = this.gridApi.getSelectedNodes();
+    if (selectedNodes.length > 0) {
+      const planId = selectedNodes[0].data.id;
+      this.selectedPlanId = planId;
+      this.billingPlanService.getPlanById(planId).subscribe({
+        next: plan => {
+          console.log(plan); // NOSONAR
+        },
+        error: error => {
+          this.toasterService('Failed to load plan details', 'Error');
+        },
+      });
+    }
+  }
+  deleteSelectedRow() {
+    if (!this.selectedPlanId) {
+      this.toasterService.warning('No plan selected', 'Warning!');
+      return;
+    }
+    this.billingPlanService.deletePlan(this.selectedPlanId).subscribe({
+      next: () => {
+        this.gridApi.applyTransaction({remove: this.gridApi.getSelectedRows()});
+        this.toastrService.success('Plan deleted successfully', 'Success!');
+        this.selectedPlanId = null;
+      },
+      error: error => {
+        this.toastrService.error('Failed to delete plan', 'Error');
+      },
+    });
   }
 }

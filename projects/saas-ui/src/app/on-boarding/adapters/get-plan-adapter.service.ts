@@ -1,4 +1,3 @@
-// tslint:disable:rule no-any
 import {Injectable} from '@angular/core';
 import {Plan} from '../models';
 import {pl} from 'date-fns/locale';

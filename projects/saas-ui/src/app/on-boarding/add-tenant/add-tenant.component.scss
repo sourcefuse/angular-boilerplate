@@ -1,0 +1,56 @@
+@use 'sass:map';
+@use '../../../../../arc-lib/src/lib/theme/styles/variables' as *;
+@use '../../../styles.scss' as *;
+@use '../../../themes.scss' as *;
+
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.plan-card-container {
+  width: 100%;
+  .plan-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    .plan-card-box {
+      flex: 1;
+      justify-content: space-between;
+    }
+  }
+}
+
+.main-wrapper {
+  .btn {
+    text-align: right;
+  }
+}
+
+.input-box {
+  width: 48%;
+
+  .input {
+    input {
+      margin: 5px 0;
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 0;
+      background: #fff;
+    }
+  }
+
+  .plans-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -10px;
+
+    .plan-card {
+      flex: 0 0 calc(30% - 20px); // Adjust the width of each card
+      margin: 10px;
+    }
+  }
+}

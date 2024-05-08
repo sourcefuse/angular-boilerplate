@@ -68,13 +68,6 @@ export class MainComponent
       home: true,
       pathMatch: 'prefix',
     },
-    {
-      title: 'Add-Plans',
-      icon: 'people-outline',
-      link: '/main/add-plan',
-      home: true,
-      pathMatch: 'prefix',
-    },
   ];
 
   navigate(link: string) {

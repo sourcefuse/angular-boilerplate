@@ -9,6 +9,10 @@ import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding
 import {AgGridModule} from 'ag-grid-angular';
 import {TenantFacadeService} from './lead-list/tenant-list-facade.service';
 import {ManagePlansComponent} from './manage-plans/manage-plans.component';
+import {BillingPlanComponent} from './billing-plan/billing-plan.component';
+import {AddPlanComponent} from './add-plan/add-plan.component';
+import {BillingPlanService} from './services/billing-plan-service';
+import {ToasterService} from '@project-lib/theme/toaster';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,8 @@ import {ManagePlansComponent} from './manage-plans/manage-plans.component';
     LeadListComponent,
     OnboardingTenantListComponent,
     ManagePlansComponent,
+    BillingPlanComponent,
+    AddPlanComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +30,6 @@ import {ManagePlansComponent} from './manage-plans/manage-plans.component';
     NbRadioModule,
     AgGridModule,
   ],
-  providers: [TenantFacadeService],
+  providers: [TenantFacadeService, BillingPlanService, ToasterService],
 })
 export class MainModule {}

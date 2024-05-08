@@ -3,6 +3,7 @@ import {IAnyObject} from '@project-lib/core/i-any-object';
 
 export class VerifyEmailCommand<T> extends PostAPICommand<T> {
   parameters: any;
+
   constructor(
     apiService: IApiService,
     adapter: IAdapter<T>,
