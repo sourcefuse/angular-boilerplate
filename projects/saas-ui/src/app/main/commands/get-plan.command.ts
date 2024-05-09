@@ -9,7 +9,7 @@ export class GetPlanCommand<T> extends GetAPICommand<Plan[]> {
   constructor(
     apiService: IApiService,
     adapter: IAdapter<Plan[]>,
-    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
+    appConfig: IAnyObject,
   ) {
     super(
       apiService,

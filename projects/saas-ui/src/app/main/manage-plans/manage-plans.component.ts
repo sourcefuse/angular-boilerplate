@@ -11,6 +11,7 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {AnyObject, BackendFilter} from '@project-lib/core/api';
 import {BillingPlanService} from '../services/billing-plan-service';
 import {ToasterService} from '@project-lib/theme/toaster';
+import {ButtonRendererComponent} from '../button-renderer/button-renderer.component';
 @Component({
   selector: 'app-manage-plans',
   templateUrl: './manage-plans.component.html',
@@ -27,6 +28,11 @@ export class ManagePlansComponent
     {field: 'cycleName', width: 200, minWidth: 20},
     {field: 'currencyName', width: 200, minWidth: 20},
     {field: 'price', width: 200, minWidth: 20},
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      cellRenderer: ButtonRendererComponent,
+    },
   ];
 
   gridApi: GridApi;
@@ -53,7 +59,7 @@ export class ManagePlansComponent
   }
 
   getPlans() {
-    this.onboardingService
+    this.billingPlanService
       .getPlanOptions(null, null, this.filter)
       .pipe(takeUntil(this._destroy$))
       .subscribe(res => {
@@ -75,37 +81,5 @@ export class ManagePlansComponent
   }
   showManagePlan() {
     this.router.navigate(['/main/add-plan']);
-  }
-
-  onSelectionChanged(e) {
-    const selectedNodes = this.gridApi.getSelectedNodes();
-    if (selectedNodes.length > 0) {
-      const planId = selectedNodes[0].data.id;
-      this.selectedPlanId = planId;
-      this.billingPlanService.getPlanById(planId).subscribe({
-        next: plan => {
-          console.log(plan); // NOSONAR
-        },
-        error: error => {
-          this.toasterService('Failed to load plan details', 'Error');
-        },
-      });
-    }
-  }
-  deleteSelectedRow() {
-    if (!this.selectedPlanId) {
-      this.toasterService.warning('No plan selected', 'Warning!');
-      return;
-    }
-    this.billingPlanService.deletePlan(this.selectedPlanId).subscribe({
-      next: () => {
-        this.gridApi.applyTransaction({remove: this.gridApi.getSelectedRows()});
-        this.toastrService.success('Plan deleted successfully', 'Success!');
-        this.selectedPlanId = null;
-      },
-      error: error => {
-        this.toastrService.error('Failed to delete plan', 'Error');
-      },
-    });
   }
 }

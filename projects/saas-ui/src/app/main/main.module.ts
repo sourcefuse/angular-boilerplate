@@ -13,6 +13,7 @@ import {BillingPlanComponent} from './billing-plan/billing-plan.component';
 import {AddPlanComponent} from './add-plan/add-plan.component';
 import {BillingPlanService} from './services/billing-plan-service';
 import {ToasterService} from '@project-lib/theme/toaster';
+import {ButtonRendererComponent} from './button-renderer/button-renderer.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {ToasterService} from '@project-lib/theme/toaster';
     ManagePlansComponent,
     BillingPlanComponent,
     AddPlanComponent,
+    ButtonRendererComponent,
   ],
   imports: [
     CommonModule,

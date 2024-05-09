@@ -13,7 +13,7 @@ export class EditPlanCommand<T> extends PatchAPICommand<T> {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}/${appConfig.subscriptionServiceUrl}/plans/${planId}`,
+      `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans/${planId}`,
     );
   }
 }

@@ -3,9 +3,9 @@
     <div class="main-wrapper">
       <div>
         <div class="sign-in-title">
-          <h2>Add New Plans</h2>
+          <h2>{{ isEditMode ? 'Edit Plan' : 'Add New Plan' }}</h2>
         </div>
-        <form [formGroup]="addPlanForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="addPlanForm">
           <!-- input fields -->
           <div class="input-wrapper">
             <!-- Plan name -->
@@ -127,9 +127,9 @@
               size="medium"
               status="basic"
               [disabled]="!addPlanForm.valid"
-              type="submit"
+              (click)="isEditMode ? editPlan() : addPlan()"
             >
-              Add Plan
+              {{ isEditMode ? 'Edit Plan' : 'Add Plan' }}
             </button>
           </div>
         </form>

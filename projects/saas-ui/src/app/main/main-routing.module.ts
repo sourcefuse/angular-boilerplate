@@ -37,6 +37,10 @@ const routes: Routes = [
         path: 'add-plan',
         component: AddPlanComponent,
       },
+      {
+        path: 'edit-plan/:id',
+        component: AddPlanComponent,
+      },
     ],
   },
 ];

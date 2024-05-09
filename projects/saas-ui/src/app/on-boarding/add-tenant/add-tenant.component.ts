@@ -6,6 +6,7 @@ import {takeUntil} from 'rxjs';
 import {TenantFacadeService} from '../../main/lead-list/tenant-list-facade.service';
 import {OnBoardingService} from '../on-boarding-service';
 import {Location} from '@angular/common';
+import {BillingPlanService} from '../../main/services/billing-plan-service';
 
 @Component({
   selector: 'app-add-tenant',
@@ -24,6 +25,7 @@ export class AddTenantComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     private onboardingService: OnBoardingService,
+    private readonly billingPlanService: BillingPlanService,
   ) {
     this.addTenantForm = this.fb.group({
       key: ['', Validators.required],
@@ -39,7 +41,7 @@ export class AddTenantComponent implements OnInit {
   }
 
   getRadioOptions() {
-    this.onboardingService.getPlanOptions().subscribe(res => {
+    this.billingPlanService.getPlanOptions().subscribe(res => {
       this.subscriptionPlans = res;
     });
   }

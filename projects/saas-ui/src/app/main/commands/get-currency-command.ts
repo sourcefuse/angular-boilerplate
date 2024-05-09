@@ -8,7 +8,7 @@ export class GetCurrencyDetails<T> extends GetAPICommand<T> {
   constructor(
     apiService: ApiService,
     adapter: IAdapter<T>,
-    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
+    appConfig: IAnyObject,
   ) {
     super(
       apiService,

@@ -88,32 +88,6 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  getPlanOptions(
-    offset?: number,
-    limit?: number,
-    filter?: BackendFilter<AnyObject>,
-    order?: string,
-  ) {
-    const command: GetPlanCommand<Plan[]> = new GetPlanCommand(
-      this.apiService,
-      this.anyAdapter,
-      this.appConfig,
-    );
-    const backendFilter: BackendFilter<AnyObject> = filter
-      ? {
-          where: filter.where,
-          offset: filter.offset,
-          limit: filter.limit,
-          order: filter.order,
-          include: filter.include || [],
-        }
-      : {};
-    command.parameters = {
-      query: new HttpParams().set('filter', JSON.stringify(backendFilter)),
-    };
-    return command.execute();
-  }
-
   addLead(lead: AnyObject): Observable<Lead> {
     const command: AddLeadCommand<Lead> = new AddLeadCommand(
       this.apiService,

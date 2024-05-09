@@ -39,16 +39,15 @@ export class BillingPlanComponent
   }
 
   ngOnInit(): void {
-    this.getOnBoardingTenants();
+    this.getBillingPlan();
   }
 
-  getOnBoardingTenants() {
+  getBillingPlan() {
     this.billingplanService
       .getBillingDetails()
       .pipe(takeUntil(this._destroy$))
       .subscribe(res => {
         this.rowData = res.map(item => {
-          console.log(item);
           return {
             companyName: item.companyName,
             userName: item.userName,
