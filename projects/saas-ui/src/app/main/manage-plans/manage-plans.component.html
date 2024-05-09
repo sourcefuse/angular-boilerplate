@@ -10,7 +10,6 @@
         [columnDefs]="colDefs"
         [editType]="'fullRow'"
         [rowSelection]="rowSelection"
-        (selectionChanged)="onSelectionChanged($event)"
         (gridReady)="onGridReady($event)"
         (rowEditingStopped)="(onRowEditingStopped)"
       >
@@ -25,16 +24,6 @@
           (click)="showManagePlan()"
         >
           Add Plan
-        </button>
-        <!-- Delete Button -->
-        <button
-          nbButton
-          status="basic"
-          shape="round"
-          size="medium"
-          (click)="deleteSelectedRow()"
-        >
-          Delete Plan
         </button>
       </div>
     </nb-card-body>

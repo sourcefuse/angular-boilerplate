@@ -37,12 +37,6 @@ interface BackendFilter<MT extends object = AnyObject> {
   providedIn: 'root',
 })
 export class BillingPlanService {
-  private readonly authTokenSkipHeader = new HttpHeaders().set(
-    AuthTokenSkipHeader,
-    '',
-  );
-
-  private validateLead$ = new Subject<Lead>();
   constructor(
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
@@ -111,7 +105,7 @@ export class BillingPlanService {
     return command.execute();
   }
   getPlanById(planId: string) {
-    const command: GetPlanByIdCommand<Tenant> = new GetPlanByIdCommand(
+    const command: GetPlanByIdCommand<Plan> = new GetPlanByIdCommand(
       this.apiService,
       this.anyAdapter,
       planId,
@@ -119,11 +113,11 @@ export class BillingPlanService {
     );
     return command.execute();
   }
-  editTenant(plan: Plan) {
-    const command: EditPlanCommand<Tenant> = new EditPlanCommand(
+  editPlan(plan: Plan, id: string) {
+    const command: EditPlanCommand<Plan> = new EditPlanCommand(
       this.apiService,
       this.anyAdapter,
-      plan.id,
+      id,
       this.appConfig,
     );
     command.parameters = {
@@ -132,7 +126,7 @@ export class BillingPlanService {
     return command.execute();
   }
   deletePlan(planId: 'string') {
-    const command: DeletePlanCommand<Tenant> = new DeletePlanCommand(
+    const command: DeletePlanCommand<Plan> = new DeletePlanCommand(
       this.apiService,
       this.anyAdapter,
       planId,

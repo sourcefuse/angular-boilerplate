@@ -19,10 +19,11 @@ export class AddPlanComponent implements OnInit {
   [x: string]: any;
   addPlanForm: FormGroup;
   currencyOptions: AnyObject;
+  isEditMode = false;
   billingOptions: AnyObject;
   tierOptions = [
-    {name: 'Pooled Compute', value: '0'},
-    {name: 'Silo Storage', value: '1'},
+    {name: 'Pooled Compute', value: 0},
+    {name: 'Silo Storage', value: 1},
   ];
   constructor(
     private fb: FormBuilder,
@@ -30,6 +31,8 @@ export class AddPlanComponent implements OnInit {
     private readonly toasterService: NbToastrService,
     private readonly billingplanService: BillingPlanService,
     private readonly router: Router,
+    private readonly activateRoute: ActivatedRoute,
+
     @Inject(APP_CONFIG) private readonly appConfig?: IAnyObject,
   ) {
     this.addPlanForm = this.fb.group({
@@ -44,8 +47,12 @@ export class AddPlanComponent implements OnInit {
   ngOnInit(): void {
     this.getCurrencyDetails();
     this.getBillingCycleDetails();
+    if (this.activateRoute.snapshot.params.id) {
+      this.isEditMode = true;
+      this.getPlanbyId();
+    }
   }
-  onSubmit() {
+  addPlan() {
     if (this.addPlanForm.valid) {
       const domainData = this.addPlanForm.value;
       domainData.price = parseFloat(domainData.price);
@@ -64,6 +71,35 @@ export class AddPlanComponent implements OnInit {
         },
       );
     }
+  }
+  getPlanbyId() {
+    this.billingplanService
+      .getPlanById(this.activateRoute.snapshot.params.id)
+      .subscribe(response => {
+        const tierName = this.tierOptions[response.tier].name;
+        this.addPlanForm = this.fb.group({
+          name: [response.name, Validators.required],
+          description: [response.description, Validators.required],
+          price: [response.price, Validators.required],
+          currencyId: [response.currencyId, Validators.required],
+          billingCycleId: [response.billingCycleId, Validators.required],
+          tier: [response.tier, Validators.required],
+        });
+      });
+  }
+
+  editPlan() {
+    const domainData = this.addPlanForm.value;
+    domainData.price = parseFloat(domainData.price);
+    this.billingplanService
+      .editPlan(domainData, this.activateRoute.snapshot.params.id)
+      .subscribe(res => {
+        this.router.navigate(['/main/plan-items']);
+      });
+  }
+
+  mapTierValueToName(value: string): string {
+    return this.tierOptions[value] || ''; // Return tier name if found, otherwise empty string
   }
   getCurrencyDetails() {
     this.billingplanService.getCurrencyDetails().subscribe(response => {
