@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ColDef, GridApi} from 'ag-grid-community';
-import {OnBoardingService} from '../../on-boarding/on-boarding-service';
+import {OnBoardingService} from '../../../on-boarding/on-boarding-service';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Plan} from '../../on-boarding/models';
+import {Plan} from '../../../on-boarding/models';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {AnyObject, BackendFilter} from '@project-lib/core/api';
-import {BillingPlanService} from '../services/billing-plan-service';
+import {BillingPlanService} from '../../services/billing-plan-service';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {ButtonRendererComponent} from '../button-renderer/button-renderer.component';
 @Component({
@@ -39,6 +39,10 @@ export class ManagePlansComponent
   rowData = [];
   public rowSelection: 'single' | 'multiple' = 'single';
   tenants: AnyObject[];
+  // for Pagination
+  pagination = true;
+  paginationPageSize = 5;
+  paginationPageSizeSelector = [5, 10, 20, 50, 100];
   filter: BackendFilter<AnyObject> = {
     include: [{relation: 'currency'}, {relation: 'billingCycle'}],
   };

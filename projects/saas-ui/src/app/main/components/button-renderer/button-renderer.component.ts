@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {ICellRendererAngularComp} from 'ag-grid-angular';
 import {GridApi, ICellRendererParams} from 'ag-grid-community';
-import {BillingPlanService} from '../services/billing-plan-service';
+import {BillingPlanService} from '../../services/billing-plan-service';
 import {AddPlanComponent} from '../add-plan/add-plan.component';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Location} from '@angular/common';

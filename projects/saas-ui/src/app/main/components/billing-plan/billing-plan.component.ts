@@ -5,8 +5,8 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {ColDef} from 'ag-grid-community';
 import {takeUntil} from 'rxjs';
 import {Location} from '@angular/common';
-import {SubscriptionStatus} from '../enums/subscription-status.enum';
-import {BillingPlanService} from '../services/billing-plan-service';
+import {SubscriptionStatus} from '../../enums/subscription-status.enum';
+import {BillingPlanService} from '../../services/billing-plan-service';
 
 @Component({
   selector: 'app-billing-plan',
@@ -29,6 +29,10 @@ export class BillingPlanComponent
   rowData: AnyObject = [];
   data: AnyObject = [];
   tenants: AnyObject[];
+  // for Pagination
+  pagination = true;
+  paginationPageSize = 5;
+  paginationPageSizeSelector = [5, 10, 20, 50, 100];
 
   constructor(
     protected override readonly location: Location,

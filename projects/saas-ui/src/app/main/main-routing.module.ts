@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './main.component';
-import {LeadListComponent} from './lead-list/lead-list.component';
-import {OnboardingTenantListComponent} from './onboarding-tenant-list/onboarding-tenant-list.component';
-import {ManagePlansComponent} from './manage-plans/manage-plans.component';
-import {BillingPlanComponent} from './billing-plan/billing-plan.component';
-import {AddPlanComponent} from './add-plan/add-plan.component';
+import {LeadListComponent} from './components/lead-list/lead-list.component';
+import {OnboardingTenantListComponent} from './components/onboarding-tenant-list/onboarding-tenant-list.component';
+import {ManagePlansComponent} from './components/manage-plans/manage-plans.component';
+import {BillingPlanComponent} from './components/billing-plan/billing-plan.component';
+import {AddPlanComponent} from './components/add-plan/add-plan.component';
 
 const routes: Routes = [
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
         component: OnboardingTenantListComponent,
       },
       {
-        path: 'plan-items',
+        path: 'plans',
         component: ManagePlansComponent,
       },
       {

@@ -3,13 +3,13 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
-import {OnBoardingService} from '../../on-boarding/on-boarding-service';
+import {OnBoardingService} from '../../../on-boarding/on-boarding-service';
 import {catchError, of, pipe, takeUntil} from 'rxjs';
-import {TenantStatus} from '../enums/tenant-status.enum';
+import {TenantStatus} from '../../enums/tenant-status.enum';
 import {AnyObject} from '@project-lib/core/api';
-import {IAnyObject} from '../../../../../../../angular-boilerplate/projects/arc-lib/src/lib/core/i-any-object';
+import {IAnyObject} from '../../../../../../arc-lib/src/lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
-import {BillingPlanService} from '../services/billing-plan-service';
+import {BillingPlanService} from '../../services/billing-plan-service';
 @Component({
   selector: 'add-plan',
   templateUrl: './add-plan.component.html',
@@ -38,7 +38,7 @@ export class AddPlanComponent implements OnInit {
     this.addPlanForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.required],
+      price: ['', Validators.pattern('[0-9]')],
       currencyId: ['', Validators.required],
       billingCycleId: [null, Validators.required],
       tier: [null, Validators.required],
@@ -60,7 +60,7 @@ export class AddPlanComponent implements OnInit {
       this.billingplanService.addPlan(domainData).subscribe(
         () => {
           this.toasterService.show('Plan added Successfully');
-          this.router.navigate(['/main/plan-items']);
+          this.router.navigate(['/main/plans']);
         },
         (error: string) => {
           console.error('Login error:', error); //NOSONAR
@@ -94,7 +94,7 @@ export class AddPlanComponent implements OnInit {
     this.billingplanService
       .editPlan(domainData, this.activateRoute.snapshot.params.id)
       .subscribe(res => {
-        this.router.navigate(['/main/plan-items']);
+        this.router.navigate(['/main/plans']);
       });
   }
 

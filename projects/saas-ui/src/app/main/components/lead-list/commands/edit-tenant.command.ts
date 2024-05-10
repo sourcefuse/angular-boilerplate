@@ -1,7 +1,7 @@
 import {ApiService, IAdapter, PatchAPICommand} from '@project-lib/core/api';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
-import {Tenant} from '../../model/tenant.model';
+import {Tenant} from '../../../model/tenant.model';
 
 export class EditTenantCommand<T> extends PatchAPICommand<T> {
   data: Tenant;

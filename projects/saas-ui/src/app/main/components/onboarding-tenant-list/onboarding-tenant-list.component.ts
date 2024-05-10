@@ -4,10 +4,10 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {ColDef} from 'ag-grid-community';
 import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs';
-import {TenantFacadeService} from '../lead-list/tenant-list-facade.service';
-import {Tenant} from '../../on-boarding/models';
+import {TenantFacadeService} from '../../services/tenant-list-facade.service';
+import {Tenant} from '../../../on-boarding/models';
 import {BackendFilter} from '@project-lib/core/api';
-import {TenantStatus} from '../enums/tenant-status.enum';
+import {TenantStatus} from '../../enums/tenant-status.enum';
 
 @Component({
   selector: 'app-onboarding-tenant-list',
@@ -28,6 +28,10 @@ export class OnboardingTenantListComponent
   rowData = [];
   tenants: any;
   leads: any;
+  // for Pagination
+  pagination = true;
+  paginationPageSize = 5;
+  paginationPageSizeSelector = [5, 10, 20, 50, 100];
   filter: BackendFilter<Tenant> = {
     include: [{relation: 'address'}],
   };

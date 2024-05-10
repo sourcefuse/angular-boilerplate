@@ -51,6 +51,9 @@
                   formControlName="price"
                   nbInput
                 />
+                <div *ngIf="price?.['pattern'] && price.touched">
+                  Please enter a valid number.
+                </div>
               </div>
             </div>
 

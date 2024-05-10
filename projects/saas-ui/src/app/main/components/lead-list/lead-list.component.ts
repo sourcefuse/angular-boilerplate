@@ -4,8 +4,8 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {ColDef} from 'ag-grid-community';
 import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs';
-import {OnBoardingService} from '../../on-boarding/on-boarding-service';
-import {Lead} from '../../on-boarding/models';
+import {OnBoardingService} from '../../../on-boarding/on-boarding-service';
+import {Lead} from '../../../on-boarding/models';
 import {AnyObject, BackendFilter} from '@project-lib/core/index';
 
 @Component({
@@ -31,6 +31,10 @@ export class LeadListComponent
   filter: BackendFilter<Lead> = {
     include: [{relation: 'address'}],
   };
+  // for Pagination
+  pagination = true;
+  paginationPageSize = 5;
+  paginationPageSizeSelector = [5, 10, 20, 50, 100];
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
