@@ -16,7 +16,7 @@ import {Lead, Plan} from '../../on-boarding/models';
 import {Tenant} from '../model/tenant.model';
 import {GetBillingCycles} from '../commands/get-billing-cycles-command';
 import {GetCurrencyDetails} from '../commands/get-currency-command';
-import {GetBillingDetails} from '../components/lead-list/commands/get-billing.command';
+import {GetBillingDetails} from '../commands/get-billing.command';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {AddPlanCommand} from '../commands/add-plan.command';

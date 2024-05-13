@@ -21,7 +21,7 @@ import {
 import {GetPlanAdapter} from './adapters';
 import {Lead, Tenant, Plan} from './models';
 
-import {GetBillingDetails} from '../main/components/lead-list/commands/get-billing.command';
+import {GetBillingDetails} from '../main/commands/get-billing.command';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 interface BackendFilter<MT extends object = AnyObject> {

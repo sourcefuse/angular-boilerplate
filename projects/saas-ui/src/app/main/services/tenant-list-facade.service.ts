@@ -13,7 +13,7 @@ import {
   GetTenantByIdCommand,
   EditTenantCommand,
   DeleteTenantCommand,
-} from '../components/lead-list/commands';
+} from '../commands';
 
 import {HttpParams} from '@angular/common/http';
 import {APP_CONFIG} from '@project-lib/app-config';
