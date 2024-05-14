@@ -28,10 +28,6 @@ export class OnboardingTenantListComponent
   rowData = [];
   tenants: any;
   leads: any;
-  // for Pagination
-  pagination = true;
-  paginationPageSize = 5;
-  paginationPageSizeSelector = [5, 10, 20, 50, 100];
   filter: BackendFilter<Tenant> = {
     include: [{relation: 'address'}],
   };

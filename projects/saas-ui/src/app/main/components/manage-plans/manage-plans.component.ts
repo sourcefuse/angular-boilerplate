@@ -39,10 +39,6 @@ export class ManagePlansComponent
   rowData = [];
   public rowSelection: 'single' | 'multiple' = 'single';
   tenants: AnyObject[];
-  // for Pagination
-  pagination = true;
-  paginationPageSize = 5;
-  paginationPageSizeSelector = [5, 10, 20, 50, 100];
   filter: BackendFilter<AnyObject> = {
     include: [{relation: 'currency'}, {relation: 'billingCycle'}],
   };

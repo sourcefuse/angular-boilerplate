@@ -9,19 +9,16 @@ import {
   Where,
 } from '@project-lib/core/api';
 import {AuthTokenSkipHeader} from '@project-lib/core/constants';
-import {Observable, Subject, filter, map, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {
   VerifyEmailCommand,
   GetLeadByIdCommand,
   AddTenantFromLeadCommand,
-  GetPlanCommand,
   AddLeadCommand,
   GetLeadListCommand,
 } from './commands';
 import {GetPlanAdapter} from './adapters';
-import {Lead, Tenant, Plan} from './models';
-
-import {GetBillingDetails} from '../main/commands/get-billing.command';
+import {Lead, Tenant} from './models';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 interface BackendFilter<MT extends object = AnyObject> {

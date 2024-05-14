@@ -31,10 +31,7 @@ export class LeadListComponent
   filter: BackendFilter<Lead> = {
     include: [{relation: 'address'}],
   };
-  // for Pagination
-  pagination = true;
-  paginationPageSize = 5;
-  paginationPageSizeSelector = [5, 10, 20, 50, 100];
+
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
