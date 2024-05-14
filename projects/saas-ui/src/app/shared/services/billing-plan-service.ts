@@ -12,17 +12,16 @@ import {AuthTokenSkipHeader} from '@project-lib/core/constants';
 import {Observable, Subject} from 'rxjs';
 import {GetPlanAdapter} from '../../on-boarding/adapters';
 import {GetPlanCommand} from '../../on-boarding/commands';
-import {Lead, Plan} from '../../on-boarding/models';
-import {Tenant} from '../model/tenant.model';
-import {GetBillingCycles} from '../commands/get-billing-cycles-command';
-import {GetCurrencyDetails} from '../commands/get-currency-command';
-import {GetBillingDetails} from '../commands/get-billing.command';
+import {Lead, Plan} from '../models';
+import {GetBillingCycles} from '../../main/commands/get-billing-cycles-command';
+import {GetCurrencyDetails} from '../../main/commands/get-currency-command';
+import {GetBillingDetails} from '../../main/commands/get-billing.command';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
-import {AddPlanCommand} from '../commands/add-plan.command';
-import {DeletePlanCommand} from '../commands/delete-plan.command';
-import {EditPlanCommand} from '../commands/edit-plan.command';
-import {GetPlanByIdCommand} from '../commands/get-plan-by-id.command';
+import {AddPlanCommand} from '../../main/commands/add-plan.command';
+import {DeletePlanCommand} from '../../main/commands/delete-plan.command';
+import {EditPlanCommand} from '../../main/commands/edit-plan.command';
+import {GetPlanByIdCommand} from '../../main/commands/get-plan-by-id.command';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;

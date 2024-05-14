@@ -7,8 +7,8 @@ import {NbRadioModule} from '@nebular/theme';
 import {EmailVerificationComponent} from './components/email-verification/email-verification.component';
 import {VerificationCompleteComponent} from './components/verification-complete/verification-complete.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {OnBoardingService} from './on-boarding-service';
-import {TenantFacadeService} from '../main/services/tenant-list-facade.service';
+import {OnBoardingService} from '../shared/services/on-boarding-service';
+import {TenantFacadeService} from '../shared/services/tenant-list-facade.service';
 import {AddTenantComponent} from './components/add-tenant/add-tenant.component';
 
 @NgModule({

@@ -1,5 +1,5 @@
 import {AnyObject} from '@project-lib/core/api';
-import {PlanTier} from '../../shared/enum/plan-tier.enum';
+import {PlanTier} from '../enum/plan-tier.enum';
 
 export class Plan {
   id?: string;

@@ -3,13 +3,11 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
-import {OnBoardingService} from '../../../on-boarding/on-boarding-service';
-import {catchError, of, pipe, takeUntil} from 'rxjs';
-import {TenantStatus} from '../../enums/tenant-status.enum';
+import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {AnyObject} from '@project-lib/core/api';
 import {IAnyObject} from '../../../../../../arc-lib/src/lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
-import {BillingPlanService} from '../../services/billing-plan-service';
+import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 @Component({
   selector: 'add-plan',
   templateUrl: './add-plan.component.html',

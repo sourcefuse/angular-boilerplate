@@ -4,8 +4,8 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {ColDef} from 'ag-grid-community';
 import {Location} from '@angular/common';
 import {takeUntil} from 'rxjs';
-import {OnBoardingService} from '../../../on-boarding/on-boarding-service';
-import {Lead} from '../../../on-boarding/models';
+import {OnBoardingService} from '../../../shared/services/on-boarding-service';
+import {Lead} from '../../../shared/models';
 import {AnyObject, BackendFilter} from '@project-lib/core/index';
 
 @Component({

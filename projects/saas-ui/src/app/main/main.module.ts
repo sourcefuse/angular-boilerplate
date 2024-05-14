@@ -7,11 +7,11 @@ import {LeadListComponent} from './components/lead-list/lead-list.component';
 import {NbRadioModule} from '@nebular/theme';
 import {OnboardingTenantListComponent} from './components/onboarding-tenant-list/onboarding-tenant-list.component';
 import {AgGridModule} from 'ag-grid-angular';
-import {TenantFacadeService} from './services/tenant-list-facade.service';
+import {TenantFacadeService} from '../shared/services/tenant-list-facade.service';
 import {ManagePlansComponent} from './components/manage-plans/manage-plans.component';
 import {BillingPlanComponent} from './components/billing-plan/billing-plan.component';
 import {AddPlanComponent} from './components/add-plan/add-plan.component';
-import {BillingPlanService} from './services/billing-plan-service';
+import {BillingPlanService} from '../shared/services/billing-plan-service';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {ButtonRendererComponent} from './components/button-renderer/button-renderer.component';
 

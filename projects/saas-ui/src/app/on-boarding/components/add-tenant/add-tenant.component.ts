@@ -3,10 +3,10 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {takeUntil} from 'rxjs';
-import {TenantFacadeService} from '../../../main/services/tenant-list-facade.service';
-import {OnBoardingService} from '../../on-boarding-service';
+import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';
+import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {Location} from '@angular/common';
-import {BillingPlanService} from '../../../main/services/billing-plan-service';
+import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 
 @Component({
   selector: 'app-add-tenant',

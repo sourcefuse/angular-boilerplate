@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {Inject} from '@angular/core';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
-import {Plan} from '../../on-boarding/models';
+import {Plan} from '../../shared/models';
 
 export class GetPlanCommand<T> extends GetAPICommand<Plan[]> {
   constructor(

@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {OnBoardingService} from '../../on-boarding-service';
+import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {id} from 'date-fns/locale';
 import {verifyHostBindings} from '@angular/compiler';
 

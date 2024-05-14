@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Plan} from '../models';
+import {Plan} from '../../shared/models';
 import {pl} from 'date-fns/locale';
 import {ApiModule, IAdapter} from '@project-lib/core/api';
 

@@ -6,14 +6,14 @@ import {
   BackendFilter,
 } from '@project-lib/core/api';
 import {Observable} from 'rxjs';
-import {Tenant} from '../../on-boarding/models';
+import {Tenant} from '../models';
 import {
   AddTenantCommand,
   GetTenantLeadListCommand,
   GetTenantByIdCommand,
   EditTenantCommand,
   DeleteTenantCommand,
-} from '../commands';
+} from '../../main/commands';
 
 import {HttpParams} from '@angular/common/http';
 import {APP_CONFIG} from '@project-lib/app-config';

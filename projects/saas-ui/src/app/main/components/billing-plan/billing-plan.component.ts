@@ -5,8 +5,9 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {ColDef} from 'ag-grid-community';
 import {takeUntil} from 'rxjs';
 import {Location} from '@angular/common';
-import {SubscriptionStatus} from '../../enums/subscription-status.enum';
-import {BillingPlanService} from '../../services/billing-plan-service';
+
+import {BillingPlanService} from '../../../shared/services/billing-plan-service';
+import {SubscriptionStatus} from '../../../shared/enum/subscription-status.enum';
 
 @Component({
   selector: 'app-billing-plan',

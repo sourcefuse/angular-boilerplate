@@ -1,5 +1,5 @@
 import {ApiService, IAdapter, PostAPICommand} from '@project-lib/core/api';
-import {Tenant} from '../models';
+import {Tenant} from '../../shared/models';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
 

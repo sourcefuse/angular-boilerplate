@@ -16,9 +16,9 @@ import {
   AddTenantFromLeadCommand,
   AddLeadCommand,
   GetLeadListCommand,
-} from './commands';
-import {GetPlanAdapter} from './adapters';
-import {Lead, Tenant} from './models';
+} from '../../on-boarding/commands';
+import {GetPlanAdapter} from '../../on-boarding/adapters';
+import {Lead, Tenant} from '../models';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 interface BackendFilter<MT extends object = AnyObject> {
