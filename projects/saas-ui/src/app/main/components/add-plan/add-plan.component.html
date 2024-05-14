@@ -1,0 +1,142 @@
+<nb-card class="h-100 card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>{{ isEditMode ? 'Edit Plan' : 'Add New Plan' }}</h2>
+        </div>
+        <form [formGroup]="addPlanForm">
+          <!-- input fields -->
+          <div class="input-wrapper">
+            <!-- Plan name -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Name</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Enter Plan name "
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="name"
+                  nbInput
+                />
+              </div>
+            </div>
+            <!-- desc -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Description</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Description"
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="description"
+                  nbInput
+                />
+              </div>
+            </div>
+            <!-- price -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Price</span>
+              </div>
+              <div class="input">
+                <input
+                  placeholder="Price"
+                  fieldSize="medium"
+                  status="“info”"
+                  formControlName="price"
+                  nbInput
+                />
+                <div *ngIf="price?.['pattern'] && price.touched">
+                  Please enter a valid number.
+                </div>
+              </div>
+            </div>
+
+            <!-- currency -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Currency Name</span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="currency-wrapper"
+                  placeholder="Basic"
+                  status="basic"
+                  formControlName="currencyId"
+                >
+                  <nb-option
+                    *ngFor="let currency of currencyOptions"
+                    [value]="currency.id"
+                  >
+                    {{ currency.currencyName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+            <!-- Plan Tier in select -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Tier</span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="currency-wrapper"
+                  placeholder="Basic"
+                  status="basic"
+                  formControlName="tier"
+                >
+                  <nb-option
+                    *ngFor="let tier of tierOptions"
+                    [value]="tier.value"
+                  >
+                    {{ tier.name }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+            <!-- Billing Plan  in select-->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Billing Plan</span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="currency-wrapper"
+                  placeholder="Basic"
+                  status="basic"
+                  formControlName="billingCycleId"
+                >
+                  <nb-option
+                    *ngFor="let billingOption of billingOptions"
+                    [value]="billingOption.id"
+                  >
+                    {{ billingOption.cycleName }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+          <!-- signup button -->
+          <div class="btn regbtn">
+            <button
+              nbButton
+              shape="round"
+              size="medium"
+              status="basic"
+              [disabled]="!addPlanForm.valid"
+              (click)="isEditMode ? editPlan() : addPlan()"
+            >
+              {{ isEditMode ? 'Edit Plan' : 'Add Plan' }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

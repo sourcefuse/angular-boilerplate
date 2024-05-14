@@ -64,7 +64,7 @@ export class MainComponent
     {
       title: 'Manage-Plans',
       icon: 'people-outline',
-      link: '/main/plan-items',
+      link: '/main/plans',
       home: true,
       pathMatch: 'prefix',
     },

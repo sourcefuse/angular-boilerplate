@@ -1,23 +1,21 @@
 import {ApiService, IAdapter, PostAPICommand} from '@project-lib/core/api';
-import {Tenant} from '../../shared/models';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
+import {Tenant} from '../../shared/models';
 
-export class AddTenantFromLeadCommand<T> extends PostAPICommand<Tenant> {
+export class AddTenantCommand<T> extends PostAPICommand<T> {
   parameters: {
     data: Tenant;
   };
-
   constructor(
     apiService: ApiService,
     adapter: IAdapter<T>,
-    leadId: string,
     appConfig: IAnyObject,
   ) {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.tenantMgmtFacadeUrl}/leads/${leadId}/tenants`,
+      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/tenants`,
     );
   }
 }

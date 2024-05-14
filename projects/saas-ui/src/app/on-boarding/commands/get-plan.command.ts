@@ -1,5 +1,5 @@
 import {IApiService, IAdapter, GetAPICommand} from '@project-lib/core/api';
-import {Plan} from '../models';
+import {Plan} from '../../shared/models';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
 

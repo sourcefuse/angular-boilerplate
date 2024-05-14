@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import {UserSessionStoreService} from '@project-lib/core/index';
 import {Observable, catchError, map, of, tap} from 'rxjs';
-import {OnBoardingService} from '../on-boarding-service';
+import {OnBoardingService} from '../../shared/services/on-boarding-service';
 
 @Injectable({
   providedIn: 'root',

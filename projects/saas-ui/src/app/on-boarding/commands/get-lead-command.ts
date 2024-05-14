@@ -1,5 +1,5 @@
 import {ApiService, GetListAPICommand, IAdapter} from '@project-lib/core/api';
-import {Lead} from '../models';
+import {Lead} from '../../shared/models';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
 

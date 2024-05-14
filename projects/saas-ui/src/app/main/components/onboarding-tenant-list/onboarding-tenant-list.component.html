@@ -1,0 +1,15 @@
+<div>
+  <nb-card accent="danger">
+    <nb-card-body>
+      <h2>OnBoarded Tenant List</h2>
+      <!-- ag-grid -->
+      <ag-grid-angular
+        style="width: 1200px; height: 700px"
+        class="ag-theme-quartz"
+        [rowData]="rowData"
+        [columnDefs]="colDefs"
+      >
+      </ag-grid-angular>
+    </nb-card-body>
+  </nb-card>
+</div>
