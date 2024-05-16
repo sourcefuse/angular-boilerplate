@@ -1,15 +1,16 @@
 <div>
-  <nb-card accent="danger">
+  <nb-card accent="danger" class="card-style">
     <nb-card-body>
-      <h2>Lead Listing</h2>
-      <!-- ag-grid -->
-      <ag-grid-angular
-        style="width: 1200px; height: 700px"
-        class="ag-theme-quartz"
-        [rowData]="rowData"
-        [columnDefs]="colDefs"
-      >
-      </ag-grid-angular>
+      <h2 class="heading">Lead List</h2>
+      <div class="grid">
+        <!-- ag-grid -->
+        <ag-grid-angular
+          class="ag-theme-quartz"
+          [rowData]="rowData"
+          [columnDefs]="colDefs"
+        >
+        </ag-grid-angular>
+      </div>
     </nb-card-body>
   </nb-card>
 </div>

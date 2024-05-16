@@ -123,12 +123,12 @@
             </div>
           </div>
           <!-- signup button -->
-          <div class="btn regbtn">
+          <div class="regbtn">
             <button
               nbButton
               shape="round"
               size="medium"
-              status="basic"
+              status="danger"
               [disabled]="!addPlanForm.valid"
               (click)="isEditMode ? editPlan() : addPlan()"
             >

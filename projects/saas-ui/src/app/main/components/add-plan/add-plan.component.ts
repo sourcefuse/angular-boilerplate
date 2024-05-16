@@ -36,7 +36,7 @@ export class AddPlanComponent implements OnInit {
     this.addPlanForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      price: ['', Validators.pattern('[0-9]')],
+      price: [''],
       currencyId: ['', Validators.required],
       billingCycleId: [null, Validators.required],
       tier: [null, Validators.required],

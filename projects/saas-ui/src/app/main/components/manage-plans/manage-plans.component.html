@@ -1,21 +1,22 @@
 <div>
-  <nb-card accent="danger">
+  <nb-card accent="danger" class="card-style">
     <nb-card-body>
-      <h2>Manage Plan</h2>
+      <h2 class="heading">Manage Plan</h2>
       <!-- ag-grid -->
-      <ag-grid-angular
-        style="width: 1200px; height: 700px"
-        class="ag-theme-quartz"
-        [rowData]="rowData"
-        [columnDefs]="colDefs"
-        [editType]="'fullRow'"
-        [rowSelection]="rowSelection"
-        (gridReady)="onGridReady($event)"
-        (rowEditingStopped)="(onRowEditingStopped)"
-      >
-      </ag-grid-angular>
+      <div class="grid">
+        <ag-grid-angular
+          class="ag-theme-quartz"
+          [rowData]="rowData"
+          [columnDefs]="colDefs"
+          [editType]="'fullRow'"
+          [rowSelection]="rowSelection"
+          (gridReady)="onGridReady($event)"
+          (rowEditingStopped)="(onRowEditingStopped)"
+        >
+        </ag-grid-angular>
+      </div>
       <!-- Add Plan Button-->
-      <div class="btn regbtn">
+      <div class="regbtn">
         <button
           nbButton
           shape="round"

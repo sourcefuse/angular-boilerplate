@@ -19,10 +19,10 @@ export class OnboardingTenantListComponent
   implements OnInit
 {
   colDefs: ColDef[] = [
-    {field: 'name', headerName: 'Company Name', width: 200, minWidth: 20},
-    {field: 'domains', width: 200, minWidth: 20},
-    {field: 'address', width: 300, minWidth: 20},
-    {field: 'status', width: 200, minWidth: 20},
+    {field: 'name', headerName: 'Company Name', width: 300, minWidth: 20},
+    {field: 'domains', width: 300, minWidth: 20},
+    {field: 'address', width: 400, minWidth: 20},
+    {field: 'status', width: 300, minWidth: 20},
   ];
 
   rowData = [];

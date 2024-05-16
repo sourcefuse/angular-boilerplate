@@ -19,11 +19,11 @@ export class LeadListComponent
 {
   // defining column names here
   colDefs: ColDef[] = [
-    {field: 'firstName', width: 200, minWidth: 20},
-    {field: 'lastName', width: 200, minWidth: 20},
-    {field: 'companyName', width: 200, minWidth: 20},
+    {field: 'firstName', width: 250, minWidth: 20},
+    {field: 'lastName', width: 250, minWidth: 20},
+    {field: 'companyName', width: 250, minWidth: 20},
     {field: 'email', width: 300, minWidth: 20},
-    {field: 'country', width: 200, minWidth: 20},
+    {field: 'country', width: 250, minWidth: 20},
   ];
 
   rowData = [];
