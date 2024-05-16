@@ -1,0 +1,31 @@
+@use 'sass:map';
+@use '../../../../../arc-lib/src/lib/theme/styles/variables' as *;
+@use '@nebular/theme/styles/theming' as *;
+
+.heading {
+  text-align: center;
+}
+.grid {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+}
+.card-style {
+  width: 100%;
+}
+.ag-theme-quartz {
+  width: 100%;
+  height: 650px;
+}
+
+.regbtn {
+  padding: 10px 0;
+  text-align: right;
+  button {
+    min-width: 200px;
+    &:hover {
+      background-color: #ff3d71;
+      color: white;
+    }
+  }
+}

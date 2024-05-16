@@ -25,13 +25,14 @@ export class ManagePlansComponent
   colDefs: ColDef[] = [
     {field: 'name', headerName: 'Plan Name', width: 200, minWidth: 20},
     {field: 'description', width: 200, minWidth: 20},
-    {field: 'cycleName', width: 200, minWidth: 20},
-    {field: 'currencyName', width: 200, minWidth: 20},
-    {field: 'price', width: 200, minWidth: 20},
+    {field: 'cycleName', width: 250, minWidth: 20},
+    {field: 'currencyName', width: 250, minWidth: 20},
+    {field: 'price', width: 250, minWidth: 20},
     {
       field: 'actions',
       headerName: 'Actions',
       cellRenderer: ButtonRendererComponent,
+      width: 200,
     },
   ];
 
