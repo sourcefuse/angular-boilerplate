@@ -1,0 +1,9 @@
+{
+  "name": "saas-ui",
+  "version": "0.0.1",
+  "scripts": {
+    "config": "ts-node ./projects/saas-ui/scripts/setenv.ts",
+    "start": "npm run && ng serve saas-ui --port 4200",
+    "build": "ng build saas-ui"
+  }
+}

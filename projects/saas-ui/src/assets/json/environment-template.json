@@ -1,0 +1,15 @@
+{
+  "logLevel": "${LOG_LEVEL}",
+  "baseApiUrl": "${BASE_API_URL}",
+  "clientId": "${CLIENT_ID}",
+  "client_secret": "${CLIENT_SECRET}",
+  "publicKey": "${PUBLIC_KEY}",
+  "authServiceUrl": "${AUTH_SERVICE_URL}",
+  "userServiceUrl": "${USER_SERVICE_URL}",
+  "homePath": "${HOME_PATH}",
+  "home": "${HOME}",
+  "tenantMgmtFacadeUrl": "${TENANT_MGMT_FACADE_URL}",
+  "tenantmgmtServiceUrl": "${TENANT_MGMT_SERVICE_URL}",
+  "subscriptionServiceUrl": "${SUBSCRIPTION_SERVICE_URL}",
+  "cognitoLogoutUrl": "${COGNITO_LOGOUT_URL}"
+}
