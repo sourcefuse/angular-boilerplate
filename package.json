@@ -4,6 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "config:saas-ui": "ts-node ./projects/saas-ui/scripts/setenv.ts",
+    "start:saas-ui": "npm run config:saas-ui && ng serve --project=saas-ui --port 4200",
+    "docker-build:saas-ui": "DOCKER_BUILDKIT=1 sudo docker build --build-arg BASE_HREF=$BASE_HREF --build-arg BASE_HREF=$BASE_HREF -t sourcefuse/saas-ui:0.0.1 . -f ./projects/saas-ui/Dockerfile",
     "build": "ng build",
     "test": "ng test",
     "lint": "eslint projects/**/*.ts",

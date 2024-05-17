@@ -5,13 +5,14 @@ import {clone} from 'lodash';
 import {NGXLogger} from 'ngx-logger';
 import {InMemoryStorageService} from 'ngx-webstorage-service';
 import {map, Observable, of} from 'rxjs';
-import {EnvAdapterService} from './adapters/env-adapter.service';
 import {GetEnvCommand} from './commands';
 
 import {StoreKeys} from './store-keys.enum';
 import {StoreModule} from './store.module';
 import {ApiService} from '../api';
-import {environment} from '@main-project/boiler/env/environment.prod';
+import {environment as mainEnv} from '@main-project/boiler/env/environment.prod';
+import {environment as saasEnv} from 'projects/saas-ui/src/environment';
+import {EnvAdapterService, SaasEnvAdapterService} from './adapters';
 
 @Injectable({
   providedIn: StoreModule,
@@ -20,17 +21,18 @@ export class SystemStoreFacadeService {
   constructor(
     private readonly inMemoryStore: InMemoryStorageService,
     private readonly envAdapter: EnvAdapterService,
+    private readonly saasEnvAdapter: SaasEnvAdapterService,
     private readonly apiService: ApiService,
     private readonly logger: NGXLogger,
   ) {}
 
-  getEnvConfig(reset = false): Observable<typeof environment> {
+  getEnvConfig(reset = false): Observable<typeof mainEnv> {
     const envInStore = this.inMemoryStore.get(StoreKeys.ENV_CONFIG);
     if (!reset && envInStore) {
-      Object.assign(environment, envInStore);
-      return of(clone(environment));
+      Object.assign(mainEnv, envInStore);
+      return of(clone(mainEnv));
     } else {
-      const command: GetEnvCommand<typeof environment> = new GetEnvCommand(
+      const command: GetEnvCommand<typeof mainEnv> = new GetEnvCommand(
         this.apiService,
         this.envAdapter,
       );
@@ -39,10 +41,35 @@ export class SystemStoreFacadeService {
       };
       return command.execute().pipe(
         map(data => {
-          Object.assign(environment, data);
-          const clonedEnv = clone(environment);
+          Object.assign(mainEnv, data);
+          const clonedEnv = clone(mainEnv);
           this.inMemoryStore.set(StoreKeys.ENV_CONFIG, clonedEnv);
           this._updateLogLevel();
+          return clonedEnv;
+        }),
+      );
+    }
+  }
+
+  getSaasUIEnvConfig(reset = false): Observable<typeof saasEnv> {
+    const envInStore = this.inMemoryStore.get(StoreKeys.ENV_CONFIG);
+    if (!reset && envInStore) {
+      Object.assign(saasEnv, envInStore);
+      return of(clone(saasEnv));
+    } else {
+      const command: GetEnvCommand<typeof saasEnv> = new GetEnvCommand(
+        this.apiService,
+        this.saasEnvAdapter,
+      );
+      command.parameters = {
+        headers: new HttpHeaders().set(AuthTokenSkipHeader, ''),
+      };
+      return command.execute().pipe(
+        map(data => {
+          Object.assign(saasEnv, data);
+          const clonedEnv = clone(saasEnv);
+          this.inMemoryStore.set(StoreKeys.ENV_CONFIG, clonedEnv);
+          //this._updateLogLevel();
           return clonedEnv;
         }),
       );
@@ -53,7 +80,7 @@ export class SystemStoreFacadeService {
     // Get the current config
     const config = this.logger.getConfigSnapshot();
     // Updating only one field
-    config.level = environment.logLevel;
+    config.level = mainEnv.logLevel;
     // Setting the config
     this.logger.updateConfig(config);
   }

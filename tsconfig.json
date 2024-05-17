@@ -24,7 +24,8 @@
         "projects/arc-lib/src/lib/app-config/index.ts"
       ],
       "@project-lib/auth/*": ["projects/arc-lib/src/lib/components/auth/*"],
-      "@project-lib/assets/*": ["projects/arc-lib/src/lib/assets/*"]
+      "@project-lib/assets/*": ["projects/arc-lib/src/lib/assets/*"],
+      "@saas-ui": ["projects/saas-ui"]
     }
   },
   "angularCompilerOptions": {

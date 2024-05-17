@@ -1,8 +1,15 @@
 {
-  "baseApiUrl": "${BASE_API_URL}",
-  "clientId": "${CLIENT_ID}",
-  "publicKey": "${CLIENT_SECRET}",
-  "cspApiUrl": "${CSP_API_URL}",
-  "authServiceUrl": "${AUTH_SERVICE_URL}",
-  "userServiceUrl": "${USER_SERVICE_URL}"
+  "logLevel": "aa",  
+  "baseApiUrl": "lkm",
+  "clientId": "njhg",
+  "client_secret": "hb",
+  "publicKey": "kjnjk",
+  "authServiceUrl": "hb",
+  "userServiceUrl": "hbkh",
+  "homePath": "uhkj",
+  "home": "/Users/yesha.mavani",
+  "tenantMgmtFacadeUrl": "iuh",
+  "tenantmgmtServiceUrl": "kjn",
+  "subscriptionServiceUrl": "boo",
+  "cognitoLogoutUrl": "ygyg"
 }
