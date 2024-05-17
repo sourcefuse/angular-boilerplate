@@ -1,8 +1,7 @@
 # Using Node 10 Alpine image as the builder
 FROM node:18-alpine as builder
 ARG BASE_HREF
-ARG CLIENT_ID
-ARG
+
 #ARG ENV_CONFIG
 # Setting Env Var Production as true
 ENV PRODUCTION true
@@ -27,13 +26,13 @@ RUN npm run build saas-ui
 # Using NGINX as the web server image
 FROM sourcefuse/nginx:release-1.2.0
 # Replacing the defaut config of NGINX
-COPY --chown=node projects/saas-ui/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY projects/saas-ui/nginx/default.conf /etc/nginx/conf.d/default.conf
 # Removing unwanted files from the base NGINX folder
 RUN rm -rf /usr/share/nginx/html/*
 # Copying build files from the builder to the app's root dir
-COPY --chown=node --from=builder /ng-app/dist/saas-ui /usr/share/nginx/html
+COPY --from=builder /ng-app/dist/saas-ui /usr/share/nginx/html
 # Copying the startup script
-COPY --chown=node projects/saas-ui/docker/startup.sh /startup.sh
+COPY  projects/saas-ui/docker/startup.sh /startup.sh
 # Enabling executable rights on the script
 RUN chmod +x startup.sh
 # Running the startup script
