@@ -2,6 +2,7 @@
 @use '../../../../../../arc-lib/src/lib/theme/styles/variables' as *;
 @use '../../../../styles.scss' as *;
 @use '../../../../themes.scss' as *;
+@use '../../styles/forms.style.scss' as *;
 
 .input-wrapper {
   display: flex;
@@ -53,5 +54,54 @@
       flex: 0 0 calc(30% - 20px); // Adjust the width of each card
       margin: 10px;
     }
+  }
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 575px) {
+ 
+  .plan-card-container .plan-card-wrapper {
+    flex-direction: column;
+  }
+
+  .plan-card-container .plan-card-wrapper .plan-card-box {
+    width: 100%;
+  }
+}
+
+/* Small devices */
+@media (min-width: 576px) and (max-width: 767px) {
+ 
+  .plan-card-container .plan-card-wrapper {
+    flex-direction: column;
+  }
+
+  .plan-card-container .plan-card-wrapper .plan-card-box {
+    width: 100%;
+  }
+}
+
+/* Medium devices  */
+@media (min-width: 768px) and (max-width: 991px) {
+ 
+  .plan-card-container .plan-card-wrapper {
+    flex-direction: row;
+  }
+
+  .plan-card-container .plan-card-wrapper .plan-card-box {
+    width: calc(50% - 20px);
+  }
+}
+
+/* Large devices */
+@media (min-width: 992px) {
+
+  .plan-card-container .plan-card-wrapper {
+    flex-direction: row;
+  }
+
+  .plan-card-container .plan-card-wrapper .plan-card-box {
+    width: calc(33.33% - 20px);
   }
 }

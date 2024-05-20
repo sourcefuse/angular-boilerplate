@@ -1,0 +1,146 @@
+
+.card-row {
+    margin: 0;
+    padding: 0 !important;
+  }
+
+  .input-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .input-box {
+    width: 48%;
+  
+    .input {
+      input {
+        margin: 5px 0;
+        width: 100% !important;
+        max-width: 100%;
+        border-radius: 0;
+        background: #fff;
+      }
+    }
+}
+
+/* Media Queries for Responsiveness for Lead and tenant */
+
+@media (max-width: 575px) {
+    .input-wrapper {
+      flex-direction: column;
+    }
+  
+    .input-box {
+      width: 100%;
+    }
+  
+    .add-lead-wrapper .btn {
+      text-align: center;
+    }
+
+    :host {
+        padding: 15px; 
+      }
+    
+      h2 {
+        font-size: 1.25rem; 
+      }
+    
+      p {
+        font-size: 0.9rem; 
+      }
+  }
+
+  /* Small devices*/
+@media (min-width: 576px) and (max-width: 767px) {
+    .input-wrapper {
+      gap: 8px;
+    }
+  
+    .input-box {
+      width: 100%;
+    }
+  
+    .add-lead-wrapper .btn {
+      text-align: center;
+    }
+
+    :host {
+        padding: 15px;
+      }
+    
+      h2 {
+        font-size: 1.4rem;
+      }
+    
+      p {
+        font-size: 0.95rem;
+      }
+  }
+
+  /* Medium devices */
+@media (min-width: 768px) and (max-width: 991px) {
+    .input-wrapper {
+      gap: 10px;
+    }
+  
+    .input-box {
+      width: 48%;
+    }
+  
+    .address-input-box {
+      width: 100%;
+    }
+  
+    .add-lead-wrapper .btn {
+      text-align: right;
+    }
+    :host {
+        padding: 20px;
+      }
+    
+      h2 {
+        font-size: 1.5rem;
+      }
+    
+      p {
+        font-size: 1rem;
+      }
+  }
+
+
+/* Large devices */
+@media (min-width: 992px) {
+    .input-wrapper {
+      gap: 15px;
+    }
+  
+    .input-box {
+      width: 48%;
+    }
+  
+    .address-input-box {
+      width: 100%;
+    }
+  
+    .add-lead-wrapper .btn {
+      text-align: right;
+    }
+    :host {
+        padding: 25px;
+      }
+    
+      h2 {
+        font-size: 1.6rem;
+      }
+    
+      p {
+        font-size: 1.05rem;
+      }
+  }
+  
+
+
+  
