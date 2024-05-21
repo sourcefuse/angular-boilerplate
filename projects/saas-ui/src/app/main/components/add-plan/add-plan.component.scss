@@ -1,5 +1,6 @@
 @use '../../../../styles.scss' as *;
 @use '../../styles/grid-styles.scss' as *;
+
 .input-wrapper {
   display: flex;
   gap: 10px;
@@ -19,13 +20,16 @@
       background: #fff;
     }
   }
+
   .select {
     width: 100%;
   }
 }
+
 .input-radio {
   width: 100%;
 }
+
 .radioselect {
   nb-radio-group {
     display: flex;
@@ -41,6 +45,7 @@
   margin-top: 5px;
   border: 1px solid #000;
 }
+
 .regbtn {
   text-align: right;
   margin: 10px;
@@ -49,4 +54,46 @@
 
 input.ng-invalid.ng-touched {
   border: 1px solid red;
+}
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 576px) {
+  .input-box {
+    width: 100%;
+  }
+
+  .card-wrapper {
+    padding: 0;
+  }
+
+  .input-wrapper {
+    gap: 5px;
+  }
+
+  .regbtn {
+    text-align: center;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .input-box {
+    width: 100%;
+  }
+
+  .regbtn {
+    text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .input-box {
+    width: 48%;
+  }
+}
+
+@media (min-width: 992px) {
+  .input-box {
+    width: 48%;
+  }
 }

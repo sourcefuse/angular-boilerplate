@@ -29,3 +29,41 @@
     }
   }
 }
+
+/* Media Queries for Responsiveness */
+
+@media (max-width: 576px) {
+  .heading {
+    font-size: 18px;
+  }
+
+  .ag-theme-quartz {
+    height: 350px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+  .heading {
+    font-size: 20px;
+  }
+
+  .ag-theme-quartz {
+    height: 400px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .heading {
+    font-size: 22px;
+  }
+
+  .ag-theme-quartz {
+    height: 450px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ag-theme-quartz {
+    height: 550px;
+  }
+}
