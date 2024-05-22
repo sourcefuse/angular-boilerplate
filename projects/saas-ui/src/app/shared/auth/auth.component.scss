@@ -30,3 +30,16 @@
   flex-shrink: 0 !important;
   flex-basis: 35% !important;
 }
+
+@media(max-width:991px){
+  .card-row {
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+    flex-basis: 100% !important;
+  }
+
+  .login-img-wrapper{
+    display: none !important;
+  }
+  
+}
