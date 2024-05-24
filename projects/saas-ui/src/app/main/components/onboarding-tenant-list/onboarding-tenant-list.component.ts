@@ -35,10 +35,13 @@ export class OnboardingTenantListComponent
       minWidth: 20,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
+      sortable: true,
       cellRenderer: function (params) {
-        console.log(params);
-        console.log(params.data.key);
-        return `<a href="${params.data.key}.${environment.baseApiUrl}" target="_blank" class="company-link">
+        const url = environment.baseApiUrl.replace(
+          '//',
+          `//${params.data.key}.`,
+        );
+        return `<a href="${url}" target="_blank" class="company-link">
         ${params.value}
         </a>`;
       },
