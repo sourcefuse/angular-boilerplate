@@ -13,6 +13,9 @@
     width: 100%;
   }
 
+  .column-wrapper{
+    height:calc(100% - 200px);
+  }
   .logo-container {
     display: flex;
     align-items: center;

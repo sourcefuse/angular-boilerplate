@@ -8,6 +8,7 @@ import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.s
 import {Tenant} from '../../../shared/models';
 import {BackendFilter} from '@project-lib/core/api';
 import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
+import {environment} from 'projects/saas-ui/src/environment';
 
 @Component({
   selector: 'app-onboarding-tenant-list',
@@ -18,11 +19,51 @@ export class OnboardingTenantListComponent
   extends RouteComponentBaseDirective
   implements OnInit
 {
+  defaultColDef: ColDef = {
+    flex: 1,
+    minWidth: 150,
+    filter: true,
+    floatingFilter: true,
+    resizable: true,
+  };
+
   colDefs: ColDef[] = [
-    {field: 'name', headerName: 'Company Name', width: 300, minWidth: 20},
-    {field: 'domains', width: 300, minWidth: 20},
-    {field: 'address', width: 400, minWidth: 20},
-    {field: 'status', width: 300, minWidth: 20},
+    {
+      field: 'name',
+      headerName: 'Company Name',
+      width: 300,
+      minWidth: 20,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+      cellRenderer: function (params) {
+        console.log(params);
+        console.log(params.data.key);
+        return `<a href="${params.data.key}.${environment.baseApiUrl}" target="_blank" class="company-link">
+        ${params.value}
+        </a>`;
+      },
+    },
+    {
+      field: 'domains',
+      width: 300,
+      minWidth: 20,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+    },
+    {
+      field: 'address',
+      width: 400,
+      minWidth: 20,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+    },
+    {
+      field: 'status',
+      width: 300,
+      minWidth: 20,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+    },
   ];
 
   rowData = [];
@@ -31,6 +72,7 @@ export class OnboardingTenantListComponent
   filter: BackendFilter<Tenant> = {
     include: [{relation: 'address'}],
   };
+  variable: any;
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
@@ -49,9 +91,11 @@ export class OnboardingTenantListComponent
       .pipe(takeUntil(this._destroy$))
       .subscribe(res => {
         this.rowData = res.map(item => {
+          this.variable = item.key;
           const addressString = `${item.address.city}, ${item.address.state}, ${item.address.zip}, ${item.address.country}`;
           return {
             name: item.name,
+            key: item.key,
             domains: item.domains.join(', '),
             address: addressString,
             status: TenantStatus[item.status],
