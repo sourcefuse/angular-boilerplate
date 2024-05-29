@@ -7,6 +7,7 @@ import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.s
 import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {Location} from '@angular/common';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
+import {AnyObject} from '@project-lib/core/api';
 
 @Component({
   selector: 'app-add-tenant',
@@ -16,7 +17,7 @@ import {BillingPlanService} from '../../../shared/services/billing-plan-service'
 export class AddTenantComponent implements OnInit {
   [x: string]: any;
   addTenantForm: FormGroup;
-  subscriptionPlans = [];
+  subscriptionPlans: AnyObject = [];
   leadId = '';
   constructor(
     private route: ActivatedRoute,

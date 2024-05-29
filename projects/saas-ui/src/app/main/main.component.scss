@@ -14,7 +14,8 @@
   }
 
   .column-wrapper {
-    height: calc(100% - 200px);
+    height: calc(100vh - 100px);
+    overflow: hidden;
   }
   .logo-container {
     display: flex;

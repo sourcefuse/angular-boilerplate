@@ -6,10 +6,10 @@
       <div class="grid">
         <ag-grid-angular
           class="ag-theme-quartz"
-          [rowData]="rowData"
           [columnDefs]="colDefs"
           [editType]="'fullRow'"
           [rowSelection]="rowSelection"
+          [gridOptions]="gridOptions"
           (gridReady)="onGridReady($event)"
           (rowEditingStopped)="(onRowEditingStopped)"
         >
