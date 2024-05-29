@@ -4,6 +4,7 @@ import {
   AnyAdapter,
   AnyObject,
   ApiService,
+  Count,
   Fields,
   Inclusion,
   Where,
@@ -21,6 +22,7 @@ import {GetPlanAdapter} from '../../on-boarding/adapters';
 import {Lead, Tenant} from '../models';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
+import {GetTotalLeadCommand} from '../../main/commands';
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
   fields?: Fields<MT> | (keyof MT)[];
@@ -98,12 +100,7 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  getLeadList(
-    offset?: number,
-    limit?: number,
-    filter?: BackendFilter<Lead>,
-    order?: string,
-  ) {
+  getLeadList(filter?: BackendFilter<Lead>) {
     const command: GetLeadListCommand<Lead> = new GetLeadListCommand(
       this.apiService,
       this.anyAdapter,
@@ -120,6 +117,16 @@ export class OnBoardingService {
     command.parameters = {
       query: new HttpParams().set('filter', JSON.stringify(backendFilter)),
     };
+    return command.execute();
+  }
+
+  getTotalLead() {
+    const command: GetTotalLeadCommand<Count> = new GetTotalLeadCommand(
+      this.apiService,
+      this.anyAdapter,
+      this.appConfig,
+    );
+
     return command.execute();
   }
 }
