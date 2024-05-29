@@ -11,3 +11,7 @@ export * from './get-billing.command';
 export * from './get-currency-command';
 export * from './get-plan-by-id.command';
 export * from './get-plan.command';
+export * from './get-total-lead.command';
+export * from './get-total-tenant.command';
+export * from './get-total-plan.command';
+export * from './get-total-billing-plan.command';

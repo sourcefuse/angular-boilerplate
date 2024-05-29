@@ -16,7 +16,7 @@ import {BillingPlanService} from '../../../shared/services/billing-plan-service'
 export class AddTenantComponent implements OnInit {
   [x: string]: any;
   addTenantForm: FormGroup;
-  subscriptionPlans = [];
+  subscriptionPlans: any = [];
   leadId = '';
   constructor(
     private route: ActivatedRoute,
