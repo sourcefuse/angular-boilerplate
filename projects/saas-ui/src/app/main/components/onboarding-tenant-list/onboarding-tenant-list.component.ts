@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {ColDef} from 'ag-grid-community';
@@ -9,6 +9,8 @@ import {Tenant} from '../../../shared/models';
 import {BackendFilter} from '@project-lib/core/api';
 import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
 import {environment} from 'projects/saas-ui/src/environment';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 
 @Component({
   selector: 'app-onboarding-tenant-list',
@@ -27,6 +29,15 @@ export class OnboardingTenantListComponent
     resizable: true,
   };
 
+  constructor(
+    protected override readonly location: Location,
+    protected override readonly route: ActivatedRoute,
+    private readonly tenantFacade: TenantFacadeService,
+    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
+  ) {
+    super(route, location);
+  }
+
   colDefs: ColDef[] = [
     {
       field: 'name',
@@ -35,10 +46,13 @@ export class OnboardingTenantListComponent
       minWidth: 20,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
+      sortable: true,
       cellRenderer: function (params) {
-        console.log(params);
-        console.log(params.data.key);
-        return `<a href="${params.data.key}.${environment.baseApiUrl}" target="_blank" class="company-link">
+        const url = this.appConfig.baseApiUrl.replace(
+          '//',
+          `//${params.data.key}.`,
+        );
+        return `<a href="${url}" target="_blank" class="company-link">
         ${params.value}
         </a>`;
       },
@@ -73,13 +87,6 @@ export class OnboardingTenantListComponent
     include: [{relation: 'address'}],
   };
   variable: any;
-  constructor(
-    protected override readonly location: Location,
-    protected override readonly route: ActivatedRoute,
-    private readonly tenantFacade: TenantFacadeService,
-  ) {
-    super(route, location);
-  }
 
   ngOnInit(): void {
     this.getOnBoardingTenants();
