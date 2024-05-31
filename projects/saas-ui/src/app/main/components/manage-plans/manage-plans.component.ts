@@ -69,7 +69,7 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
     };
   }
 
-  onGridReady(params: any) {
+  onGridReady(params: AnyObject) {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {

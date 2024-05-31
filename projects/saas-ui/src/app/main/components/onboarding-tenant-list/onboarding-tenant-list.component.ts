@@ -12,7 +12,7 @@ import {Location} from '@angular/common';
 import {Observable, combineLatest, map, takeUntil} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';
 import {Tenant} from '../../../shared/models';
-import {BackendFilter} from '@project-lib/core/api';
+import {AnyObject, BackendFilter} from '@project-lib/core/api';
 import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
 import {environment} from 'projects/saas-ui/src/environment';
 import {APP_CONFIG} from '@project-lib/app-config';
@@ -35,7 +35,6 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     floatingFilter: true,
     resizable: true,
   };
-  keyVariable: any;
   constructor(
     protected override readonly location: Location,
     protected override readonly route: ActivatedRoute,
@@ -91,13 +90,13 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   ];
 
   rowData = [];
-  tenants: any;
-  leads: any;
+  tenants: AnyObject;
+  leads: AnyObject;
   filter: BackendFilter<Tenant> = {
     include: [{relation: 'address'}],
   };
 
-  onGridReady(params: any) {
+  onGridReady(params: AnyObject) {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {
@@ -140,7 +139,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     );
   }
 
-  createCompanyLink(params: any) {
+  createCompanyLink(params: AnyObject) {
     const url = this.appConfig.baseApiUrl.replace(
       '//',
       `//${params.data?.key}.`,
