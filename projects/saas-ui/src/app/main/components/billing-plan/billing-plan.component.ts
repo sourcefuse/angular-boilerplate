@@ -21,10 +21,7 @@ import {Plan} from '../../../shared/models';
   templateUrl: './billing-plan.component.html',
   styleUrls: ['./billing-plan.component.scss'],
 })
-export class BillingPlanComponent
-  extends RouteComponentBaseDirective
-  implements OnInit
-{
+export class BillingPlanComponent extends RouteComponentBaseDirective {
   gridApi: GridApi;
   gridOptions: GridOptions;
   limit = 5;
@@ -57,11 +54,6 @@ export class BillingPlanComponent
       rowHeight: 60,
       defaultColDef: {flex: 1},
     };
-  }
-
-  ngOnInit(): void {
-    this.getBillingPlan();
-    // this.getTotal();
   }
 
   onGridReady(params: any) {
@@ -106,31 +98,8 @@ export class BillingPlanComponent
       }),
     );
   }
-  getBillingPlan() {
-    this.billingplanService
-      .getBillingDetails()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(res => {
-        this.rowData = res.map(item => {
-          return {
-            companyName: item.companyName,
-            userName: item.userName,
-            planName: item.planName,
-            startDate: item.startDate,
-            endDate: item.endDate,
-            status: SubscriptionStatus[item.status],
-          };
-        });
-      });
-  }
-  filter(filter: any) {
-    throw new Error('Method not implemented.');
-  }
 
   getTotal(): Observable<Count> {
     return this.billingplanService.getTotalBillingPlan();
-    // .subscribe(resp => {
-    //   console.log(resp);
-    // });
   }
 }
