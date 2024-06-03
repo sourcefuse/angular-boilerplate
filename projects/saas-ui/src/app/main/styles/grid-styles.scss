@@ -12,6 +12,8 @@
 }
 .card-style {
   width: 100%;
+  overflow: auto;
+  height: calc(100vh - 120px);
 }
 .ag-theme-quartz {
   width: 100%;

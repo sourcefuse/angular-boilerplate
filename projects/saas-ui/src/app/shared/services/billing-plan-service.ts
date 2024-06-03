@@ -4,6 +4,7 @@ import {
   AnyAdapter,
   AnyObject,
   ApiService,
+  Count,
   Fields,
   Inclusion,
   Where,
@@ -22,6 +23,8 @@ import {AddPlanCommand} from '../../main/commands/add-plan.command';
 import {DeletePlanCommand} from '../../main/commands/delete-plan.command';
 import {EditPlanCommand} from '../../main/commands/edit-plan.command';
 import {GetPlanByIdCommand} from '../../main/commands/get-plan-by-id.command';
+import {GetTotalPlanCommand} from '../../main/commands/get-total-plan.command';
+import {GetTotalBillingPlanCommand} from '../../main/commands/get-total-billing-plan.command';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
@@ -43,13 +46,8 @@ export class BillingPlanService {
     private readonly getPlanAdapter: GetPlanAdapter,
   ) {}
 
-  getPlanOptions(
-    offset?: number,
-    limit?: number,
-    filter?: BackendFilter<AnyObject>,
-    order?: string,
-  ) {
-    const command: GetPlanCommand<Plan[]> = new GetPlanCommand(
+  getPlanOptions(filter?: BackendFilter<AnyObject>) {
+    const command: GetPlanCommand<AnyObject[]> = new GetPlanCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
@@ -92,6 +90,18 @@ export class BillingPlanService {
     );
     return command.execute();
   }
+
+  getTotalBillingPlan() {
+    const command: GetTotalBillingPlanCommand<Count> =
+      new GetTotalBillingPlanCommand(
+        this.apiService,
+        this.anyAdapter,
+        this.appConfig,
+      );
+
+    return command.execute();
+  }
+
   addPlan(plan: Plan): Observable<Plan> {
     const command: AddPlanCommand<Plan> = new AddPlanCommand(
       this.apiService,
@@ -131,6 +141,16 @@ export class BillingPlanService {
       planId,
       this.appConfig,
     );
+    return command.execute();
+  }
+
+  getTotalPlan() {
+    const command: GetTotalPlanCommand<Count> = new GetTotalPlanCommand(
+      this.apiService,
+      this.anyAdapter,
+      this.appConfig,
+    );
+
     return command.execute();
   }
 }

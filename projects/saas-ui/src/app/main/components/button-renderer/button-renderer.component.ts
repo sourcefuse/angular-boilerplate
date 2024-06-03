@@ -7,15 +7,16 @@ import {BillingPlanService} from '../../../shared/services/billing-plan-service'
 import {AddPlanComponent} from '../add-plan/add-plan.component';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
+import {AnyObject} from '@project-lib/core/api';
 @Component({
   selector: 'app-button-renderer',
   templateUrl: './button-renderer.component.html',
   styleUrls: ['./button-renderer.component.scss'],
 })
 export class ButtonRendererComponent implements ICellRendererAngularComp {
-  params: any;
+  params: AnyObject;
   gridApi: GridApi;
-  addPlanForm: any;
+  addPlanForm: AnyObject;
   constructor(
     private readonly router: Router,
     private toastrService: ToasterService,

@@ -4,6 +4,7 @@ import {
   AnyObject,
   ApiService,
   BackendFilter,
+  Count,
 } from '@project-lib/core/api';
 import {Observable} from 'rxjs';
 import {Tenant} from '../models';
@@ -18,6 +19,7 @@ import {
 import {HttpParams} from '@angular/common/http';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
+import {GetTotalTenantCommand} from '../../main/commands/get-total-tenant.command';
 
 @Injectable()
 export class TenantFacadeService {
@@ -27,12 +29,7 @@ export class TenantFacadeService {
     @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
 
-  getTenantList(
-    offset?: number,
-    limit?: number,
-    filter?: BackendFilter<Tenant>,
-    order?: string,
-  ) {
+  getTenantList(filter?: BackendFilter<Tenant>) {
     const command: GetTenantLeadListCommand<AnyObject> =
       new GetTenantLeadListCommand(
         this.apiService,
@@ -50,6 +47,16 @@ export class TenantFacadeService {
     command.parameters = {
       query: new HttpParams().set('filter', JSON.stringify(backendFilter)),
     };
+    return command.execute();
+  }
+
+  getTotalTenant() {
+    const command: GetTotalTenantCommand<Count> = new GetTotalTenantCommand(
+      this.apiService,
+      this.anyAdapter,
+      this.appConfig,
+    );
+
     return command.execute();
   }
 
