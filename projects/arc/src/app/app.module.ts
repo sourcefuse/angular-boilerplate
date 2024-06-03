@@ -21,7 +21,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
-import {HeaderComponent} from '@project-lib/components/header /header.component';
+import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
 
 @NgModule({

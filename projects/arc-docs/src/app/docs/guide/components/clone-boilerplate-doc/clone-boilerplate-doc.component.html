@@ -1,0 +1,111 @@
+<div class="cloning wrapper">
+  <nb-layout>
+    <nb-layout-column>
+      <nb-card id="prerequisites" class="section">
+        <nb-card-header>
+          <h2 class="section-title">Prerequisites</h2>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="explore">
+            <p>
+              Before proceeding with the cloning process, ensure that you have
+              the following:
+            </p>
+            <ul>
+              <li>
+                Git installed on your local machine. If not, you can download
+                and install it from
+                <a href="https://git-scm.com/">Git Official Website</a>.
+              </li>
+            </ul>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card id="cloning-process" class="section">
+        <nb-card-header>
+          <h2 class="section-title">Cloning Process</h2>
+        </nb-card-header>
+        <nb-card-body>
+          <p>
+            Follow these steps to clone the boilerplate from the Git repository:
+          </p>
+          <ol>
+            <li>Open Terminal/Command Prompt</li>
+            <div *ngFor="let data of yourDataList">
+              <li>
+                {{ data.lable }}
+                <lib-cli-wrapper [command]="data.listData"></lib-cli-wrapper>
+              </li>
+            </div>
+          </ol>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card id="usage" class="section">
+        <nb-card-header>
+          <h2 class="section-title">Usage</h2>
+        </nb-card-header>
+        <nb-card-body>
+          <ol>
+            <li>
+              <h3>Installing Dependencies</h3>
+              <p>
+                Before running the project, you need to install its
+                dependencies. Run the following command:
+              </p>
+              <div class="cli-wrapper">
+                <div class="cli">
+                  <div class="cli-header">
+                    <h5>bash</h5>
+                  </div>
+                  <div class="cli-content">
+                    <code> npm i </code>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ol>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card id="running" class="section">
+        <nb-card-header>
+          <h2 class="section-title">Run Project</h2>
+        </nb-card-header>
+        <nb-card-body>
+          <p>To run the project locally, use the following command:</p>
+          <div class="cli-wrapper">
+            <div class="cli">
+              <div class="cli-header">
+                <h5>bash</h5>
+              </div>
+              <div class="cli-content">
+                <code> ng serve </code>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+      <nb-card id="additional-resources" class="section">
+        <nb-card-header>
+          <h2 class="section-title">Additional Resources</h2>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="explore">
+            <ul>
+              <li><a href="https://git-scm.com/doc">Git Documentation</a></li>
+              <li>
+                <a
+                  href="https://docs.github.com/en/get-started/quickstart/fork-a-repo#step-2-create-a-local-clone-of-your-fork"
+                  >GitHub Help - Cloning a Repository</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </nb-layout-column>
+  </nb-layout>
+</div>
