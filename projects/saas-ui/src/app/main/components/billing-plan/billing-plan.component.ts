@@ -56,7 +56,7 @@ export class BillingPlanComponent extends RouteComponentBaseDirective {
     };
   }
 
-  onGridReady(params: any) {
+  onGridReady(params: AnyObject) {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {
@@ -77,7 +77,7 @@ export class BillingPlanComponent extends RouteComponentBaseDirective {
     params.api.setDatasource(dataSource);
   }
 
-  getPaginatedBillPlans(page: number, limit: number): Observable<any[]> {
+  getPaginatedBillPlans(page: number, limit: number): Observable<AnyObject[]> {
     const filter: BackendFilter<Plan> = {
       offset: limit * (page - 1),
       limit: limit,
