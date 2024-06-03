@@ -47,7 +47,7 @@ export class BillingPlanService {
   ) {}
 
   getPlanOptions(filter?: BackendFilter<AnyObject>) {
-    const command: GetPlanCommand<AnyObject> = new GetPlanCommand(
+    const command: GetPlanCommand<AnyObject[]> = new GetPlanCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,

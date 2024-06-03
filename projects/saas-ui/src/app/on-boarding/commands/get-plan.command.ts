@@ -8,10 +8,10 @@ import {Plan} from '../../shared/models';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
 
-export class GetPlanCommand<T> extends GetAPICommand<AnyObject> {
+export class GetPlanCommand<T> extends GetAPICommand<AnyObject[]> {
   constructor(
     apiService: IApiService,
-    adapter: IAdapter<AnyObject>,
+    adapter: IAdapter<AnyObject[]>,
     appConfig: IAnyObject,
   ) {
     super(

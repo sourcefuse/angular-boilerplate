@@ -17,7 +17,7 @@ import {AnyObject} from '@project-lib/core/api';
 export class AddTenantComponent implements OnInit {
   [x: string]: any;
   addTenantForm: FormGroup;
-  subscriptionPlans: AnyObject = [];
+  subscriptionPlans: AnyObject[];
   leadId = '';
   constructor(
     private route: ActivatedRoute,
