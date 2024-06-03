@@ -66,12 +66,22 @@ export class BillingPlanService {
     };
     return command.execute();
   }
-  getBillingDetails() {
+
+  getBillingDetails(filter?: BackendFilter<AnyObject>) {
     const command: GetBillingDetails<AnyObject> = new GetBillingDetails(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
     );
+    const backendFilter: BackendFilter<AnyObject> = filter
+      ? {
+          where: filter.where,
+          offset: filter.offset,
+          limit: filter.limit,
+          order: filter.order,
+          include: filter.include || [], // Adding include from filter parameter
+        }
+      : {};
     return command.execute();
   }
   getCurrencyDetails() {
