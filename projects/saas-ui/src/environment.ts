@@ -11,5 +11,7 @@ export const environment = {
   tenantMgmtFacadeUrl: '',
   tenantmgmtServiceUrl: '',
   subscriptionServiceUrl: '',
-  cognitoLogoutUrl: '',
+  cognitoClientId: '',
+  cognitoAuthClientDomain: '',
+  logoutUri: '',
 };

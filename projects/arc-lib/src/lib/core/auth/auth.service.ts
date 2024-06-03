@@ -43,6 +43,7 @@ import {
   take,
   from,
 } from 'rxjs';
+import {CognitoLogoutCommand} from './commands/cognito-logout-command';
 
 @Injectable({
   providedIn: CoreAuthModule,
@@ -324,7 +325,7 @@ export class AuthService {
       this.clearAllData();
       return of(false);
     }
-    const command: LogoutCommand<unknown> = new LogoutCommand(
+    const command: CognitoLogoutCommand<unknown> = new CognitoLogoutCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
@@ -367,19 +368,19 @@ export class AuthService {
   logoutCognito() {
     const form = document.createElement('form');
     form.method = 'GET';
-    form.action = `${this.appConfig.cognitoLogoutUrl}/logout`;
+    form.action = `${this.appConfig.cognitoAuthClientDomain}/logout`;
     form.style.display = 'none';
 
     const clientId = document.createElement('input');
     clientId.type = 'hidden';
     clientId.name = 'client_id';
-    clientId.value = this.appConfig.clientId;
+    clientId.value = this.appConfig.cognitoClientId;
     form.appendChild(clientId);
 
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'logout_uri';
-    clientSecret.value = this.appConfig.publicKey;
+    clientSecret.value = this.appConfig.logoutUri;
     form.appendChild(clientSecret);
     document.body.appendChild(form);
     form.submit();

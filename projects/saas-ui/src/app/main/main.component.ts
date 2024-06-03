@@ -5,7 +5,7 @@ import {NbMenuItem, NbMenuService, NbSidebarService} from '@nebular/theme';
 import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {IconPacksManagerService} from '@project-lib/theme/services';
-import {concatMap, takeUntil} from 'rxjs';
+import {concatMap, takeUntil, tap} from 'rxjs';
 
 @Component({
   selector: 'main',
@@ -93,9 +93,13 @@ export class MainComponent
         if (menu.tag === 'userMenu' && menu.item.data === 'logout') {
           this.authService
             .logout()
-            .pipe(concatMap(async () => await this.authService.logoutCognito()))
-            .subscribe();
-          console.log('login works');
+            .pipe(
+              concatMap(async () => await this.authService.logout()),
+              tap(() => this.authService.logoutCognito()),
+            )
+            .subscribe(() => {
+              console.log('login works');
+            });
         }
       });
   }
