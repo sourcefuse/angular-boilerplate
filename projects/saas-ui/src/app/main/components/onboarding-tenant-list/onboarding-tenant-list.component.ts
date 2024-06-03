@@ -117,7 +117,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     this.gridApi.updateGridOptions({datasource: dataSource});
   }
 
-  getPaginatedTenants(page: number, limit: number): Observable<any[]> {
+  getPaginatedTenants(page: number, limit: number): Observable<AnyObject[]> {
     const filter: BackendFilter<Tenant> = {
       offset: limit * (page - 1),
       limit: limit,

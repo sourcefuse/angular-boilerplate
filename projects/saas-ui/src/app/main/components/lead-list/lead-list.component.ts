@@ -58,7 +58,7 @@ export class LeadListComponent extends RouteComponentBaseDirective {
     };
   }
 
-  onGridReady(params: any) {
+  onGridReady(params: AnyObject) {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {
@@ -79,7 +79,7 @@ export class LeadListComponent extends RouteComponentBaseDirective {
     params.api.setDatasource(dataSource);
   }
 
-  getPaginatedLeads(page: number, limit: number): Observable<any[]> {
+  getPaginatedLeads(page: number, limit: number): Observable<AnyObject[]> {
     const filter: BackendFilter<Lead> = {
       offset: limit * (page - 1),
       limit: limit,

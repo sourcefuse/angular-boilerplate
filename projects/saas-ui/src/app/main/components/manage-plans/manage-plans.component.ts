@@ -90,7 +90,7 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
     params.api.setDatasource(dataSource);
   }
 
-  getPaginatedPlans(page: number, limit: number): Observable<any[]> {
+  getPaginatedPlans(page: number, limit: number): Observable<AnyObject[]> {
     const filter: BackendFilter<Plan> = {
       offset: limit * (page - 1),
       limit: limit,
