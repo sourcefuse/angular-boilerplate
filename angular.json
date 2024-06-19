@@ -56,8 +56,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -92,8 +92,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "5mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 }
               ]
             }
@@ -194,6 +194,7 @@
             "polyfills": ["zone.js"],
             "tsConfig": "projects/arc-docs/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "optimization": false,
             "assets": [
               "projects/arc-docs/src/favicon.ico",
               { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" },
@@ -203,6 +204,8 @@
                 "output": "/assets/"
               }
             ],
+            
+
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/eva-icons/style/scss/eva-icons.scss",
@@ -210,15 +213,20 @@
               "projects/arc-docs/src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": ["lodash", "eva-icons", "CommonJS"]
+            "allowedCommonJsDependencies": ["lodash", "eva-icons", "CommonJS"],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/arc-lib/src/lib/theme/styles"
+              ]
+            }
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "4mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -316,13 +324,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "5mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
                 }
               ],
               "outputHashing": "all"

@@ -1,10 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@use '../../arc/src/themes.scss' as *;
-@use 'sass:map';
-@use '../../arc-lib/src/lib/theme/styles/index' as *;
 @use '@nebular/theme/styles/globals' as *;
 @use '@nebular/auth/styles/globals' as *;
-@use '../../arc-lib/src/lib/theme/styles/variables' as *;
+@import 'index';
+@import 'themes';
 
 @include nb-install() {
   @include nb-theme-global();

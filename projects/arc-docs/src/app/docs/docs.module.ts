@@ -15,11 +15,8 @@ import {APP_CONFIG} from '@project-lib/app-config';
 @NgModule({
   declarations: [DocsComponent],
   imports: [
-    CommonModule,
-
     DocsRoutingModule,
     ThemeModule,
-    HttpClientModule,
     HeaderComponent,
     SidebarComponent,
     CoreAuthModule,

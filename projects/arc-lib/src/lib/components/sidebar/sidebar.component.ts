@@ -15,6 +15,7 @@ import {IconPacksManagerService} from '@project-lib/theme/services';
 import {takeUntil} from 'rxjs';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {Location} from '@angular/common';
+import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.constant';
 
 @Component({
   selector: 'lib-sidebar',
@@ -40,34 +41,8 @@ export class SidebarComponent
     super(route, location);
     this.iconMgr.registerSvgs();
   }
-  menu: NbMenuItem[] = [
-    {
-      title: 'Home',
-      icon: 'book-outline',
-      link: '/main/home',
-      home: true,
-      pathMatch: 'prefix',
-    },
-    {
-      title: 'Components',
-      icon: 'fab fa-buromobelexperte',
-      link: '/main/components',
-      home: true,
-      pathMatch: 'prefix',
-      children: [
-        {
-          title: 'Nebular Components',
-          link: '/nebular-comp',
-          children: NEBULAR_COMP_ITEMS as NbMenuItem[],
-        },
-        {
-          title: ' Arc Components',
-          link: '/arc-comp',
-          children: COMPONENTS_ITEMS as NbMenuItem[],
-        },
-      ],
-    },
-  ];
+  menu: NbMenuItem[] = SIDEBAR_MENU_ITEMS;
+
   ngOnInit(): void {
     this.menuService
       .onItemClick()

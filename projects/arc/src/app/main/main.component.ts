@@ -8,6 +8,8 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {COMPONENTS_ITEMS} from './constants/components.constant';
 import {NEBULAR_COMP_ITEMS} from './constants/nebularComponents.constants';
+import {DOCUMENTATION_MENU_ITEMS} from 'projects/arc-docs/src/app/constants/docs-menu.contant';
+import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.constant';
 
 @Component({
   selector: 'main',
@@ -31,34 +33,9 @@ export class MainComponent
     super(route, location);
     this.iconMgr.registerSvgs();
   }
-  menu: NbMenuItem[] = [
-    {
-      title: 'Home',
-      icon: 'book-outline',
-      link: '/main/home',
-      home: true,
-      pathMatch: 'prefix',
-    },
-    {
-      title: 'Components',
-      icon: 'fab fa-buromobelexperte',
-      link: '/main/components',
-      home: true,
-      pathMatch: 'prefix',
-      children: [
-        {
-          title: 'Nebular Components',
-          link: '/nebular-comp',
-          children: NEBULAR_COMP_ITEMS as NbMenuItem[],
-        },
-        {
-          title: ' Arc Components',
-          link: '/arc-comp',
-          children: COMPONENTS_ITEMS as NbMenuItem[],
-        },
-      ],
-    },
-  ];
+  loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
+  userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
+  menu: NbMenuItem[] = SIDEBAR_MENU_ITEMS;
 
   ngOnInit(): void {
     this.menuService

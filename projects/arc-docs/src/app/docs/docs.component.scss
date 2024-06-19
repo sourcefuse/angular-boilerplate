@@ -1,3 +1,4 @@
+// Ensure the comments are properly placed if you're using them for debugging or development
 @use 'sass:map';
 @use '../../../../arc-lib/src/lib/theme/styles/variables' as *;
 @use '@nebular/theme/styles/theming' as *;
@@ -63,9 +64,8 @@
     }
   }
 }
-.hi {
-  text-align: center;
-}
+
+
 .header-wrapper {
   width: 100%;
 }

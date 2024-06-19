@@ -6,22 +6,17 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {takeUntil} from 'rxjs';
 import {Location} from '@angular/common';
+import {DOCUMENTATION_MENU_ITEMS} from '../constants/docs-menu.contant';
 
 @Component({
   selector: 'app-docs',
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],
 })
-export class DocsComponent
-  extends RouteComponentBaseDirective
-  implements OnInit
-{
+export class DocsComponent extends RouteComponentBaseDirective {
   constructor(
     override readonly route: ActivatedRoute,
     override readonly location: Location,
-    private readonly sidebarService: NbSidebarService,
-    private readonly authService: AuthService,
-    private readonly menuService: NbMenuService,
     private readonly iconMgr: IconPacksManagerService,
     private router: Router,
   ) {
@@ -29,39 +24,5 @@ export class DocsComponent
     this.iconMgr.registerSvgs();
   }
 
-  menu: NbMenuItem[] = [
-    {
-      title: 'Getting Started',
-      icon: 'book-outline',
-      // pathMatch: 'prefix',
-      children: [
-        {
-          title: 'Introduction',
-          link: '/docs/getting-started',
-        },
-      ],
-    },
-    {
-      title: 'Guide',
-      icon: 'book-outline',
-      children: [
-        {
-          title: 'Cloning Boilerplate',
-          link: '/docs/guide/clone',
-        },
-        {
-          title: 'Backend Integration',
-        },
-      ],
-    },
-  ];
-
-  ngOnInit(): void {
-    this.menuService
-      .onItemClick()
-      .pipe(takeUntil(this._destroy$))
-      .subscribe(menu => {
-        console.log(menu);
-      });
-  }
+  menu: NbMenuItem[] = DOCUMENTATION_MENU_ITEMS;
 }
