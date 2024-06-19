@@ -38,7 +38,7 @@
       *ngFor="let item of visibleTags"
       [text]="asString(item && item[nameField])"
       [ngStyle]="{
-        maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)'
+        maxWidth: 'calc(100% - ' + suffixCount * suffixWidth + 'px)',
       }"
       [removable]="!disabled"
       (remove)="toggle(item); toggleDropdown()"
@@ -61,7 +61,7 @@
       (click)="$event.stopPropagation(); !allowInput && toggleDropdown()"
       [ngStyle]="{
         minWidth: inputMinWidth + 'px',
-        marginRight: suffixCount * suffixWidth + 'px'
+        marginRight: suffixCount * suffixWidth + 'px',
       }"
     />
   </nb-tag-list>
