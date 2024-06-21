@@ -20,6 +20,14 @@
     padding-top: 15%;
   }
 }
+.pwd-wrapper {
+  position: relative;
+  button {
+    position: absolute;
+    top: 10px;
+    right: 40px;
+  }
+}
 
 .forgot-password {
   a {
@@ -29,5 +37,5 @@
 }
 
 .main-wrapper {
-  padding-top: 118px;
+  padding-top: 40px;
 }

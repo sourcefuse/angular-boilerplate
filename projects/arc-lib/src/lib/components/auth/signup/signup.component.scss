@@ -26,6 +26,10 @@
   gap: 10px;
 }
 
+.input-wrapper > * {
+  flex-basis: 50%;
+}
+
 .inputTags {
   input {
     margin: 5px 0;

@@ -5,6 +5,11 @@ import {IntroductionComponent} from './components/introduction/introduction.comp
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'intro',
+    pathMatch: 'full',
+  },
+  {
+    path: 'intro',
     component: IntroductionComponent,
   },
 ];

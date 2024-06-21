@@ -1,22 +1,30 @@
-import {Location} from '@angular/common';
 import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {ThemeModule} from '@project-lib/theme/theme.module';
+import {
+  NbActionsModule,
+  NbMenuItem,
+  NbMenuService,
+  NbSidebarService,
+} from '@nebular/theme';
+import {COMPONENTS_ITEMS} from '@main-project/boiler/main/constants/components.constant';
+import {NEBULAR_COMP_ITEMS} from '@main-project/boiler/main/constants/nebularComponents.constants';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbMenuItem, NbMenuService, NbSidebarService} from '@nebular/theme';
-import {takeUntil} from 'rxjs';
-import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
-import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
+import {AuthService} from '@project-lib/core/auth';
 import {IconPacksManagerService} from '@project-lib/theme/services';
-import {COMPONENTS_ITEMS} from './constants/components.constant';
-import {NEBULAR_COMP_ITEMS} from './constants/nebularComponents.constants';
-import {DOCUMENTATION_MENU_ITEMS} from 'projects/arc-docs/src/app/constants/docs-menu.contant';
+import {takeUntil} from 'rxjs';
+import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
+import {Location} from '@angular/common';
 import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.constant';
 
 @Component({
-  selector: 'main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  selector: 'lib-sidebar',
+  standalone: true,
+  imports: [CommonModule, ThemeModule],
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss'],
 })
-export class MainComponent
+export class SidebarComponent
   extends RouteComponentBaseDirective
   implements OnInit
 {
@@ -33,8 +41,6 @@ export class MainComponent
     super(route, location);
     this.iconMgr.registerSvgs();
   }
-  loggedInUserDM: LoggedInUserDM = new LoggedInUserDM();
-  userMenu: NbMenuItem[] = [{title: 'Log out', data: 'logout'}];
   menu: NbMenuItem[] = SIDEBAR_MENU_ITEMS;
 
   ngOnInit(): void {
