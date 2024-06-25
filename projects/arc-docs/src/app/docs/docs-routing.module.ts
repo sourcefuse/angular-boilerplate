@@ -14,6 +14,11 @@ const routes: Routes = [
             m => m.GettingStartedModule,
           ),
       },
+      {
+        path: 'guide',
+        loadChildren: () =>
+          import('./guide/guide.module').then(m => m.GuideModule),
+      },
     ],
   },
 ];
