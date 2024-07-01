@@ -1,0 +1,66 @@
+<div class="intro-wrapper">
+  <div class="1st-phase">
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Auth Module</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          The main goal of the Auth module is to provide a pluggable set of
+          components and services for easier setup of the authentication layer
+          for Angular applications. The module separates the UI part
+          (login/register/etc components) from the business logic with the help
+          of the authentication
+        </p>
+        <div class="note">
+          <p>NOTE:</p>
+          <a
+            href="https://github.com/sourcefuse/loopback4-microservice-catalog/tree/master/services/authentication-service"
+            >The setup still requires communication with backend services.
+          </a>
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Authentication UI components</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <ul>
+          <li>Login</li>
+          <li>Sign Up</li>
+          <li>Forget Password</li>
+          <li>Reset Password</li>
+        </ul>
+        <p>You can use the built-in components</p>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Auth Strategies</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="note" *ngFor="let list of strategyList">
+          {{ list.Data }}
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Helping services</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <ul>
+          <div>
+            <li *ngFor="let data of helpingData">
+              <p>{{ data.list }}</p>
+            </li>
+          </div>
+        </ul>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

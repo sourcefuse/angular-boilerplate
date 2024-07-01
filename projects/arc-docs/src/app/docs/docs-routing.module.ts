@@ -19,6 +19,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./guide/guide.module').then(m => m.GuideModule),
       },
+      {
+        path: 'auth-doc',
+        loadChildren: () =>
+          import('./auth-doc/auth-doc.module').then(m => m.AuthDocModule),
+      },
     ],
   },
 ];
