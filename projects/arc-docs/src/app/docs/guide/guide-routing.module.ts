@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'clone',
     component: CloneBoilerplateDocComponent,
   },
+  {
+    path: 'backend-integration',
+    component: BackendIntegrationDocComponent,
+  },
 ];
 
 @NgModule({

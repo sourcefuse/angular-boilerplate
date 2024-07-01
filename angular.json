@@ -202,6 +202,14 @@
                 "glob": "**/*",
                 "input": "projects/arc-lib/src/lib/assets/",
                 "output": "/assets/"
+
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/arc-docs/src/assets/",
+                "output": "/assets/"
+                
+                
               }
             ],
             

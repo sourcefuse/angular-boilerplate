@@ -1,1 +1,66 @@
-<p>backend-integration-doc works!</p>
+<div class="intro-wrapper">
+  <div class="1st-phase">
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Overview</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          This guide provides the necessary steps to integrate a frontend
+          application with a backend authentication service. It includes
+          boilerplate code to ensure a smooth setup and usage of the
+          authentication service without needing a backend developer.
+        </p>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Prerequisites</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <ul>
+          <li>Node.js and npm installed</li>
+          <li>Angular CLI installed</li>
+          <li>A data source installed (e.g., PostgreSQL, MySQL.)</li>
+          <li>Redis installed</li>
+          <li>Basic knowledge of Angular and REST APIs</li>
+        </ul>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Backend-setup</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <ol>
+          <li>
+            Before proceeding, ensure you have completed the initial backend
+            setup. If you haven't done so, please follow the
+            <a
+              href="https://github.com/sourcefuse/loopback4-microservice-catalog/tree/master/services/authentication-service"
+              >Backend Setup Documentation </a
+            >.
+          </li>
+          <li>Environment Variables</li>
+          <p>
+            Create a .env file in the root of your project to store your
+            environment variables. This file contains configuration settings for
+            your database, Redis, and other necessary environment variables.
+          </p>
+          Example .env File Create a file named .env and add the following
+          content:
+          <div *ngFor="let env of envVariables">
+            <lib-cli-wrapper [command]="env.command"> </lib-cli-wrapper>
+          </div>
+
+          <li>Run the application:</li>
+          <div *ngFor="let server of runServer">
+            <lib-cli-wrapper [command]="server.command"> </lib-cli-wrapper>
+          </div>
+        </ol>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -19,6 +19,22 @@ export const DOCUMENTATION_MENU_ITEMS = [
       },
       {
         title: 'Backend Integration',
+        link: '/docs/guide/backend-integration',
+      },
+    ],
+  },
+
+  {
+    title: 'Auth',
+    icon: 'book-outline',
+    children: [
+      {
+        title: 'Introduction',
+        link: '/docs/auth-doc/authDocIntro',
+      },
+      {
+        title: 'Installation',
+        link: '/docs/auth-doc/installation',
       },
     ],
   },

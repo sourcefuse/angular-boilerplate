@@ -6,7 +6,8 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {takeUntil} from 'rxjs';
 import {Location} from '@angular/common';
-import {DOCUMENTATION_MENU_ITEMS} from '../constants/docs-menu.contant';
+
+import {DOCUMENTATION_MENU_ITEMS} from '../constants/docs-menu.constant';
 
 @Component({
   selector: 'app-docs',
