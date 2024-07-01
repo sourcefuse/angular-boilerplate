@@ -24,7 +24,7 @@ export class DocIntrodutionComponent {
   helpingData: object[] = [
     {
       list: `AuthService: AuthService is a service that handles all authentication-related operations
-       in an Angular application using Firebase Authentication. It provides methods for logging in and signing up users 
+       in an Angular application . It provides methods for logging in and signing up users 
        using various authentication strategies, managing the current users authentication state, and handling logout.`,
     },
     {
