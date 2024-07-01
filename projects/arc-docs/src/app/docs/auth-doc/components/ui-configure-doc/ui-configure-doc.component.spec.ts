@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { UiConfigureDocComponent } from './ui-configure-doc.component';
+import {UiConfigureDocComponent} from './ui-configure-doc.component';
 
 describe('UiConfigureDocComponent', () => {
   let component: UiConfigureDocComponent;
@@ -8,9 +8,8 @@ describe('UiConfigureDocComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UiConfigureDocComponent ]
-    })
-    .compileComponents();
+      declarations: [UiConfigureDocComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UiConfigureDocComponent);
     component = fixture.componentInstance;

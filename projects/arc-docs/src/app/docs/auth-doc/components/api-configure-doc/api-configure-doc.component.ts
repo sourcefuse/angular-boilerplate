@@ -24,7 +24,7 @@ export class ApiConfigureDocComponent {
 
   baseEndPoints: object[] = [
     {
-      command: `baseEndpoint: 'yourDomainName/authServiceUrl/endpoint',
+      command: `baseEndpoint: '(yourDomainName)/(authServiceUrl)/(endpoint)',
       login: {
         endpoint: '/auth/login',
       },

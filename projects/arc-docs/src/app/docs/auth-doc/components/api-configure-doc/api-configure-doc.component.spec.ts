@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ApiConfigureDocComponent } from './api-configure-doc.component';
+import {ApiConfigureDocComponent} from './api-configure-doc.component';
 
 describe('ApiConfigureDocComponent', () => {
   let component: ApiConfigureDocComponent;
@@ -8,9 +8,8 @@ describe('ApiConfigureDocComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ApiConfigureDocComponent ]
-    })
-    .compileComponents();
+      declarations: [ApiConfigureDocComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ApiConfigureDocComponent);
     component = fixture.componentInstance;
