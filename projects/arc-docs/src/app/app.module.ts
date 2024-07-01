@@ -6,11 +6,13 @@ import {AppComponent} from './app.component';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ThemeModule.forRoot('default'),
     HeaderComponent,
