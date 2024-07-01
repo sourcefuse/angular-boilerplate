@@ -42,19 +42,23 @@
           processes the response, and navigates the user based on the
           authorization result.
         </p>
-        <ul>
-          <li>
-            Process Response:If the response contains an access token and a
-            refresh token: Save the tokens and their expiry. Navigate the user
-            to the last accessed URL or the home path.Return true indicating
-            successful authorization.
-          </li>
-          <li>If tokens are not received, return false</li>
-        </ul>
+        <img
+          height="400px"
+          width="400px"
+          src="../../.././../../assets/env_img/method.png"
+          alt="tokenImg"
+        />
+        <p>
+          Process Response:If the response contains an access token and a
+          refresh token: Save the tokens and their expiry. Navigate the user to
+          the last accessed URL or the home path.Return true indicating
+          successful authorization. If tokens are not received, return false
+        </p>
+
         <img
           height="300px"
-          width="500px"
-          src="../../.././../../assets/env img/token.png"
+          width="350px"
+          src="../../.././../../assets/env_img/token.png"
           alt="tokenImg"
         />
       </nb-card-body>
