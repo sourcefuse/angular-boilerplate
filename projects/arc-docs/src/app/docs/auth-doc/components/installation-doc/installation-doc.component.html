@@ -1,0 +1,69 @@
+<div class="intro-wrapper">
+  <div class="1st-phase">
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Install the module</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          First, Install the module as it's distributed as npm package. Make
+          sure you have the Nebular Theme module up and running. Nebular Theme
+          is required to use built-in Auth Components.
+        </p>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">HttpClientModule</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          Auth module utilizes features of HttpClientModule and since it should
+          only be imported in the root module, please make sure you've done
+          this:
+        </p>
+        <div class="wrapper" *ngFor="let data of dataWrapper">
+          {{ data.code }}
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Configure a strategy</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          Now, let's configure the module by specifying available strategies, in
+          our case, we add NbPasswordAuthStrategy. To add a strategy we need to
+          call static setup method to pass a list of options:
+        </p>
+        <img
+          height="300px"
+          width="500px"
+          src="../../.././../../assets/env img/authmodule.png"
+          alt="moduleImg"
+        />
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Enable Auth Components</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          we need to configure Auth Components routes, and add those into your
+          app-routing.module.ts
+        </p>
+        <img
+          height="600px"
+          width="500px"
+          src="../../.././../../assets/env img/route.png"
+          alt="routeImg"
+        />
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
