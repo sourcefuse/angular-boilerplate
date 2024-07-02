@@ -9,11 +9,11 @@
       <nb-card-body>
         <ul>
           <li>
-            At this step,It's time to get a user token but primarly we need a
-            code with the help of code we call getToken API which returns a
-            token, after a successful authentication to be able to communicate
-            with the server and, for instance, show username in the header of
-            the application
+            At this step, it's time to get a user token. Primarily, we need a
+            code. With the help of this code, we call the getToken API, which
+            returns a token after a successful OAuth 2.0 authentication. This
+            token will allow us to communicate with the server and, for
+            instance, display the username in the header of the application.
           </li>
           <li>
             Let's assume that your backend returns a JWT token so that we can
@@ -21,9 +21,34 @@
             specifies which token class is going to be used by default.
           </li>
           <li>
-            For example, NbPasswordAuthStrategy uses AuthToken, and AuthProvider
-            . It is also possible to specify another token class if it is
-            required.
+            This authentication can be managed using different strategies. One
+            such strategy is NbPasswordAuthStrategy. This strategy typically
+            involves the use of an AuthToken and an AuthProvider to handle
+            authentication tasks.
+            <ul>
+              <li>
+                NbPasswordAuthStrategy is a strategy provided by Nebular for
+                handling password-based authentication. It simplifies the
+                process of logging in and managing user sessions.
+              </li>
+              <img
+                height="350px"
+                width="250px"
+                src="../../.././../../assets/env_img/authmodule.png"
+                alt="moduleImg"
+              />
+              <li>
+                AuthToken is used to manage the token received after a
+                successful authentication. This token is essential for
+                maintaining a session and authorizing subsequent requests to the
+                server.
+              </li>
+              <li>
+                AuthProvider is the service responsible for interacting with the
+                backend server to perform authentication operations such as
+                login, register, and token refresh.
+              </li>
+            </ul>
           </li>
         </ul>
       </nb-card-body>
@@ -35,16 +60,14 @@
       </nb-card-header>
       <nb-card-body>
         <p>
-          When we get token we call authorise method, The authorize method is
-          part of an authentication service. It is designed to handle the
-          authorization process using a provided secret (such as an
-          authorization code). This method initiates a command to obtain tokens,
-          processes the response, and navigates the user based on the
-          authorization result.
+          When we get the token, we call the authorize method. The authorize
+          method is part of an authentication service, designed to handle the
+          authorization process. This method initiates a request to obtain
+          tokens and processes the response.
         </p>
         <img
           height="400px"
-          width="400px"
+          width="350px"
           src="../../.././../../assets/env_img/method.png"
           alt="tokenImg"
         />
@@ -56,7 +79,7 @@
         </p>
 
         <img
-          height="300px"
+          height="250px"
           width="350px"
           src="../../.././../../assets/env_img/token.png"
           alt="tokenImg"
