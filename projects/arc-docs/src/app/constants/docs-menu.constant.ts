@@ -36,6 +36,18 @@ export const DOCUMENTATION_MENU_ITEMS = [
         title: 'Installation',
         link: '/docs/auth-doc/installation',
       },
+      {
+        title: 'Getting  User Token',
+        link: '/docs/auth-doc/configureToken',
+      },
+      {
+        title: 'Setting Up Api Configration',
+        link: '/docs/auth-doc/configureEnvs',
+      },
+      {
+        title: 'UI Components',
+        link: '/docs/auth-doc/configureUI',
+      },
     ],
   },
 ];

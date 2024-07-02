@@ -1,0 +1,25 @@
+<div class="intro-wrapper">
+  <div class="1st-phase">
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">BaseAPI Endpoints</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          In case of our API is localed on a separate server then we need to
+          change the baseEndpoint accordingly:
+        </p>
+        <div *ngFor="let env of envVariables">
+          <lib-cli-wrapper [command]="env.command"> </lib-cli-wrapper>
+        </div>
+        <p>
+          To configure the endpoints, combine the base API URL, authentication
+          service URL, and the specific endpoint as follows:
+        </p>
+        <div *ngFor="let points of baseEndPoints">
+          <lib-cli-wrapper [command]="points.command"> </lib-cli-wrapper>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
