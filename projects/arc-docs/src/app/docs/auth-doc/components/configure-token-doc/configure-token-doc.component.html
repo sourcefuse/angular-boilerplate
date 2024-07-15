@@ -9,11 +9,11 @@
       <nb-card-body>
         <ul>
           <li>
-            At this step, it's time to get a user token. Primarily, we need a
-            code. With the help of this code, we call the getToken API, which
-            returns a token after a successful OAuth 2.0 authentication. This
-            token will allow us to communicate with the server and, for
-            instance, display the username in the header of the application.
+            At this step, we need to authenticate the user and get users JWT
+            token. We follow OAuth 2.0 authentication mechanism. Here we first
+            request for code and using that code we generate the required token.
+            This token will be used for further requests as Authorization
+            header.
           </li>
           <li>
             Let's assume that your backend returns a JWT token so that we can
