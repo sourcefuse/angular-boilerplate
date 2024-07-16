@@ -1,0 +1,108 @@
+<div class="intro-wrapper">
+  <div class="1st-phase">
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">UI Components</h2>
+      </nb-card-header>
+    </nb-card>
+    <nb-card>
+      <nb-card-header fixed>
+        <h4 class="nb-card-header-title">Login Component</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          The `app-login` component provides a user interface for
+          authentication. It includes a form where users can enter their
+          credentials to access the application. The component handles the
+          entire login process, including validation, error handling, and
+          integration with the backend authentication service.
+        </p>
+        <h6 class="inner-wrapper">Usage</h6>
+        <div class="wrap" *ngFor="let data of loginWrapper">
+          {{ data.code }}
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h4 class="nb-card-header-title">SignUp Component</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          The `lib-signup` component provides a user interface for new users to
+          create an account. It includes a form where users can enter their
+          personal information and set up their credentials to access the
+          application. The component handles the entire registration process,
+          including validation and integration with the backend registration
+          service.
+        </p>
+        <h6 class="inner-wrapper">Usage</h6>
+        <div class="wrap" *ngFor="let data of signupWrapper">
+          {{ data.code }}
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h4 class="nb-card-header-title">Forget Password Component</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          The `lib-forget-password` component provides a user interface for
+          users to reset their password. It includes a form where users can
+          enter their registered email address to receive password reset
+          instructions. The component handles the entire process, including
+          validation and integration with the backend password reset service.
+        </p>
+        <h6 class="inner-wrapper">Usage</h6>
+        <div class="wrap" *ngFor="let data of forgetPwdWrapper">
+          {{ data.code }}
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h4 class="nb-card-header-title">Reset Password Component</h4>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          The `lib-reset-password` component provides a user interface for users
+          to set a new password after initiating a password reset. It includes a
+          form where users can enter and confirm their new password. The
+          component handles the entire process, including validation and
+          integration with the backend password update service.
+        </p>
+        <h6 class="inner-wrapper">Usage</h6>
+        <div class="wrap" *ngFor="let data of resetPwdWrapper">
+          {{ data.code }}
+        </div>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h4 class="nb-card-header-title">
+          Configuration of UI Forms in AuthModule
+        </h4>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          When configuring the AuthModule , you can provide a list of settings
+          for the UI forms under the forms key. This allows you to customize the
+          appearance and behavior of authentication-related forms such as login,
+          registration, and password reset. Here's an example of how you might
+          configure the AuthModule with UI settings:
+        </p>
+        <img
+          height="400px"
+          width="400px"
+          src="../../.././../../assets/env_img/authmodule.png"
+          alt="moduleImg"
+        />
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -8,7 +8,7 @@ import {RouteComponentBaseDirective} from '@project-lib/core/route-component-bas
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {COMPONENTS_ITEMS} from './constants/components.constant';
 import {NEBULAR_COMP_ITEMS} from './constants/nebularComponents.constants';
-import {DOCUMENTATION_MENU_ITEMS} from 'projects/arc-docs/src/app/constants/docs-menu.contant';
+import {DOCUMENTATION_MENU_ITEMS} from 'projects/arc-docs/src/app/constants/docs-menu.constant';
 import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.constant';
 
 @Component({

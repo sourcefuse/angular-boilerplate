@@ -1,0 +1,99 @@
+<div class="intro-wrapper">
+  <div class="1st-phase">
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">
+          Receiving user token after login/registration
+        </h2>
+      </nb-card-header>
+      <nb-card-body>
+        <ul>
+          <li>
+            At this step, we need to authenticate the user and get users JWT
+            token. We follow OAuth 2.0 authentication mechanism. Here we first
+            request for code and using that code we generate the required token.
+            This token will be used for further requests as Authorization
+            header.
+          </li>
+          <li>
+            Let's assume that your backend returns a JWT token so that we can
+            use the token payload to extract user info out of it. Each Strategy
+            specifies which token class is going to be used by default.
+          </li>
+          <li>
+            This authentication can be managed using different strategies. One
+            such strategy is NbPasswordAuthStrategy. This strategy typically
+            involves the use of an AuthToken and an AuthProvider to handle
+            authentication tasks.
+            <ul>
+              <li>
+                NbPasswordAuthStrategy is a strategy provided by Nebular for
+                handling password-based authentication. It simplifies the
+                process of logging in and managing user sessions.
+              </li>
+              <img
+                height="350px"
+                width="250px"
+                src="../../.././../../assets/env_img/authmodule.png"
+                alt="moduleImg"
+              />
+              <li>
+                AuthToken is used to manage the token received after a
+                successful authentication. This token is essential for
+                maintaining a session and authorizing subsequent requests to the
+                server.
+              </li>
+              <li>
+                AuthProvider is the service responsible for interacting with the
+                backend server to perform authentication operations such as
+                login, register, and token refresh.
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nb-card-body>
+    </nb-card>
+
+    <nb-card>
+      <nb-card-header fixed>
+        <h2 class="nb-card-header-title">Setting a User token</h2>
+      </nb-card-header>
+      <nb-card-body>
+        <p>
+          When we get the token, we call the authorize method. The authorize
+          method is part of an authentication service, designed to handle the
+          authorization process. This method initiates a request to obtain
+          tokens and processes the response.
+        </p>
+        <img
+          height="400px"
+          width="350px"
+          src="../../.././../../assets/env_img/method.png"
+          alt="tokenImg"
+        />
+        <p>
+          Process Response:If the response contains an access token and a
+          refresh token: Save the tokens and their expiry. Navigate the user to
+          the last accessed URL or the home path.Return true indicating
+          successful authorization. If tokens are not received, return false
+        </p>
+
+        <img
+          height="250px"
+          width="350px"
+          src="../../.././../../assets/env_img/token.png"
+          alt="tokenImg"
+        />
+
+        <div style="text-align: center; margin-top: 20px">
+          <a
+            href="https://akveo.github.io/nebular/docs/getting-started/what-is-nebular#what-is-nebular"
+            target="_blank"
+          >
+            If you want to explore further, please refer to Nebular</a
+          >
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>
