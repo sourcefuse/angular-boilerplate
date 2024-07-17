@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {Item} from '@main-project/boiler/model/item.model';
 import {TranslateService} from '@ngx-translate/core';
+import {Item} from '../../model/item.model';
 
 @Component({
   selector: 'arc-gantt-tooltip',
@@ -9,10 +9,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class GanttTooltipComponent {
   @Input()
-  // item: Item;
-  set item(values) {
-    console.log(values);
-  }
+  item: Item;
 
   @Input()
   allocationMap = new Map<string, boolean>([]);

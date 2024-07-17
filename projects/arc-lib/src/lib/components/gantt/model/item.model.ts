@@ -26,14 +26,6 @@ export interface empData {
   overallocated: boolean;
 }
 
-// export interface Suballocation {
-//   width: string;
-//   hours: number;
-//   rate: number;
-//   overallocated: boolean;
-//   overallocatedHours: number;
-// }
-
 export interface AllocationBar {
   percent: number;
   allocation: number;
