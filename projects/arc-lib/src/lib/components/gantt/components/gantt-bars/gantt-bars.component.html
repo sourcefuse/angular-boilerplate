@@ -38,9 +38,7 @@
             [attr.gantt-bar-data]="stringify(allocationBar)"
             gantt-hover="bar"
             [ngClass]="allocationBar.classes ?? []"
-            [ngStyle]="{
-              width: allocationBar.percent + '%',
-            }"
+            [ngStyle]="{width: allocationBar.percent + '%'}"
             [class.empty]="!allocationBar.allocation"
             [class.over-allocated]="allocationBar.allocation > allocationBase"
           >
