@@ -9,7 +9,7 @@ import {Item} from '../../model/item.model';
 })
 export class GanttTooltipComponent {
   @Input()
-  item: Item;
+  itemData: Item;
 
   @Input()
   allocationMap = new Map<string, boolean>([]);

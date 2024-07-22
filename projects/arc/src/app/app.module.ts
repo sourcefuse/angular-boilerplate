@@ -23,9 +23,11 @@ import {GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
+import {GanttService} from '@project-lib/components/gantt';
+import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GanttDemoComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.componen
     ThemeModule.forRoot('default'),
     OverlayModule,
     SelectModule,
+
     GanttModule,
     BrowserAnimationsModule,
     HeaderComponent,
@@ -49,6 +52,7 @@ import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.componen
     SystemStoreFacadeService,
     EnvAdapterService,
     ApiService,
+    GanttService,
     {
       provide: APP_CONFIG,
       useValue: environment,

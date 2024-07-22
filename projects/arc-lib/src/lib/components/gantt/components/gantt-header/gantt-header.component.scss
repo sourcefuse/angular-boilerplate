@@ -28,6 +28,7 @@
       bottom: 70.83%;
     }
   }
+
   .title-bar {
     display: flex;
     align-items: center;
@@ -50,4 +51,15 @@
   nb-form-field nb-icon {
     color: map.get($color, icon);
   }
+
+
+}
+.header-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.project-title{
+  font-size: x-large;
 }

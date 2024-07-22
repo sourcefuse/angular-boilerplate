@@ -1,8 +1,20 @@
-<div>
-  <h1>{{ name }}</h1>
-  <div *ngIf="showSearch">
-    <input type="text" [placeholder]="searchPlaceholder" />
-  </div>
+<div class="header-wrapper">
+  <h2 class="project-title">{{ name }}</h2>
+  <nb-card>
+    <nb-card-body>
+      <div class="search-wrapper" *ngIf="showSearch">
+        <input
+          nbInput
+          fullWidth
+          fieldSize="medium"
+          type="text"
+          status="basic"
+          [placeholder]="searchPlaceholder"
+        />
+      </div>
+    </nb-card-body>
+  </nb-card>
+
   <div *ngIf="desc">
     <p>Description is enabled.</p>
   </div>

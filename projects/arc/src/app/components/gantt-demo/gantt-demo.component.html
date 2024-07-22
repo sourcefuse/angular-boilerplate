@@ -1,0 +1,38 @@
+<nb-layout>
+  <nb-layout-header fixed class="border-basic-bottom">
+    <div class="header-wrapper">
+      <div class="header">
+        <arc-gantt-header
+          [desc]="headerDesc"
+          [name]="headerName"
+          [searchPlaceholder]="headerSearchPlaceholder"
+          [showSearch]="headerShowSearch"
+        ></arc-gantt-header>
+      </div>
+    </div>
+  </nb-layout-header>
+  <nb-sidebar>
+    <div class="sidebar">
+      <arc-gantt-column
+        [items]="items"
+        [showParentInitials]="showParentInitials"
+        [showChildInitials]="showChildInitials"
+        [showOverallocatedIcon]="showOverallocatedIcon"
+      ></arc-gantt-column>
+    </div>
+  </nb-sidebar>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-header> </nb-card-header>
+      <nb-card-body>
+        <arc-gantt-bars
+          [item]="item"
+          [allocationTypes]="allocationTypes"
+          [allocationBase]="allocationBase"
+        ></arc-gantt-bars>
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
+  <arc-gantt-tooltip [item]="selectedItem"></arc-gantt-tooltip>
+</nb-layout>

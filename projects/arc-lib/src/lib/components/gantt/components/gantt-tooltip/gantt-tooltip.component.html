@@ -1,28 +1,28 @@
 <!-- gantt-tooltip.component.html -->
 <div class="tooltip-wrapper">
-  <div class="gantt-tooltip" *ngIf="item">
+  <div class="gantt-tooltip" *ngIf="itemData">
     <div class="key">
       <div>Hours Per Day</div>
-      <div>{{ formatAllocation(item.allocatedHours) }}</div>
+      <div>{{ formatAllocation(itemData.allocatedHours) }}</div>
     </div>
-    <div class="key" *ngIf="item.billingRate">
+    <div class="key" *ngIf="itemData.billingRate">
       <div>Hourly Rate</div>
-      <div>{{ formatter(item.billingRate) }}</div>
+      <div>{{ formatter(itemData.billingRate) }}</div>
     </div>
-    <div class="key" *ngIf="item.startDate">
+    <div class="key" *ngIf="itemData.startDate">
       <div>Start Date</div>
-      <div *ngIf="item.startDate">
-        {{ formatDate(item.startDate) | date: 'dd/MM/yyyy' }}
+      <div *ngIf="itemData.startDate">
+        {{ formatDate(itemData.startDate) | date: 'dd/MM/yyyy' }}
       </div>
     </div>
-    <div class="key" *ngIf="item.endDate">
+    <div class="key" *ngIf="itemData.endDate">
       <div>End Date</div>
-      <div *ngIf="item.endDate">
-        {{ formatDate(item.endDate) | date: 'dd/MM/yyyy' }}
+      <div *ngIf="itemData.endDate">
+        {{ formatDate(itemData.endDate) | date: 'dd/MM/yyyy' }}
       </div>
     </div>
     <hr />
-    <div class="key" *ngFor="let deal of item.allotedDeals">
+    <div class="key" *ngFor="let deal of itemData.allotedDeals">
       <div class="deal-name">
         <span class="underline">{{ deal.name }}</span>
         <ng-container *ngIf="allocationMap.get(deal.name)">

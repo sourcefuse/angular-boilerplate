@@ -11,9 +11,6 @@ export class GanttBarsComponent {
   @Input() allocationTypes: any;
   @Input() allocationBase: number;
 
-  constructor() {
-    console.log('hii tiny');
-  }
   formatAllocation(value: number): string {
     return `${value} hours`;
   }

@@ -15,13 +15,14 @@ import {
   GanttLib,
   GanttScaleService,
 } from './types';
-import {DateOperationService} from './services/date-operation.service';
+
 import {
   GanttBarsComponent,
   GanttColumnComponent,
   GanttHeaderComponent,
   GanttTooltipComponent,
 } from './components';
+import {NbInputModule} from '@nebular/theme/components/input/input.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,6 @@ import {
     GanttTooltipComponent,
   ],
   providers: [
-    DateOperationService,
     GanttService,
     {
       provide: GANTT,
