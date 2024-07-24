@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GanttDemoComponent } from './gantt-demo.component';
+import {GanttDemoComponent} from './gantt-demo.component';
 
 describe('GanttDemoComponent', () => {
   let component: GanttDemoComponent;
@@ -8,9 +8,8 @@ describe('GanttDemoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GanttDemoComponent ]
-    })
-    .compileComponents();
+      declarations: [GanttDemoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GanttDemoComponent);
     component = fixture.componentInstance;

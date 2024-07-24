@@ -12,12 +12,22 @@
   margin-right: 0.75rem;
 }
 
+.bar {
+  position: relative;
+  .showTooltip-wrapper {
+    position: absolute;
+    top: 2rem;
+  }
+}
+
 .bar-container {
   display: flex;
   flex-grow: 1;
   background: white;
 }
-
+.showTooltip-wrapper {
+  position: absolute;
+}
 .bar {
   font-family: var(--font-family-primary);
   font-weight: map.get($font-weight, bold);

@@ -10,6 +10,7 @@ export class GanttBarsComponent {
   @Input() item: Item;
   @Input() allocationTypes: any;
   @Input() allocationBase: number;
+  showTooltip = -1;
 
   formatAllocation(value: number): string {
     return `${value} hours`;

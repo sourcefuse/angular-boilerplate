@@ -51,15 +51,23 @@
   nb-form-field nb-icon {
     color: map.get($color, icon);
   }
-
-
 }
+
 .header-wrapper {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  width: calc(100vw - 1rem);
 }
 
-.project-title{
+.project-title {
   font-size: x-large;
+  margin-bottom: -2px;
+}
+
+.desc-wrapper {
+  margin-top: -8px;
+}
+
+.search-wrapper {
+  margin-top: 32px;
 }

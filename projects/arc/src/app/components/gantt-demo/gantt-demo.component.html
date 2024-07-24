@@ -22,17 +22,18 @@
     </div>
   </nb-sidebar>
   <nb-layout-column>
-    <nb-card>
-      <nb-card-header> </nb-card-header>
+    <nb-card class="bar-wrapper">
       <nb-card-body>
         <arc-gantt-bars
           [item]="item"
           [allocationTypes]="allocationTypes"
           [allocationBase]="allocationBase"
+          showTooltip="true"
         ></arc-gantt-bars>
       </nb-card-body>
     </nb-card>
   </nb-layout-column>
-
-  <arc-gantt-tooltip [item]="selectedItem"></arc-gantt-tooltip>
 </nb-layout>
+
+<arc-gantt-tooltip [itemData]="itemData" [allocationMap]="allocationMap">
+</arc-gantt-tooltip>

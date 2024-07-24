@@ -38,7 +38,6 @@ import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
     ThemeModule.forRoot('default'),
     OverlayModule,
     SelectModule,
-
     GanttModule,
     BrowserAnimationsModule,
     HeaderComponent,
@@ -52,7 +51,6 @@ import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
     SystemStoreFacadeService,
     EnvAdapterService,
     ApiService,
-    GanttService,
     {
       provide: APP_CONFIG,
       useValue: environment,
