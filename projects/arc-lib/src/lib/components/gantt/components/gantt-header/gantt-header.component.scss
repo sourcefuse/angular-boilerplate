@@ -1,6 +1,7 @@
 // @use "../../../../theme/styles/variables" as *;
-@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
+// @use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
 @use 'sass:map';
+@use '../../../../theme/styles/variables' as *;
 .header-container {
   line-height: 1;
   width: 100%;
@@ -27,6 +28,7 @@
       bottom: 70.83%;
     }
   }
+
   .title-bar {
     display: flex;
     align-items: center;
@@ -49,4 +51,23 @@
   nb-form-field nb-icon {
     color: map.get($color, icon);
   }
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100vw - 1rem);
+}
+
+.project-title {
+  font-size: x-large;
+  margin-bottom: -2px;
+}
+
+.desc-wrapper {
+  margin-top: -8px;
+}
+
+.search-wrapper {
+  margin-top: 32px;
 }
