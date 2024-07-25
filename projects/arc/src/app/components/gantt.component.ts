@@ -1,38 +1,13 @@
 import {Component} from '@angular/core';
-import {NbSidebarService} from '@nebular/theme';
-import {
-  GanttProviders,
-  GanttAdapter,
-  CustomGanttAdapter,
-} from '@project-lib/components/gantt';
 import {Item, empData} from '@project-lib/components/gantt/model/item.model';
 
 @Component({
-  selector: 'arc-gantt-demo',
-  templateUrl: './gantt-demo.component.html',
-  styleUrls: ['./gantt-demo.component.scss'],
-  providers: [
-    GanttProviders,
-    {
-      provide: GanttAdapter,
-      useClass: CustomGanttAdapter,
-    },
-  ],
+  selector: 'arc-gantt',
+  templateUrl: './gantt.component.html',
+  styleUrls: ['./gantt.component.scss'],
 })
-export class GanttDemoComponent {
+export class GanttComponent {
   // data for tooltip component
-  showTooltip = false;
-  selectedItem: Item;
-
-  onBarHovered(itemData: Item) {
-    this.selectedItem = itemData;
-    this.showTooltip = true;
-  }
-
-  onBarMouseLeave() {
-    this.showTooltip = false;
-  }
-
   itemData: Item = {
     allocatedHours: 1600,
     billingRate: 100,
@@ -52,7 +27,7 @@ export class GanttDemoComponent {
   // Data for GanttColumnComponent
   items: empData[] = [
     {
-      name: 'john Doe ',
+      name: 'john Doe teena',
       subtitle: 'Manager',
       hasChildren: false,
       isParent: false,

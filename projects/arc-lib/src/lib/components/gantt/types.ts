@@ -4,6 +4,7 @@ import {DIGITS, ONE_MIN} from '@project-lib/core/constants';
 import {NbMenuItem} from '@nebular/theme';
 import {RANDOM_SIZE} from './const';
 import {gantt} from 'dhtmlx-gantt';
+import {GanttService} from './services';
 
 /**
  * `GanttTaskValue` is a type that represents a task in the Gantt chart.
@@ -67,7 +68,7 @@ export interface GanttTaskValueWithSubAllocation<T> extends BaseTaskValue<T> {
   subAllocations: SubAllocation[];
 }
 
-export type GanttScaleService = {
+export type GanttScaleService<T extends AnyObject = AnyObject> = {
   scale: Timelines;
   config(options?: GanttScaleOptions): {
     unit: string;
@@ -75,6 +76,8 @@ export type GanttScaleService = {
     format: (date: Date) => string;
     css?: (date: Date) => string;
   }[];
+  scroll(forward: boolean, ganttService: GanttService<T>): void;
+  moveToToday(ganttService: GanttService<T>): void;
 };
 
 // will be required for custom scale
@@ -93,6 +96,7 @@ export type GanttEvent<T> = {
 export type GanttRenderOptions<T = AnyObject> = {
   contextItems: NbMenuItem[];
   contextTemplate?: TemplateRef<AnyObject>;
+  // toolTip?: Type<ITooltipComponent<T>>;
   viewContainerRef?: ViewContainerRef;
   columnName?: string;
   showKebab: boolean;
@@ -102,18 +106,28 @@ export type GanttRenderOptions<T = AnyObject> = {
   barComponent: Type<IBarComponent<T>>;
   columnWidth: number;
   resizer: boolean;
-  searchPlaceholder?: string;
-  showSearch: boolean;
+  sorting: boolean;
   moveToToday: boolean;
   highlightRange?: [Date, Date];
   showOverallocatedIcon: boolean;
+  showNonBillableIcon: boolean;
   contextItemFilter?: ContextItemFilter<T>;
   defaultScale: Timelines;
   markToday: boolean;
   showTooltip?: boolean;
+  showBillingRate?: boolean;
+  groupings?: string[];
   childIndent: boolean;
+  // tooltipComponents: Record<string, Type<ITooltipComponent<AnyObject>>>;
+  tooltipOffset?: number;
+  infiniteScroll: boolean;
+  batchSize: number;
+  searchPlaceholder?: string;
+  showSearch: boolean;
+  ganttStartDate?: Date;
+  kebabOption: (task: GanttTaskValue<T>) => KebabListItem[];
+  ganttRowConfig: GanttRowConfig;
 };
-
 export type GanttAllocationFields = {
   startDate: Date;
   endDate: Date;
@@ -127,6 +141,7 @@ export enum Timelines {
   Monthly,
   Quarterly,
   Custom,
+  Yearly,
 }
 
 export const GanttTimelineMap: {
@@ -136,6 +151,7 @@ export const GanttTimelineMap: {
   [Timelines.Monthly]: 'Monthly',
   [Timelines.Quarterly]: 'Quarterly',
   [Timelines.Custom]: 'Custom',
+  [Timelines.Yearly]: 'Yearly',
 };
 export abstract class GanttAdapter<T> {
   abstract adaptFrom(data: T[]): GanttTaskValue<T>[];
@@ -215,6 +231,27 @@ export type IColumnComponent<T> = {
 export type IBarComponent<T> = {
   item: GanttTaskValue<T>;
 };
+
+export type GanttRowConfig = {
+  rowHeight: number;
+  actualRowSize: number;
+  rowBuffer: number;
+};
+
+export const TimelineArray: Timelines[] = [
+  Timelines.Weekly,
+  Timelines.Monthly,
+  Timelines.Quarterly,
+  Timelines.Yearly,
+];
+export interface KebabListItem extends NbMenuItem {
+  itemClass?: string[];
+  iconClass?: string[];
+  titleClass?: string[];
+  permissions?: string[];
+  tooltipData?: string;
+  disabled?: boolean;
+}
 
 export type SubAllocation<T = AnyObject> = {
   percent: number;

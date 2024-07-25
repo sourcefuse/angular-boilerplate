@@ -23,7 +23,6 @@ import {GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
-import {GanttService} from '@project-lib/components/gantt';
 import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
 
 @NgModule({

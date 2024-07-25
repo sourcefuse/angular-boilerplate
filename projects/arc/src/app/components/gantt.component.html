@@ -1,0 +1,34 @@
+<div class="layout-container">
+  <!-- header -->
+  <div class="header">
+    <arc-gantt-header
+      [desc]="headerDesc"
+      [name]="headerName"
+      [searchPlaceholder]="headerSearchPlaceholder"
+      [showSearch]="headerShowSearch"
+    ></arc-gantt-header>
+  </div>
+
+  <!-- column -->
+  <div class="content">
+    <div class="sidebar">
+      <arc-gantt-column
+        [items]="items"
+        [showParentInitials]="showParentInitials"
+        [showChildInitials]="showChildInitials"
+        [showOverallocatedIcon]="showOverallocatedIcon"
+      ></arc-gantt-column>
+    </div>
+    <div class="main">
+      <!-- bar -->
+      <arc-gantt-bars
+        [item]="item"
+        [allocationTypes]="allocationTypes"
+        [allocationBase]="allocationBase"
+      ></arc-gantt-bars>
+
+      <!-- <arc-gantt-tooltip [itemData]="itemData" [allocationMap]="allocationMap">
+      </arc-gantt-tooltip> -->
+    </div>
+  </div>
+</div>
