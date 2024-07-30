@@ -1,6 +1,5 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {ThemeModule} from '@project-lib/theme/theme.module';
-import {GanttModule} from '../../gantt.module';
+
 import {GanttHeaderComponent} from './gantt-header.component';
 
 describe('GanttHeaderComponent', () => {
@@ -9,11 +8,9 @@ describe('GanttHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GanttModule, ThemeModule.forRoot('boiler')],
+      declarations: [GanttHeaderComponent],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(GanttHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
