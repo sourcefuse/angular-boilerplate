@@ -7,7 +7,17 @@
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
+.input-box {
+  .inputTags {
+    input {
+      margin: 5px 0;
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 0;
+      background: #fff;
+    }
+  }
+}
 .input-box {
   width: 48%;
 
@@ -39,7 +49,7 @@
   }
 }
 
-.currency-wrapper {
+.dropdown-wrapper {
   width: 100%;
   max-width: 100% !important;
   margin-top: 5px;
@@ -55,45 +65,20 @@
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
-
-/* Media Queries for Responsiveness */
-
-@media (max-width: 576px) {
-  .input-box {
-    width: 100%;
-  }
-
-  .card-wrapper {
-    padding: 0;
-  }
-
-  .input-wrapper {
-    gap: 5px;
-  }
-
-  .regbtn {
-    text-align: center;
-  }
+.full-width-textarea {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
-  .input-box {
-    width: 100%;
-  }
-
-  .regbtn {
-    text-align: center;
-  }
+.example-section {
+  margin: 12px 0;
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  .input-box {
-    width: 48%;
-  }
+.example-margin {
+  margin: 0 12px;
 }
 
-@media (min-width: 992px) {
-  .input-box {
-    width: 48%;
-  }
+ul {
+  list-style-type: none;
+  margin-top: 4px;
 }

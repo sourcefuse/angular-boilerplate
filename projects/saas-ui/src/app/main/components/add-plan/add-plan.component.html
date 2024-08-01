@@ -15,29 +15,36 @@
               </div>
               <div class="input">
                 <input
-                  placeholder="Enter Plan name "
+                  placeholder="Enter Plan name"
                   fieldSize="medium"
-                  status="“info”"
+                  status="info"
                   formControlName="name"
                   nbInput
                 />
               </div>
             </div>
-            <!-- desc -->
+            <!-- Billing Plan in select-->
             <div class="input-box">
               <div class="input-title">
-                <span>Description</span>
+                <span>Billing Plan</span>
               </div>
-              <div class="input">
-                <input
-                  placeholder="Description"
-                  fieldSize="medium"
-                  status="“info”"
-                  formControlName="description"
-                  nbInput
-                />
+              <div class="select">
+                <nb-select
+                  class="dropdown-wrapper"
+                  placeholder="Basic"
+                  status="basic"
+                  formControlName="billingCycleId"
+                >
+                  <nb-option
+                    *ngFor="let billingOption of billingOptions"
+                    [value]="billingOption.id"
+                  >
+                    {{ billingOption.cycleName }}
+                  </nb-option>
+                </nb-select>
               </div>
             </div>
+
             <!-- price -->
             <div class="input-box">
               <div class="input-title">
@@ -47,7 +54,7 @@
                 <input
                   placeholder="Price"
                   fieldSize="medium"
-                  status="“info”"
+                  status="info"
                   formControlName="price"
                   nbInput
                 />
@@ -60,11 +67,11 @@
             <!-- currency -->
             <div class="input-box">
               <div class="input-title">
-                <span>Currency Name</span>
+                <span>Currency</span>
               </div>
               <div class="select">
                 <nb-select
-                  class="currency-wrapper"
+                  class="dropdown-wrapper"
                   placeholder="Basic"
                   status="basic"
                   formControlName="currencyId"
@@ -79,50 +86,117 @@
               </div>
             </div>
 
-            <!-- Plan Tier in select -->
+            <!-- desc -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Description</span>
+              </div>
+              <div class="input-description">
+                <textarea
+                  placeholder="Description"
+                  fieldSize="medium"
+                  status="info"
+                  fullWidth
+                  formControlName="description"
+                  nbInput
+                  rows="4"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3>Plan Configuration</h3>
+          </div>
+          <div class="input-wrapper">
+            <!-- Plan Tier in select-->
             <div class="input-box">
               <div class="input-title">
                 <span>Tier</span>
               </div>
-              <div class="select">
-                <nb-select
-                  class="currency-wrapper"
-                  placeholder="Basic"
-                  status="basic"
-                  formControlName="tier"
-                >
-                  <nb-option
+              <div class="radio-group">
+                <nb-radio-group formControlName="tier">
+                  <nb-radio
                     *ngFor="let tier of tierOptions"
                     [value]="tier.value"
                   >
                     {{ tier.name }}
-                  </nb-option>
-                </nb-select>
+                  </nb-radio>
+                </nb-radio-group>
               </div>
             </div>
-            <!-- Billing Plan  in select-->
+
+            <!-- Storage Size in select -->
             <div class="input-box">
               <div class="input-title">
-                <span>Billing Plan</span>
+                <span>Storage Size</span>
+              </div>
+              <div class="radio-group">
+                <nb-radio-group formControlName="storage">
+                  <nb-radio
+                    *ngFor="let storage of storageSizes"
+                    [value]="storage.value"
+                  >
+                    {{ storage.name }}
+                  </nb-radio>
+                </nb-radio-group>
+              </div>
+            </div>
+
+            <!-- FeaturesList in select  -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Services</span>
               </div>
               <div class="select">
                 <nb-select
-                  class="currency-wrapper"
+                  multiple
+                  class="dropdown-wrapper"
                   placeholder="Basic"
                   status="basic"
-                  formControlName="billingCycleId"
+                  formControlName="feature"
                 >
                   <nb-option
-                    *ngFor="let billingOption of billingOptions"
-                    [value]="billingOption.id"
+                    *ngFor="let feature of featureOptions"
+                    [value]="feature.value"
                   >
-                    {{ billingOption.cycleName }}
+                    {{ feature.name }}
                   </nb-option>
                 </nb-select>
               </div>
             </div>
+
+            <nb-layout>
+              <nb-layout-column>
+                <section class="example-section">
+                  <span class="example-list-section">
+                    <nb-checkbox
+                      class="example-margin"
+                      [(checked)]="task.completed"
+                      [indeterminate]="partiallyComplete()"
+                      (change)="update($event)"
+                    >
+                      {{ task.name }}
+                    </nb-checkbox>
+                  </span>
+                  <span class="example-list-section">
+                    <ul>
+                      <li *ngFor="let subtask of task.subtasks; let i = index">
+                        <nb-checkbox
+                          [(checked)]="subtask.completed"
+                          (change)="update($event.checked, i)"
+                        >
+                          {{ subtask.name }}
+                        </nb-checkbox>
+                      </li>
+                    </ul>
+                  </span>
+                </section>
+              </nb-layout-column>
+            </nb-layout>
           </div>
-          <!-- signup button -->
+          <!-- End of second input-wrapper -->
+
+          <!-- AddPlan button -->
           <div class="regbtn">
             <button
               nbButton

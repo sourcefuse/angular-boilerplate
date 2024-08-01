@@ -3,18 +3,18 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard, LoggedInGuard} from '@project-lib/core/auth';
 
 const routes: Routes = [
-  {
-    path: 'auth',
-    loadChildren: () =>
-      import('projects/saas-ui/src/app/shared/auth/auth.module').then(
-        m => m.AuthModule,
-      ),
-    canActivate: [LoggedInGuard],
-  },
+  // {
+  //   path: 'auth',
+  //   loadChildren: () =>
+  //     import('projects/saas-ui/src/app/shared/auth/auth.module').then(
+  //       m => m.AuthModule,
+  //     ),
+  //   canActivate: [LoggedInGuard],
+  // },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'tenant', // for onboading module /adding tenant

@@ -8,6 +8,18 @@ import {AnyObject} from '@project-lib/core/api';
 import {IAnyObject} from '../../../../../../arc-lib/src/lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
+import {FeatureListService} from '../../../shared/services/feature-list-service';
+
+interface Subtask {
+  name: string;
+  completed: boolean;
+}
+
+interface Task {
+  name: string;
+  completed: boolean;
+  subtasks?: Subtask[];
+}
 @Component({
   selector: 'add-plan',
   templateUrl: './add-plan.component.html',
@@ -15,6 +27,7 @@ import {BillingPlanService} from '../../../shared/services/billing-plan-service'
 })
 export class AddPlanComponent implements OnInit {
   [x: string]: any;
+
   addPlanForm: FormGroup;
   currencyOptions: AnyObject;
   isEditMode = false;
@@ -23,8 +36,29 @@ export class AddPlanComponent implements OnInit {
     {name: 'Pooled Compute', value: 0},
     {name: 'Silo Storage', value: 1},
   ];
+  featureOptions = [
+    {name: 'Video Conferencing', value: 0},
+    {name: 'Chat Service', value: 1},
+  ];
+  storageSizes = [
+    {name: 'small', value: 0},
+    {name: 'medium', value: 1},
+    {name: 'large', value: 2},
+  ];
+
+  task: Task = {
+    name: 'Main Task',
+    completed: false,
+    subtasks: [
+      {name: 'Subtask 1', completed: false},
+      {name: 'Subtask 2', completed: false},
+      {name: 'Subtask 3', completed: false},
+    ],
+  };
+
   constructor(
     private fb: FormBuilder,
+    private readonly featureListService: FeatureListService,
     private readonly onboardingService: OnBoardingService,
     private readonly toasterService: NbToastrService,
     private readonly billingplanService: BillingPlanService,
@@ -40,6 +74,8 @@ export class AddPlanComponent implements OnInit {
       currencyId: ['', Validators.required],
       billingCycleId: [null, Validators.required],
       tier: [null, Validators.required],
+      feature: [null, Validators.required],
+      storage: [null, Validators.required],
     });
   }
   ngOnInit(): void {
@@ -108,5 +144,33 @@ export class AddPlanComponent implements OnInit {
     this.billingplanService.getBillingCycles().subscribe(cycleResp => {
       this.billingOptions = cycleResp;
     });
+  }
+  addFeature() {
+    this.featureListService.getFeatures().subscribe(res => {
+      console.log(res);
+    });
+  }
+  partiallyComplete(): boolean {
+    const completedCount = this.task.subtasks!.filter(t => t.completed).length;
+    return completedCount > 0 && completedCount < this.task.subtasks!.length;
+  }
+
+  updateParentCompletion() {
+    const allCompleted = this.task.subtasks!.every(t => t.completed);
+    const anyCompleted = this.task.subtasks!.some(t => t.completed);
+
+    this.task.completed = allCompleted;
+
+    return anyCompleted && !allCompleted;
+  }
+
+  update(checked: boolean, index?: number): void {
+    if (index !== undefined) {
+      this.task.subtasks![index].completed = checked;
+    } else {
+      this.task.completed = checked;
+      this.task.subtasks!.forEach(t => (t.completed = checked));
+    }
+    this.updateParentCompletion();
   }
 }
