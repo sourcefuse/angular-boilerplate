@@ -49,6 +49,10 @@
   }
 }
 
+.address-input-box {
+  width: 100%;
+}
+
 .dropdown-wrapper {
   width: 100%;
   max-width: 100% !important;
@@ -81,4 +85,29 @@ input.ng-invalid.ng-touched {
 ul {
   list-style-type: none;
   margin-top: 4px;
+}
+
+.radio-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.radio-group {
+  display: flex;
+  flex-wrap: nowrap;
+
+  nb-radio {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+.input-box {
+  .input-title {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
 }

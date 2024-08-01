@@ -15,9 +15,9 @@
               </div>
               <div class="input">
                 <input
-                  placeholder="Enter Plan name"
+                  placeholder="Enter Plan name "
                   fieldSize="medium"
-                  status="info"
+                  status="“info”"
                   formControlName="name"
                   nbInput
                 />
@@ -54,7 +54,7 @@
                 <input
                   placeholder="Price"
                   fieldSize="medium"
-                  status="info"
+                  status="“info”"
                   formControlName="price"
                   nbInput
                 />
@@ -87,15 +87,15 @@
             </div>
 
             <!-- desc -->
-            <div class="input-box">
+            <div class="input-box address-input-box">
               <div class="input-title">
                 <span>Description</span>
               </div>
-              <div class="input-description">
+              <div class="input address-input">
                 <textarea
                   placeholder="Description"
                   fieldSize="medium"
-                  status="info"
+                  status="“info”"
                   fullWidth
                   formControlName="description"
                   nbInput
@@ -107,13 +107,14 @@
           <div>
             <h3>Plan Configuration</h3>
           </div>
-          <div class="input-wrapper">
-            <!-- Plan Tier in select-->
+
+          <!-- Plan Tier in select-->
+          <div class="radio-wrapper">
             <div class="input-box">
               <div class="input-title">
                 <span>Tier</span>
               </div>
-              <div class="radio-group">
+              <div class="radio-group radio-wrapper">
                 <nb-radio-group formControlName="tier">
                   <nb-radio
                     *ngFor="let tier of tierOptions"
@@ -124,9 +125,10 @@
                 </nb-radio-group>
               </div>
             </div>
+          </div>
 
-            <!-- Storage Size in select -->
-            <div class="input-box">
+          <!-- Storage Size in select -->
+          <!-- <div class="input-box">
               <div class="input-title">
                 <span>Storage Size</span>
               </div>
@@ -140,10 +142,10 @@
                   </nb-radio>
                 </nb-radio-group>
               </div>
-            </div>
+            </div> -->
 
-            <!-- FeaturesList in select  -->
-            <div class="input-box">
+          <!-- FeaturesList in select  -->
+          <!-- <div class="input-box">
               <div class="input-title">
                 <span>Services</span>
               </div>
@@ -163,9 +165,9 @@
                   </nb-option>
                 </nb-select>
               </div>
-            </div>
+            </div> -->
 
-            <nb-layout>
+          <!-- <nb-layout>
               <nb-layout-column>
                 <section class="example-section">
                   <span class="example-list-section">
@@ -192,8 +194,8 @@
                   </span>
                 </section>
               </nb-layout-column>
-            </nb-layout>
-          </div>
+            </nb-layout> -->
+
           <!-- End of second input-wrapper -->
 
           <!-- AddPlan button -->
