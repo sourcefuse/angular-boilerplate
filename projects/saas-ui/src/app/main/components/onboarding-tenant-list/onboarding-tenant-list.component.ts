@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {
   ColDef,
@@ -37,6 +37,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   };
   constructor(
     protected override readonly location: Location,
+    private readonly router: Router,
     protected override readonly route: ActivatedRoute,
     private readonly tenantFacade: TenantFacadeService,
     private http: HttpClient,
@@ -151,5 +152,9 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
 
   getTotal() {
     return this.tenantFacade.getTotalTenant();
+  }
+
+  registerTenantPage() {
+    this.router.navigate(['main/create-tenant']);
   }
 }

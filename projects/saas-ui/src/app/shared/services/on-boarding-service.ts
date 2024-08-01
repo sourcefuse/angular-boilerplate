@@ -23,6 +23,8 @@ import {Lead, Tenant} from '../models';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {GetTotalLeadCommand} from '../../main/commands/get-total-lead.command';
+import {RegisterTenantCommand} from '../../main/commands';
+import {TenantLead} from '../models/tenantLead.model';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
@@ -80,6 +82,19 @@ export class OnBoardingService {
         this.apiService,
         this.anyAdapter,
         leadId,
+        this.appConfig,
+      );
+    command.parameters = {
+      data: tenant,
+    };
+    return command.execute();
+  }
+
+  registerTenant(tenant: TenantLead) {
+    const command: RegisterTenantCommand<TenantLead> =
+      new RegisterTenantCommand(
+        this.apiService,
+        this.anyAdapter,
         this.appConfig,
       );
     command.parameters = {
