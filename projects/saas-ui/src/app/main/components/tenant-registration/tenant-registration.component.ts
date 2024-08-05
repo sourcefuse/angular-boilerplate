@@ -79,7 +79,7 @@ export class TenantRegistrationComponent {
         country: userData.country,
         key: userData.key,
         domains: [userData.domains],
-        // planId: userData.planId,
+        planId: userData.planId,
       };
       this.onBoardingService.registerTenant(user).subscribe(
         () => {

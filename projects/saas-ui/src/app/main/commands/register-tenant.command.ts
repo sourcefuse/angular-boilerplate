@@ -18,7 +18,7 @@ export class RegisterTenantCommand<T> extends PostAPICommand<TenantLead> {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/tenants`,
+      `${appConfig.baseApiUrl}${appConfig.tenantMgmtFacadeUrl}/tenants`,
     );
   }
 }
