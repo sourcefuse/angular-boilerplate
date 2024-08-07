@@ -63,7 +63,6 @@ export class TenantRegistrationComponent {
   onSubmit() {
     if (this.tenantRegForm.valid) {
       const userData = this.tenantRegForm.value;
-      console.log(userData);
       const user: TenantLead = {
         name: userData.name,
         contact: {

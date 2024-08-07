@@ -1,5 +1,3 @@
-import {Address} from './address.model';
-
 export class TenantLead {
   name: string;
   contact?: {
