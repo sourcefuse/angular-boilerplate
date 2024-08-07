@@ -1,0 +1,256 @@
+<nb-card class="h-100 card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper add-lead-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>Tenant Registration</h2>
+          <form [formGroup]="tenantRegForm" (ngSubmit)="onSubmit()">
+            <!-- input fields -->
+            <div class="input-wrapper">
+              <div class="input-box">
+                <div class="input-title">
+                  <span>First Name</span>
+                </div>
+                <div class="inputTags">
+                  <input
+                    type="text"
+                    placeholder="Enter First Name"
+                    status="“info”"
+                    formControlName="firstName"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Last Name</span>
+                </div>
+                <div class="inputTags">
+                  <input
+                    type="text"
+                    placeholder="Enter Last Name"
+                    status="“info”"
+                    formControlName="lastName"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Company Name</span>
+                </div>
+                <div class="inputTags">
+                  <input
+                    type="text"
+                    placeholder="Company Name"
+                    status="“info”"
+                    formControlName="name"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <!-- email -->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Email</span>
+                </div>
+                <div class="input">
+                  <input
+                    type="Email"
+                    placeholder="Email"
+                    status="“info”"
+                    fieldSize="medium"
+                    formControlName="email"
+                    nbInput
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    tenantRegForm.get('email').hasError('required') &&
+                    tenantRegForm.get('email').touched
+                  "
+                >
+                  Email is required.
+                </div>
+                <div
+                  *ngIf="
+                    tenantRegForm.get('email').hasError('email') &&
+                    tenantRegForm.get('email').touched
+                  "
+                >
+                  Invalid email format.
+                </div>
+              </div>
+              <!-- Validated or not  -->
+
+              <!-- address-->
+              <div class="input-box address-input-box">
+                <div class="input-title">
+                  <span>Address</span>
+                </div>
+                <div class="input address-input">
+                  <input
+                    type="text"
+                    placeholder="Enter Your Address"
+                    status="“info”"
+                    formControlName="address"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>City</span>
+                </div>
+                <div class="input">
+                  <input
+                    type="text"
+                    placeholder="Enter Your City"
+                    status="“info”"
+                    formControlName="city"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>State</span>
+                </div>
+                <div class="input">
+                  <input
+                    type="text"
+                    placeholder="Enter Your State"
+                    status="“info”"
+                    formControlName="state"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Country</span>
+                </div>
+                <div class="input">
+                  <input
+                    type="text"
+                    placeholder="Enter your Country"
+                    status="“info”"
+                    formControlName="country"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Zip Code</span>
+                </div>
+                <div class="input">
+                  <input
+                    type="text"
+                    placeholder="Enter your Zip Code"
+                    status="“info”"
+                    formControlName="zip"
+                    nbInput
+                  />
+                </div>
+              </div>
+              <!-- key -->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Key</span>
+                </div>
+                <div class="input">
+                  <input
+                    placeholder="Enter Unique Key."
+                    fieldSize="medium"
+                    status="“info”"
+                    formControlName="key"
+                    nbInput
+                  />
+                </div>
+              </div>
+              <!-- domain -->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Domain</span>
+                </div>
+                <div class="input">
+                  <input
+                    placeholder="Enter your mail domain."
+                    fieldSize="medium"
+                    status="“info”"
+                    formControlName="domains"
+                    nbInput
+                  />
+                </div>
+              </div>
+
+              <!-- Subscription Plans -->
+
+              <div class="plan-card-container">
+                <div class="input-title">
+                  <span>Subscription Plan</span>
+                </div>
+                <div class="plan-card-wrapper">
+                  <nb-card
+                    class="plan-card-box"
+                    accent="danger"
+                    *ngFor="let plan of subscriptionPlans"
+                  >
+                    <nb-card-header>{{ plan.name }}</nb-card-header>
+                    <nb-card-body>
+                      <p>{{ plan.description }}</p>
+                      <p>${{ plan.price }}</p>
+                    </nb-card-body>
+                    <nb-card-footer>
+                      <!-- Use FormControl directly -->
+                      <input
+                        type="radio"
+                        [formControl]="tenantRegForm.get('planId')"
+                        [value]="plan.id"
+                      />
+                      {{ plan.name }}
+                    </nb-card-footer>
+                  </nb-card>
+                </div>
+              </div>
+
+              <!-- signup button -->
+              <div class="btn-wrapper">
+                <div class="btn regbtn">
+                  <button
+                    nbButton
+                    shape="round"
+                    size="medium"
+                    status="danger"
+                    (click)="backToPriviousPage()"
+                  >
+                    Back
+                  </button>
+
+                  <button
+                    nbButton
+                    shape="round"
+                    size="medium"
+                    status="danger"
+                    [disabled]="!tenantRegForm.valid"
+                    type="submit"
+                  >
+                    Registration
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

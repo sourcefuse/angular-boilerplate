@@ -15,3 +15,4 @@ export * from './get-total-lead.command';
 export * from './get-total-tenant.command';
 export * from './get-total-plan.command';
 export * from './get-total-billing-plan.command';
+export * from './register-tenant.command';
