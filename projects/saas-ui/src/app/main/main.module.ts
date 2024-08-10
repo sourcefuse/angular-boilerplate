@@ -4,7 +4,7 @@ import {MainRoutingModule} from './main-routing.module';
 import {MainComponent} from './main.component';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {LeadListComponent} from './components/lead-list/lead-list.component';
-import {NbRadioModule} from '@nebular/theme';
+import {NbCardModule, NbRadioModule} from '@nebular/theme';
 import {OnboardingTenantListComponent} from './components/onboarding-tenant-list/onboarding-tenant-list.component';
 import {AgGridModule} from 'ag-grid-angular';
 import {TenantFacadeService} from '../shared/services/tenant-list-facade.service';
@@ -33,6 +33,7 @@ import { TenantRegistrationComponent } from './components/tenant-registration/te
     ThemeModule,
     NbRadioModule,
     AgGridModule,
+    NbCardModule,
   ],
   providers: [TenantFacadeService, BillingPlanService, ToasterService],
 })

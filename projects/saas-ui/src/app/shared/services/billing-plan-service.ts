@@ -90,6 +90,7 @@ export class BillingPlanService {
       this.anyAdapter,
       this.appConfig,
     );
+
     return command.execute();
   }
   getBillingCycles() {
@@ -98,6 +99,7 @@ export class BillingPlanService {
       this.anyAdapter,
       this.appConfig,
     );
+
     return command.execute();
   }
 
@@ -123,6 +125,7 @@ export class BillingPlanService {
     };
     return command.execute();
   }
+
   getPlanById(planId: string) {
     const command: GetPlanByIdCommand<Plan> = new GetPlanByIdCommand(
       this.apiService,
@@ -132,6 +135,7 @@ export class BillingPlanService {
     );
     return command.execute();
   }
+
   editPlan(plan: Plan, id: string) {
     const command: EditPlanCommand<Plan> = new EditPlanCommand(
       this.apiService,
@@ -160,7 +164,6 @@ export class BillingPlanService {
       this.anyAdapter,
       this.appConfig,
     );
-
     return command.execute();
   }
 }

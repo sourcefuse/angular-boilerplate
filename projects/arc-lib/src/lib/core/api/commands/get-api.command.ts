@@ -27,6 +27,7 @@ export abstract class GetAPICommand<T, R = T> implements ICommand {
     if (this.parameters) {
       options = {};
       options.observe = this.parameters.observe || 'body';
+      options.observe = 'response';
 
       if (this.parameters.headers) {
         options.headers = this.parameters.headers;

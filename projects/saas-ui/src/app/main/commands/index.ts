@@ -15,4 +15,7 @@ export * from './get-total-lead.command';
 export * from './get-total-tenant.command';
 export * from './get-total-plan.command';
 export * from './get-total-billing-plan.command';
-export * from './register-tenant.command';
+export * from './add-features.command';
+export * from './edit-features.command';
+export * from './get-feature-by-id.command';
+export * from './get-features.command';

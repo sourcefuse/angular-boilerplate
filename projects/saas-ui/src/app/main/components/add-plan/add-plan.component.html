@@ -6,130 +6,243 @@
           <h2>{{ isEditMode ? 'Edit Plan' : 'Add New Plan' }}</h2>
         </div>
         <form [formGroup]="addPlanForm">
-          <!-- input fields -->
-          <div class="input-wrapper">
-            <!-- Plan name -->
-            <div class="input-box">
-              <div class="input-title">
-                <span>Name</span>
+          <div class="details-wrapeer">
+            <div class="subHeading-wrapper">
+              <h3>General Details</h3>
+            </div>
+            <!-- input fields -->
+            <div class="input-wrapper">
+              <!-- Plan name -->
+              <div class="input-box">
+                <div class="input-title icon-wrapper">
+                  <span>Name <span class="required">*</span></span>
+                  <!-- <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    [nbTooltip]="
+                      'Please enter the name of the plan. This is a required field.'
+                    "
+                  ></nb-icon> -->
+                </div>
+                <div class="input-container">
+                  <div class="input">
+                    <input
+                      placeholder="Enter Plan name "
+                      fieldSize="medium"
+                      status="“info”"
+                      formControlName="name"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter Plan name. This field is required."
+                    ></nb-icon>
+                  </div>
+                </div>
               </div>
-              <div class="input">
-                <input
-                  placeholder="Enter Plan name "
-                  fieldSize="medium"
-                  status="“info”"
-                  formControlName="name"
-                  nbInput
-                />
+              <!-- Billing Plan in select-->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Billing Plan <span class="required">*</span></span>
+                </div>
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Plan"
+                    status="basic"
+                    formControlName="billingCycleId"
+                  >
+                    <nb-option
+                      *ngFor="let billingOption of billingOptions"
+                      [value]="billingOption.id"
+                    >
+                      {{ billingOption.cycleName }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+
+              <!-- price -->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Price <span class="required">*</span></span>
+                </div>
+                <div class="input-container">
+                  <div class="input">
+                    <input
+                      placeholder="Enter Price"
+                      fieldSize="medium"
+                      status="“info”"
+                      formControlName="price"
+                      nbInput
+                    />
+                    <div *ngIf="price?.['pattern'] && price.touched">
+                      Please enter a valid number.
+                    </div>
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter Price. This field is required."
+                    ></nb-icon>
+                  </div>
+                </div>
+              </div>
+
+              <!-- currency -->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Currency<span class="required">*</span></span>
+                </div>
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Currency"
+                    status="basic"
+                    formControlName="currencyId"
+                  >
+                    <nb-option
+                      *ngFor="let currency of currencyOptions"
+                      [value]="currency.id"
+                    >
+                      {{ currency.currencyName }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+
+              <!-- desc -->
+              <div class="input-box address-input-box">
+                <div class="input-title">
+                  <span>Description<span class="required">*</span></span>
+                </div>
+
+                <div class="input address-input">
+                  <textarea
+                    placeholder="Description"
+                    fieldSize="medium"
+                    status="“info”"
+                    fullWidth
+                    formControlName="description"
+                    nbInput
+                    rows="4"
+                  ></textarea>
+                  <!-- <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please write Description about the plan. This field is required."
+                    ></nb-icon> -->
+                </div>
               </div>
             </div>
-            <!-- desc -->
-            <div class="input-box">
-              <div class="input-title">
-                <span>Description</span>
-              </div>
-              <div class="input">
-                <input
-                  placeholder="Description"
-                  fieldSize="medium"
-                  status="“info”"
-                  formControlName="description"
-                  nbInput
-                />
-              </div>
+          </div>
+
+          <div class="details-wrapeer">
+            <div>
+              <h3>Plan Configuration</h3>
             </div>
-            <!-- price -->
-            <div class="input-box">
-              <div class="input-title">
-                <span>Price</span>
+            <!-- Plan Tier in select-->
+            <div class="input-wrapper">
+              <div class="input-box-wrapper">
+                <div class="input-title">
+                  <span>Tier<span class="required">*</span></span>
+                </div>
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Tier"
+                    status="basic"
+                    formControlName="tier"
+                    (selectedChange)="onTierChange($event)"
+                  >
+                    <nb-option
+                      *ngFor="let tier of tierOptions"
+                      [value]="tier.value"
+                    >
+                      {{ tier.name }}
+                    </nb-option>
+                  </nb-select>
+                </div>
               </div>
-              <div class="input">
-                <input
-                  placeholder="Price"
-                  fieldSize="medium"
-                  status="“info”"
-                  formControlName="price"
-                  nbInput
-                />
-                <div *ngIf="price?.['pattern'] && price.touched">
-                  Please enter a valid number.
+
+              <!-- Plan Storage Size in select-->
+              <div
+                class="input-box-wrapper"
+                *ngIf="addPlanForm.get('tier')?.value === 'PREMIUM'"
+              >
+                <div class="input-title">
+                  <span>Size</span>
+                </div>
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Size"
+                    status="basic"
+                    formControlName="size"
+                  >
+                    <nb-option
+                      *ngFor="let storage of storageSizes"
+                      [value]="storage.name"
+                    >
+                      {{ storage.name }}
+                    </nb-option>
+                  </nb-select>
                 </div>
               </div>
             </div>
 
-            <!-- currency -->
-            <div class="input-box">
-              <div class="input-title">
-                <span>Currency Name</span>
+            <!--features -->
+            <div class="features-wrapper-testing">
+              <div class="input-title-wrapper">
+                <span>Features<span class="required">*</span></span>
               </div>
-              <div class="select">
-                <nb-select
-                  class="currency-wrapper"
-                  placeholder="Basic"
-                  status="basic"
-                  formControlName="currencyId"
-                >
-                  <nb-option
-                    *ngFor="let currency of currencyOptions"
-                    [value]="currency.id"
+              <div class="features">
+                <form [formGroup]="addPlanForm.get('features')">
+                  <div
+                    *ngFor="let feature of featureOption"
+                    class="feature-toggle"
                   >
-                    {{ currency.currencyName }}
-                  </nb-option>
-                </nb-select>
-              </div>
-            </div>
-
-            <!-- Plan Tier in select -->
-            <div class="input-box">
-              <div class="input-title">
-                <span>Tier</span>
-              </div>
-              <div class="select">
-                <nb-select
-                  class="currency-wrapper"
-                  placeholder="Basic"
-                  status="basic"
-                  formControlName="tier"
-                >
-                  <nb-option
-                    *ngFor="let tier of tierOptions"
-                    [value]="tier.value"
-                  >
-                    {{ tier.name }}
-                  </nb-option>
-                </nb-select>
-              </div>
-            </div>
-            <!-- Billing Plan  in select-->
-            <div class="input-box">
-              <div class="input-title">
-                <span>Billing Plan</span>
-              </div>
-              <div class="select">
-                <nb-select
-                  class="currency-wrapper"
-                  placeholder="Basic"
-                  status="basic"
-                  formControlName="billingCycleId"
-                >
-                  <nb-option
-                    *ngFor="let billingOption of billingOptions"
-                    [value]="billingOption.id"
-                  >
-                    {{ billingOption.cycleName }}
-                  </nb-option>
-                </nb-select>
+                    <div class="feature-details">
+                      <span class="feature-name">{{ feature.name }}</span>
+                      <div class="feature-input">
+                        <nb-toggle
+                          *ngIf="feature.type === 'boolean'"
+                          [formControlName]="feature.key"
+                        ></nb-toggle>
+                        <input
+                          *ngIf="feature.type === 'number'"
+                          nbInput
+                          type="number"
+                          [formControlName]="feature.key"
+                          placeholder="{{ feature.name }}"
+                        />
+                        <input
+                          *ngIf="feature.type === 'string'"
+                          nbInput
+                          type="text"
+                          [formControlName]="feature.key"
+                          placeholder="{{ feature.name }}"
+                        />
+                        <textarea
+                          *ngIf="feature.value_type === 'object'"
+                          nbInput
+                          [formControlName]="feature.key"
+                          placeholder="{{ feature.name }}"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
-          <!-- signup button -->
+
+          <!-- AddPlan button -->
           <div class="regbtn">
             <button
               nbButton
-              shape="round"
               size="medium"
               status="danger"
-              [disabled]="!addPlanForm.valid"
               (click)="isEditMode ? editPlan() : addPlan()"
             >
               {{ isEditMode ? 'Edit Plan' : 'Add Plan' }}

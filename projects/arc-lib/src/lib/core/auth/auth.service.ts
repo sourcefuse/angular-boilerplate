@@ -379,7 +379,7 @@ export class AuthService {
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'logout_uri';
-    clientSecret.value = this.appConfig.publicKey;
+    clientSecret.value = '3be3tt3bkl6sf1pkdiurejejm7phdvhd1fnkch7esiva38p6g6v';
     form.appendChild(clientSecret);
     document.body.appendChild(form);
     form.submit();
