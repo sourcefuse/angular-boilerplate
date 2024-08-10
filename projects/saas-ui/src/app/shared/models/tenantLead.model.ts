@@ -6,7 +6,6 @@ export class TenantLead {
     email?: string;
     isPrimary?: boolean;
   };
-
   address?: string;
   city?: string;
   state?: string;

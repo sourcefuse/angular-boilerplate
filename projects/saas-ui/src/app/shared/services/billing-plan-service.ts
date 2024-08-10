@@ -79,7 +79,7 @@ export class BillingPlanService {
           offset: filter.offset,
           limit: filter.limit,
           order: filter.order,
-          include: filter.include || [], // Adding include from filter parameter
+          include: filter.include || [],
         }
       : {};
     return command.execute();

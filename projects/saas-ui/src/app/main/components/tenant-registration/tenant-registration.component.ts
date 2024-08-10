@@ -1,11 +1,18 @@
 import {Component} from '@angular/core';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {AnyObject} from '@project-lib/core/api/backend-filter';
 import {TenantLead} from '../../../shared/models/tenantLead.model';
+import {domainMatchValidator, keyValidator} from '@project-lib/core/validators';
 
 @Component({
   selector: 'app-tenant-registration',
@@ -28,20 +35,34 @@ export class TenantRegistrationComponent {
     private onboardingService: OnBoardingService,
     private readonly billingPlanService: BillingPlanService,
   ) {
-    this.tenantRegForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
-      name: ['', Validators.required], // for comapny name
-      email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
-      country: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      zip: ['', Validators.required],
-      key: ['', Validators.required],
-      domains: ['', Validators.required],
-      planId: [''],
-    });
+    this.tenantRegForm = this.fb.group(
+      {
+        firstName: ['', [Validators.required]],
+        lastName: ['', [Validators.required]],
+        name: ['', Validators.required], // for company name
+        email: ['', [Validators.required, Validators.email]],
+        address: [''],
+        country: ['', Validators.required],
+        zip: [''],
+        key: ['', [Validators.required, keyValidator()]],
+        domains: ['', Validators.required],
+        planId: [''],
+      },
+      {validators: this.emailDomainMatchValidator},
+    );
+  }
+
+  emailDomainMatchValidator(group: FormGroup): {[key: string]: boolean} | null {
+    const email = group.get('email').value;
+    const domain = group.get('domains').value;
+
+    if (email && domain) {
+      const emailDomain = email.substring(email.lastIndexOf('@') + 1);
+      if (emailDomain !== domain) {
+        return {domainMismatch: true};
+      }
+    }
+    return null;
   }
 
   ngOnInit() {
@@ -60,6 +81,7 @@ export class TenantRegistrationComponent {
   backToPriviousPage() {
     this.router.navigate(['main/onboard-tenant-list']);
   }
+
   onSubmit() {
     if (this.tenantRegForm.valid) {
       const userData = this.tenantRegForm.value;
@@ -72,8 +94,6 @@ export class TenantRegistrationComponent {
           isPrimary: true,
         },
         address: userData.address,
-        city: userData.city,
-        state: userData.state,
         zip: userData.zip,
         country: userData.country,
         key: userData.key,
@@ -82,7 +102,8 @@ export class TenantRegistrationComponent {
       };
       this.onBoardingService.registerTenant(user).subscribe(
         () => {
-          this.router.navigate(['/tenant/registration/complete']);
+          this.toastrService.show('Tenant Added , successfully');
+          this.router.navigate(['main/onboard-tenant-list']);
         },
         (error: string) => {
           console.error('Login error:', error); //NOSONAR
