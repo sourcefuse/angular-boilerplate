@@ -102,21 +102,28 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
       map(res => {
         try {
           // const body = JSON.parse(JSON.stringify(res)).body;
-          // this.getResp = body;
-          const rows = res.map(item => {
+          this.getResp = res;
+          const rows = this.getResp.map(item => {
             return {
               id: item.id,
               name: item.name,
               description: item.description,
-              cycleName: item['billingCycle']
-                ? item['billingCycle'].cycleName
-                : '',
-              currencyName: item['currency']
-                ? item['currency'].currencyName
-                : '',
-              price: item.price,
-            };
-          });
+          //     cycleName: item['billingCycle']
+          //       ? item['billingCycle'].cycleName
+          //       : '',
+          //     currencyName: item['currency']
+          //       ? item['currency'].currencyName
+          //       : '',
+          //     price: item.price,
+          //   };
+          // });
+          cycleName: item['billingCycle']?.cycleName,
+                
+          currencyName: item['currency']?.currencyName,
+            
+          price: item.price,
+        };
+      });
 
           return rows;
         } catch (error) {
