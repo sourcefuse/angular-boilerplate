@@ -101,9 +101,9 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
     return this.billingPlanService.getPlanOptions(filter).pipe(
       map(res => {
         try {
-          const body = JSON.parse(JSON.stringify(res)).body;
-          this.getResp = body;
-          const rows = body.map(item => {
+          // const body = JSON.parse(JSON.stringify(res)).body;
+          // this.getResp = body;
+          const rows = res.map(item => {
             return {
               id: item.id,
               name: item.name,
