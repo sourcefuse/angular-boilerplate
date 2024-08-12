@@ -23,8 +23,9 @@ import {Lead, Tenant} from '../models';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {GetTotalLeadCommand} from '../../main/commands/get-total-lead.command';
-import {RegisterTenantCommand} from '../../main/commands';
+
 import {TenantLead} from '../models/tenantLead.model';
+import {RegisterTenantCommand} from '../../main/commands/register-tenant.command';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
