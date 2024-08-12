@@ -15,31 +15,65 @@
                 <!-- key -->
                 <div class="input-box">
                   <div class="input-title">
-                    <span>Key</span>
+                    <span>Key <span class="required">*</span></span>
                   </div>
                   <div class="input">
-                    <input
-                      placeholder="Enter Unique Key."
-                      fieldSize="medium"
-                      status="“info”"
-                      formControlName="key"
-                      nbInput
-                    />
+                    <div class="input-container">
+                      <input
+                        placeholder="Enter Unique Key."
+                        fieldSize="medium"
+                        status="“info”"
+                        formControlName="key"
+                        nbInput
+                      />
+                      <nb-icon
+                        icon="info-outline"
+                        class="info-icon"
+                        nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"
+                      ></nb-icon>
+                      <!-- Inline error message -->
+                      <nb-tooltip
+                        *ngIf="
+                          addTenantForm.get('key').invalid &&
+                          (addTenantForm.get('key').dirty ||
+                            addTenantForm.get('key').touched)
+                        "
+                        [attr.id]="'keyError'"
+                        [nbTooltip]="
+                          addTenantForm.get('key').errors?.keyInvalid
+                            ? 'Key must start with an alphabet, have a maximum length of 10 characters, and contain no special characters.'
+                            : null
+                        "
+                      >
+                      </nb-tooltip>
+                    </div>
                   </div>
                 </div>
                 <!-- domain -->
                 <div class="input-box">
                   <div class="input-title">
-                    <span>Domain</span>
+                    <span>Email Domain <span class="required">*</span></span>
                   </div>
                   <div class="input">
-                    <input
-                      placeholder="Enter your mail domain."
-                      fieldSize="medium"
-                      status="“info”"
-                      formControlName="domains"
-                      nbInput
-                    />
+                    <div class="input-container">
+                      <input
+                        placeholder="Enter your Email domain."
+                        fieldSize="medium"
+                        status="“info”"
+                        formControlName="domains"
+                        nbInput
+                      />
+                      <nb-icon
+                        icon="info-outline"
+                        class="info-icon"
+                        nbTooltip="Enter your Domain name. 
+                      This field is required and should match the format of a valid email address.."
+                      ></nb-icon>
+                    </div>
+                  </div>
+                  <div *ngIf="addTenantForm.errors?.domainMismatch">
+                    Email domain does not match the domain part of the email
+                    address.
                   </div>
                 </div>
               </div>
@@ -48,7 +82,7 @@
 
               <div class="plan-card-container">
                 <div class="input-title">
-                  <span>Subscription Plan</span>
+                  <h3>Subscription Plan</h3>
                 </div>
                 <div class="plan-card-wrapper">
                   <nb-card
@@ -56,19 +90,24 @@
                     accent="danger"
                     *ngFor="let plan of subscriptionPlans"
                   >
-                    <nb-card-header>{{ plan.name }}</nb-card-header>
+                    <nb-card-header class="plan-card-header">
+                      <h5>{{ plan.name }}</h5>
+                    </nb-card-header>
                     <nb-card-body>
-                      <p>{{ plan.description }}</p>
-                      <p>${{ plan.price }}</p>
+                      <p class="plan-description">{{ plan.description }}</p>
+                      <p class="plan-price">${{ plan.price }}</p>
                     </nb-card-body>
-                    <nb-card-footer>
-                      <!-- Use FormControl directly -->
-                      <input
-                        type="radio"
-                        [formControl]="addTenantForm.get('planId')"
-                        [value]="plan.id"
-                      />
-                      {{ plan.name }}
+                    <nb-card-footer class="plan-card-footer">
+                      <label class="plan-radio">
+                        <!-- Use FormControl directly -->
+                        <input
+                          type="radio"
+                          [formControl]="addTenantForm.get('planId')"
+                          [value]="plan.id"
+                        />
+                        <span class="radio-checkmark"></span>
+                        {{ plan.name }}
+                      </label>
                     </nb-card-footer>
                   </nb-card>
                 </div>
@@ -78,7 +117,6 @@
               <div class="btn regbtn">
                 <button
                   nbButton
-                  shape="round"
                   size="medium"
                   status="danger"
                   [disabled]="!addTenantForm.valid"

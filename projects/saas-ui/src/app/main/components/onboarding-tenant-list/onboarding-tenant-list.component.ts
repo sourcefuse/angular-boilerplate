@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {
   ColDef,
@@ -35,8 +35,10 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     floatingFilter: true,
     resizable: true,
   };
+
   constructor(
     protected override readonly location: Location,
+    private readonly router: Router,
     protected override readonly route: ActivatedRoute,
     private readonly tenantFacade: TenantFacadeService,
     private http: HttpClient,
@@ -106,6 +108,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
         combineLatest([paginatedLeads, totalLead]).subscribe(
           ([data, count]) => {
             params.successCallback(data, count.count);
+            // for test
           },
 
           err => {
@@ -126,7 +129,8 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     return this.tenantFacade.getTenantList(filter).pipe(
       map(res => {
         return res.map(item => {
-          const addressString = `${item.address.city}, ${item.address.state}, ${item.address.zip}, ${item.address.country}`;
+          const addressString = ` ${item.address.zip}, ${item.address.country}`;
+          // ${item.address.city}, ${item.address.state},
           return {
             name: item.name,
             key: item.key,
@@ -151,5 +155,9 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
 
   getTotal() {
     return this.tenantFacade.getTotalTenant();
+  }
+
+  registerTenantPage() {
+    this.router.navigate(['main/create-tenant']);
   }
 }

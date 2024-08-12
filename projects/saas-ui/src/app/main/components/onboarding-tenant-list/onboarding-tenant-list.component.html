@@ -1,7 +1,26 @@
 <div>
   <nb-card accent="danger" class="card-style">
     <nb-card-body>
-      <h2 class="heading">Onboarded Tenant List</h2>
+      <div class="header-wrapper">
+        <h2 class="heading">Onboarded Tenant List</h2>
+        <!-- signup button -->
+        <div class="regbtn">
+          <button
+            nbButton
+            size="medium"
+            status="danger"
+            (click)="registerTenantPage()"
+          >
+            Add tenant
+          </button>
+        </div>
+      </div>
+
+      <!-- loader -->
+      <!-- <div *ngIf="loading" class="loader-overlay">
+        <div class="loader"></div>
+      </div> -->
+
       <!-- ag-grid -->
       <div class="grid">
         <ag-grid-angular

@@ -14,6 +14,7 @@ import {AddPlanComponent} from './components/add-plan/add-plan.component';
 import {BillingPlanService} from '../shared/services/billing-plan-service';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {ButtonRendererComponent} from './components/button-renderer/button-renderer.component';
+import { TenantRegistrationComponent } from './components/tenant-registration/tenant-registration.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {ButtonRendererComponent} from './components/button-renderer/button-rende
     BillingPlanComponent,
     AddPlanComponent,
     ButtonRendererComponent,
+    TenantRegistrationComponent,
   ],
   imports: [
     CommonModule,

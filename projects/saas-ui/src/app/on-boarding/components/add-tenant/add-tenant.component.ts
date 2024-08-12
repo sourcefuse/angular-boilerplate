@@ -8,6 +8,7 @@ import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {Location} from '@angular/common';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 import {AnyObject} from '@project-lib/core/api';
+import {keyValidator} from '@project-lib/core/validators';
 
 @Component({
   selector: 'app-add-tenant',
@@ -29,7 +30,7 @@ export class AddTenantComponent implements OnInit {
     private readonly billingPlanService: BillingPlanService,
   ) {
     this.addTenantForm = this.fb.group({
-      key: ['', Validators.required],
+      key: ['', [Validators.required, keyValidator()]],
       domains: ['', Validators.required],
       planId: [null],
     });
