@@ -35,6 +35,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     floatingFilter: true,
     resizable: true,
   };
+
   constructor(
     protected override readonly location: Location,
     private readonly router: Router,
@@ -107,6 +108,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
         combineLatest([paginatedLeads, totalLead]).subscribe(
           ([data, count]) => {
             params.successCallback(data, count.count);
+            // for test
           },
 
           err => {
@@ -127,7 +129,8 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     return this.tenantFacade.getTenantList(filter).pipe(
       map(res => {
         return res.map(item => {
-          const addressString = `${item.address.city}, ${item.address.state}, ${item.address.zip}, ${item.address.country}`;
+          const addressString = ` ${item.address.zip}, ${item.address.country}`;
+          // ${item.address.city}, ${item.address.state},
           return {
             name: item.name,
             key: item.key,
