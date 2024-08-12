@@ -39,6 +39,8 @@ interface BackendFilter<MT extends object = AnyObject> {
   providedIn: 'root',
 })
 export class BillingPlanService {
+ 
+
   constructor(
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
@@ -46,19 +48,19 @@ export class BillingPlanService {
     private readonly getPlanAdapter: GetPlanAdapter,
   ) {}
 
-  getPlanOptions(filter?: BackendFilter<AnyObject>) {
-    const command: GetPlanCommand<AnyObject[]> = new GetPlanCommand(
+  getPlanOptions(filter?: BackendFilter<Plan>) {
+    const command: GetPlanCommand<Plan[]> = new GetPlanCommand(
       this.apiService,
       this.anyAdapter,
       this.appConfig,
     );
-    const backendFilter: BackendFilter<AnyObject> = filter
+    const backendFilter: BackendFilter<Plan> = filter
       ? {
           where: filter.where,
           offset: filter.offset,
           limit: filter.limit,
           order: filter.order,
-          include: filter.include || [], // Adding include from filter parameter
+          include: filter.include || [], 
         }
       : {};
     command.parameters = {
@@ -164,6 +166,7 @@ export class BillingPlanService {
       this.anyAdapter,
       this.appConfig,
     );
+  
     return command.execute();
   }
 }

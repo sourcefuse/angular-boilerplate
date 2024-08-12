@@ -27,7 +27,7 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
   [x: string]: any;
   gridApi: GridApi;
   gridOptions: GridOptions;
-  getResp: any;
+  getResp: Plan[];
   limit = 5;
   colDefs: ColDef[] = [
     {field: 'name', headerName: 'Plan Name', width: 200, minWidth: 20},
@@ -101,22 +101,11 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
     return this.billingPlanService.getPlanOptions(filter).pipe(
       map(res => {
         try {
-          // const body = JSON.parse(JSON.stringify(res)).body;
-          this.getResp = res;
-          const rows = this.getResp.map(item => {
+          const rows = res.map(item => {
             return {
               id: item.id,
               name: item.name,
               description: item.description,
-          //     cycleName: item['billingCycle']
-          //       ? item['billingCycle'].cycleName
-          //       : '',
-          //     currencyName: item['currency']
-          //       ? item['currency'].currencyName
-          //       : '',
-          //     price: item.price,
-          //   };
-          // });
           cycleName: item['billingCycle']?.cycleName,
                 
           currencyName: item['currency']?.currencyName,
