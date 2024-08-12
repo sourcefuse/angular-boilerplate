@@ -13,6 +13,7 @@ import {Feature} from '../../../shared/interfaces/features';
 import {Features} from '../../../shared/models/feature.model';
 import {Plan} from '../../../shared/models';
 import {FeatureValues} from '../../../shared/models/feature-values.model';
+import {PlanWithFeatures} from '../../../shared/models/plans-features.model';
 
 interface Subtask {
   name: string;
@@ -36,7 +37,7 @@ export class AddPlanComponent implements OnInit {
   currencyOptions: AnyObject;
   selectedFeatures: Features[];
   featureOption: Features[];
-  featureValue: FeatureValues[];
+  featureValue: PlanWithFeatures | any;
   planId: string;
   featureId: string;
   isEditMode = false;
@@ -152,7 +153,9 @@ export class AddPlanComponent implements OnInit {
 
         this.featureListService
           .addFeatures(planFeatureDetailData, this.planId)
-          .subscribe(featResp => {});
+          .subscribe(featResp => {
+            console.log('skip'); //NOSONAR
+          });
         this.toasterService.show('Plan added Successfully');
         this.router.navigate(['/main/plans']);
       },
@@ -202,46 +205,130 @@ export class AddPlanComponent implements OnInit {
     }
   }
 
+  // getPlanbyId() {
+  //   this.billingplanService
+  //     .getPlanById(this.activateRoute.snapshot.params.id)
+  //     .subscribe(response => {
+  //       // const body = JSON.parse(JSON.stringify(response)).body;
+  //       const tierName: string = response.tier;
+  //       body.tier = JSON.stringify(body.tier);
+
+  //       this.addPlanForm = this.fb.group({
+  //         name: [body.name, Validators.required],
+  //         description: [body.description, Validators.required],
+  //         price: [body.price, Validators.required],
+  //         currencyId: [body.currencyId, Validators.required],
+  //         billingCycleId: [body.billingCycleId, Validators.required],
+  //         tier: [tierName, Validators.required],
+  //         size: [body.size],
+  //         features: this.fb.group({}),
+  //       });
+  //     });
   getPlanbyId() {
     this.billingplanService
       .getPlanById(this.activateRoute.snapshot.params.id)
       .subscribe(response => {
-        let body = JSON.parse(JSON.stringify(response)).body;
-        const tierName: string = body.tier;
-        body.tier = JSON.stringify(body.tier);
+        // const body = JSON.parse(JSON.stringify(response)).body;
+        const tierName = response.tier;
+        // response.tier = JSON.stringify(body.tier);
 
         this.addPlanForm = this.fb.group({
-          name: [body.name, Validators.required],
-          description: [body.description, Validators.required],
-          price: [body.price, Validators.required],
-          currencyId: [body.currencyId, Validators.required],
-          billingCycleId: [body.billingCycleId, Validators.required],
+          name: [response.name, Validators.required],
+          description: [response.description, Validators.required],
+          price: [response.price, Validators.required],
+          currencyId: [response.currencyId, Validators.required],
+          billingCycleId: [response.billingCycleId, Validators.required],
           tier: [tierName, Validators.required],
-          size: [body.size],
+          size: [response.size],
           features: this.fb.group({}),
         });
       });
     this.featureListService
       .getFeatureById(this.activateRoute.snapshot.params.id)
       .subscribe(resp => {
-        let featureBody = JSON.parse(JSON.stringify(resp)).body;
-
-        const features = featureBody.features;
-
-        this.featureValue = features;
+        // const featureBody = JSON.parse(JSON.stringify(resp)).body;
+        // const features = resp.features;
+        const features = resp.features;
+        // (f as any).key
+        this.featureValue = resp;
         this.createFeatureControls();
         const featuresGroup = this.addPlanForm.get('features') as FormGroup;
         if (featuresGroup) {
           Object.keys(featuresGroup.controls).forEach(controlName => {
-            featuresGroup
-              .get(controlName)
-              ?.setValue(
-                features.find(item => item.key === controlName)?.value?.value,
-              );
+            featuresGroup.get(controlName)?.setValue(
+              // features.find(item => item.key === controlName)?.value?.value,
+              features.find(item => item.key === controlName)?.value?.value,
+            );
           });
         }
       });
   }
+
+  // editPlan() {
+  //   if (this.addPlanForm.valid) {
+  //     const domainData = this.addPlanForm.value;
+  //     domainData.price = parseFloat(domainData.price);
+
+  //     const featuresGroup = this.addPlanForm.get('features') as FormGroup;
+  //     const selectedFeatures = featuresGroup
+  //       ? Object.keys(featuresGroup.controls)
+  //           .filter(
+  //             key =>
+  //               featuresGroup.get(key)?.value !== null &&
+  //               featuresGroup.get(key)?.value !== '',
+  //           )
+  //           .reduce(
+  //             (acc, key) => {
+  //               const feature = this.featureOption.find(f => f.key === key);
+  //               if (feature) {
+  //                 acc[feature.key] = featuresGroup.get(key)?.value;
+  //               }
+  //               return acc;
+  //             },
+  //             {} as {[key: string]: any},
+  //           )
+  //       : {};
+  //     const generalDetailsData = {
+  //       name: domainData.name,
+  //       billingCycleId: domainData.billingCycleId,
+  //       price: domainData.price,
+  //       currencyId: domainData.currencyId,
+  //       description: domainData.description,
+  //       tier: domainData.tier,
+  //       size: domainData.size,
+  //     };
+
+  //     domainData.features = selectedFeatures;
+
+  //     this.billingplanService
+  //       .editPlan(generalDetailsData, this.activateRoute.snapshot.params.id)
+  //       .subscribe(res => {
+  //         this.router.navigate(['/main/plans']);
+  //       });
+
+  //     const updateFeatureDetails: FeatureValues[] = Object.keys(
+  //       selectedFeatures,
+  //     )
+  //       .map(key => {
+  //         const feature = this.featureOption.find(f => f.key === key);
+  //         return {
+  //           featureKey: feature ? feature.id : null,
+  //           strategyKey: 'plan',
+  //           strategyEntityId: this.activateRoute.snapshot.params.id,
+  //           status: true,
+  //           value: selectedFeatures[key].toString(), // Ensure value is always a string
+  //         };
+  //       })
+  //       .filter(item => item.featureKey !== null);
+  //     this.featureListService
+  //       .editFeatures(updateFeatureDetails)
+  //       .subscribe(respFeature => {
+  //         console.log('skip'); //NOSONAR
+  //       });
+  //   } else {
+  //     console.error('Form is invalid');
+  //   }
+  // }
 
   editPlan() {
     if (this.addPlanForm.valid) {
@@ -249,6 +336,7 @@ export class AddPlanComponent implements OnInit {
       domainData.price = parseFloat(domainData.price);
 
       const featuresGroup = this.addPlanForm.get('features') as FormGroup;
+
       const selectedFeatures = featuresGroup
         ? Object.keys(featuresGroup.controls)
             .filter(
@@ -258,15 +346,21 @@ export class AddPlanComponent implements OnInit {
             )
             .reduce(
               (acc, key) => {
-                const feature = this.featureOption.find(f => f.key === key);
+                const feature = this.featureValue.find(
+                  f => (f as any).key === key,
+                );
                 if (feature) {
-                  acc[feature.key] = featuresGroup.get(key)?.value;
+                  acc[feature.id] = {
+                    id: (feature.value as any).id,
+                    value: featuresGroup.get(key)?.value,
+                  };
                 }
                 return acc;
               },
               {} as {[key: string]: any},
             )
         : {};
+      console.log(this.addPlanForm.value);
       const generalDetailsData = {
         name: domainData.name,
         billingCycleId: domainData.billingCycleId,
@@ -289,24 +383,34 @@ export class AddPlanComponent implements OnInit {
         selectedFeatures,
       )
         .map(key => {
-          const feature = this.featureOption.find(f => f.key === key);
+          const feature = this.featureValue.find(f => f.id === key);
+          console.log(feature);
           return {
-            featureKey: feature ? feature.id : null,
-            strategyKey: 'plan',
+            id: selectedFeatures[key].id,
+            featureKey: feature.id,
+            strategyKey: 'Plan',
             strategyEntityId: this.activateRoute.snapshot.params.id,
             status: true,
-            value: selectedFeatures[key].toString(), // Ensure value is always a string
+            value: selectedFeatures[key].value?.toString(),
           };
         })
-        .filter(item => item.featureKey !== null);
+        .filter(item => item.id !== null);
+      console.log(updateFeatureDetails);
       this.featureListService
-        .editFeatures(updateFeatureDetails)
-        .subscribe(respFeature => {});
+        .editFeatures(
+          updateFeatureDetails,
+          this.activateRoute.snapshot.params.id,
+        )
+        .subscribe(respFeature => {
+          console.log(respFeature);
+        });
+
+      // this.featureListService.editFeatures()
     } else {
+      // Handle form validation errors if necessary
       console.error('Form is invalid');
     }
   }
-
   onTierChange(selectedTier: string): void {
     this.showStorageSize = selectedTier === 'PREMIUM';
     if (!this.showStorageSize) {

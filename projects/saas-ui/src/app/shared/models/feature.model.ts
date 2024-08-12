@@ -1,3 +1,5 @@
+import {FeatureValues} from './feature-values.model';
+
 export class Features {
   id?: string;
   name: string;
@@ -5,7 +7,7 @@ export class Features {
   key: string;
   type: 'boolean' | 'number' | 'string' | 'object';
   defaultValue: any;
-  value?: string;
+  value?: FeatureValues;
   constructor(data?: Partial<Features>) {
     this.id = data?.id;
     this.name = data.name;

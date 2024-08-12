@@ -20,6 +20,7 @@ import {FeatureValues} from '../models/feature-values.model';
 import {AuthTokenSkipHeader} from '@project-lib/core/constants';
 import {EditFeaturesCommand} from '../../main/commands/edit-features.command';
 import {GetFeatureByIdCommand} from '../../main/commands/get-feature-by-id.command';
+import {PlanWithFeatures} from '../models/plans-features.model';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
@@ -66,9 +67,14 @@ export class FeatureListService {
     return command.execute();
   }
 
-  editFeatures(featureValue: FeatureValues[]) {
+  editFeatures(featureValue: FeatureValues[], planId: string) {
     const command: EditFeaturesCommand<FeatureValues[]> =
-      new EditFeaturesCommand(this.apiService, this.anyAdapter, this.appConfig);
+      new EditFeaturesCommand(
+        this.apiService,
+        this.anyAdapter,
+        planId,
+        this.appConfig,
+      );
     command.parameters = {
       data: featureValue,
     };
@@ -76,7 +82,7 @@ export class FeatureListService {
   }
 
   getFeatureById(planId: string) {
-    const command: GetFeatureByIdCommand<FeatureValues[]> =
+    const command: GetFeatureByIdCommand<PlanWithFeatures> =
       new GetFeatureByIdCommand(
         this.apiService,
         this.anyAdapter,

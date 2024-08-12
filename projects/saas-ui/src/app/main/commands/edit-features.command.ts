@@ -7,13 +7,13 @@ export class EditFeaturesCommand<T> extends PatchAPICommand<T> {
   constructor(
     apiService: ApiService,
     adapter: IAdapter<T>,
+    planId: string,
     appConfig: IAnyObject,
   ) {
     super(
       apiService,
       adapter,
-      `https://arc-saas.net/subscription-service/feature-values`,
+      ` ${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans/${planId}/features`,
     );
   }
 }
-// ${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans/${planId}`
