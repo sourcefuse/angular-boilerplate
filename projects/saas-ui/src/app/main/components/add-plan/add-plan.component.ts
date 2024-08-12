@@ -336,8 +336,8 @@ export class AddPlanComponent implements OnInit {
       domainData.price = parseFloat(domainData.price);
 
       const featuresGroup = this.addPlanForm.get('features') as FormGroup;
-
       const selectedFeatures = featuresGroup
+      
         ? Object.keys(featuresGroup.controls)
             .filter(
               key =>
@@ -346,7 +346,7 @@ export class AddPlanComponent implements OnInit {
             )
             .reduce(
               (acc, key) => {
-                const feature = this.featureValue.find(
+                const feature = this.featureValue.features.find(
                   f => (f as any).key === key,
                 );
                 if (feature) {
@@ -383,7 +383,7 @@ export class AddPlanComponent implements OnInit {
         selectedFeatures,
       )
         .map(key => {
-          const feature = this.featureValue.find(f => f.id === key);
+          const feature = this.featureValue.features.find(f => f.id === key);
           console.log(feature);
           return {
             id: selectedFeatures[key].id,
