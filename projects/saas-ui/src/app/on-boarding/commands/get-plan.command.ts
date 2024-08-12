@@ -17,8 +17,7 @@ export class GetPlanCommand<T> extends GetAPICommand<AnyObject[]> {
     super(
       apiService,
       adapter,
-      `https://arc-saas.net/subscription-service/plans`,
+      `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans`,
     );
   }
 }
-//   `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans`,
