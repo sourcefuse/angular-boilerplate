@@ -28,11 +28,10 @@ export class AddLeadComponent {
       lastName: ['', [Validators.required]],
       companyName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
+      address: [''],
+      zip: [''],
       country: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      zip: ['', Validators.required],
+      
     });
   }
 
@@ -46,8 +45,6 @@ export class AddLeadComponent {
         email: userData.email,
         address: {
           address: userData.address,
-          city: userData.city,
-          state: userData.state,
           zip: userData.zip,
           country: userData.country,
         },
