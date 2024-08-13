@@ -78,6 +78,7 @@ export class TenantRegistrationComponent {
     });
   }
 
+
   backToPriviousPage() {
     this.router.navigate(['main/onboard-tenant-list']);
   }

@@ -44,7 +44,7 @@
               <!-- Billing Plan in select-->
               <div class="input-box">
                 <div class="input-title">
-                  <span>Billing Plan <span class="required">*</span></span>
+                  <span>Billing Cycle <span class="required">*</span></span>
                 </div>
                 <div class="select">
                   <nb-select
@@ -114,7 +114,7 @@
               <!-- desc -->
               <div class="input-box address-input-box">
                 <div class="input-title">
-                  <span>Description<span class="required">*</span></span>
+                  <span>Description</span>
                 </div>
 
                 <div class="input address-input">
@@ -182,7 +182,7 @@
                   >
                     <nb-option
                       *ngFor="let storage of storageSizes"
-                      [value]="storage.name"
+                      [value]="storage.value"
                     >
                       {{ storage.name }}
                     </nb-option>
@@ -238,15 +238,26 @@
           </div>
 
           <!-- AddPlan button -->
-          <div class="regbtn">
+          <!--  *ngIf="isEditMode" -->
+          <div class="regbtn button-wrapper ">
+            <button
+            nbButton
+            size="medium"
+            status="danger"
+            (click)="cancelEdit()"
+          >
+            Cancel
+          </button>
+
             <button
               nbButton
               size="medium"
               status="danger"
               (click)="isEditMode ? editPlan() : addPlan()"
             >
-              {{ isEditMode ? 'Edit Plan' : 'Add Plan' }}
+              {{ isEditMode ? 'Save' : 'Add Plan' }}
             </button>
+           
           </div>
         </form>
       </div>

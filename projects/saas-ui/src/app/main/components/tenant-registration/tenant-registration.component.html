@@ -78,7 +78,7 @@
                 <div class="input-title">
                   <span>Email <span class="required">*</span></span>
                 </div>
-                <div class="input">
+                <div class="input inputTags">
                   <div class="input-container">
                     <input
                       type="Email"
@@ -119,7 +119,8 @@
                 <div class="input-title">
                   <span>Address</span>
                 </div>
-                <div class="input address-input">
+                <div class="input address-input inputTags ">
+                  <div class="input-container">
                   <input
                     type="text"
                     placeholder="Enter Your Address"
@@ -127,6 +128,7 @@
                     formControlName="address"
                     nbInput
                   />
+                  </div>
                 </div>
               </div>
 
@@ -134,7 +136,8 @@
                 <div class="input-title">
                   <span>Zip Code</span>
                 </div>
-                <div class="input">
+                <div class="input inputTags">
+                  <div class="input-container">
                   <input
                     type="text"
                     placeholder="Enter your Zip Code"
@@ -142,6 +145,7 @@
                     formControlName="zip"
                     nbInput
                   />
+                  </div>
                 </div>
               </div>
 
@@ -149,7 +153,8 @@
                 <div class="input-title">
                   <span>Country <span class="required">*</span></span>
                 </div>
-                <div class="input">
+                <div class="input inputTags">
+                  <div class="input-container">
                   <input
                     type="text"
                     placeholder="Enter your Country"
@@ -157,6 +162,7 @@
                     formControlName="country"
                     nbInput
                   />
+                  </div>
                 </div>
               </div>
               <!-- key -->
@@ -166,7 +172,7 @@
                     Application Sub-Domain <span class="required">*</span></span
                   >
                 </div>
-                <div class="input">
+                <div class="input inputTags">
                   <div class="input-container">
                     <input
                       placeholder="Enter the subdomain of your application"
@@ -209,7 +215,7 @@
                 <div class="input-title">
                   <span>Email domain<span class="required">*</span></span>
                 </div>
-                <div class="input">
+                <div class="input inputTags">
                   <div class="input-container">
                     <input
                       placeholder="Enter the Email domain "
@@ -248,6 +254,12 @@
                     </nb-card-header>
                     <nb-card-body class="plan-card-body">
                       <p class="plan-description">{{ plan.description }}</p>
+                      <p class="plan-price" *ngIf="plan.tier || plan.size">
+                        {{ plan.tier }}
+                        <ng-container *ngIf="plan.size"> 
+                          <nb-tag *ngIf="plan.size" status="basic" appearance="filled" text="{{ plan.size }}" ></nb-tag>
+                        </ng-container>
+                      </p>
                       <p class="plan-price">${{ plan.price }}</p>
                     </nb-card-body>
                     <nb-card-footer class="plan-card-footer">

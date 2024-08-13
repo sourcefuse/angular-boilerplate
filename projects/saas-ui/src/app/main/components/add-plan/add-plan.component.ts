@@ -82,7 +82,7 @@ export class AddPlanComponent implements OnInit {
       billingCycleId: [null, Validators.required],
       price: [''],
       currencyId: ['', Validators.required],
-      description: ['', Validators.required],
+      description: [''],
       tier: ['', Validators.required],
       size: [''],
       // features
@@ -205,25 +205,6 @@ export class AddPlanComponent implements OnInit {
     }
   }
 
-  // getPlanbyId() {
-  //   this.billingplanService
-  //     .getPlanById(this.activateRoute.snapshot.params.id)
-  //     .subscribe(response => {
-  //       // const body = JSON.parse(JSON.stringify(response)).body;
-  //       const tierName: string = response.tier;
-  //       body.tier = JSON.stringify(body.tier);
-
-  //       this.addPlanForm = this.fb.group({
-  //         name: [body.name, Validators.required],
-  //         description: [body.description, Validators.required],
-  //         price: [body.price, Validators.required],
-  //         currencyId: [body.currencyId, Validators.required],
-  //         billingCycleId: [body.billingCycleId, Validators.required],
-  //         tier: [tierName, Validators.required],
-  //         size: [body.size],
-  //         features: this.fb.group({}),
-  //       });
-  //     });
   getPlanbyId() {
     this.billingplanService
       .getPlanById(this.activateRoute.snapshot.params.id)
@@ -329,6 +310,11 @@ export class AddPlanComponent implements OnInit {
   //     console.error('Form is invalid');
   //   }
   // }
+
+  cancelEdit(){
+    this.router.navigate(['/main/plans']);
+  }
+
 
   editPlan() {
     if (this.addPlanForm.valid) {
