@@ -32,43 +32,41 @@
   }
 }
 
-  h3{
-    margin: 0;
-   
-  }
-
-  .plan-wrapper {
-    display: flex;
-    gap: 10px;
-    justify-content: start;
-    flex-wrap: wrap;
-  }
-
-  .input-box-wrapper {
-    width: 48%;
-  
-    .input {
-      input {
-        margin: 5px 0;
-        width: 100% !important;
-        max-width: 100%;
-        border-radius: 0;
-        background: #fff;
-        border-color: #cecece;
-      }
-    }
-  
-    .select {
-      width: 100%;
-    }
-  }
-
-  .features-wrapper {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: end;
+h3 {
+  margin: 0;
 }
 
+.plan-wrapper {
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+
+.input-box-wrapper {
+  width: 48%;
+
+  .input {
+    input {
+      margin: 5px 0;
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 0;
+      background: #fff;
+      border-color: #cecece;
+    }
+  }
+
+  .select {
+    width: 100%;
+  }
+}
+
+.features-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: end;
+}
 
 .input-box {
   width: 24%;
@@ -102,8 +100,6 @@
   }
 }
 
-
-
 .address-input-box {
   width: 100%;
   border-color: #cecece;
@@ -111,7 +107,6 @@
 
 .address-input {
   border-color: #cecece !important;
-   
 }
 .dropdown-wrapper {
   width: 100%;
@@ -147,7 +142,7 @@ ul {
   margin-top: 4px;
 }
 
-.radio-wrapper{
+.radio-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -178,14 +173,14 @@ ul {
   font-size: 1.2em;
 }
 
-.details-wrapeer{
-  border: 1px solid #cecece; 
+.details-wrapeer {
+  border: 1px solid #cecece;
   padding: 20px;
   border-radius: 4px;
   margin-bottom: 20px;
 }
 
-.input-box-wrapper{
+.input-box-wrapper {
   .input-title {
     margin-bottom: 5px;
     font-weight: bold;
@@ -193,7 +188,7 @@ ul {
   }
 }
 
-.input-title-wrapper{
+.input-title-wrapper {
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 15px;
@@ -202,27 +197,22 @@ ul {
 .info-icon {
   cursor: pointer;
   margin-left: 10px;
-  color: #007bff; 
-  font-size: 18px; 
-  vertical-align: middle; 
+  color: #007bff;
+  font-size: 18px;
+  vertical-align: middle;
 }
 
-
-
-
-
-
 .features-wrapper-testing {
-    margin-top: 20px;
+  margin-top: 20px;
   .features {
     .feature-toggle {
       display: flex;
       align-items: center;
-      margin-bottom: 10px; 
+      margin-bottom: 10px;
       padding: 5px;
       border: 1px solid #cecece;
       border-radius: 5px;
-      
+
       .feature-details {
         display: flex;
         justify-content: space-between;
@@ -230,19 +220,19 @@ ul {
         align-items: center;
 
         .feature-name {
-          flex: 1; 
-          margin-right: 10px; 
+          flex: 1;
+          margin-right: 10px;
         }
 
         .feature-input {
-          flex: 1; 
+          flex: 1;
           display: flex;
-          justify-content: flex-end; 
-          
+          justify-content: flex-end;
+
           nb-toggle,
           input,
           textarea {
-            margin-left: 10px; 
+            margin-left: 10px;
           }
         }
       }
@@ -250,32 +240,33 @@ ul {
   }
 }
 
+.button-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 
+.input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
 
-    .input-container {
-      display: flex;
-      align-items: center;
-      position: relative;
+  input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 30px;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
 
-      input {
-        width: 100%;
-        padding: 10px;
-        padding-right: 30px; 
-        border: 1px solid #dcdcdc;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-
-      .info-icon {
-        position: absolute;
-        right: 20px; 
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: #007bff; 
-        font-size: 18px; 
-        z-index: 1; 
-      }
-
-    }
- 
+  .info-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #007bff;
+    font-size: 18px;
+    z-index: 1;
+  }
+}

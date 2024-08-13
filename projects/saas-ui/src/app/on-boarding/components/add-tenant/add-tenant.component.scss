@@ -28,33 +28,32 @@
   display: flex;
   align-items: center;
   position: relative;
-  
+
   input {
     width: 100%;
     padding: 10px;
-    padding-right: 30px; 
+    padding-right: 30px;
     border: 1px solid #dcdcdc;
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
   .info-icon {
     position: absolute;
-    right: 10px; 
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #007bff; 
-    font-size: 18px; 
-    z-index: 1; 
+    color: #007bff;
+    font-size: 18px;
+    z-index: 1;
   }
-  
 }
 
 .info-icon {
   margin-left: 8px;
   cursor: pointer;
-  color: #007bff; 
+  color: #007bff;
 }
 
 .required {
@@ -94,7 +93,6 @@
   }
 }
 
-
 .plan-card-container {
   display: flex;
   flex-direction: column;
@@ -124,7 +122,9 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   cursor: pointer;
-  
+  min-width: 23%;
+  flex: auto !important;
+
   &:hover {
     transform: scale(1.05);
   }
@@ -143,12 +143,12 @@
   .plan-card-body {
     padding: 15px;
     text-align: center;
-    
+
     .plan-description {
       font-size: 1em;
       margin-bottom: 10px;
     }
-    
+
     .plan-price {
       font-size: 1.5em;
       font-weight: bold;
@@ -159,14 +159,14 @@
     background: #f4f4f4;
     padding: 10px;
     text-align: center;
-    
+
     .plan-radio {
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      
-      input[type="radio"] {
+
+      input[type='radio'] {
         display: none;
       }
 
@@ -177,7 +177,7 @@
         border: 2px solid #000;
         margin-right: 10px;
         position: relative;
-        
+
         &::after {
           content: '';
           position: absolute;
@@ -191,15 +191,13 @@
           opacity: 0;
         }
       }
-      
-      input[type="radio"]:checked + .radio-checkmark::after {
+
+      input[type='radio']:checked + .radio-checkmark::after {
         opacity: 1;
       }
     }
   }
 }
-
-
 
 /* Media Queries for Responsiveness */
 

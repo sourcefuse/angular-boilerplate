@@ -119,15 +119,15 @@
                 <div class="input-title">
                   <span>Address</span>
                 </div>
-                <div class="input address-input inputTags ">
+                <div class="input address-input inputTags">
                   <div class="input-container">
-                  <input
-                    type="text"
-                    placeholder="Enter Your Address"
-                    status="“info”"
-                    formControlName="address"
-                    nbInput
-                  />
+                    <input
+                      type="text"
+                      placeholder="Enter Your Address"
+                      status="“info”"
+                      formControlName="address"
+                      nbInput
+                    />
                   </div>
                 </div>
               </div>
@@ -138,13 +138,13 @@
                 </div>
                 <div class="input inputTags">
                   <div class="input-container">
-                  <input
-                    type="text"
-                    placeholder="Enter your Zip Code"
-                    status="“info”"
-                    formControlName="zip"
-                    nbInput
-                  />
+                    <input
+                      type="text"
+                      placeholder="Enter your Zip Code"
+                      status="“info”"
+                      formControlName="zip"
+                      nbInput
+                    />
                   </div>
                 </div>
               </div>
@@ -155,13 +155,13 @@
                 </div>
                 <div class="input inputTags">
                   <div class="input-container">
-                  <input
-                    type="text"
-                    placeholder="Enter your Country"
-                    status="“info”"
-                    formControlName="country"
-                    nbInput
-                  />
+                    <input
+                      type="text"
+                      placeholder="Enter your Country"
+                      status="“info”"
+                      formControlName="country"
+                      nbInput
+                    />
                   </div>
                 </div>
               </div>
@@ -256,8 +256,13 @@
                       <p class="plan-description">{{ plan.description }}</p>
                       <p class="plan-price" *ngIf="plan.tier || plan.size">
                         {{ plan.tier }}
-                        <ng-container *ngIf="plan.size"> 
-                          <nb-tag *ngIf="plan.size" status="basic" appearance="filled" text="{{ plan.size }}" ></nb-tag>
+                        <ng-container *ngIf="plan.size">
+                          <nb-tag
+                            *ngIf="plan.size"
+                            status="basic"
+                            appearance="filled"
+                            text="{{ plan.size }}"
+                          ></nb-tag>
                         </ng-container>
                       </p>
                       <p class="plan-price">${{ plan.price }}</p>

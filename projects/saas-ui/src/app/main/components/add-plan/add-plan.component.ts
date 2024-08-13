@@ -79,9 +79,9 @@ export class AddPlanComponent implements OnInit {
     this.addPlanForm = this.fb.group({
       // general details
       name: ['', Validators.required],
-      billingCycleId: [null, Validators.required],
+      billingCycleId: [this.defaultBillingCycleId, Validators.required],
       price: [''],
-      currencyId: ['', Validators.required],
+      currencyId: [this.defaultCurrencyId, Validators.required],
       description: [''],
       tier: ['', Validators.required],
       size: [''],
@@ -135,7 +135,8 @@ export class AddPlanComponent implements OnInit {
     domainData.features = featuresGroup ? featuresGroup.value : {};
 
     this.billingplanService.addPlan(generalDetailsData).subscribe(
-      resp => {
+      resp => 
+      {
         this.planId = resp.id;
         const obj: FeatureValues[] = [];
         const planFeatureDetailData = Object.keys(selectedFeatures)
@@ -311,10 +312,9 @@ export class AddPlanComponent implements OnInit {
   //   }
   // }
 
-  cancelEdit(){
+  cancelEdit() {
     this.router.navigate(['/main/plans']);
   }
-
 
   editPlan() {
     if (this.addPlanForm.valid) {
@@ -323,7 +323,6 @@ export class AddPlanComponent implements OnInit {
 
       const featuresGroup = this.addPlanForm.get('features') as FormGroup;
       const selectedFeatures = featuresGroup
-      
         ? Object.keys(featuresGroup.controls)
             .filter(
               key =>
@@ -428,11 +427,23 @@ export class AddPlanComponent implements OnInit {
   getCurrencyDetails() {
     this.billingplanService.getCurrencyDetails().subscribe(response => {
       this.currencyOptions = response;
+
+      // test
+      if (this.currencyOptions.length > 0) {
+        this.defaultCurrencyId = this.currencyOptions[0].id; 
+        this.addPlanForm.get('currencyId').setValue(this.defaultCurrencyId);
+      }
+    
     });
   }
   getBillingCycleDetails() {
     this.billingplanService.getBillingCycles().subscribe(cycleResp => {
       this.billingOptions = cycleResp;
+// test
+      if (this.billingOptions.length > 0) {
+        this.defaultBillingCycleId = this.billingOptions[0].id; 
+        this.addPlanForm.get('billingCycleId').setValue(this.defaultBillingCycleId);
+      }
     });
   }
   getFeatures() {

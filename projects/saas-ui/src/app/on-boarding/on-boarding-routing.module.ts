@@ -24,10 +24,14 @@ const routes: Routes = [
         path: 'registration/complete',
         component: VerificationCompleteComponent,
       },
+      // {
+      //   path: 'add-tenant/:leadId',
+      //   component: AddTenantComponent,
+      //   canActivate: [EmailVerifyGuard],
+      // },
       {
-        path: 'add-tenant/:leadId',
+        path: 'add-tenant',
         component: AddTenantComponent,
-        canActivate: [EmailVerifyGuard],
       },
     ],
   },

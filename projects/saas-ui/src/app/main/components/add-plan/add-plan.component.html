@@ -239,15 +239,15 @@
 
           <!-- AddPlan button -->
           <!--  *ngIf="isEditMode" -->
-          <div class="regbtn button-wrapper ">
+          <div class="regbtn button-wrapper">
             <button
-            nbButton
-            size="medium"
-            status="danger"
-            (click)="cancelEdit()"
-          >
-            Cancel
-          </button>
+              nbButton
+              size="medium"
+              status="danger"
+              (click)="cancelEdit()"
+            >
+              Cancel
+            </button>
 
             <button
               nbButton
@@ -257,7 +257,6 @@
             >
               {{ isEditMode ? 'Save' : 'Add Plan' }}
             </button>
-           
           </div>
         </form>
       </div>
