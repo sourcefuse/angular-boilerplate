@@ -143,7 +143,7 @@ export class AddPlanComponent implements OnInit {
             const feature = this.featureOption.find(f => f.key === key);
             return {
               featureKey: feature ? feature.id : null,
-              strategyKey: 'plan',
+              strategyKey: 'Plan',
               strategyEntityId: this.planId,
               status: true,
               value: selectedFeatures[key].toString(),
