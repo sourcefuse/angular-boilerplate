@@ -24,13 +24,13 @@ export class AddLeadComponent {
     private fb: FormBuilder,
   ) {
     this.addLeadForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')] ],
+      lastName: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')] ],
       companyName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       address: [''],
-      zip: [''],
-      country: ['', Validators.required],
+      zip: ['',[Validators.pattern('^[0-9]+$'),Validators.maxLength(9)]],
+      country: ['',  [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
       
     });
   }

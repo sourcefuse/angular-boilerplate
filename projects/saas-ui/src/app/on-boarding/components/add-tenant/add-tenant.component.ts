@@ -30,7 +30,8 @@ export class AddTenantComponent implements OnInit {
     private readonly billingPlanService: BillingPlanService,
   ) {
     this.addTenantForm = this.fb.group({
-      key: ['', [Validators.required, keyValidator()]],
+      key: ['', [Validators.required, Validators.maxLength(10),
+        Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
       domains: ['', Validators.required],
       planId: [null],
     });

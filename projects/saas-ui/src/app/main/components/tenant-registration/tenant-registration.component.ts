@@ -37,14 +37,15 @@ export class TenantRegistrationComponent {
   ) {
     this.tenantRegForm = this.fb.group(
       {
-        firstName: ['', [Validators.required]],
-        lastName: ['', [Validators.required]],
-        name: ['', Validators.required], // for company name
+        firstName: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+        lastName: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+        name: ['',[Validators.required]], // for company name
         email: ['', [Validators.required, Validators.email]],
         address: [''],
-        country: ['', Validators.required],
-        zip: [''],
-        key: ['', [Validators.required, keyValidator()]],
+        country: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+        zip: ['',[Validators.pattern('^[0-9]+$'),Validators.maxLength(9)]],
+        key: ['', [Validators.required, Validators.maxLength(10),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
         domains: ['', Validators.required],
         planId: [''],
       },

@@ -24,6 +24,12 @@
   }
 }
 
+.error-msg {
+  color: red;
+  font-size: 14px; 
+  margin-top: 3px; 
+}
+
 .input-container {
   display: flex;
   align-items: center;
@@ -37,6 +43,8 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
+
+
 
   .info-icon {
     position: absolute;

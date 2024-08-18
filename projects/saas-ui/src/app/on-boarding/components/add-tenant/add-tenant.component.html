@@ -34,22 +34,34 @@
                         class="info-icon"
                         nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"
                       ></nb-icon>
-                      <!-- Inline error message -->
-                      <nb-tooltip
-                        *ngIf="
-                          addTenantForm.get('key').invalid &&
-                          (addTenantForm.get('key').dirty ||
-                            addTenantForm.get('key').touched)
-                        "
-                        [attr.id]="'keyError'"
-                        [nbTooltip]="
-                          addTenantForm.get('key').errors?.keyInvalid
-                            ? 'Key must start with an alphabet, have a maximum length of 10 characters, and contain no special characters.'
-                            : null
-                        "
-                      >
-                      </nb-tooltip>
                     </div>
+                    <div
+                  class="error-msg"
+                  *ngIf="
+                  addTenantForm.get('key').hasError('required') &&
+                  addTenantForm.get('key').touched
+                  "
+                >
+                  Sub-domain is required.
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                  addTenantForm.get('key').hasError('maxlength') &&
+                  addTenantForm.get('key').touched
+                  "
+                >
+                  Maximum length exceeded.
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                  addTenantForm.get('key').hasError('pattern') &&
+                  addTenantForm.get('key').touched
+                  "
+                >
+                  Invalid characters used.
+                </div>
                   </div>
                 </div>
                 <!-- domain -->
