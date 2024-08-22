@@ -71,8 +71,16 @@ export class TenantRegistrationComponent {
     this.route.params.subscribe(params => {
       this.leadId = params['leadId'];
     });
+    // for automatically writing domain name from email
+    this.tenantRegForm.get('email').valueChanges.subscribe(email => {
+      const emailDomain = email?.substring(email.lastIndexOf('@') + 1);
+      if (emailDomain) {
+        this.tenantRegForm.get('domains').setValue(emailDomain);
+      }
+    });
   }
 
+  
   getRadioOptions() {
     this.billingPlanService.getPlanOptions().subscribe(res => {
       this.subscriptionPlans = res;
