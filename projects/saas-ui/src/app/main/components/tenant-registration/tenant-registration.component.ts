@@ -12,7 +12,7 @@ import {Location} from '@angular/common';
 import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {AnyObject} from '@project-lib/core/api/backend-filter';
 import {TenantLead} from '../../../shared/models/tenantLead.model';
-import {domainMatchValidator, keyValidator} from '@project-lib/core/validators';
+import { keyValidator} from '@project-lib/core/validators';
 
 @Component({
   selector: 'app-tenant-registration',
