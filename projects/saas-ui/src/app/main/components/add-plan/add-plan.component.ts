@@ -1,3 +1,4 @@
+
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -246,72 +247,6 @@ export class AddPlanComponent implements OnInit {
       });
   }
 
-  // editPlan() {
-  //   if (this.addPlanForm.valid) {
-  //     const domainData = this.addPlanForm.value;
-  //     domainData.price = parseFloat(domainData.price);
-
-  //     const featuresGroup = this.addPlanForm.get('features') as FormGroup;
-  //     const selectedFeatures = featuresGroup
-  //       ? Object.keys(featuresGroup.controls)
-  //           .filter(
-  //             key =>
-  //               featuresGroup.get(key)?.value !== null &&
-  //               featuresGroup.get(key)?.value !== '',
-  //           )
-  //           .reduce(
-  //             (acc, key) => {
-  //               const feature = this.featureOption.find(f => f.key === key);
-  //               if (feature) {
-  //                 acc[feature.key] = featuresGroup.get(key)?.value;
-  //               }
-  //               return acc;
-  //             },
-  //             {} as {[key: string]: any},
-  //           )
-  //       : {};
-  //     const generalDetailsData = {
-  //       name: domainData.name,
-  //       billingCycleId: domainData.billingCycleId,
-  //       price: domainData.price,
-  //       currencyId: domainData.currencyId,
-  //       description: domainData.description,
-  //       tier: domainData.tier,
-  //       size: domainData.size,
-  //     };
-
-  //     domainData.features = selectedFeatures;
-
-  //     this.billingplanService
-  //       .editPlan(generalDetailsData, this.activateRoute.snapshot.params.id)
-  //       .subscribe(res => {
-  //         this.router.navigate(['/main/plans']);
-  //       });
-
-  //     const updateFeatureDetails: FeatureValues[] = Object.keys(
-  //       selectedFeatures,
-  //     )
-  //       .map(key => {
-  //         const feature = this.featureOption.find(f => f.key === key);
-  //         return {
-  //           featureKey: feature ? feature.id : null,
-  //           strategyKey: 'plan',
-  //           strategyEntityId: this.activateRoute.snapshot.params.id,
-  //           status: true,
-  //           value: selectedFeatures[key].toString(), // Ensure value is always a string
-  //         };
-  //       })
-  //       .filter(item => item.featureKey !== null);
-  //     this.featureListService
-  //       .editFeatures(updateFeatureDetails)
-  //       .subscribe(respFeature => {
-  //         console.log('skip'); //NOSONAR
-  //       });
-  //   } else {
-  //     console.error('Form is invalid');
-  //   }
-  // }
-
   cancelEdit() {
     this.router.navigate(['/main/plans']);
   }
@@ -397,9 +332,9 @@ export class AddPlanComponent implements OnInit {
     }
   }
   onTierChange(selectedTier: string): void {
-    this.showStorageSize = selectedTier === 'PREMIUM';
+    this.showStorageSize = selectedTier === 'STANDARD' || selectedTier === 'PREMIUM';
     if (!this.showStorageSize) {
-      this.addPlanForm.get('storage')?.reset();
+      this.addPlanForm.get('size')?.reset();
     }
   }
 

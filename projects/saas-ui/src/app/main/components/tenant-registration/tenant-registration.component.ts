@@ -46,7 +46,7 @@ export class TenantRegistrationComponent {
         zip: ['',[Validators.pattern('^[0-9]+$'),Validators.maxLength(9)]],
         key: ['', [Validators.required, Validators.maxLength(10),
           Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
-        domains: ['', Validators.required],
+        domains: [''],
         planId: [''],
       },
       {validators: this.emailDomainMatchValidator},

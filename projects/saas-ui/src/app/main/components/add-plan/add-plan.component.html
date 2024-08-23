@@ -166,10 +166,7 @@
               </div>
 
               <!-- Plan Storage Size in select-->
-              <div
-                class="input-box-wrapper"
-                *ngIf="addPlanForm.get('tier')?.value === 'PREMIUM'"
-              >
+              <div class="input-box-wrapper" *ngIf="showStorageSize">
                 <div class="input-title">
                   <span>Size</span>
                 </div>
@@ -248,7 +245,7 @@
             >
               Cancel
             </button>
-
+            
             <button
               nbButton
               size="medium"

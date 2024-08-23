@@ -34,7 +34,7 @@ export class AddTenantComponent implements OnInit {
     this.addTenantForm = this.fb.group({
       key: ['', [Validators.required, Validators.maxLength(10),
         Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
-      domains: ['', Validators.required],
+      domains: [''],
       planId: [null],
     });
   }
@@ -56,7 +56,6 @@ export class AddTenantComponent implements OnInit {
   onSubmit() {
     if (this.addTenantForm.valid) {
       const domainData = this.addTenantForm.value;
-      console.log(domainData);
       if (typeof domainData.domains === 'string') {
         domainData.domains = [domainData.domains];
       }
