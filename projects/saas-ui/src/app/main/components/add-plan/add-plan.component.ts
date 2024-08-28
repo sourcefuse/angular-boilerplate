@@ -101,7 +101,6 @@ export class AddPlanComponent implements OnInit {
   }
 
   addPlan() {
-    // if (this.addPlanForm.valid) {
     const domainData = this.addPlanForm.value;
     domainData.price = parseFloat(domainData.price);
     domainData.tier = String(domainData.tier);
@@ -211,9 +210,8 @@ export class AddPlanComponent implements OnInit {
     this.billingplanService
       .getPlanById(this.activateRoute.snapshot.params.id)
       .subscribe(response => {
-        // const body = JSON.parse(JSON.stringify(response)).body;
         const tierName = response.tier;
-        // response.tier = JSON.stringify(body.tier);
+       
 
         this.addPlanForm = this.fb.group({
           name: [response.name, Validators.required],
@@ -229,17 +227,13 @@ export class AddPlanComponent implements OnInit {
     this.featureListService
       .getFeatureById(this.activateRoute.snapshot.params.id)
       .subscribe(resp => {
-        // const featureBody = JSON.parse(JSON.stringify(resp)).body;
-        // const features = resp.features;
         const features = resp.features;
-        // (f as any).key
         this.featureValue = resp;
         this.createFeatureControls();
         const featuresGroup = this.addPlanForm.get('features') as FormGroup;
         if (featuresGroup) {
           Object.keys(featuresGroup.controls).forEach(controlName => {
             featuresGroup.get(controlName)?.setValue(
-              // features.find(item => item.key === controlName)?.value?.value,
               features.find(item => item.key === controlName)?.value?.value,
             );
           });
@@ -324,8 +318,6 @@ export class AddPlanComponent implements OnInit {
         .subscribe(respFeature => {
           console.log(respFeature);
         });
-
-      // this.featureListService.editFeatures()
     } else {
       // Handle form validation errors if necessary
       console.error('Form is invalid');
@@ -362,8 +354,6 @@ export class AddPlanComponent implements OnInit {
   getCurrencyDetails() {
     this.billingplanService.getCurrencyDetails().subscribe(response => {
       this.currencyOptions = response;
-
-      // test
       if (this.currencyOptions.length > 0) {
         this.defaultCurrencyId = this.currencyOptions[0].id; 
         this.addPlanForm.get('currencyId').setValue(this.defaultCurrencyId);
@@ -374,7 +364,6 @@ export class AddPlanComponent implements OnInit {
   getBillingCycleDetails() {
     this.billingplanService.getBillingCycles().subscribe(cycleResp => {
       this.billingOptions = cycleResp;
-// test
       if (this.billingOptions.length > 0) {
         this.defaultBillingCycleId = this.billingOptions[0].id; 
         this.addPlanForm.get('billingCycleId').setValue(this.defaultBillingCycleId);

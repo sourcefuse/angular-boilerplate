@@ -6,7 +6,7 @@ import {IAnyObject} from '@project-lib/core/i-any-object';
 import {Plan} from '../../shared/models';
 import {FeatureValues} from '../../shared/models/feature-values.model';
 import {PlanWithFeatures} from '../../shared/models/plans-features.model';
-export class GetFeatureByIdCommand<T> extends GetAPICommand<PlanWithFeatures> {
+export class GetFeatureByPlanIdCommand<T> extends GetAPICommand<PlanWithFeatures> {
   parameters: {};
   constructor(
     apiService: IApiService,

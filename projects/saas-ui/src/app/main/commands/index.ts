@@ -16,6 +16,6 @@ export * from './get-total-tenant.command';
 export * from './get-total-plan.command';
 export * from './get-total-billing-plan.command';
 export * from './add-features.command';
-export * from './edit-features.command';
-export * from './get-feature-by-id.command';
+export * from './edit-features-by-planid.command';
+export * from './get-feature-by-planid.command';
 export * from './get-features.command';

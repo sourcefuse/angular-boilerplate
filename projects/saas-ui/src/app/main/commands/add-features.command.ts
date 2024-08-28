@@ -14,7 +14,7 @@ export class AddFeaturesCommand<T> extends PostAPICommand<Feature[]> {
     super(
       apiService,
       adapter,
-      `https://arc-saas.net/subscription-service/plans/${planId}/features`,
+      `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans/${planId}/features`,
     );
   }
 }

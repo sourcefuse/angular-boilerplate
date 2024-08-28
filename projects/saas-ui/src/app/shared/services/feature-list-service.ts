@@ -18,8 +18,8 @@ import {Observable, catchError, throwError} from 'rxjs';
 import {AddFeaturesCommand} from '../../main/commands/add-features.command';
 import {FeatureValues} from '../models/feature-values.model';
 import {AuthTokenSkipHeader} from '@project-lib/core/constants';
-import {EditFeaturesCommand} from '../../main/commands/edit-features.command';
-import {GetFeatureByIdCommand} from '../../main/commands/get-feature-by-id.command';
+import {EditFeaturesByPlanIdCommand} from '../../main/commands/edit-features-by-planid.command';
+import {GetFeatureByPlanIdCommand} from '../../main/commands/get-feature-by-planid.command';
 import {PlanWithFeatures} from '../models/plans-features.model';
 
 interface BackendFilter<MT extends object = AnyObject> {
@@ -68,8 +68,8 @@ export class FeatureListService {
   }
 
   editFeatures(featureValue: FeatureValues[], planId: string) {
-    const command: EditFeaturesCommand<FeatureValues[]> =
-      new EditFeaturesCommand(
+    const command: EditFeaturesByPlanIdCommand<FeatureValues[]> =
+      new EditFeaturesByPlanIdCommand(
         this.apiService,
         this.anyAdapter,
         planId,
@@ -82,8 +82,8 @@ export class FeatureListService {
   }
 
   getFeatureById(planId: string) {
-    const command: GetFeatureByIdCommand<PlanWithFeatures> =
-      new GetFeatureByIdCommand(
+    const command: GetFeatureByPlanIdCommand<PlanWithFeatures> =
+      new GetFeatureByPlanIdCommand(
         this.apiService,
         this.anyAdapter,
         planId,
