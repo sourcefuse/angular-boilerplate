@@ -283,8 +283,10 @@ export class AddPlanComponent implements OnInit {
         currencyId: domainData.currencyId,
         description: domainData.description,
         tier: domainData.tier,
-        size: domainData.size,
       };
+      if (domainData.size) {
+        generalDetailsData['size'] = domainData.size;
+      }
 
       domainData.features = selectedFeatures;
 
