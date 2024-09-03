@@ -1,99 +1,89 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
-import {Router} from '@angular/router';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ActivatedRoute} from '@angular/router';
-import {Location} from '@angular/common';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+
+import {OnboardingTenantListComponent} from './onboarding-tenant-list.component';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NbCardModule, NbStatusService, NbToastrService} from '@nebular/theme';
 import {of} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';
 import {OnboardingTenantListComponent} from './onboarding-tenant-list.component';
 import {APP_CONFIG} from '@project-lib/app-config';
-import {GridApi} from 'ag-grid-community';
 import {ThemeModule} from '@project-lib/theme/theme.module';
-import {NbThemeModule} from '@nebular/theme';
 import {AgGridModule} from 'ag-grid-angular';
+import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
+import {GridApi} from 'ag-grid-community';
+import {RouterTestingModule} from '@angular/router/testing';
+import {TenantRegistrationComponent} from '../tenant-registration/tenant-registration.component';
 
+const mockAppConfig = {baseApiUrl: 'https://api.example.com/'};
 describe('OnboardingTenantListComponent', () => {
   let component: OnboardingTenantListComponent;
   let fixture: ComponentFixture<OnboardingTenantListComponent>;
   let tenantFacadeService: jasmine.SpyObj<TenantFacadeService>;
-  let router: jasmine.SpyObj<Router>;
-  let mockGridApi: jasmine.SpyObj<GridApi>;
-
-  const mockAppConfig = {
-    baseApiUrl: 'https://api.example.com',
-  };
-
-  const mockTenantData = [
-    {
-      id: 1,
-      name: 'Company A',
-      firstName: 'John',
-      lastName: 'Doe',
-      email: 'john.doe@companyA.com',
-      address: {
-        zip: '12345',
-        country: 'USA',
-      },
-      subscription: {
-        plan: {
-          name: 'Premium',
-        },
-        status: 'Active',
-        startDate: '2022-01-01T00:00:00Z',
-        endDate: '2023-01-01T00:00:00Z',
-      },
-    },
-  ];
+  let router: Router;
+  let routerSpy: jasmine.SpyObj<Router>;
+  let tenantFacadeSpy: jasmine.SpyObj<TenantFacadeService>;
+  let gridApiMock: jasmine.SpyObj<GridApi>;
 
   beforeEach(async () => {
-    const tenantFacadeServiceSpy = jasmine.createSpyObj('TenantFacadeService', [
-      'getTenantDetails',
+    tenantFacadeSpy = jasmine.createSpyObj('TenantFacadeService', [
+      'getTenantList',
+      'getTotalTenant',
     ]);
-    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-    const gridApiSpy = jasmine.createSpyObj('GridApi', [
-      'setDatasource',
-      'refreshCells',
-    ]);
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    // Define what the spy should return when the methods are called
+    tenantFacadeSpy.getTenantList.and.returnValue(
+      of([
+        {
+          name: 'Company A',
+          key: 'company-a',
+          domains: ['domain1.com'],
+          address: {zip: '12345', country: 'USA'},
+          status: TenantStatus.ACTIVE,
+        },
+        {
+          name: 'Company B',
+          key: 'company-b',
+          domains: ['domain2.com'],
+          address: {zip: '67890', country: 'Canada'},
+          status: TenantStatus.INACTIVE,
+        },
+      ]),
+    );
+    tenantFacadeSpy.getTotalTenant.and.returnValue(of({count: 2}));
 
     await TestBed.configureTestingModule({
       declarations: [OnboardingTenantListComponent],
       imports: [
         HttpClientTestingModule,
         ThemeModule,
-        NbThemeModule.forRoot(),
+        NbCardModule,
         AgGridModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: 'main/create-tenant',
+            component: TenantRegistrationComponent,
+          },
+        ]),
       ],
       providers: [
+        NbToastrService,
+        NbStatusService,
+        ApiService,
         {provide: APP_CONFIG, useValue: mockAppConfig},
         {
-          provide: TenantFacadeService,
-          useValue: {
-            getTenantDetails: jasmine
-              .createSpy('getTenantDetails')
-              .and.returnValue(of(mockTenantData)),
-            getTotalTenant: jasmine
-              .createSpy('getTotalTenant')
-              .and.returnValue(of()),
-          },
-        },
-        {provide: Router, useValue: routerSpy},
-        {provide: GridApi, useValue: gridApiSpy},
-        {
           provide: ActivatedRoute,
-          useValue: {snapshot: {paramMap: {get: () => '1'}}},
+          useValue: {paramMap: of(new Map())},
         },
-        Location,
+        {provide: TenantFacadeService, useValue: tenantFacadeSpy},
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(OnboardingTenantListComponent);
-    router = TestBed.inject(Router) as jasmine.SpyObj<Router>;
-    mockGridApi = TestBed.inject(GridApi) as jasmine.SpyObj<GridApi>;
+    tenantFacadeService = TestBed.inject(
+      TenantFacadeService,
+    ) as jasmine.SpyObj<TenantFacadeService>;
+    gridApiMock = jasmine.createSpyObj('GridApi', ['updateGridOptions']);
+    router = TestBed.inject(Router);
     component = fixture.componentInstance;
     tenantFacadeService = TestBed.inject(
       TenantFacadeService,
@@ -106,26 +96,94 @@ describe('OnboardingTenantListComponent', () => {
 
   it('should initialize grid options correctly', () => {
     expect(component.gridOptions.pagination).toBe(true);
-    expect(component.gridOptions.paginationPageSize).toBe(10);
-    expect(component.gridOptions.rowHeight).toBe(60);
+    expect(component.gridOptions.rowModelType).toBe('infinite');
+    expect(component.gridOptions.paginationPageSize).toBe(component.limit);
+    expect(component.gridOptions.paginationPageSizeSelector).toEqual([
+      component.limit,
+      10,
+      20,
+      50,
+      100,
+    ]);
   });
 
-  it('should navigate to tenant registration page', () => {
-    component.registerTenantPage();
-    expect(router.navigate).toHaveBeenCalledWith(['main/create-tenant']);
+  it('should transform and paginate data correctly', () => {
+    component.getPaginatedTenants(1, component.limit).subscribe(data => {
+      expect(data).toEqual([
+        {
+          name: 'Company A',
+          key: 'company-a',
+          domains: 'domain1.com',
+          address: ' 12345, USA',
+          status: 'ACTIVE',
+        },
+        {
+          name: 'Company B',
+          key: 'company-b',
+          domains: 'domain2.com',
+          address: ' 67890, Canada',
+          status: 'INACTIVE',
+        },
+      ]);
+    });
   });
 
-  it('should handle error in `getPaginatedTenantDetails` method', () => {
-    spyOn(console, 'error');
-    (tenantFacadeService.getTenantDetails as jasmine.Spy).and.returnValue(
-      of(undefined),
-    );
-    component.getPaginatedTenantDetails(1, 10).subscribe(data => {
-      expect(console.error).toHaveBeenCalledWith(
-        'Error processing response:',
-        jasmine.anything(),
+  it('should return the total count from the tenant facade', () => {
+    component.getTotal().subscribe(count => {
+      expect(count).toEqual({count: 2});
+    });
+  });
+
+  describe('onGridReady', () => {
+    it('should set the grid API and configure the datasource', () => {
+      const params = {api: gridApiMock};
+      component.onGridReady(params);
+      expect(component.gridApi).toBe(gridApiMock);
+      expect(gridApiMock.updateGridOptions).toHaveBeenCalled();
+    });
+  });
+
+  describe('getPaginatedTenants', () => {
+    it('should fetch and map tenant data correctly', () => {
+      const mockTenants = [
+        {
+          name: 'Tenant1',
+          key: 'tenant1',
+          domains: ['example.com'],
+          address: {
+            zip: '12345',
+            country: 'Country',
+          },
+          status: 'ACTIVE',
+        },
+      ];
+
+      tenantFacadeService.getTenantList.and.returnValue(of(mockTenants));
+
+      component.getPaginatedTenants(1, 5).subscribe(data => {
+        expect(data.length).toBe(1);
+        expect(data[0].name).toBe('Tenant1');
+        expect(data[0].address).toBe(' 12345, Country');
+      });
+    });
+  });
+
+  describe('createCompanyLink', () => {
+    it('should create a company link correctly', () => {
+      const params = {data: {key: 'tenant1'}, value: 'Company1'};
+      const link = component.createCompanyLink(params);
+      console.log(link);
+      expect(link).toBe(
+        '<a href="https://tenant1.api.example.com/" target="_blank" class="company-link">Company1</a>',
       );
-      expect(data).toEqual([]);
+    });
+  });
+
+  describe('registerTenantPage', () => {
+    it('should navigate to create-tenant page', () => {
+      spyOn(router, 'navigate');
+      component.registerTenantPage();
+      expect(router.navigate).toHaveBeenCalledWith(['main/create-tenant']);
     });
   });
 });

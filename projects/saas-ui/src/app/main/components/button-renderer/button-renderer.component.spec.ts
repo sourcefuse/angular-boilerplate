@@ -3,31 +3,89 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {ButtonRendererComponent} from './button-renderer.component';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
-import {FormBuilder, Validators} from '@angular/forms';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import {Location} from '@angular/common';
-import {GridApi} from 'ag-grid-community';
+import {
+  Column,
+  GridApi,
+  ICellRendererParams,
+  IRowNode,
+  SelectionEventSourceType,
+} from 'ag-grid-community';
 import {MainModule} from '../../main.module';
-import {NbThemeModule, NbOverlayModule, NbOverlayService} from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbOverlayModule,
+  NbOverlayService,
+  NbStatusService,
+  NbToastrService,
+  NbToastrModule,
+} from '@nebular/theme';
 import {ThemeModule} from '@project-lib/theme/theme.module';
+import {Router} from '@angular/router';
+import {of, throwError} from 'rxjs';
+import {AnyAdapter, ApiService} from '@project-lib/core/api';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {GetPlanAdapter} from '../../../on-boarding/adapters';
+import {RowNodeEventType} from 'ag-grid-community/dist/types/core/interfaces/iRowNode';
+import {Plan} from '../../../shared/models';
 
 describe('ButtonRendererComponent', () => {
   let component: ButtonRendererComponent;
-  let toastrService: ToasterService;
-  let billingPlanService: BillingPlanService;
+  let mockRouter: Router;
+  let mockToasterService: jasmine.SpyObj<ToasterService>;
+  let mockBillingPlanService: jasmine.SpyObj<BillingPlanService>;
+  let mockLocation: Location;
   let fb: FormBuilder;
-  let location: Location;
+  const toastrServiceSpy = jasmine.createSpyObj('NbToastrService', ['error']);
+  const billingPlanServiceSpy = jasmine.createSpyObj('BillingPlanService', [
+    'deletePlan',
+  ]);
 
   beforeEach(() => {
+    mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    mockToasterService = jasmine.createSpyObj('ToasterService', [
+      'success',
+      'error',
+    ]);
+    mockBillingPlanService = jasmine.createSpyObj('BillingPlanService', [
+      'deletePlan',
+    ]);
+    mockLocation = jasmine.createSpyObj('Location', ['reload']);
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, MainModule, ThemeModule, NbOverlayModule],
+      imports: [
+        RouterTestingModule,
+        NbThemeModule,
+        MainModule,
+        ThemeModule,
+        NbOverlayModule,
+        HttpClientTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NbToastrModule.forRoot(),
+      ],
       providers: [
-        BillingPlanService,
         FormBuilder,
         Location,
+        AnyAdapter,
+        GetPlanAdapter,
+        ApiService,
+        NbStatusService,
+        {provide: NbToastrService, useValue: mockToasterService},
+        {provide: BillingPlanService, useValue: mockBillingPlanService},
+        {provide: Router, useValue: mockRouter},
+        {provide: Location, useValue: mockLocation},
         {
           provide: NbOverlayService,
           useValue: {snapshot: {params: {id: '1'}}},
         },
+        {provide: APP_CONFIG, useValue: {}},
         {
           provide: ToasterService,
           useValue: {snapshot: {params: {id: '1'}}},
@@ -40,11 +98,12 @@ describe('ButtonRendererComponent', () => {
   beforeEach(() => {
     const fixture = TestBed.createComponent(ButtonRendererComponent);
     component = fixture.componentInstance;
-    toastrService = TestBed.inject(ToasterService);
-    billingPlanService = TestBed.inject(BillingPlanService);
     fb = TestBed.inject(FormBuilder);
-    location = TestBed.inject(Location);
     fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    (mockBillingPlanService.deletePlan as jasmine.Spy).calls.reset(); // Reset spy after each test
   });
 
   it('should create', () => {
@@ -60,6 +119,31 @@ describe('ButtonRendererComponent', () => {
       billingCycleId: null,
       tier: null,
     });
+  });
+
+  it('should initialize the params on agInit', () => {
+    const params: ICellRendererParams = {
+      node: {
+        data: {
+          id: 1,
+        },
+      },
+    } as any;
+    component.agInit(params);
+    expect(component.params).toEqual(params);
+  });
+
+  it('should navigate to edit plan on editPlan', () => {
+    const params: ICellRendererParams = {
+      node: {
+        data: {
+          id: 1,
+        },
+      },
+    } as any;
+    component.agInit(params);
+    component.editPlan(null);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/main/edit-plan/1']);
   });
 
   it('should return true on refresh method', () => {
