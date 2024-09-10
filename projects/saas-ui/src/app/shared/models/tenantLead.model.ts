@@ -15,3 +15,8 @@ export class TenantLead {
   domains?: Array<string>;
   planId?: string;
 }
+
+export class TenantLeadWithPaymentMethod extends TenantLead {
+  paymentMethod: string;
+  comment?: string;
+}

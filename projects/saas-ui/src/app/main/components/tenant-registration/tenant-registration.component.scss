@@ -1,4 +1,5 @@
 @use '../../../on-boarding/styles/forms.style.scss' as *;
+
 :host {
   .logo {
     padding-top: 10%;
@@ -23,6 +24,19 @@
   color: #007bff;
 }
 
+.input-box {
+  .input {
+    select {
+      margin: 5px 0;
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      background: #fff;
+      border: 1px solid #dcdcdc;
+    }
+  }
+}
+
 .required {
   color: red;
 }
@@ -43,8 +57,8 @@
 
 .error-msg {
   color: red;
-  font-size: 14px; 
-  margin-top: 3px; 
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 .input-container {
@@ -91,6 +105,7 @@ input.ng-invalid.ng-touched {
 
 .plan-card-container {
   width: 100%;
+
   .plan-card-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -132,6 +147,7 @@ input.ng-invalid.ng-touched {
 .btn.regbtn button:last-child {
   margin-left: auto;
 }
+
 // testing tooltip
 .input-box {
   position: relative;
@@ -200,6 +216,7 @@ input[nbInput] {
 
 .input-title {
   margin-bottom: 20px;
+
   h3 {
     font-size: 1.5em;
     font-weight: bold;
@@ -230,11 +247,13 @@ input[nbInput] {
     color: #fff;
     padding: 15px;
     text-align: center;
+
     h5 {
       font-size: 1.25em;
       margin: 0;
     }
   }
+
   s .plan-card-body {
     padding: 15px;
     text-align: center;
@@ -287,7 +306,7 @@ input[nbInput] {
         }
       }
 
-      input[type='radio']:checked + .radio-checkmark::after {
+      input[type='radio']:checked+.radio-checkmark::after {
         opacity: 1;
       }
     }
