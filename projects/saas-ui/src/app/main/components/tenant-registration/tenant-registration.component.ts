@@ -12,7 +12,6 @@ import {Location} from '@angular/common';
 import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {AnyObject} from '@project-lib/core/api/backend-filter';
 import {TenantLead} from '../../../shared/models/tenantLead.model';
-import { keyValidator} from '@project-lib/core/validators';
 
 @Component({
   selector: 'app-tenant-registration',
@@ -24,6 +23,7 @@ export class TenantRegistrationComponent {
   [x: string]: any;
   subscriptionPlans: AnyObject[];
   leadId = '';
+  isSubmitting = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -93,6 +93,7 @@ export class TenantRegistrationComponent {
 
   onSubmit() {
     if (this.tenantRegForm.valid) {
+      this.isSubmitting = true;
       const userData = this.tenantRegForm.value;
       const user: TenantLead = {
         name: userData.name,
@@ -112,6 +113,7 @@ export class TenantRegistrationComponent {
       this.onBoardingService.registerTenant(user).subscribe(
         () => {
           this.toastrService.show('Tenant Added , successfully');
+          this.isSubmitting = false;
           this.router.navigate(['main/onboard-tenant-list']);
         },
         (error: string) => {
