@@ -24,6 +24,7 @@ export class TenantRegistrationComponent {
   [x: string]: any;
   subscriptionPlans: AnyObject[];
   leadId = '';
+  isSubmitting = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -84,6 +85,7 @@ export class TenantRegistrationComponent {
 
   onSubmit() {
     if (this.tenantRegForm.valid) {
+      this.isSubmitting = true;
       const userData = this.tenantRegForm.value;
       const user: TenantLead = {
         name: userData.name,
@@ -103,10 +105,12 @@ export class TenantRegistrationComponent {
       this.onBoardingService.registerTenant(user).subscribe(
         () => {
           this.toastrService.show('Tenant Added , successfully');
+          this.isSubmitting = false;
           this.router.navigate(['main/onboard-tenant-list']);
         },
         (error: string) => {
           console.error('Login error:', error); //NOSONAR
+          this.isSubmitting = false;
           this.toastrService.show(
             'Unable register tenant. Please check your input and try again.',
             'Failure',
