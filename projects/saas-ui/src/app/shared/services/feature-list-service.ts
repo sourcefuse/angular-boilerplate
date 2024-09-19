@@ -12,7 +12,7 @@ import {GetPlanAdapter} from '../../on-boarding/adapters';
 import {GetPlanCommand} from '../../on-boarding/commands';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
-import {GetFeaturesForPlanCommand} from '../../main/commands/get-features-for-plan.command';
+import {GetFeaturesCommand} from '../../main/commands/get-features.command';
 import {Features} from '../models/feature.model';
 import {Observable, catchError, throwError} from 'rxjs';
 import {AddFeaturesForPlanCommand} from '../../main/commands/add-features-for-plan.command';
@@ -43,12 +43,11 @@ export class FeatureListService {
   ) {}
 
   getFeatures(): Observable<Features[]> {
-    const command: GetFeaturesForPlanCommand<Features[]> =
-      new GetFeaturesForPlanCommand(
-        this.apiService,
-        this.anyAdapter,
-        this.appConfig,
-      );
+    const command: GetFeaturesCommand<Features[]> = new GetFeaturesCommand(
+      this.apiService,
+      this.anyAdapter,
+      this.appConfig,
+    );
     return command.execute();
   }
 

@@ -18,4 +18,4 @@ export * from './get-total-billing-plan.command';
 export * from './add-features-for-plan.command';
 export * from './edit-features-by-planid.command';
 export * from './get-feature-by-planid.command';
-export * from './get-features-for-plan.command';
+export * from './get-features.command';
