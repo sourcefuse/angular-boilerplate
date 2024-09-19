@@ -23,6 +23,7 @@ import {OnBoardingComponent} from './on-boarding/on-boarding.component';
 import {NbLayoutModule, NbRadioModule} from '@nebular/theme';
 import {AgGridModule} from 'ag-grid-angular';
 import {environment} from '../environment';
+import {FeatureListService} from './shared/services/feature-list-service';
 
 @NgModule({
   declarations: [AppComponent, OnBoardingComponent],
@@ -46,6 +47,7 @@ import {environment} from '../environment';
     TranslateStore,
     SystemStoreFacadeService,
     EnvAdapterService,
+    FeatureListService,
     ApiService,
     {
       provide: APP_CONFIG,

@@ -5,6 +5,8 @@ import {ThemeModule} from '@project-lib/theme/theme.module';
 
 import {MainComponent} from './main.component';
 import {MainModule} from './main.module';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -18,6 +20,12 @@ describe('MainComponent', () => {
         RouterTestingModule,
         CoreModule,
         ThemeModule.forRoot('boiler'),
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {paramMap: of(new Map())}, // Mock ActivatedRoute
+        },
       ],
     }).compileComponents();
   });

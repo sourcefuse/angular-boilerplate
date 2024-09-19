@@ -27,6 +27,7 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
   [x: string]: any;
   gridApi: GridApi;
   gridOptions: GridOptions;
+  getResp: Plan[];
   limit = 5;
   colDefs: ColDef[] = [
     {field: 'name', headerName: 'Plan Name', width: 200, minWidth: 20},
@@ -96,19 +97,28 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
       limit: limit,
       include: [{relation: 'currency'}, {relation: 'billingCycle'}],
     };
+
     return this.billingPlanService.getPlanOptions(filter).pipe(
       map(res => {
-        const rows = res.map(item => {
-          return {
-            id: item.id,
-            name: item.name,
-            description: item.description,
-            cycleName: item['billingCycle'].cycleName,
-            currencyName: item['currency'].currencyName,
-            price: item.price,
-          };
-        });
-        return rows;
+        try {
+          const rows = res.map(item => {
+            return {
+              id: item.id,
+              name: item.name,
+              description: item.description,
+          cycleName: item['billingCycle']?.cycleName,
+                
+          currencyName: item['currency']?.currencyName,
+            
+          price: item.price,
+        };
+      });
+
+          return rows;
+        } catch (error) {
+          console.error('Error processing response:', error);
+          return [];
+        }
       }),
     );
   }

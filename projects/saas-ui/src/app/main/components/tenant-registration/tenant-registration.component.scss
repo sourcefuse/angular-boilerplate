@@ -1,4 +1,3 @@
-
 @use '../../../on-boarding/styles/forms.style.scss' as *;
 :host {
   .logo {
@@ -21,7 +20,7 @@
 .info-icon {
   margin-left: 8px;
   cursor: pointer;
-  color: #007bff; 
+  color: #007bff;
 }
 
 .required {
@@ -38,6 +37,14 @@
       background: #fff;
     }
   }
+}
+
+
+
+.error-msg {
+  color: red;
+  font-size: 14px; 
+  margin-top: 3px; 
 }
 
 .input-container {
@@ -83,215 +90,206 @@ input.ng-invalid.ng-touched {
 }
 
 .plan-card-container {
-    width: 100%;
-    .plan-card-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      
-      .plan-card-box {
-        min-width: 23%;
-        justify-content: space-between;
-      }
+  width: 100%;
+  .plan-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .plan-card-box {
+      min-width: 23%;
+      justify-content: space-between;
     }
   }
+}
 
-  .regbtn {
-    text-align: right;
-  }
+.regbtn {
+  text-align: right;
+}
 
-  .btn-wrapper{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width:100%
-  }
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
 
-  
-  .btn.regbtn {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  
-  .btn.regbtn button {
-    flex: 1;
-    max-width: 150px;
-  }
-  
-  .btn.regbtn button:first-child {
-    margin-right: auto;
-  }
-  
-  .btn.regbtn button:last-child {
-    margin-left: auto;
-  }
-  // testing tooltip
-  .input-box {
-    position: relative;
-    
-    .input-title {
-      margin-bottom: 10px;
-      font-weight: bold;
-      font-size: 14px;
-    }
-    
-    .inputTags {
-      position: relative;
-      
-      .input-container {
-        display: flex;
-        align-items: center;
-        position: relative;
-        
-        input {
-          width: 100%;
-          padding: 10px;
-          padding-right: 30px; 
-          border: 1px solid #dcdcdc;
-          border-radius: 4px;
-          box-sizing: border-box;
-        }
-        
-        .info-icon {
-          position: absolute;
-          right: 10px; 
-          top: 50%;
-          transform: translateY(-50%);
-          cursor: pointer;
-          color: #007bff; 
-          font-size: 18px; 
-          z-index: 1; 
-        }
-        
-      }
-    }
-  }
-  
-  .input-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-  }
-  
-  input[nbInput] {
-    padding-right: 2.5rem; 
-  }
-  
-  .info-icon {
-    position: absolute;
-    right: 0.5rem; 
-    font-size: 1.2rem; 
-    color: #007bff; 
-  }
+.btn.regbtn {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 
+.btn.regbtn button {
+  flex: 1;
+  max-width: 150px;
+}
 
+.btn.regbtn button:first-child {
+  margin-right: auto;
+}
 
+.btn.regbtn button:last-child {
+  margin-left: auto;
+}
+// testing tooltip
+.input-box {
+  position: relative;
 
-
-
-  // testing design card
-  .plan-card-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
   .input-title {
-    margin-bottom: 20px;
-    h3 {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .inputTags {
+    position: relative;
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        padding-right: 30px;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .info-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #007bff;
+        font-size: 18px;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input[nbInput] {
+  padding-right: 2.5rem;
+}
+
+.info-icon {
+  position: absolute;
+  right: 0.5rem;
+  font-size: 1.2rem;
+  color: #007bff;
+}
+
+// testing design card
+.plan-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.input-title {
+  margin-bottom: 20px;
+  h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+}
+
+.plan-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.plan-card-box {
+  width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  .plan-card-header {
+    background: #e85b7b26;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    h5 {
+      font-size: 1.25em;
+      margin: 0;
+    }
+  }
+  s .plan-card-body {
+    padding: 15px;
+    text-align: center;
+
+    .plan-description {
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    .plan-price {
       font-size: 1.5em;
       font-weight: bold;
     }
   }
-  
-  .plan-card-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .plan-card-box {
-    width: 300px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    
-    &:hover {
-      transform: scale(1.05);
-    }
-  
-    .plan-card-header {
-      background: #e85b7b26;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-      h5 {
-        font-size: 1.25em;
-        margin: 0;
+
+  .plan-card-footer {
+    background: #f4f4f4;
+    padding: 10px;
+    text-align: center;
+
+    .plan-radio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      input[type='radio'] {
+        display: none;
       }
-    }s
-  
-    .plan-card-body {
-      padding: 15px;
-      text-align: center;
-      
-      .plan-description {
-        font-size: 1em;
-        margin-bottom: 10px;
-      }
-      
-      .plan-price {
-        font-size: 1.5em;
-        font-weight: bold;
-      }
-    }
-  
-    .plan-card-footer {
-      background: #f4f4f4;
-      padding: 10px;
-      text-align: center;
-      
-      .plan-radio {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        
-        input[type="radio"] {
-          display: none;
-        }
-  
-        .radio-checkmark {
-          width: 20px;
-          height: 20px;
+
+      .radio-checkmark {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #000;
+        margin-right: 10px;
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 10px;
+          height: 10px;
+          background: #000;
           border-radius: 50%;
-          border: 2px solid #000;
-          margin-right: 10px;
-          position: relative;
-          
-          &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 10px;
-            height: 10px;
-            background: #000;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-          }
+          transform: translate(-50%, -50%);
+          opacity: 0;
         }
-        
-        input[type="radio"]:checked + .radio-checkmark::after {
-          opacity: 1;
-        }
+      }
+
+      input[type='radio']:checked + .radio-checkmark::after {
+        opacity: 1;
       }
     }
   }
-  
+}

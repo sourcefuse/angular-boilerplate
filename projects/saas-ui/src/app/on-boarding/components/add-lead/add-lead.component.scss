@@ -17,6 +17,83 @@
   }
 }
 
+.error-msg {
+  color: red;
+  font-size: 14px;
+  margin-top: 3px; 
+}
+
+.required {
+  color: red;
+}
+
+.input-container {
+  position: relative;
+}
+
+.info-icon {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.input-box {
+  position: relative;
+
+  .input-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  input[nbInput] {
+    padding-right: 2.5rem;
+  }
+
+  .info-icon {
+    position: absolute;
+    right: 0.5rem;
+    font-size: 1.2rem;
+    color: #007bff;
+  }
+
+  .inputTags {
+    position: relative;
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        padding-right: 30px;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .info-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #007bff;
+        font-size: 18px;
+        z-index: 1;
+      }
+    }
+  }
+}
+
 .input-box {
   .inputTags {
     input {

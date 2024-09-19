@@ -12,7 +12,7 @@ import {Location} from '@angular/common';
 import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {AnyObject} from '@project-lib/core/api/backend-filter';
 import {TenantLead} from '../../../shared/models/tenantLead.model';
-import {domainMatchValidator, keyValidator} from '@project-lib/core/validators';
+import { keyValidator} from '@project-lib/core/validators';
 
 @Component({
   selector: 'app-tenant-registration',
@@ -37,15 +37,16 @@ export class TenantRegistrationComponent {
   ) {
     this.tenantRegForm = this.fb.group(
       {
-        firstName: ['', [Validators.required]],
-        lastName: ['', [Validators.required]],
-        name: ['', Validators.required], // for company name
+        firstName: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+        lastName: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+        name: ['',[Validators.required]], // for company name
         email: ['', [Validators.required, Validators.email]],
         address: [''],
-        country: ['', Validators.required],
-        zip: [''],
-        key: ['', [Validators.required, keyValidator()]],
-        domains: ['', Validators.required],
+        country: ['', [Validators.required,Validators.pattern('^[a-zA-Z]+$')]],
+        zip: ['',[Validators.pattern('^[0-9]+$'),Validators.maxLength(9)]],
+        key: ['', [Validators.required, Validators.maxLength(10),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
+        domains: [''],
         planId: [''],
       },
       {validators: this.emailDomainMatchValidator},
@@ -70,8 +71,16 @@ export class TenantRegistrationComponent {
     this.route.params.subscribe(params => {
       this.leadId = params['leadId'];
     });
+    // for automatically writing domain name from email
+    this.tenantRegForm.get('email').valueChanges.subscribe(email => {
+      const emailDomain = email?.substring(email.lastIndexOf('@') + 1);
+      if (emailDomain) {
+        this.tenantRegForm.get('domains').setValue(emailDomain);
+      }
+    });
   }
 
+  
   getRadioOptions() {
     this.billingPlanService.getPlanOptions().subscribe(res => {
       this.subscriptionPlans = res;

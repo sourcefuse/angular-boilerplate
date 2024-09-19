@@ -28,6 +28,10 @@
                     nbTooltip="Please enter your first name. This field is required."
                   ></nb-icon>
                 </div>
+                <div class="error-msg"
+  *ngIf="addLeadForm.get('firstName').hasError('pattern') && addLeadForm.get('firstName').touched">
+  First Name must contain only characters.
+</div>
               </div>
             </div>
 
@@ -50,6 +54,10 @@
                     nbTooltip="Please enter your Last name. This field is required."
                   ></nb-icon>
                 </div>
+                <div class="error-msg"
+  *ngIf="addLeadForm.get('lastName').hasError('pattern') && addLeadForm.get('lastName').touched">
+  Last Name must contain only characters.
+</div>
               </div>
             </div>
 
@@ -98,7 +106,7 @@
                 </div>
               </div>
 
-              <div
+              <div class="error-msg"
                 *ngIf="
                   addLeadForm.get('email').hasError('required') &&
                   addLeadForm.get('email').touched
@@ -106,7 +114,7 @@
               >
                 Email is required.
               </div>
-              <div
+              <div class="error-msg"
                 *ngIf="
                   addLeadForm.get('email').hasError('email') &&
                   addLeadForm.get('email').touched
@@ -120,7 +128,7 @@
             <!-- address-->
             <div class="input-box address-input-box">
               <div class="input-title">
-                <span>Address <span class="required">*</span></span>
+                <span>Address</span>
               </div>
               <div class="input address-input inputTags">
                 <div class="input-container">
@@ -131,57 +139,42 @@
                     formControlName="address"
                     nbInput
                   />
-                  <nb-icon
-                    icon="info-outline"
-                    class="info-icon"
-                    nbTooltip="Please enter your Address. This field is required."
-                  ></nb-icon>
                 </div>
               </div>
             </div>
 
             <div class="input-box">
               <div class="input-title">
-                <span>City <span class="required">*</span></span>
+                <span>Zip Code </span>
               </div>
               <div class="inputTags">
                 <div class="input-container">
                   <input
                     type="text"
-                    placeholder="Enter Your City"
+                    placeholder="Enter your Zip Code"
                     status="“info”"
-                    formControlName="city"
+                    formControlName="zip"
                     nbInput
                   />
-                  <nb-icon
-                    icon="info-outline"
-                    class="info-icon"
-                    nbTooltip="Please enter city This field is required."
-                  ></nb-icon>
                 </div>
               </div>
-            </div>
-
-            <div class="input-box">
-              <div class="input-title">
-                <span>State <span class="required">*</span></span>
+              <div class="error-msg"
+                *ngIf="
+                addLeadForm.get('zip').hasError('pattern') &&
+                addLeadForm.get('zip').touched
+                "
+              >
+                Zip code should only contain numbers.
               </div>
-              <div class="inputTags">
-                <div class="input-container">
-                  <input
-                    type="text"
-                    placeholder="Enter Your State"
-                    status="“info”"
-                    formControlName="state"
-                    nbInput
-                  />
-                  <nb-icon
-                    icon="info-outline"
-                    class="info-icon"
-                    nbTooltip="Please enter your state. This field is required."
-                  ></nb-icon>
+              <div
+                  class="error-msg"
+                  *ngIf="
+                  addLeadForm.get('zip').hasError('maxlength') &&
+                  addLeadForm.get('zip').touched
+                  "
+                >
+                  Maximum length exceeded.
                 </div>
-              </div>
             </div>
 
             <div class="input-box">
@@ -203,28 +196,14 @@
                     nbTooltip="Please enter your country. This field is required."
                   ></nb-icon>
                 </div>
+                <div class="error-msg"
+                *ngIf="
+                addLeadForm.get('country').hasError('pattern') &&
+                addLeadForm.get('country').touched
+                "
+              >
+              Country must contain only characters.
               </div>
-            </div>
-
-            <div class="input-box">
-              <div class="input-title">
-                <span>Zip Code <span class="required">*</span></span>
-              </div>
-              <div class="inputTags">
-                <div class="input-container">
-                  <input
-                    type="text"
-                    placeholder="Enter your Zip Code"
-                    status="“info”"
-                    formControlName="zip"
-                    nbInput
-                  />
-                  <nb-icon
-                    icon="info-outline"
-                    class="info-icon"
-                    nbTooltip="Please enter your city's Zipcode. This field is required."
-                  ></nb-icon>
-                </div>
               </div>
             </div>
           </div>

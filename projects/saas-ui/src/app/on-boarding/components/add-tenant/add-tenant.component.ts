@@ -9,6 +9,7 @@ import {Location} from '@angular/common';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 import {AnyObject} from '@project-lib/core/api';
 import {keyValidator} from '@project-lib/core/validators';
+import { Lead } from '../../../shared/models';
 
 @Component({
   selector: 'app-add-tenant',
@@ -17,6 +18,7 @@ import {keyValidator} from '@project-lib/core/validators';
 })
 export class AddTenantComponent implements OnInit {
   [x: string]: any;
+  leadData:Lead;
   addTenantForm: FormGroup;
   subscriptionPlans: AnyObject[];
   leadId = '';
@@ -30,8 +32,9 @@ export class AddTenantComponent implements OnInit {
     private readonly billingPlanService: BillingPlanService,
   ) {
     this.addTenantForm = this.fb.group({
-      key: ['', [Validators.required, keyValidator()]],
-      domains: ['', Validators.required],
+      key: ['', [Validators.required, Validators.maxLength(10),
+        Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
+      domains: [''],
       planId: [null],
     });
   }
@@ -39,6 +42,9 @@ export class AddTenantComponent implements OnInit {
     this.getRadioOptions();
     this.route.params.subscribe(params => {
       this.leadId = params['leadId'];
+      if (this.leadId) {
+        this.getLeadDataById(this.leadId); 
+      }
     });
   }
 
@@ -61,4 +67,27 @@ export class AddTenantComponent implements OnInit {
         });
     }
   }
+
+  getLeadDataById(leadId: string) {
+    this.onboardingService.getLeadDetails(leadId).subscribe(
+      (data:Lead) => {
+        this.leadData = data;
+        this.updateDomainFromEmail();
+        console.log('Lead Data:', this.leadData);
+      },
+      error => {
+        this.toastrService.danger('Failed to fetch lead data', 'Error');
+      }
+    );
+  }
+
+  updateDomainFromEmail() {
+    if (this.leadData && this.leadData.email) {
+      const emailDomain = this.leadData.email?.substring(this.leadData.email.lastIndexOf('@') + 1);
+      if (emailDomain) {
+        this.addTenantForm.get('domains').setValue(emailDomain);
+      }
+    }
+  }
 }
+

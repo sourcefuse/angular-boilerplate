@@ -22,23 +22,11 @@ export function keyValidator(): ValidatorFn {
   };
 }
 
-export function domainMatchValidator(
-  emailControl: AbstractControl,
-  domainControl: AbstractControl,
-): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const emailValue = emailControl.value;
-    const domainValue = domainControl.value;
 
-    if (!emailValue || !domainValue) {
-      return null;
-    }
 
-    const emailDomain = emailValue.split('@')[1];
-    if (emailDomain !== domainValue) {
-      return {domainMismatch: true};
-    }
-
-    return null;
+export function domainMatchValidator(emailDomain: string): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} | null => {
+    const domainValue = control.value;
+    return domainValue === emailDomain ? null : { 'domainMismatch': true };
   };
 }

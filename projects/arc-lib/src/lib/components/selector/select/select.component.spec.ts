@@ -11,9 +11,7 @@ import {By} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TranslateService} from '@ngx-translate/core';
-import {finishVirtualScrollInit} from 'src/testing/virtual-scroll-init';
-// import { finishvirt}
-import {AngularTranslationServiceStub} from '../../../../testing/translation-service-stub';
+
 import {DIGITS} from '@project-lib/core/constants';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {SelectModule} from '../select.module';
@@ -292,3 +290,8 @@ describe('SelectComponent', () => {
     flush();
   }
 });
+function finishVirtualScrollInit(
+  fixture: ComponentFixture<SelectTestComponent>,
+) {
+  throw new Error('Function not implemented.');
+}

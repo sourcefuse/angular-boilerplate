@@ -13,9 +13,12 @@
               <!-- input fields -->
               <div class="input-wrapper">
                 <!-- key -->
-                <div class="input-box">
+                <div class="input-box address-input-box">
                   <div class="input-title">
-                    <span>Key <span class="required">*</span></span>
+                    <span
+                      >Application Sub domain
+                      <span class="required">*</span></span
+                    >
                   </div>
                   <div class="input">
                     <div class="input-container">
@@ -31,26 +34,39 @@
                         class="info-icon"
                         nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"
                       ></nb-icon>
-                      <!-- Inline error message -->
-                      <nb-tooltip
-                        *ngIf="
-                          addTenantForm.get('key').invalid &&
-                          (addTenantForm.get('key').dirty ||
-                            addTenantForm.get('key').touched)
-                        "
-                        [attr.id]="'keyError'"
-                        [nbTooltip]="
-                          addTenantForm.get('key').errors?.keyInvalid
-                            ? 'Key must start with an alphabet, have a maximum length of 10 characters, and contain no special characters.'
-                            : null
-                        "
-                      >
-                      </nb-tooltip>
                     </div>
+                    <div
+                  class="error-msg"
+                  *ngIf="
+                  addTenantForm.get('key').hasError('required') &&
+                  addTenantForm.get('key').touched
+                  "
+                >
+                  Sub-domain is required.
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                  addTenantForm.get('key').hasError('maxlength') &&
+                  addTenantForm.get('key').touched
+                  "
+                >
+                  Maximum length exceeded.
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                  addTenantForm.get('key').hasError('pattern') &&
+                  addTenantForm.get('key').touched
+                  "
+                >
+                  Invalid characters used.
+                </div>
                   </div>
                 </div>
                 <!-- domain -->
-                <div class="input-box">
+                <!-- <div class="input-box">
+
                   <div class="input-title">
                     <span>Email Domain <span class="required">*</span></span>
                   </div>
@@ -75,7 +91,7 @@
                     Email domain does not match the domain part of the email
                     address.
                   </div>
-                </div>
+                </div> -->
               </div>
 
               <!-- Subscription Plans -->
@@ -95,6 +111,17 @@
                     </nb-card-header>
                     <nb-card-body>
                       <p class="plan-description">{{ plan.description }}</p>
+                      <p class="plan-price" *ngIf="plan.tier || plan.size">
+                        {{ plan.tier }}
+                        <ng-container *ngIf="plan.size">
+                          <nb-tag
+                            *ngIf="plan.size"
+                            status="basic"
+                            appearance="filled"
+                            text="{{ plan.size }}"
+                          ></nb-tag>
+                        </ng-container>
+                      </p>
                       <p class="plan-price">${{ plan.price }}</p>
                     </nb-card-body>
                     <nb-card-footer class="plan-card-footer">
