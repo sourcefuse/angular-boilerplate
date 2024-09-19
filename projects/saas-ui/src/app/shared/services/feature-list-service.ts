@@ -12,10 +12,10 @@ import {GetPlanAdapter} from '../../on-boarding/adapters';
 import {GetPlanCommand} from '../../on-boarding/commands';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
-import {GetFeaturesCommand} from '../../main/commands/get-features.command';
+import {GetFeaturesForPlanCommand} from '../../main/commands/get-features-for-plan.command';
 import {Features} from '../models/feature.model';
 import {Observable, catchError, throwError} from 'rxjs';
-import {AddFeaturesCommand} from '../../main/commands/add-features.command';
+import {AddFeaturesForPlanCommand} from '../../main/commands/add-features-for-plan.command';
 import {FeatureValues} from '../models/feature-values.model';
 import {AuthTokenSkipHeader} from '@project-lib/core/constants';
 import {EditFeaturesByPlanIdCommand} from '../../main/commands/edit-features-by-planid.command';
@@ -43,11 +43,12 @@ export class FeatureListService {
   ) {}
 
   getFeatures(): Observable<Features[]> {
-    const command: GetFeaturesCommand<Features[]> = new GetFeaturesCommand(
-      this.apiService,
-      this.anyAdapter,
-      this.appConfig,
-    );
+    const command: GetFeaturesForPlanCommand<Features[]> =
+      new GetFeaturesForPlanCommand(
+        this.apiService,
+        this.anyAdapter,
+        this.appConfig,
+      );
     return command.execute();
   }
 
@@ -55,12 +56,13 @@ export class FeatureListService {
     featureValue: FeatureValues[],
     planId: string,
   ): Observable<Features[]> {
-    const command: AddFeaturesCommand<Features[]> = new AddFeaturesCommand(
-      this.apiService,
-      this.anyAdapter,
-      planId,
-      this.appConfig,
-    );
+    const command: AddFeaturesForPlanCommand<Features[]> =
+      new AddFeaturesForPlanCommand(
+        this.apiService,
+        this.anyAdapter,
+        planId,
+        this.appConfig,
+      );
     command.parameters = {
       data: featureValue,
     };

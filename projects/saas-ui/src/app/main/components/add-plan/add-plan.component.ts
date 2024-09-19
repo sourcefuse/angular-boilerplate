@@ -1,4 +1,3 @@
-
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -38,7 +37,7 @@ export class AddPlanComponent implements OnInit {
   currencyOptions: AnyObject;
   selectedFeatures: Features[];
   featureOption: Features[];
-  featureValue: PlanWithFeatures | any;
+  featureValue: PlanWithFeatures;
   planId: string;
   featureId: string;
   isEditMode = false;
@@ -135,8 +134,7 @@ export class AddPlanComponent implements OnInit {
     domainData.features = featuresGroup ? featuresGroup.value : {};
 
     this.billingplanService.addPlan(generalDetailsData).subscribe(
-      resp => 
-      {
+      resp => {
         this.planId = resp.id;
         const obj: FeatureValues[] = [];
         const planFeatureDetailData = Object.keys(selectedFeatures)
@@ -211,7 +209,6 @@ export class AddPlanComponent implements OnInit {
       .getPlanById(this.activateRoute.snapshot.params.id)
       .subscribe(response => {
         const tierName = response.tier;
-       
 
         this.addPlanForm = this.fb.group({
           name: [response.name, Validators.required],
@@ -233,9 +230,11 @@ export class AddPlanComponent implements OnInit {
         const featuresGroup = this.addPlanForm.get('features') as FormGroup;
         if (featuresGroup) {
           Object.keys(featuresGroup.controls).forEach(controlName => {
-            featuresGroup.get(controlName)?.setValue(
-              features.find(item => item.key === controlName)?.value?.value,
-            );
+            featuresGroup
+              .get(controlName)
+              ?.setValue(
+                features.find(item => item.key === controlName)?.value?.value,
+              );
           });
         }
       });
@@ -324,7 +323,8 @@ export class AddPlanComponent implements OnInit {
     }
   }
   onTierChange(selectedTier: string): void {
-    this.showStorageSize = selectedTier === 'STANDARD' || selectedTier === 'PREMIUM';
+    this.showStorageSize =
+      selectedTier === 'STANDARD' || selectedTier === 'PREMIUM';
     if (!this.showStorageSize) {
       this.addPlanForm.get('size')?.reset();
     }
@@ -355,18 +355,19 @@ export class AddPlanComponent implements OnInit {
     this.billingplanService.getCurrencyDetails().subscribe(response => {
       this.currencyOptions = response;
       if (this.currencyOptions.length > 0) {
-        this.defaultCurrencyId = this.currencyOptions[0].id; 
+        this.defaultCurrencyId = this.currencyOptions[0].id;
         this.addPlanForm.get('currencyId').setValue(this.defaultCurrencyId);
       }
-    
     });
   }
   getBillingCycleDetails() {
     this.billingplanService.getBillingCycles().subscribe(cycleResp => {
       this.billingOptions = cycleResp;
       if (this.billingOptions.length > 0) {
-        this.defaultBillingCycleId = this.billingOptions[0].id; 
-        this.addPlanForm.get('billingCycleId').setValue(this.defaultBillingCycleId);
+        this.defaultBillingCycleId = this.billingOptions[0].id;
+        this.addPlanForm
+          .get('billingCycleId')
+          .setValue(this.defaultBillingCycleId);
       }
     });
   }

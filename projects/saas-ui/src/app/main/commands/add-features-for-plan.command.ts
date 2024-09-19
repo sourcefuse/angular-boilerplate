@@ -2,7 +2,7 @@ import {PostAPICommand, ApiService, IAdapter} from '@project-lib/core/api';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {Plan} from '../../shared/models';
 import {Feature} from '../../shared/interfaces/features';
-export class AddFeaturesCommand<T> extends PostAPICommand<Feature[]> {
+export class AddFeaturesForPlanCommand<T> extends PostAPICommand<Feature[]> {
   parameters: any;
 
   constructor(
