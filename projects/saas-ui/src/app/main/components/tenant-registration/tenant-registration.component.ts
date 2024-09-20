@@ -11,12 +11,12 @@ import { NbToastrService } from '@nebular/theme';
 import { Location } from '@angular/common';
 import { BillingPlanService, OnBoardingService } from '../../../shared/services';
 import { AnyObject } from '@project-lib/core/api/backend-filter';
-import { TenantLead } from '../../../shared/models/tenantLead.model';
+import { TenantLead, TenantLeadWithPaymentMethod } from '../../../shared/models/tenantLead.model';
 import { keyValidator } from '@project-lib/core/validators';
 
 export enum PaymentMethod {
   Cash = 'cash',
-  Check = 'check',
+  Cheque = 'cheque',
   BankTransfer = 'bank_transfer',
   Other = 'other',
   Custom = 'custom'

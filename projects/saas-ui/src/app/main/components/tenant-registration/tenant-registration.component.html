@@ -171,24 +171,7 @@
                   </div>
                 </div>
               </div>
-              <!-- domain -->
-              <!-- <div class="input-box">
-                <div class="input-title">
-                  <span>Email domain<span class="required">*</span></span>
-                </div>
-                <div class="input inputTags">
-                  <div class="input-container">
-                    <input placeholder="Enter the Email domain " fieldSize="medium" status="“info”"
-                      formControlName="domains" nbInput />
-                    <nb-icon icon="info-outline" class="info-icon" nbTooltip="Enter your domain name. 
-                      This field is required and should match the format of a valid email address.."></nb-icon>
-                  </div>
-                </div>
-                <div *ngIf="tenantRegForm.errors?.domainMismatch" class="error-msg">
-                  Email domain does not match the domain part of the email
-                  address.
-                </div>
-              </div>
+
               <!-- payment method -->
               <div class="input-box">
                 <div class="input-title">
@@ -197,11 +180,6 @@
                 <div class="input">
                   <select formControlName="paymentMethod" nbSelect fullWidth>
                     <option value="" disabled selected>Select your payment method</option>
-                    <!-- Placeholder-like option -->
-                    <!-- <option *ngFor="let method of ['cash', 'check', 'bank_transfer', 'other', 'custom']"
-                      [value]="method">
-                      {{ method | titlecase }}
-                    </option> -->
                     <option *ngFor="let method of paymentMethods" [value]="method">
                       {{ method | titlecase }}
                     </option>
