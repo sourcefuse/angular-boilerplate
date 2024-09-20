@@ -14,12 +14,14 @@ import {
   GetTenantByIdCommand,
   EditTenantCommand,
   DeleteTenantCommand,
+  GetTenantDetailsCommand,
 } from '../../main/commands';
 
 import {HttpParams} from '@angular/common/http';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {GetTotalTenantCommand} from '../../main/commands/get-total-tenant.command';
+import {tenantDetails} from '../models/tenantDetails.model';
 
 @Injectable()
 export class TenantFacadeService {
@@ -57,6 +59,16 @@ export class TenantFacadeService {
       this.appConfig,
     );
 
+    return command.execute();
+  }
+
+  getTenantDetails() {
+    const command: GetTenantDetailsCommand<tenantDetails> =
+      new GetTenantDetailsCommand(
+        this.apiService,
+        this.anyAdapter,
+        this.appConfig,
+      );
     return command.execute();
   }
 

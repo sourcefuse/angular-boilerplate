@@ -7,6 +7,7 @@ import {ManagePlansComponent} from './components/manage-plans/manage-plans.compo
 import {BillingPlanComponent} from './components/billing-plan/billing-plan.component';
 import {AddPlanComponent} from './components/add-plan/add-plan.component';
 import {TenantRegistrationComponent} from './components/tenant-registration/tenant-registration.component';
+import {TenantDetailComponent} from './components/tenant-detail/tenant-detail.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'create-tenant',
         component: TenantRegistrationComponent,
+      },
+      {
+        path: 'tenant-details/:id',
+        component: TenantDetailComponent,
       },
     ],
   },

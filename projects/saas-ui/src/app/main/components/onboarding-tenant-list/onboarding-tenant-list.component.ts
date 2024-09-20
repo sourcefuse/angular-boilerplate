@@ -1,22 +1,17 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
-import {
-  ColDef,
-  GridApi,
-  GridOptions,
-  IDatasource,
-  IGetRowsParams,
-} from 'ag-grid-community';
+import {ColDef, GridApi, GridOptions} from 'ag-grid-community';
 import {Location} from '@angular/common';
-import {Observable, combineLatest, map, takeUntil} from 'rxjs';
+import {Observable} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';
 import {Tenant} from '../../../shared/models';
 import {AnyObject, BackendFilter} from '@project-lib/core/api';
 import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
-import {environment} from 'projects/saas-ui/src/environment';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
+import {EyeIconRendererComponent} from '../eye-icon-renderer/eye-icon-renderer.component';
+import {tenantDetails} from '../../../shared/models/tenantDetails.model';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -26,8 +21,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   gridApi: GridApi;
+  params: AnyObject;
   gridOptions: GridOptions;
-  limit = 5;
   defaultColDef: ColDef = {
     flex: 1,
     minWidth: 150,
@@ -47,103 +42,125 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     super(route, location);
     this.gridOptions = {
       pagination: true,
-      rowModelType: 'infinite',
-      paginationPageSize: this.limit,
-      paginationPageSizeSelector: [this.limit, 10, 20, 50, 100],
-      cacheBlockSize: this.limit,
+
+      alwaysShowHorizontalScroll: true,
+      rowModelType: 'clientSide',
+      paginationPageSize: 5,
+      paginationPageSizeSelector: [5, 10, 20, 50, 100],
+      cacheBlockSize: 5,
       onGridReady: this.onGridReady.bind(this),
       rowHeight: 60,
       defaultColDef: {flex: 1},
     };
+    this.getTenantDetails();
   }
 
   colDefs: ColDef[] = [
     {
       field: 'name',
       headerName: 'Company Name',
-      width: 300,
-      minWidth: 20,
+      flex: 1,
+      minWidth: 160,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
       sortable: true,
       cellRenderer: params => this.createCompanyLink(params),
     },
     {
-      field: 'domains',
-      width: 300,
-      minWidth: 20,
+      field: 'tenant_name',
+      headerName: 'Tenant Name',
+      minWidth: 160,
+      flex: 1,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+      sortable: true,
+    },
+    {
+      field: 'email',
+      headerName: 'Email',
+      minWidth: 180,
+      flex: 1,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+      sortable: true,
+    },
+    {
+      field: 'address',
+      headerName: 'Address',
+      minWidth: 120,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
     },
     {
-      field: 'address',
-      width: 400,
-      minWidth: 20,
+      field: 'planName',
+      headerName: 'Plan Name',
+      minWidth: 130,
+      flex: 1,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
     },
     {
       field: 'status',
-      width: 300,
-      minWidth: 20,
+      headerName: 'Subscription Status',
+      minWidth: 180,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
     },
+    {
+      field: 'startDate',
+      headerName: 'Start Date',
+      minWidth: 120,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+    },
+    {
+      field: 'endDate',
+      headerName: 'End Date',
+      minWidth: 120,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+    },
+    {
+      headerName: 'Actions',
+      minWidth: 100,
+      cellRenderer: EyeIconRendererComponent,
+    },
   ];
 
-  rowData = [];
-  tenants: AnyObject;
-  leads: AnyObject;
-  filter: BackendFilter<Tenant> = {
-    include: [{relation: 'address'}],
-  };
-
+  rowData: any[] = [];
   onGridReady(params: AnyObject) {
     this.gridApi = params.api;
-    const dataSource: IDatasource = {
-      getRows: (params: IGetRowsParams) => {
-        const page = params.endRow / this.limit;
-        const paginatedLeads = this.getPaginatedTenants(page, this.limit);
-        const totalLead = this.getTotal();
-        combineLatest([paginatedLeads, totalLead]).subscribe(
-          ([data, count]) => {
-            params.successCallback(data, count.count);
-            // for test
-          },
-
-          err => {
-            params.failCallback();
-          },
-        );
-      },
-    };
-    this.gridApi.updateGridOptions({datasource: dataSource});
   }
 
-  getPaginatedTenants(page: number, limit: number): Observable<AnyObject[]> {
-    const filter: BackendFilter<Tenant> = {
-      offset: limit * (page - 1),
-      limit: limit,
-      include: [{relation: 'address'}],
-    };
-    return this.tenantFacade.getTenantList(filter).pipe(
-      map(res => {
-        return res.map(item => {
-          const addressString = ` ${item.address.zip}, ${item.address.country}`;
-          // ${item.address.city}, ${item.address.state},
-          return {
-            name: item.name,
-            key: item.key,
-            domains: item.domains.join(', '),
-            address: addressString,
-            status: TenantStatus[item.status],
-          };
-        });
-      }),
-    );
-  }
+  getTenantDetails() {
+    this.tenantFacade.getTenantDetails().subscribe(resp => {
+      console.log(resp);
+      this.rowData = resp.map(item => {
+        const addressString = `${item.address.zip}, ${item.address.country}`;
+        const tenantName = `${item.contacts[0].firstName} ${item.contacts[0].lastName}`;
 
-  createCompanyLink(params: AnyObject) {
+        return {
+          id: item.id,
+          name: item.name,
+          tenant_name: tenantName,
+          email: item.contacts[0].email,
+          address: addressString,
+          planName: item.subscription?.plan.name,
+          status: TenantStatus[item.subscription?.status],
+          startDate: item.subscription?.startDate
+            ? new Date(item.subscription.startDate).toLocaleDateString()
+            : 'N/A',
+          endDate: item.subscription?.endDate
+            ? new Date(item.subscription.endDate).toLocaleDateString()
+            : 'N/A',
+        };
+      });
+      if (this.gridApi) {
+        this.gridApi.setRowData(this.rowData);
+      }
+    });
+  }
+  createCompanyLink(params: any) {
     const url = this.appConfig.baseApiUrl.replace(
       '//',
       `//${params.data?.key}.`,
@@ -151,10 +168,6 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     return `<a href="${url}" target="_blank" class="company-link">
       ${params.value}
     </a>`;
-  }
-
-  getTotal() {
-    return this.tenantFacade.getTotalTenant();
   }
 
   registerTenantPage() {
