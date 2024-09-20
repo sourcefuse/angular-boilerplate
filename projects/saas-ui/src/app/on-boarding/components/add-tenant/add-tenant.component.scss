@@ -13,10 +13,12 @@
 
 .plan-card-container {
   width: 100%;
+
   .plan-card-wrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+
     .plan-card-box {
       flex: 1;
       justify-content: space-between;
@@ -26,8 +28,8 @@
 
 .error-msg {
   color: red;
-  font-size: 14px; 
-  margin-top: 3px; 
+  font-size: 14px;
+  margin-top: 3px;
 }
 
 .input-container {
@@ -70,6 +72,7 @@
 
 .main-wrapper {
   justify-content: center;
+
   .btn {
     text-align: center;
   }
@@ -110,6 +113,7 @@
 
 .input-title {
   margin-bottom: 20px;
+
   h3 {
     font-size: 1.5em;
     font-weight: bold;
@@ -146,6 +150,7 @@
     color: #fff;
     padding: 15px;
     text-align: center;
+
     h5 {
       font-size: 1.25em;
       margin: 0;
@@ -204,7 +209,7 @@
         }
       }
 
-      input[type='radio']:checked + .radio-checkmark::after {
+      input[type='radio']:checked+.radio-checkmark::after {
         opacity: 1;
       }
     }
