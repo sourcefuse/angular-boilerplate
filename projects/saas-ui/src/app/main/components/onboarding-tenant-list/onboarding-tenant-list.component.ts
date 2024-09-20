@@ -129,7 +129,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     return this.tenantFacade.getTenantList(filter).pipe(
       map(res => {
         return res.map(item => {
-          const addressString = ` ${item.address.zip}, ${item.address.country}`;
+          const addressString = `${item.address.country}`;
           // ${item.address.city}, ${item.address.state},
           return {
             name: item.name,

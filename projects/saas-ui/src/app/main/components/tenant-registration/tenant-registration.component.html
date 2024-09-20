@@ -16,7 +16,7 @@
                     <input
                       type="text"
                       placeholder="Enter First Name"
-                      status="“info”"
+                      status="info"
                       formControlName="firstName"
                       nbInput
                     />
@@ -337,7 +337,7 @@
                     nbButton
                     size="medium"
                     status="danger"
-                    [disabled]="!tenantRegForm.valid"
+                    [disabled]="!tenantRegForm.valid || isSubmitting"
                     type="submit"
                   >
                     Submit
