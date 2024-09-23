@@ -36,6 +36,34 @@
     }
   }
 }
+.input-box{
+  .input{
+    .payment-comment-box{
+      min-width: 100%;
+      border: 1px solid #dcdcdc;
+     }     
+  }
+}
+
+.input-wrapper{
+  .input-box{
+    .select{
+      .dropdown-wrapper{
+        min-width: 100%;
+        margin-top: 5px;
+        border: 1px solid #dcdcdc;
+    border-radius: 3px;
+      }
+    }
+  }
+}
+
+nb-select{
+  .select-button{
+    height: 46px !important;
+    margin-top: 5px !important;
+  }
+}
 
 .required {
   color: red;
