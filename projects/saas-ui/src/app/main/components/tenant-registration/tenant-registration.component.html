@@ -13,13 +13,26 @@
                 </div>
                 <div class="inputTags">
                   <div class="input-container">
-                    <input type="text" placeholder="Enter First Name" status="“info”" formControlName="firstName"
-                      nbInput />
-                    <nb-icon icon="info-outline" class="info-icon"
-                      nbTooltip="Please enter your first name. This field is required."></nb-icon>
+                    <input
+                      type="text"
+                      placeholder="Enter First Name"
+                      status="“info”"
+                      formControlName="firstName"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your first name. This field is required."
+                    ></nb-icon>
                   </div>
-                  <div class="error-msg"
-                    *ngIf="tenantRegForm.get('firstName').hasError('pattern') && tenantRegForm.get('firstName').touched">
+                  <div
+                    class="error-msg"
+                    *ngIf="
+                      tenantRegForm.get('firstName').hasError('pattern') &&
+                      tenantRegForm.get('firstName').touched
+                    "
+                  >
                     First Name must contain only characters.
                   </div>
                 </div>
@@ -31,13 +44,26 @@
                 </div>
                 <div class="inputTags">
                   <div class="input-container">
-                    <input type="text" placeholder="Enter Last Name" status="“info”" formControlName="lastName"
-                      nbInput />
-                    <nb-icon icon="info-outline" class="info-icon"
-                      nbTooltip="Please enter your Last name. This field is required."></nb-icon>
+                    <input
+                      type="text"
+                      placeholder="Enter Last Name"
+                      status="“info”"
+                      formControlName="lastName"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your Last name. This field is required."
+                    ></nb-icon>
                   </div>
-                  <div class="error-msg"
-                    *ngIf="tenantRegForm.get('lastName').hasError('pattern') && tenantRegForm.get('lastName').touched">
+                  <div
+                    class="error-msg"
+                    *ngIf="
+                      tenantRegForm.get('lastName').hasError('pattern') &&
+                      tenantRegForm.get('lastName').touched
+                    "
+                  >
                     Last Name must contain only characters.
                   </div>
                 </div>
@@ -49,9 +75,18 @@
                 </div>
                 <div class="inputTags">
                   <div class="input-container">
-                    <input type="text" placeholder="Company Name" status="“info”" formControlName="name" nbInput />
-                    <nb-icon icon="info-outline" class="info-icon"
-                      nbTooltip="Please enter your Company name. This field is required."></nb-icon>
+                    <input
+                      type="text"
+                      placeholder="Company Name"
+                      status="“info”"
+                      formControlName="name"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your Company name. This field is required."
+                    ></nb-icon>
                   </div>
                 </div>
               </div>
@@ -63,22 +98,37 @@
                 </div>
                 <div class="input inputTags">
                   <div class="input-container">
-                    <input type="Email" placeholder="Email" status="“info”" fieldSize="medium" formControlName="email"
-                      nbInput />
-                    <nb-icon icon="info-outline" class="info-icon"
-                      nbTooltip="Please enter your Mail id. This field is required."></nb-icon>
+                    <input
+                      type="Email"
+                      placeholder="Email"
+                      status="“info”"
+                      fieldSize="medium"
+                      formControlName="email"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your Mail id. This field is required."
+                    ></nb-icon>
                   </div>
                 </div>
-                <div class="error-msg" *ngIf="
+                <div
+                  class="error-msg"
+                  *ngIf="
                     tenantRegForm.get('email').hasError('required') &&
                     tenantRegForm.get('email').touched
-                  ">
+                  "
+                >
                   Email is required.
                 </div>
-                <div class="error-msg" *ngIf="
+                <div
+                  class="error-msg"
+                  *ngIf="
                     tenantRegForm.get('email').hasError('email') &&
                     tenantRegForm.get('email').touched
-                  ">
+                  "
+                >
                   Invalid email format.
                 </div>
               </div>
@@ -91,8 +141,13 @@
                 </div>
                 <div class="input address-input inputTags">
                   <div class="input-container">
-                    <input type="text" placeholder="Enter Your Address" status="“info”" formControlName="address"
-                      nbInput />
+                    <input
+                      type="text"
+                      placeholder="Enter Your Address"
+                      status="“info”"
+                      formControlName="address"
+                      nbInput
+                    />
                   </div>
                 </div>
               </div>
@@ -103,20 +158,31 @@
                 </div>
                 <div class="input inputTags">
                   <div class="input-container">
-                    <input type="text" placeholder="Enter your Zip Code" status="“info”" formControlName="zip"
-                      nbInput />
+                    <input
+                      type="text"
+                      placeholder="Enter your Zip Code"
+                      status="“info”"
+                      formControlName="zip"
+                      nbInput
+                    />
                   </div>
                 </div>
-                <div class="error-msg" *ngIf="
-                  tenantRegForm.get('zip').hasError('pattern') &&
-                  tenantRegForm.get('zip').touched
-                ">
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    tenantRegForm.get('zip').hasError('pattern') &&
+                    tenantRegForm.get('zip').touched
+                  "
+                >
                   Zip code should only contain numbers.
                 </div>
-                <div class="error-msg" *ngIf="
+                <div
+                  class="error-msg"
+                  *ngIf="
                     tenantRegForm.get('zip').hasError('maxlength') &&
                     tenantRegForm.get('zip').touched
-                  ">
+                  "
+                >
                   Maximum length exceeded.
                 </div>
               </div>
@@ -127,14 +193,22 @@
                 </div>
                 <div class="input inputTags">
                   <div class="input-container">
-                    <input type="text" placeholder="Enter your Country" status="“info”" formControlName="country"
-                      nbInput />
+                    <input
+                      type="text"
+                      placeholder="Enter your Country"
+                      status="“info”"
+                      formControlName="country"
+                      nbInput
+                    />
                   </div>
                 </div>
-                <div class="error-msg" *ngIf="
-                  tenantRegForm.get('country').hasError('pattern') &&
-                  tenantRegForm.get('country').touched
-                ">
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    tenantRegForm.get('country').hasError('pattern') &&
+                    tenantRegForm.get('country').touched
+                  "
+                >
                   Country must contain only characters.
                 </div>
               </div>
@@ -142,31 +216,49 @@
               <div class="input-box">
                 <div class="input-title">
                   <span>
-                    Application Sub-Domain <span class="required">*</span></span>
+                    Application Sub-Domain <span class="required">*</span></span
+                  >
                 </div>
                 <div class="input inputTags">
                   <div class="input-container">
-                    <input placeholder="Enter the subdomain of your application" fieldSize="medium" status="“info”"
-                      formControlName="key" nbInput />
-                    <nb-icon icon="info-outline" class="info-icon"
-                      nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"></nb-icon>
+                    <input
+                      placeholder="Enter the subdomain of your application"
+                      fieldSize="medium"
+                      status="“info”"
+                      formControlName="key"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"
+                    ></nb-icon>
                   </div>
-                  <div class="error-msg" *ngIf="
-                    tenantRegForm.get('key').hasError('required') &&
-                    tenantRegForm.get('key').touched
-                  ">
+                  <div
+                    class="error-msg"
+                    *ngIf="
+                      tenantRegForm.get('key').hasError('required') &&
+                      tenantRegForm.get('key').touched
+                    "
+                  >
                     Sub-domain is required.
                   </div>
-                  <div class="error-msg" *ngIf="
-                    tenantRegForm.get('key').hasError('maxlength') &&
-                    tenantRegForm.get('key').touched
-                  ">
+                  <div
+                    class="error-msg"
+                    *ngIf="
+                      tenantRegForm.get('key').hasError('maxlength') &&
+                      tenantRegForm.get('key').touched
+                    "
+                  >
                     Maximum length exceeded.
                   </div>
-                  <div class="error-msg" *ngIf="
-                    tenantRegForm.get('key').hasError('pattern') &&
-                    tenantRegForm.get('key').touched
-                  ">
+                  <div
+                    class="error-msg"
+                    *ngIf="
+                      tenantRegForm.get('key').hasError('pattern') &&
+                      tenantRegForm.get('key').touched
+                    "
+                  >
                     Invalid characters used.
                   </div>
                 </div>
@@ -177,33 +269,38 @@
                 <div class="input-title">
                   <span>Payment Method <span class="required">*</span></span>
                 </div>
-                <div class="input">
-                  <select formControlName="paymentMethod" nbSelect fullWidth>
-                    <option value="" disabled selected>Select your payment method</option>
-                    <option *ngFor="let method of paymentMethods" [value]="method">
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Choose Your payment method"
+                    size="large"
+                    formControlName="paymentMethod"
+                  >
+                    <nb-option
+                      *ngFor="let method of paymentMethods"
+                      [value]="method"
+                    >
                       {{ method | titlecase }}
-                    </option>
-                  </select>
-                  <nb-icon icon="info-outline" class="info-icon"
-                    nbTooltip="Please select your preferred payment method."></nb-icon>
-                </div>
-                <div
-                  *ngIf="tenantRegForm.get('paymentMethod').hasError('required') && tenantRegForm.get('paymentMethod').touched"
-                  style="color: red;">
-                  Payment Method is required.
+                    </nb-option>
+                  </nb-select>
                 </div>
               </div>
 
               <!-- comment -->
-              <div class="input-box">
+              <div class="input-box address-input-box">
                 <div class="input-title">
-                  <span>Comment</span>
+                  <span>Payment Details</span>
                 </div>
-                <div class="input">
-                  <textarea placeholder="Add your comment" formControlName="comment" nbInput></textarea>
+                <div class="input address-input inputTags">
+                  <textarea
+                    placeholder="Add your comment"
+                    formControlName="comment"
+                    class="payment-comment-box"
+                    rows="4"
+                    nbInput
+                  ></textarea>
                 </div>
               </div>
-
 
               <!--plan design -->
               <div class="plan-card-container">
@@ -211,7 +308,11 @@
                   <h3>Subscription Plan</h3>
                 </div>
                 <div class="plan-card-wrapper">
-                  <nb-card class="plan-card-box" accent="danger" *ngFor="let plan of subscriptionPlans">
+                  <nb-card
+                    class="plan-card-box"
+                    accent="danger"
+                    *ngFor="let plan of subscriptionPlans"
+                  >
                     <nb-card-header class="plan-card-header">
                       <h5>{{ plan.name }}</h5>
                     </nb-card-header>
@@ -220,14 +321,23 @@
                       <p class="plan-price" *ngIf="plan.tier || plan.size">
                         {{ plan.tier }}
                         <ng-container *ngIf="plan.size">
-                          <nb-tag *ngIf="plan.size" status="basic" appearance="filled" text="{{ plan.size }}"></nb-tag>
+                          <nb-tag
+                            *ngIf="plan.size"
+                            status="basic"
+                            appearance="filled"
+                            text="{{ plan.size }}"
+                          ></nb-tag>
                         </ng-container>
                       </p>
                       <p class="plan-price">${{ plan.price }}</p>
                     </nb-card-body>
                     <nb-card-footer class="plan-card-footer">
                       <label class="plan-radio">
-                        <input type="radio" [formControl]="tenantRegForm.get('planId')" [value]="plan.id" />
+                        <input
+                          type="radio"
+                          [formControl]="tenantRegForm.get('planId')"
+                          [value]="plan.id"
+                        />
                         <span class="radio-checkmark"></span>
                         {{ plan.name }}
                       </label>
@@ -236,17 +346,25 @@
                 </div>
               </div>
 
-
-
-
               <!-- signup button -->
               <div class="btn-wrapper">
                 <div class="btn regbtn">
-                  <button nbButton size="medium" status="danger" (click)="backToPriviousPage()">
+                  <button
+                    nbButton
+                    size="medium"
+                    status="danger"
+                    (click)="backToPriviousPage()"
+                  >
                     Cancel
                   </button>
 
-                  <button nbButton size="medium" status="danger" [disabled]="!tenantRegForm.valid" type="submit">
+                  <button
+                    nbButton
+                    size="medium"
+                    status="danger"
+                    [disabled]="!tenantRegForm.valid"
+                    type="submit"
+                  >
                     Submit
                   </button>
                 </div>
