@@ -134,26 +134,36 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
 
   getTenantDetails() {
     this.tenantFacade.getTenantDetails().subscribe(resp => {
-      console.log(resp);
       this.rowData = resp.map(item => {
-        const addressString = `${item.address.zip}, ${item.address.country}`;
-        const tenantName = `${item.contacts[0].firstName} ${item.contacts[0].lastName}`;
+        if (item) {
+          const fullTenantName = [
+            item.contacts[0]?.firstName,
+            '    ',
+            item.contacts[0]?.lastName,
+          ]
+            .filter(ele => ele != null && ele.trim() != '')
+            .join(' ');
 
-        return {
-          id: item.id,
-          name: item.name,
-          tenant_name: tenantName,
-          email: item.contacts[0].email,
-          address: addressString,
-          planName: item.subscription?.plan.name,
-          status: TenantStatus[item.subscription?.status],
-          startDate: item.subscription?.startDate
-            ? new Date(item.subscription.startDate).toLocaleDateString()
-            : 'N/A',
-          endDate: item.subscription?.endDate
-            ? new Date(item.subscription.endDate).toLocaleDateString()
-            : 'N/A',
-        };
+          const addressString = [item.address.zip, '    ', item.address.country]
+            .filter(ele => ele != null && ele.trim() != '')
+            .join(' ');
+
+          return {
+            id: item.id,
+            name: item.name,
+            tenant_name: fullTenantName,
+            email: item.contacts[0].email,
+            address: addressString,
+            planName: item.subscription?.plan.name,
+            status: TenantStatus[item.subscription?.status],
+            startDate: item.subscription?.startDate
+              ? new Date(item.subscription.startDate).toLocaleDateString()
+              : 'N/A',
+            endDate: item.subscription?.endDate
+              ? new Date(item.subscription.endDate).toLocaleDateString()
+              : 'N/A',
+          };
+        }
       });
       if (this.gridApi) {
         this.gridApi.setRowData(this.rowData);

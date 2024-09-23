@@ -69,14 +69,13 @@ export class TenantDetailComponent {
           }
         },
         error => {
-          console.error('Error fetching tenant data:', error);
+          console.error('Error fetching tenant data:', error); // NOSONAR
         },
       );
     }
   }
 
   backToPriviousPage() {
-    console.log('Go back to the previous page');
     this.router.navigate(['main/onboard-tenant-list']);
   }
 }
