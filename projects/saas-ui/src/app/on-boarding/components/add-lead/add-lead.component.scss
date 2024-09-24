@@ -45,6 +45,25 @@
     font-weight: bold;
     font-size: 14px;
   }
+  .input-box{
+    .input{
+      .payment-comment-box{
+        min-width: 100%;
+        border: 1px solid #dcdcdc;
+       }     
+    }
+  }
+  
+
+ 
+  
+  nb-select{
+    .select-button{
+      height: 46px !important;
+      margin-top: 5px !important;
+    }
+  }
+  
 
   .input-container {
     position: relative;
@@ -89,6 +108,19 @@
         color: #007bff;
         font-size: 18px;
         z-index: 1;
+      }
+    }
+  }
+}
+
+.input-wrapper{
+  .input-box{
+    .select{
+      .dropdown-wrapper{
+        min-width: 100%;
+        margin-top: 5px;
+        border: 1px solid #dcdcdc;
+    border-radius: 3px;
       }
     }
   }

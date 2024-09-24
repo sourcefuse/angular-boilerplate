@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,21 +6,26 @@ import {
   AbstractControl,
   ValidatorFn,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
-import { Location } from '@angular/common';
-import { BillingPlanService, OnBoardingService } from '../../../shared/services';
-import { AnyObject } from '@project-lib/core/api/backend-filter';
-import { TenantLead, TenantLeadWithPaymentMethod } from '../../../shared/models/tenantLead.model';
-import { keyValidator } from '@project-lib/core/validators';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NbToastrService} from '@nebular/theme';
+import {Location} from '@angular/common';
+import {BillingPlanService, OnBoardingService} from '../../../shared/services';
+import {AnyObject} from '@project-lib/core/api/backend-filter';
+import {
+  TenantLead,
+  TenantLeadWithPaymentMethod,
+} from '../../../shared/models/tenantLead.model';
+import {keyValidator} from '@project-lib/core/validators';
+import {COUNTRIES} from '../../../shared/constants/countries.constant';
 
 export enum PaymentMethod {
   Cash = 'cash',
   Cheque = 'cheque',
   BankTransfer = 'bank_transfer',
   Other = 'other',
-  Custom = 'custom'
+  Custom = 'custom',
 }
+
 @Component({
   selector: 'app-tenant-registration',
   templateUrl: './tenant-registration.component.html',
@@ -31,6 +36,7 @@ export class TenantRegistrationComponent {
   [x: string]: any;
   subscriptionPlans: AnyObject[];
   leadId = '';
+  countryOptions = COUNTRIES;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,36 +50,46 @@ export class TenantRegistrationComponent {
   ) {
     this.tenantRegForm = this.fb.group(
       {
-        firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
-        lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        firstName: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        ],
+        lastName: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        ],
         name: ['', [Validators.required]], // for company name
         email: ['', [Validators.required, Validators.email]],
         address: [''],
-        country: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+        country: ['', [Validators.required]],
         zip: ['', [Validators.pattern('^[0-9]+$'), Validators.maxLength(9)]],
-        key: ['', [Validators.required, Validators.maxLength(10),
-        Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
+        key: [
+          '',
+          [
+            Validators.required,
+            Validators.maxLength(10),
+            Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$'),
+          ],
+        ],
         domains: [''],
         planId: [''],
         paymentMethod: ['', Validators.required],
-        comment: ['']  // Add comment control here
+        comment: [''],
       },
-      { validators: this.emailDomainMatchValidator },
+      {validators: this.emailDomainMatchValidator},
     );
   }
 
   paymentMethods = Object.values(PaymentMethod); // Use Object.values() to get the enum values
 
-
-
-  emailDomainMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
+  emailDomainMatchValidator(group: FormGroup): {[key: string]: boolean} | null {
     const email = group.get('email').value;
     const domain = group.get('domains').value;
 
     if (email && domain) {
       const emailDomain = email.substring(email.lastIndexOf('@') + 1);
       if (emailDomain !== domain) {
-        return { domainMismatch: true };
+        return {domainMismatch: true};
       }
     }
     return null;
@@ -92,7 +108,6 @@ export class TenantRegistrationComponent {
       }
     });
   }
-
 
   getRadioOptions() {
     this.billingPlanService.getPlanOptions().subscribe(res => {
@@ -122,7 +137,7 @@ export class TenantRegistrationComponent {
         domains: [userData.domains],
         planId: userData.planId,
         paymentMethod: userData.paymentMethod,
-        comment: userData.comment  // Add the comment field here
+        comment: userData.comment, // Add the comment field here
       };
       this.onBoardingService.registerTenant(user).subscribe(
         () => {
