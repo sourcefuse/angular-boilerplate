@@ -186,32 +186,28 @@
                   Maximum length exceeded.
                 </div>
               </div>
-
+              <!-- Country Drop down  -->
               <div class="input-box">
                 <div class="input-title">
                   <span>Country <span class="required">*</span></span>
                 </div>
-                <div class="input inputTags">
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      placeholder="Enter your Country"
-                      status="“info”"
-                      formControlName="country"
-                      nbInput
-                    />
-                  </div>
-                </div>
-                <div
-                  class="error-msg"
-                  *ngIf="
-                    tenantRegForm.get('country').hasError('pattern') &&
-                    tenantRegForm.get('country').touched
-                  "
-                >
-                  Country must contain only characters.
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Your Country"
+                    size="large"
+                    formControlName="country"
+                  >
+                    <nb-option
+                      *ngFor="let option of countryOptions"
+                      [value]="option.value"
+                    >
+                      {{ option.label }}
+                    </nb-option>
+                  </nb-select>
                 </div>
               </div>
+
               <!-- key -->
               <div class="input-box">
                 <div class="input-title">
