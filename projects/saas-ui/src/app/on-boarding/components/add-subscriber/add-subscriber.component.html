@@ -1,9 +1,9 @@
-<nb-card class="h-100 card-row">
+<nb-card class="h-100 card-row glassmorphism">
   <nb-card-body class="m-0">
     <div class="main-wrapper add-lead-wrapper">
       <div>
         <div class="sign-in-title">
-          <h2 class="title">Tenant Registration</h2>
+          <h2 class="title">Marketplace Registration</h2>
           <form [formGroup]="marketSubsForm" (ngSubmit)="onSubmit()">
             <!-- input fields -->
             <div class="input-wrapper">
@@ -89,7 +89,7 @@
                       nbInput
                     />
                     <nb-icon
-                      icon="info-outline"
+                      icon="email-outline"
                       class="info-icon"
                       nbTooltip="Please enter your Mail id. This field is required."
                     ></nb-icon>
@@ -121,6 +121,11 @@
                       formControlName="address"
                       nbInput
                     />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your address. This field is required"
+                    ></nb-icon>
                   </div>
                 </div>
               </div>

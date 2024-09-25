@@ -31,7 +31,7 @@ const routes: Routes = [
         canActivate: [EmailVerifyGuard],
       },
       {
-        path: 'add-subscriber/:token',
+        path: 'add-subscriber',
         component: AddSubscriberComponent,
       },
     ],
