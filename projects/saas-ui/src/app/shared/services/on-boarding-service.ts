@@ -121,7 +121,8 @@ export class OnBoardingService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-api-key': this.appConfig.apiKey,
-    });
+    }).set(AuthTokenSkipHeader, '-');
+
     const command: AddSubscriberCommand<Subscriber> = new AddSubscriberCommand(
       this.apiService,
       this.anyAdapter,

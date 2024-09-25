@@ -7,6 +7,7 @@ import {Location} from '@angular/common';
 import {keyValidator} from '@project-lib/core/validators';
 import {Subscriber} from '../../../shared/models';
 import {debounceTime, distinctUntilChanged} from 'rxjs';
+import {COUNTRIES} from '../../../shared/constants/countries.constant';
 @Component({
   selector: 'app-add-subscriber',
   templateUrl: './add-subscriber.component.html',
@@ -17,7 +18,7 @@ export class AddSubscriberComponent {
   [x: string]: any;
 
   leadId = '';
-
+  countryOptions = COUNTRIES;
   constructor(
     private route: ActivatedRoute,
     private readonly onBoardingService: OnBoardingService,
@@ -66,7 +67,8 @@ export class AddSubscriberComponent {
       .get('subdomain')
       ?.valueChanges.pipe(debounceTime(1500), distinctUntilChanged())
       .subscribe(subdomain => {
-        if (subdomain) {
+        const subdomainControl = this.marketSubsForm.get('subdomain');
+        if (subdomainControl && subdomainControl.valid) {
           this.verifyKey(subdomain);
         } else {
           this.keyVerificationMessage = '';
@@ -114,8 +116,8 @@ export class AddSubscriberComponent {
         subdomain: userData.subdomain,
         regToken: this.regToken,
       };
-
       console.log(user);
+      this.keyVerificationMessage = '';
       this.onBoardingService.addSubscriber(user).subscribe(
         () => {
           this.toastrService.show('Subscriber Added successfully');

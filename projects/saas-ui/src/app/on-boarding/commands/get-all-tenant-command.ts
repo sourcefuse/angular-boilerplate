@@ -15,7 +15,7 @@ export class GetAllTenantKeysCommand<T> extends GetAPICommand<T> {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/tenant-keys`,
+      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/tenant/keys`,
     );
   }
 }

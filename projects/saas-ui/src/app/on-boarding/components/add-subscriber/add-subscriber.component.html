@@ -1,4 +1,4 @@
-<nb-card class="h-100 card-row glassmorphism">
+<nb-card class="h-100 card-row">
   <nb-card-body class="m-0">
     <div class="main-wrapper add-lead-wrapper">
       <div>
@@ -178,6 +178,7 @@
                       status="info"
                       formControlName="zip"
                       nbInput
+                      maxlength="6"
                     />
                     <nb-icon
                       icon="info-outline"
@@ -185,19 +186,12 @@
                       nbTooltip="Please enter zip code."
                     ></nb-icon>
                   </div>
+
                   <div
                     class="error-msg"
-                    *ngIf="
-                      marketSubsForm.get('zip').invalid &&
-                      marketSubsForm.get('zip').touched
-                    "
+                    *ngIf="marketSubsForm.get('zip').hasError('pattern')"
                   >
-                    <div
-                      class="error-msg"
-                      *ngIf="marketSubsForm.get('zip').hasError('pattern')"
-                    >
-                      Zip Code must be numeric only.
-                    </div>
+                    Zip Code must be numeric only.
                   </div>
                 </div>
               </div>
@@ -206,21 +200,20 @@
                 <div class="input-title">
                   <span>Country <span class="required">*</span></span>
                 </div>
-                <div class="input">
-                  <div class="input-container">
-                    <input
-                      type="text"
-                      placeholder="Enter your Country"
-                      status="info"
-                      formControlName="country"
-                      nbInput
-                    />
-                    <nb-icon
-                      icon="globe-outline"
-                      class="info-icon"
-                      nbTooltip="Please enter your country."
-                    ></nb-icon>
-                  </div>
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Your Country"
+                    size="large"
+                    formControlName="country"
+                  >
+                    <nb-option
+                      *ngFor="let option of countryOptions"
+                      [value]="option.value"
+                    >
+                      {{ option.label }}
+                    </nb-option>
+                  </nb-select>
                 </div>
               </div>
 
@@ -246,8 +239,25 @@
                     ></nb-icon>
                   </div>
                   <div>
-                    <div *ngIf="keyVerificationMessage" class="message">
+                    <div
+                      *ngIf="
+                        marketSubsForm.get('subdomain').valid &&
+                        keyVerificationMessage &&
+                        marketSubsForm.get('subdomain').touched
+                      "
+                      class="message"
+                    >
                       {{ keyVerificationMessage }}
+                    </div>
+                    <div
+                      *ngIf="
+                        marketSubsForm.get('subdomain').hasError('pattern') &&
+                        marketSubsForm.get('subdomain').touched
+                      "
+                      class="error-msg"
+                    >
+                      Subdomain must start with a letter and can include numbers
+                      and hyphens and has maximum length 20.
                     </div>
                   </div>
                 </div>
