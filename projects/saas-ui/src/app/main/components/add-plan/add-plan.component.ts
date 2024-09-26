@@ -183,7 +183,7 @@ export class AddPlanComponent implements OnInit {
           );
           break;
         case 'string':
-          control = new FormControl();
+          control = new FormControl(feature.defaultValue || '');
           break;
         case 'object':
           control = new FormControl();
@@ -374,6 +374,12 @@ export class AddPlanComponent implements OnInit {
   getFeatures() {
     this.featureListService.getFeatures().subscribe(res => {
       this.featureOption = res;
+      // error handling
+      this.featureOption.forEach(feature => {
+        if (feature.metadata) {
+          feature.metadata = feature.metadata.split(',');
+        }
+      });
       this.createFeatureControls();
     });
   }

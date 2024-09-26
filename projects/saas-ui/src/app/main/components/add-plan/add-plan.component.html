@@ -189,11 +189,13 @@
                   >
                     <div class="feature-details">
                       <span class="feature-name">{{ feature.name }}</span>
+                      <!-- for boolean -->
                       <div class="feature-input">
                         <nb-toggle
                           *ngIf="feature.type === 'boolean'"
                           [formControlName]="feature.key"
                         ></nb-toggle>
+                        <!-- for number -->
                         <input
                           *ngIf="feature.type === 'number'"
                           nbInput
@@ -201,13 +203,26 @@
                           [formControlName]="feature.key"
                           placeholder="{{ feature.name }}"
                         />
+                        <!-- for conditional metadata handling -->
+                        <select
+                          *ngIf="feature.metadata"
+                          [formControlName]="feature.key"
+                        >
+                          <option
+                            *ngFor="let option of feature.metadata"
+                            [value]="option"
+                          >
+                            {{ option }}
+                          </option>
+                        </select>
                         <input
-                          *ngIf="feature.type === 'string'"
+                          *ngIf="!feature.metadata && feature.type === 'string'"
                           nbInput
                           type="text"
                           [formControlName]="feature.key"
                           placeholder="{{ feature.name }}"
                         />
+                        <!-- for object -->
                         <textarea
                           *ngIf="feature.value_type === 'object'"
                           nbInput
@@ -232,7 +247,7 @@
             >
               Cancel
             </button>
-            
+
             <button
               nbButton
               size="medium"
