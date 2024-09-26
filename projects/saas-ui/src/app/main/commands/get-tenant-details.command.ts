@@ -6,12 +6,12 @@ import {
 } from '@project-lib/core/api';
 
 import {IAnyObject} from '@project-lib/core/i-any-object';
-import {tenantDetails} from '../../shared/models/tenantDetails.model';
+import {TenantDetails} from '../../shared/models/tenantDetails.model';
 
-export class GetTenantDetailsCommand<T> extends GetAPICommand<tenantDetails[]> {
+export class GetTenantDetailsCommand<T> extends GetAPICommand<TenantDetails[]> {
   constructor(
     apiService: ApiService,
-    adapter: IAdapter<tenantDetails[]>,
+    adapter: IAdapter<TenantDetails[]>,
     appConfig: IAnyObject,
   ) {
     super(

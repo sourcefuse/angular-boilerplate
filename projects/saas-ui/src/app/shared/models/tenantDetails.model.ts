@@ -1,10 +1,9 @@
-export class tenantDetails {
+export class TenantDetails {
   id: string;
   name: string;
-  contacts: {
-    firstName: string;
-    email: string;
-  };
+  firstName: string;
+  lastName: string;
+  email: string;
   address: {
     city: string;
     state: string;
@@ -27,6 +26,7 @@ export class tenantDetails {
     id: string,
     name: string,
     firstName: string,
+    lastName: string,
     email: string,
     city: string,
     state: string,
@@ -42,11 +42,9 @@ export class tenantDetails {
   ) {
     this.id = id;
     this.name = name;
-    this.contacts = {
-      firstName: firstName,
-      email: email,
-    };
-
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
     this.address = {
       city: city,
       state: state,

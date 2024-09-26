@@ -36,23 +36,22 @@ export class TenantDetailComponent {
 
   loadTenantData() {
     if (this.tenantId) {
-      this.tenantFacade.getTenantDetails().subscribe(
+      const filter = {where: {id: this.tenantId}};
+      this.tenantFacade.getTenantDetails(filter).subscribe(
         tenantList => {
-          const tenantData = tenantList.find(
-            tenant => tenant.id === this.tenantId,
-          );
-          if (tenantData) {
+          if (tenantList.length == 1) {
+            const tenantData = tenantList[0];
             const fullTenantName = [
-              tenantData.contacts[0]?.firstName,
+              tenantData?.firstName,
               '    ',
-              tenantData.contacts[0]?.lastName,
+              tenantData?.lastName,
             ]
               .filter(ele => ele != null && ele.trim() != '')
               .join(' ');
             const tenant = {
               tenantName: fullTenantName,
               name: tenantData.name,
-              email: tenantData.contacts[0]?.email,
+              email: tenantData?.email,
               country: tenantData.address?.country,
               planName: tenantData.subscription?.plan?.name,
               startDate: tenantData.subscription?.startDate

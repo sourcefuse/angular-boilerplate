@@ -1,9 +1,15 @@
 import {Component, Inject} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
-import {ColDef, GridApi, GridOptions} from 'ag-grid-community';
+import {
+  ColDef,
+  GridApi,
+  GridOptions,
+  IDatasource,
+  IGetRowsParams,
+} from 'ag-grid-community';
 import {Location} from '@angular/common';
-import {Observable} from 'rxjs';
+import {Observable, combineLatest, map} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';
 import {Tenant} from '../../../shared/models';
 import {AnyObject, BackendFilter} from '@project-lib/core/api';
@@ -11,7 +17,7 @@ import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {EyeIconRendererComponent} from '../eye-icon-renderer/eye-icon-renderer.component';
-import {tenantDetails} from '../../../shared/models/tenantDetails.model';
+import {TenantDetails} from '../../../shared/models/tenantDetails.model';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -23,6 +29,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   gridApi: GridApi;
   params: AnyObject;
   gridOptions: GridOptions;
+  limit = 10;
   defaultColDef: ColDef = {
     flex: 1,
     minWidth: 150,
@@ -44,15 +51,15 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
       pagination: true,
 
       alwaysShowHorizontalScroll: true,
-      rowModelType: 'clientSide',
-      paginationPageSize: 5,
-      paginationPageSizeSelector: [5, 10, 20, 50, 100],
-      cacheBlockSize: 5,
+      rowModelType: 'infinite',
+      paginationPageSize: this.limit,
+
+      paginationPageSizeSelector: [this.limit, 20, 50, 100],
+      cacheBlockSize: this.limit,
       onGridReady: this.onGridReady.bind(this),
       rowHeight: 60,
       defaultColDef: {flex: 1},
     };
-    this.getTenantDetails();
   }
 
   colDefs: ColDef[] = [
@@ -120,56 +127,95 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
       filter: 'agTextColumnFilter',
       floatingFilter: true,
     },
-    {
-      headerName: 'Actions',
-      minWidth: 100,
-      cellRenderer: EyeIconRendererComponent,
-    },
+    // {
+    //   headerName: 'Actions',
+    //   minWidth: 100,
+    //   cellRenderer: EyeIconRendererComponent,
+    // },
   ];
 
   rowData: any[] = [];
   onGridReady(params: AnyObject) {
     this.gridApi = params.api;
+    const dataSource: IDatasource = {
+      getRows: (params: IGetRowsParams) => {
+        const page = params.endRow / this.limit;
+        const paginatedLeads = this.getPaginatedTenantDetails(page, this.limit);
+        const totalLead = this.getTotal();
+        combineLatest([paginatedLeads, totalLead]).subscribe(
+          ([data, count]) => {
+            params.successCallback(data, count.count);
+          },
+
+          err => {
+            params.failCallback();
+          },
+        );
+      },
+    };
+    params.api.setDatasource(dataSource);
   }
 
-  getTenantDetails() {
-    this.tenantFacade.getTenantDetails().subscribe(resp => {
-      this.rowData = resp.map(item => {
-        if (item) {
-          const fullTenantName = [
-            item.contacts[0]?.firstName,
-            '    ',
-            item.contacts[0]?.lastName,
-          ]
-            .filter(ele => ele != null && ele.trim() != '')
-            .join(' ');
+  getPaginatedTenantDetails(
+    page: number,
+    limit: number,
+  ): Observable<AnyObject[]> {
+    const filter: BackendFilter<TenantDetails> = {
+      offset: limit * (page - 1),
+      limit: limit,
+    };
+    return this.tenantFacade.getTenantDetails(filter).pipe(
+      map(resp => {
+        console.log(resp);
+        try {
+          const rows = resp.map(item => {
+            if (item) {
+              const fullTenantName = [
+                item?.firstName || '',
+                '    ',
+                item?.lastName || '',
+              ]
+                .filter(ele => ele != null && ele.trim() != '')
+                .join(' ');
 
-          const addressString = [item.address.zip, '    ', item.address.country]
-            .filter(ele => ele != null && ele.trim() != '')
-            .join(' ');
+              const addressString = [
+                item.address.zip,
+                '    ',
+                item.address.country,
+              ]
+                .filter(ele => ele != null && ele.trim() != '')
+                .join(' ');
 
-          return {
-            id: item.id,
-            name: item.name,
-            tenant_name: fullTenantName,
-            email: item.contacts[0].email,
-            address: addressString,
-            planName: item.subscription?.plan.name,
-            status: TenantStatus[item.subscription?.status],
-            startDate: item.subscription?.startDate
-              ? new Date(item.subscription.startDate).toLocaleDateString()
-              : 'N/A',
-            endDate: item.subscription?.endDate
-              ? new Date(item.subscription.endDate).toLocaleDateString()
-              : 'N/A',
-          };
+              return {
+                id: item.id,
+                name: item.name,
+                tenant_name: fullTenantName,
+                email: item.email,
+                address: addressString,
+                planName: item.subscription?.plan.name,
+                status: TenantStatus[item.subscription?.status],
+                startDate: item.subscription?.startDate
+                  ? new Date(item.subscription.startDate).toLocaleDateString()
+                  : 'N/A',
+                endDate: item.subscription?.endDate
+                  ? new Date(item.subscription.endDate).toLocaleDateString()
+                  : 'N/A',
+              };
+            }
+          });
+          return rows;
+        } catch (error) {
+          console.error('Error processing response:', error);
+          return [];
         }
-      });
-      if (this.gridApi) {
-        this.gridApi.setRowData(this.rowData);
-      }
-    });
+      }),
+    );
   }
+
+  getTotal() {
+    return this.tenantFacade.getTotalTenant();
+  }
+
   createCompanyLink(params: any) {
     const url = this.appConfig.baseApiUrl.replace(
       '//',

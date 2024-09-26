@@ -21,7 +21,7 @@ import {HttpParams} from '@angular/common/http';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {GetTotalTenantCommand} from '../../main/commands/get-total-tenant.command';
-import {tenantDetails} from '../models/tenantDetails.model';
+import {TenantDetails} from '../models/tenantDetails.model';
 
 @Injectable()
 export class TenantFacadeService {
@@ -62,13 +62,23 @@ export class TenantFacadeService {
     return command.execute();
   }
 
-  getTenantDetails() {
-    const command: GetTenantDetailsCommand<tenantDetails> =
+  getTenantDetails(filter?: BackendFilter<TenantDetails>) {
+    const command: GetTenantDetailsCommand<TenantDetails> =
       new GetTenantDetailsCommand(
         this.apiService,
         this.anyAdapter,
         this.appConfig,
       );
+    const backendFilter: BackendFilter<TenantDetails> = {
+      where: filter?.where,
+      offset: filter?.offset,
+      limit: filter?.limit,
+      order: filter?.order,
+      include: filter?.include || [],
+    };
+    command.parameters = {
+      query: new HttpParams().set('filter', JSON.stringify(backendFilter)),
+    };
     return command.execute();
   }
 
