@@ -204,8 +204,11 @@
                           placeholder="{{ feature.name }}"
                         />
                         <!-- for conditional metadata handling -->
-                        <select
-                          *ngIf="feature.metadata"
+
+                        <!-- <select
+                          *ngIf="
+                            feature.metadata && feature.metadata.length > 0
+                          "
                           [formControlName]="feature.key"
                         >
                           <option
@@ -214,7 +217,27 @@
                           >
                             {{ option }}
                           </option>
-                        </select>
+                        </select> -->
+                        <div class="select">
+                          <nb-select
+                            *ngIf="
+                              feature.metadata && feature.metadata.length > 0
+                            "
+                            class="dropdown-wrapper"
+                            placeholder="Select IDP"
+                            status="basic"
+                            [formControlName]="feature.key"
+                          >
+                            <nb-option
+                              *ngFor="let option of feature.metadata"
+                              [value]="option"
+                            >
+                              {{ option }}
+                            </nb-option>
+                          </nb-select>
+                        </div>
+
+                        <!-- For string input when metadata is empty -->
                         <input
                           *ngIf="!feature.metadata && feature.type === 'string'"
                           nbInput

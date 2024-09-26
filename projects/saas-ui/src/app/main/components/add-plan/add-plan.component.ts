@@ -376,10 +376,11 @@ export class AddPlanComponent implements OnInit {
       this.featureOption = res;
       // error handling
       this.featureOption.forEach(feature => {
-        if (feature.metadata) {
+        if (typeof feature.metadata === 'string') {
           feature.metadata = feature.metadata.split(',');
         }
       });
+      console.log(this.featureOption);
       this.createFeatureControls();
     });
   }
