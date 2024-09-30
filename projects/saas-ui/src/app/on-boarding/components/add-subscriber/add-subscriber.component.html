@@ -223,13 +223,14 @@
                     Application Sub-Domain <span class="required">*</span>
                   </span>
                 </div>
+
                 <div class="input">
                   <div class="input-container">
                     <input
-                      placeholder="Enter the subdomain of your application"
+                      placeholder="Enter the key of your application"
                       fieldSize="medium"
                       status="info"
-                      formControlName="subdomain"
+                      formControlName="key"
                       nbInput
                     />
                     <nb-icon
@@ -238,26 +239,40 @@
                       nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 20 characters. Special characters are not allowed."
                     ></nb-icon>
                   </div>
+
                   <div>
                     <div
                       *ngIf="
-                        marketSubsForm.get('subdomain').valid &&
-                        keyVerificationMessage &&
-                        marketSubsForm.get('subdomain').touched
+                        marketSubsForm.get('key').hasError('keyExists') &&
+                        marketSubsForm.get('key').touched
                       "
-                      class="message"
+                      class="error-msg"
                     >
                       {{ keyVerificationMessage }}
                     </div>
+
                     <div
                       *ngIf="
-                        marketSubsForm.get('subdomain').hasError('pattern') &&
-                        marketSubsForm.get('subdomain').touched
+                        marketSubsForm.get('key').valid &&
+                        marketSubsForm.get('key').touched
+                      "
+                      class="success-msg"
+                    >
+                      <nb-icon
+                        icon="checkmark-circle-2-outline"
+                        class="success-icon"
+                      ></nb-icon>
+                      {{ keyVerificationSuccess }}
+                    </div>
+                    <div
+                      *ngIf="
+                        marketSubsForm.get('key').hasError('pattern') &&
+                        marketSubsForm.get('key').touched
                       "
                       class="error-msg"
                     >
                       Subdomain must start with a letter and can include numbers
-                      and hyphens and has maximum length 20.
+                      and hyphens and has a maximum length of 20.
                     </div>
                   </div>
                 </div>

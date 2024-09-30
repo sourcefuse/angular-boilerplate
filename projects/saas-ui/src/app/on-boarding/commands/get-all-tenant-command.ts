@@ -10,12 +10,13 @@ export class GetAllTenantKeysCommand<T> extends GetAPICommand<T> {
   constructor(
     apiService: IApiService,
     adapter: IAdapter<T>,
+    key: string,
     appConfig: IAnyObject,
   ) {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/tenant/keys`,
+      `${appConfig.baseApiUrl}${appConfig.tenantmgmtServiceUrl}/verify-key/${key}`,
     );
   }
 }

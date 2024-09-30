@@ -7,6 +7,6 @@ export interface Subscriber {
   address?: string;
   country: string;
   zip?: string;
-  subdomain: string;
+  key: string;
   regToken: string;
 }

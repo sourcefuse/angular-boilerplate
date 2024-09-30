@@ -48,10 +48,11 @@ export class OnBoardingService {
     private readonly getPlanAdapter: GetPlanAdapter,
     @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
-  public getAllTenantKeys() {
+  public getAllTenantKeys(key: string) {
     const command: GetAllTenantKeysCommand<any> = new GetAllTenantKeysCommand(
       this.apiService,
       this.anyAdapter,
+      key,
       this.appConfig,
     );
 

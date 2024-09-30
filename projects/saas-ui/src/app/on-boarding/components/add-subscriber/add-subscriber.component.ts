@@ -37,7 +37,7 @@ export class AddSubscriberComponent {
       address: [''],
       country: ['', Validators.required],
       zip: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
-      subdomain: [
+      key: [
         '',
         [
           Validators.required,
@@ -64,34 +64,39 @@ export class AddSubscriberComponent {
     });
 
     this.marketSubsForm
-      .get('subdomain')
+      .get('key')
       ?.valueChanges.pipe(debounceTime(1500), distinctUntilChanged())
-      .subscribe(subdomain => {
-        const subdomainControl = this.marketSubsForm.get('subdomain');
+      .subscribe(key => {
+        const subdomainControl = this.marketSubsForm.get('key');
         if (subdomainControl && subdomainControl.valid) {
-          this.verifyKey(subdomain);
+          this.verifyKey(key);
         } else {
           this.keyVerificationMessage = '';
         }
       });
   }
 
-  verifyKey(subdomain: string) {
-    this.onBoardingService.getAllTenantKeys().subscribe(
-      (response: string[]) => {
-        if (response.includes(subdomain)) {
-          this.marketSubsForm.get('subdomain')?.setErrors({keyExists: true});
-          this.keyVerificationMessage =
-            'Subdomain already exists. Please choose another one.';
-        } else {
-          this.marketSubsForm.get('subdomain')?.setErrors(null);
-          this.keyVerificationMessage = 'Subdomain is available.';
-        }
-      },
-      error => {
-        this.keyVerificationMessage = 'Error verifying subdomain';
-      },
-    );
+  verifyKey(key: string) {
+    this.onBoardingService
+      .getAllTenantKeys(this.marketSubsForm.get('key')?.value)
+      .subscribe(
+        response => {
+          if (response.exists) {
+            this.marketSubsForm.get('key')?.setErrors({keyExists: true});
+            this.keyVerificationMessage =
+              'Subdomain already exists. Please choose another one.';
+            this.keyVerificationSuccess = '';
+          } else {
+            this.marketSubsForm.get('key')?.setErrors(null);
+            this.keyVerificationSuccess = 'Subdomain is available.';
+            this.keyVerificationMessage = '';
+          }
+        },
+        error => {
+          this.keyVerificationMessage = 'Error verifying subdomain';
+          this.keyVerificationSuccess = '';
+        },
+      );
   }
 
   showToastr(status: string, message: string) {
@@ -113,7 +118,7 @@ export class AddSubscriberComponent {
         address: userData.address,
         country: userData.country,
         zip: userData.zip,
-        subdomain: userData.subdomain,
+        key: userData.key,
         regToken: this.regToken,
       };
       console.log(user);

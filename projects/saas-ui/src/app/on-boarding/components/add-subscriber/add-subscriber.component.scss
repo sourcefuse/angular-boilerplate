@@ -25,6 +25,19 @@
   color: #007bff;
 }
 
+
+.success-msg {
+  color: green;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.success-icon {
+  color: green;
+  margin-right: 5px;
+}
+
 .input-box {
   .input {
     select {
