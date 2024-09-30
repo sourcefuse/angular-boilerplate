@@ -31,7 +31,6 @@ export class AddSubscriberComponent {
     this.marketSubsForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      contact: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
       companyName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       address: [''],
@@ -112,7 +111,6 @@ export class AddSubscriberComponent {
       const user: Subscriber = {
         firstName: userData.firstName,
         lastName: userData.lastName,
-        contact: userData.contact,
         companyName: userData.companyName,
         email: userData.email,
         address: userData.address,
