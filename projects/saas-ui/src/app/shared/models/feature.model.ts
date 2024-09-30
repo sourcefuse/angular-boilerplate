@@ -8,7 +8,7 @@ export class Features {
   description: string;
   key: string;
   type: 'boolean' | 'number' | 'string' | 'object';
-  defaultValue: number;
+  defaultValue: 'boolean' | 'number' | 'string' | 'object';
   metadata?: any;
   value?: FeatureValues;
   constructor(data?: Partial<Features>) {
