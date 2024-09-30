@@ -19,3 +19,4 @@ export * from './add-features-for-plan.command';
 export * from './edit-features-by-planid.command';
 export * from './get-feature-by-planid.command';
 export * from './get-features.command';
+export * from './get-tenant-details.command';

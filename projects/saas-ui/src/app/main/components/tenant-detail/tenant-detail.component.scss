@@ -1,0 +1,72 @@
+$primary-color: #f50057; 
+$secondary-color: #6c757d;
+$background-color: #f8f9fa;
+$text-color: #343a40;
+$border-color: #e0e0e0;
+$error-color: #e53935;
+$input-padding: 10px;
+$border-radius: 4px;
+
+h2 {
+  color: $text-color;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-wrapper {
+  background-color: $background-color;
+  padding: 20px;
+  border-radius: $border-radius;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-lead-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.input-box {
+  width: 100%;
+  
+  @media (min-width: 600px) {
+    width: calc(50% - 10px); // Two fields per row
+  }
+
+  .input-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: $text-color;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .required {
+    color: $error-color;
+  }
+
+  .inputTags {
+    padding: $input-padding;
+    background-color: #d9dde13d;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    color: $text-color;
+    font-size: 14px;
+  }
+}
+
+.error-msg {
+  color: $error-color;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.btn-wrapper{
+  display: flex;
+  justify-content: end;
+}

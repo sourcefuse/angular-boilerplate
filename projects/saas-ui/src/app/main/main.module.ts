@@ -20,6 +20,8 @@ import {BillingPlanService} from '../shared/services/billing-plan-service';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {ButtonRendererComponent} from './components/button-renderer/button-renderer.component';
 import {TenantRegistrationComponent} from './components/tenant-registration/tenant-registration.component';
+import { TenantDetailComponent } from './components/tenant-detail/tenant-detail.component';
+import { EyeIconRendererComponent } from './components/eye-icon-renderer/eye-icon-renderer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import {TenantRegistrationComponent} from './components/tenant-registration/tena
     AddPlanComponent,
     ButtonRendererComponent,
     TenantRegistrationComponent,
+    TenantDetailComponent,
+    EyeIconRendererComponent,
   ],
   imports: [
     CommonModule,

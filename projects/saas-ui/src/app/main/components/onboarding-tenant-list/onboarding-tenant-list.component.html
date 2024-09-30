@@ -16,20 +16,18 @@
         </div>
       </div>
 
-      <!-- loader -->
-      <!-- <div *ngIf="loading" class="loader-overlay">
-        <div class="loader"></div>
-      </div> -->
-
       <!-- ag-grid -->
-      <div class="grid">
-        <ag-grid-angular
-          style="width: 1350px; height: 650px"
-          class="ag-theme-quartz"
-          [columnDefs]="colDefs"
-          [gridOptions]="gridOptions"
-        >
-        </ag-grid-angular>
+      <div class="grid-wrapper">
+        <div class="grid">
+          <ag-grid-angular
+            style="width: calc(100vw-200px); height: 650px"
+            class="ag-theme-quartz"
+            [columnDefs]="colDefs"
+            [gridOptions]="gridOptions"
+            (gridReady)="onGridReady($event)"
+          >
+          </ag-grid-angular>
+        </div>
       </div>
     </nb-card-body>
   </nb-card>
