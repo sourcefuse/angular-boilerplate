@@ -10,6 +10,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {OnBoardingService} from '../shared/services/on-boarding-service';
 import {TenantFacadeService} from '../shared/services/tenant-list-facade.service';
 import {AddTenantComponent} from './components/add-tenant/add-tenant.component';
+import { AddSubscriberComponent } from './components/add-subscriber/add-subscriber.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {AddTenantComponent} from './components/add-tenant/add-tenant.component';
     EmailVerificationComponent,
     VerificationCompleteComponent,
     AddTenantComponent,
+    AddSubscriberComponent,
   ],
   imports: [
     CommonModule,

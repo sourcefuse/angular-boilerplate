@@ -1,0 +1,265 @@
+<nb-card class="h-100 card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper add-lead-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2 class="title">Marketplace Registration</h2>
+          <form [formGroup]="marketSubsForm" (ngSubmit)="onSubmit()">
+            <!-- input fields -->
+            <div class="input-wrapper">
+              <div class="input-box">
+                <div class="input-title">
+                  <span>First Name <span class="required">*</span></span>
+                </div>
+                <div class="input">
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      placeholder="Enter First Name"
+                      status="info"
+                      formControlName="firstName"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your first name. This field is required."
+                    ></nb-icon>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Last Name <span class="required">*</span></span>
+                </div>
+                <div class="input">
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      placeholder="Enter Last Name"
+                      status="info"
+                      formControlName="lastName"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your Last name. This field is required."
+                    ></nb-icon>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Company Name <span class="required">*</span></span>
+                </div>
+                <div class="input">
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      placeholder="Company Name"
+                      status="info"
+                      formControlName="companyName"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your Company name. This field is required."
+                    ></nb-icon>
+                  </div>
+                </div>
+              </div>
+
+              <!-- email -->
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Email <span class="required">*</span></span>
+                </div>
+                <div class="input">
+                  <div class="input-container">
+                    <input
+                      type="Email"
+                      placeholder="Email"
+                      status="info"
+                      fieldSize="medium"
+                      formControlName="email"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="email-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your Mail id. This field is required."
+                    ></nb-icon>
+                  </div>
+                </div>
+
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    marketSubsForm.get('email').hasError('email') &&
+                    marketSubsForm.get('email').touched
+                  "
+                >
+                  Invalid email format.
+                </div>
+              </div>
+
+              <!-- address-->
+              <div class="input-box address-input-box">
+                <div class="input-title">
+                  <span>Address</span>
+                </div>
+                <div class="input address-input">
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      placeholder="Enter Your Address"
+                      status="info"
+                      formControlName="address"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter your address. This field is required"
+                    ></nb-icon>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Zip Code<span class="required">*</span></span>
+                </div>
+                <div class="input">
+                  <div class="input-container">
+                    <input
+                      type="text"
+                      placeholder="Enter your Zip Code"
+                      status="info"
+                      formControlName="zip"
+                      nbInput
+                      maxlength="6"
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Please enter zip code."
+                    ></nb-icon>
+                  </div>
+
+                  <div
+                    class="error-msg"
+                    *ngIf="marketSubsForm.get('zip').hasError('pattern')"
+                  >
+                    Zip Code must be numeric only.
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-box">
+                <div class="input-title">
+                  <span>Country <span class="required">*</span></span>
+                </div>
+                <div class="select">
+                  <nb-select
+                    class="dropdown-wrapper"
+                    placeholder="Select Your Country"
+                    size="large"
+                    formControlName="country"
+                  >
+                    <nb-option
+                      *ngFor="let option of countryOptions"
+                      [value]="option.value"
+                    >
+                      {{ option.label }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+              </div>
+
+              <div class="input-box address-input-box">
+                <div class="input-title">
+                  <span>
+                    Application Sub-Domain <span class="required">*</span>
+                  </span>
+                </div>
+
+                <div class="input">
+                  <div class="input-container">
+                    <input
+                      placeholder="Enter the key of your application"
+                      fieldSize="medium"
+                      status="info"
+                      formControlName="key"
+                      nbInput
+                    />
+                    <nb-icon
+                      icon="info-outline"
+                      class="info-icon"
+                      nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 20 characters. Special characters are not allowed."
+                    ></nb-icon>
+                  </div>
+
+                  <div>
+                    <div
+                      *ngIf="
+                        marketSubsForm.get('key').hasError('keyExists') &&
+                        marketSubsForm.get('key').touched
+                      "
+                      class="error-msg"
+                    >
+                      {{ keyVerificationMessage }}
+                    </div>
+
+                    <div
+                      *ngIf="
+                        marketSubsForm.get('key').valid &&
+                        marketSubsForm.get('key').touched
+                      "
+                      class="success-msg"
+                    >
+                      <nb-icon
+                        icon="checkmark-circle-2-outline"
+                        class="success-icon"
+                      ></nb-icon>
+                      {{ keyVerificationSuccess }}
+                    </div>
+                    <div
+                      *ngIf="
+                        marketSubsForm.get('key').hasError('pattern') &&
+                        marketSubsForm.get('key').touched
+                      "
+                      class="error-msg"
+                    >
+                      Subdomain must start with a letter and can include numbers
+                      and hyphens and has a maximum length of 20.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- signup button -->
+              <div class="btn-wrapper">
+                <div class="btn regbtn">
+                  <button
+                    nbButton
+                    size="medium"
+                    status="danger"
+                    [disabled]="!marketSubsForm.valid"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
