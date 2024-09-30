@@ -183,7 +183,7 @@ export class AddPlanComponent implements OnInit {
           );
           break;
         case 'string':
-          control = new FormControl();
+          control = new FormControl(feature.defaultValue || '');
           break;
         case 'object':
           control = new FormControl();
@@ -273,7 +273,6 @@ export class AddPlanComponent implements OnInit {
               {} as {[key: string]: any},
             )
         : {};
-      console.log(this.addPlanForm.value);
       const generalDetailsData = {
         name: domainData.name,
         billingCycleId: domainData.billingCycleId,
@@ -297,7 +296,6 @@ export class AddPlanComponent implements OnInit {
       )
         .map(key => {
           const feature = this.featureValue.features.find(f => f.id === key);
-          console.log(feature);
           return {
             id: selectedFeatures[key].id,
             featureKey: feature.id,
@@ -308,15 +306,12 @@ export class AddPlanComponent implements OnInit {
           };
         })
         .filter(item => item.id !== null);
-      console.log(updateFeatureDetails);
       this.featureListService
         .editFeatures(
           updateFeatureDetails,
           this.activateRoute.snapshot.params.id,
         )
-        .subscribe(respFeature => {
-          console.log(respFeature);
-        });
+        .subscribe(respFeature => {});
     } else {
       // Handle form validation errors if necessary
       console.error('Form is invalid');
@@ -374,6 +369,11 @@ export class AddPlanComponent implements OnInit {
   getFeatures() {
     this.featureListService.getFeatures().subscribe(res => {
       this.featureOption = res;
+      this.featureOption.forEach(feature => {
+        if (typeof feature.metadata === 'string') {
+          feature.metadata = feature.metadata.split(',');
+        }
+      });
       this.createFeatureControls();
     });
   }

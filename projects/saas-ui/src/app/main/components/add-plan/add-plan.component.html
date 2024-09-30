@@ -189,11 +189,13 @@
                   >
                     <div class="feature-details">
                       <span class="feature-name">{{ feature.name }}</span>
+                      <!-- for boolean -->
                       <div class="feature-input">
                         <nb-toggle
                           *ngIf="feature.type === 'boolean'"
                           [formControlName]="feature.key"
                         ></nb-toggle>
+                        <!-- for number -->
                         <input
                           *ngIf="feature.type === 'number'"
                           nbInput
@@ -201,13 +203,35 @@
                           [formControlName]="feature.key"
                           placeholder="{{ feature.name }}"
                         />
+                        <!-- for conditional metadata handling -->
+                        <div class="select">
+                          <nb-select
+                            *ngIf="
+                              feature.metadata && feature.metadata.length > 0
+                            "
+                            class="dropdown-wrapper"
+                            placeholder="Select your Choice"
+                            status="basic"
+                            [formControlName]="feature.key"
+                          >
+                            <nb-option
+                              *ngFor="let option of feature.metadata"
+                              [value]="option"
+                            >
+                              {{ option }}
+                            </nb-option>
+                          </nb-select>
+                        </div>
+
+                        <!-- For string input when metadata is empty -->
                         <input
-                          *ngIf="feature.type === 'string'"
+                          *ngIf="!feature.metadata && feature.type === 'string'"
                           nbInput
                           type="text"
                           [formControlName]="feature.key"
                           placeholder="{{ feature.name }}"
                         />
+                        <!-- for object -->
                         <textarea
                           *ngIf="feature.value_type === 'object'"
                           nbInput
@@ -232,7 +256,7 @@
             >
               Cancel
             </button>
-            
+
             <button
               nbButton
               size="medium"
