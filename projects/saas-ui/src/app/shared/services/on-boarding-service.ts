@@ -17,17 +17,15 @@ import {
   AddTenantFromLeadCommand,
   AddLeadCommand,
   GetLeadListCommand,
-  AddSubscriberCommand,
 } from '../../on-boarding/commands';
 import {GetPlanAdapter} from '../../on-boarding/adapters';
-import {Lead, Subscriber, Tenant} from '../models';
+import {Lead, Tenant} from '../models';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {IAnyObject} from '@project-lib/core/i-any-object';
 import {GetTotalLeadCommand} from '../../main/commands/get-total-lead.command';
 
 import {TenantLead} from '../models/tenantLead.model';
 import {RegisterTenantCommand} from '../../main/commands/register-tenant.command';
-import {GetAllTenantKeysCommand} from '../../on-boarding/commands/get-all-tenant-command';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
@@ -48,19 +46,6 @@ export class OnBoardingService {
     private readonly getPlanAdapter: GetPlanAdapter,
     @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {}
-  public getAllTenantKeys(key: string) {
-    const command: GetAllTenantKeysCommand<any> = new GetAllTenantKeysCommand(
-      this.apiService,
-      this.anyAdapter,
-      key,
-      this.appConfig,
-    );
-
-    command.parameters = {
-      headers: new HttpHeaders().set(AuthTokenSkipHeader, '-'),
-    };
-    return command.execute();
-  }
 
   public validateEmail(code: string, leadId: string) {
     const command: VerifyEmailCommand<{leadId: string; token: string}> =
@@ -118,24 +103,7 @@ export class OnBoardingService {
     };
     return command.execute();
   }
-  addSubscriber(subscriber: Subscriber): Observable<Subscriber> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'x-api-key': this.appConfig.apiKey,
-    }).set(AuthTokenSkipHeader, '-');
 
-    const command: AddSubscriberCommand<Subscriber> = new AddSubscriberCommand(
-      this.apiService,
-      this.anyAdapter,
-      this.appConfig,
-    );
-    command.parameters = {
-      headers: headers,
-      data: subscriber,
-    };
-
-    return command.execute();
-  }
   addLead(lead: AnyObject): Observable<Lead> {
     const command: AddLeadCommand<Lead> = new AddLeadCommand(
       this.apiService,
