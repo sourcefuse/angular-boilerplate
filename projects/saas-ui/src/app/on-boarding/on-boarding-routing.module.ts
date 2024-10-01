@@ -6,7 +6,6 @@ import {OnBoardingComponent} from './on-boarding.component';
 import {VerificationCompleteComponent} from './components/verification-complete/verification-complete.component';
 import {AddTenantComponent} from './components/add-tenant/add-tenant.component';
 import {EmailVerifyGuard} from './guards/email-verify.guard';
-import {AddSubscriberComponent} from './components/add-subscriber/add-subscriber.component';
 
 const routes: Routes = [
   {
@@ -30,10 +29,7 @@ const routes: Routes = [
         component: AddTenantComponent,
         canActivate: [EmailVerifyGuard],
       },
-      {
-        path: 'add-subscriber',
-        component: AddSubscriberComponent,
-      },
+      
     ],
   },
 ];
