@@ -37,6 +37,11 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     floatingFilter: true,
     resizable: true,
   };
+  tierOptions = [
+    {name: 'Basic', value: 'BASIC'},
+    {name: 'Standard', value: 'STANDARD'},
+    {name: 'Premium', value: 'PREMIUM'},
+  ];
 
   constructor(
     protected override readonly location: Location,
@@ -105,6 +110,15 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
       flex: 1,
       filter: 'agTextColumnFilter',
       floatingFilter: true,
+    },
+    {
+      field: 'tier',
+      headerName: 'Tier',
+      minWidth: 120,
+      flex: 1,
+      filter: 'agTextColumnFilter',
+      floatingFilter: true,
+      cellStyle: {textAlign: 'center'}, // Optional styling for the column
     },
     {
       field: 'status',
@@ -186,6 +200,11 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
                 .filter(ele => ele != null && ele.trim() != '')
                 .join(' ');
 
+              const displayTier =
+                this.tierOptions.find(
+                  option => option.value === item.subscription.plan.tier,
+                )?.name || '';
+
               return {
                 id: item.id,
                 name: item.name,
@@ -193,6 +212,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
                 email: item.email,
                 address: addressString,
                 planName: item.subscription?.plan.name,
+                tier: displayTier,
                 status: TenantStatus[item.subscription?.status],
                 startDate: item.subscription?.startDate
                   ? new Date(item.subscription.startDate).toLocaleDateString()
