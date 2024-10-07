@@ -176,8 +176,11 @@ ul {
 .details-wrapeer {
   border: 1px solid #cecece;
   padding: 20px;
-  border-radius: 4px;
-  margin-bottom: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: none;
+    border-radius: 10px;
+    margin: 20px 0 35px 0;
+   
 }
 
 .input-box-wrapper {
@@ -268,5 +271,6 @@ ul {
     color: #007bff;
     font-size: 18px;
     z-index: 1;
+    margin-right:10px;
   }
 }

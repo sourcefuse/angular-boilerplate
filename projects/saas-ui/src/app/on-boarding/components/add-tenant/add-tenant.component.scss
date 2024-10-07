@@ -9,6 +9,9 @@
   gap: 10px;
   justify-content: space-between;
   flex-wrap: wrap;
+  .input-title {
+    margin-bottom: 7px;
+}
 }
 
 .plan-card-container {
@@ -20,17 +23,41 @@
     gap: 20px;
 
     .plan-card-box {
-      flex: 1;
+      min-width: 30%;
       justify-content: space-between;
     }
   }
 }
+
+.card-row{
+  border-radius: 16px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  max-width: 90%;
+  margin: auto;
+  .sign-in-title h2 {
+    font-size: 34px;
+  }
+  .sign-in-title p {
+    font-size: 16px;
+    margin: 0 0 15px 0 !important;
+    .size-tag-wrapper{
+      font-weight: 500;}
+    }
+   .sign-in-title h3 {
+    font-size: 20px;
+    color: #525252;
+    margin-top: 0px;
+    margin-bottom: 10px;
+  }
+  
+  }
 
 .error-msg {
   color: red;
   font-size: 14px;
   margin-top: 3px;
 }
+
 
 .input-container {
   display: flex;
@@ -45,8 +72,6 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
-
-
 
   .info-icon {
     position: absolute;
@@ -104,6 +129,11 @@
   }
 }
 
+.doller-wrapper{
+  color: #f00a19;
+  font-size: 16px;
+}
+
 .plan-card-container {
   display: flex;
   flex-direction: column;
@@ -133,27 +163,36 @@
 
 .plan-card-box {
   width: 300px;
-  border-radius: 8px;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   cursor: pointer;
   min-width: 23%;
-  flex: auto !important;
+ 
 
   &:hover {
     transform: scale(1.05);
   }
 
   .plan-card-header {
-    background: #e85b7b26;
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(234 81 116));
     color: #fff;
     padding: 15px;
-    text-align: center;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h5 {
       font-size: 1.25em;
       margin: 0;
+      display: inline-block;
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    font-size: 16px;
     }
   }
 
@@ -169,6 +208,8 @@
     .plan-price {
       font-size: 1.5em;
       font-weight: bold;
+      font-size: 20px;
+    color: #535050;
     }
   }
 
@@ -209,7 +250,7 @@
         }
       }
 
-      input[type='radio']:checked+.radio-checkmark::after {
+      input[type='radio']:checked + .radio-checkmark::after {
         opacity: 1;
       }
     }
