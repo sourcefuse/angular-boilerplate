@@ -148,9 +148,10 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
       '//',
       `//${params.data?.key}.`,
     );
-    return `<a href="${url}" target="_blank" class="company-link">
-      ${params.value}
-    </a>`;
+    return `<a href="${url}" target="_blank" 
+    style="color: #007bff; text-decoration: none;">
+   ${params.value}
+ </a>`;
   }
 
   getTotal() {

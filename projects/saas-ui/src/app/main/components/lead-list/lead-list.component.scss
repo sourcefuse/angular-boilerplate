@@ -1,1 +1,24 @@
 @use '../../styles/grid-styles.scss' as *;
+
+.header-wrapper{
+    color: red($color: #000000);
+}
+
+.header-bold {
+    font-weight: bold;    
+    font-family: 'Arial, sans-serif'; 
+    font-size: 14px;     
+    color: #333;       
+  }
+
+  .ag-theme-quartz .ag-header-group-cell {
+    font-weight: normal;
+    font-size: 22px;
+
+    .ag-header-cell-sortable .ag-header-cell-label {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+}

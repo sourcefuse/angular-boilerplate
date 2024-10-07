@@ -13,6 +13,9 @@
   nb-auth-block {
     max-width: none;
   }
+  .login-content-wrapper{
+    max-width: 500px;
+  }
 
   ::ng-deep {
     nb-layout .layout .layout-container .content .columns nb-layout-column {

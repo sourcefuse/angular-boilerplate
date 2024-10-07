@@ -1,3 +1,4 @@
+
 @use '../../styles/grid-styles.scss' as *;
 
 .ag-theme-quartz {
@@ -5,13 +6,18 @@
   height: 400;
 }
 
-.header-wrapper{
+.header-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.a {
+a {
+  text-decoration: none;
+  color: #19a5ff;
+}
+
+.ag-cell-value a{
   text-decoration: none;
   color: #19a5ff;
 }
@@ -41,11 +47,19 @@
 }
 
 @-webkit-keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
