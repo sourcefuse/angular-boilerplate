@@ -252,20 +252,21 @@ export class AddPlanComponent implements OnInit {
       const featuresGroup = this.addPlanForm.get('features') as FormGroup;
       const selectedFeatures = featuresGroup
         ? Object.keys(featuresGroup.controls)
-            .filter(
-              key =>
-                featuresGroup.get(key)?.value !== null &&
-                featuresGroup.get(key)?.value !== '',
-            )
+            // .filter(
+            //   key =>
+            //     featuresGroup.get(key)?.value !== null &&
+            //     featuresGroup.get(key)?.value !== '',
+            // )
             .reduce(
               (acc, key) => {
                 const feature = this.featureValue.features.find(
                   f => (f as any).key === key,
                 );
                 if (feature) {
+                  const featureVal = featuresGroup.get(key)?.value;
                   acc[feature.id] = {
                     id: (feature.value as any)?.id,
-                    value: featuresGroup.get(key)?.value,
+                    value: featureVal || feature.defaultValue || '',
                   };
                 }
                 return acc;
