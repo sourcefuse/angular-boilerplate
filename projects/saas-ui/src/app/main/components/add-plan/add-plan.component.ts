@@ -178,7 +178,7 @@ export class AddPlanComponent implements OnInit {
           break;
         case 'number':
           control = new FormControl(
-            feature.defaultValue,
+            feature.defaultValue || 0,
             Validators.pattern(/[0-9]/),
           );
           break;
@@ -252,20 +252,21 @@ export class AddPlanComponent implements OnInit {
       const featuresGroup = this.addPlanForm.get('features') as FormGroup;
       const selectedFeatures = featuresGroup
         ? Object.keys(featuresGroup.controls)
-            .filter(
-              key =>
-                featuresGroup.get(key)?.value !== null &&
-                featuresGroup.get(key)?.value !== '',
-            )
+            // .filter(
+            //   key =>
+            //     featuresGroup.get(key)?.value !== null &&
+            //     featuresGroup.get(key)?.value !== '',
+            // )
             .reduce(
               (acc, key) => {
                 const feature = this.featureValue.features.find(
                   f => (f as any).key === key,
                 );
                 if (feature) {
+                  const featureVal = featuresGroup.get(key)?.value;
                   acc[feature.id] = {
-                    id: (feature.value as any).id,
-                    value: featuresGroup.get(key)?.value,
+                    id: (feature.value as any)?.id,
+                    value: featureVal || feature.defaultValue || '',
                   };
                 }
                 return acc;
@@ -317,6 +318,7 @@ export class AddPlanComponent implements OnInit {
       console.error('Form is invalid');
     }
   }
+
   onTierChange(selectedTier: string): void {
     this.showStorageSize =
       selectedTier === 'STANDARD' || selectedTier === 'PREMIUM';
