@@ -4,6 +4,8 @@ export class TenantDetails {
   firstName: string;
   lastName: string;
   email: string;
+  status: number;
+  key: string;
   address: {
     city: string;
     state: string;
@@ -17,7 +19,7 @@ export class TenantDetails {
       price: number;
       tier: string;
     };
-    status: number;
+
     startDate: Date;
     endDate: Date;
   };
@@ -28,6 +30,8 @@ export class TenantDetails {
     firstName: string,
     lastName: string,
     email: string,
+    key: string,
+    status: number,
     city: string,
     state: string,
     zipCode: string,
@@ -36,7 +40,7 @@ export class TenantDetails {
     description: string,
     price: number,
     tier: string,
-    status: number,
+
     startDate: Date,
     endDate: Date,
   ) {
@@ -45,6 +49,8 @@ export class TenantDetails {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
+    this.key = key;
+    this.status = status;
     this.address = {
       city: city,
       state: state,
@@ -52,7 +58,6 @@ export class TenantDetails {
       country: country,
     };
     this.subscription = {
-      status: status,
       startDate: startDate,
       endDate: endDate,
       plan: {
