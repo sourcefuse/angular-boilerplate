@@ -2,25 +2,48 @@ import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ThemeModule} from '@project-lib/theme/theme.module';
-import {BbGanttComponent} from './components';
-import {GANTT_SCALES} from './const';
+import {GANTT, GANTT_SCALES} from './const';
 import {MonthlyScaleService} from './services/timeline-scales/monthly-scale.service';
 import {QuarterlyScaleService} from './services/timeline-scales/quarterly-scale.service';
 import {WeeklyScaleService} from './services/timeline-scales/weekly-scale.service';
 import {GanttRoutingModule} from './gantt-routing.module';
-import {GanttBarsModule} from './components/gantt-bars/gantt-bars.module';
+import {GanttService} from './services';
+import {gantt} from 'dhtmlx-gantt';
+import {
+  CustomGanttAdapter,
+  GanttAdapter,
+  GanttLib,
+  GanttScaleService,
+} from './types';
+
+import {
+  GanttBarsComponent,
+  GanttColumnComponent,
+  GanttHeaderComponent,
+  GanttTooltipComponent,
+} from './components';
+import {NbInputModule} from '@nebular/theme/components/input/input.module';
 
 @NgModule({
-  declarations: [BbGanttComponent],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ThemeModule,
-    GanttRoutingModule,
-    GanttBarsModule,
+  declarations: [
+    GanttBarsComponent,
+    GanttColumnComponent,
+    GanttHeaderComponent,
+    GanttTooltipComponent,
   ],
-  exports: [BbGanttComponent],
+  imports: [CommonModule, ReactiveFormsModule, ThemeModule, GanttRoutingModule],
+  exports: [
+    GanttBarsComponent,
+    GanttColumnComponent,
+    GanttHeaderComponent,
+    GanttTooltipComponent,
+  ],
   providers: [
+    GanttService,
+    {
+      provide: GANTT,
+      useValue: gantt,
+    },
     {
       provide: GANTT_SCALES,
       multi: true,
@@ -35,6 +58,10 @@ import {GanttBarsModule} from './components/gantt-bars/gantt-bars.module';
       provide: GANTT_SCALES,
       multi: true,
       useClass: QuarterlyScaleService,
+    },
+    {
+      provide: GanttAdapter,
+      useClass: CustomGanttAdapter,
     },
   ],
 })
