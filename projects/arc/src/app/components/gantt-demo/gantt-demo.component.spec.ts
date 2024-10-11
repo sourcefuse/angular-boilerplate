@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {GanttTooltipComponent} from './gantt-tooltip.component';
+import {GanttDemoComponent} from './gantt-demo.component';
 
-describe('GanttTooltipComponent', () => {
-  let component: GanttTooltipComponent;
-  let fixture: ComponentFixture<GanttTooltipComponent>;
+describe('GanttDemoComponent', () => {
+  let component: GanttDemoComponent;
+  let fixture: ComponentFixture<GanttDemoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GanttTooltipComponent],
+      declarations: [GanttDemoComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(GanttTooltipComponent);
+    fixture = TestBed.createComponent(GanttDemoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
