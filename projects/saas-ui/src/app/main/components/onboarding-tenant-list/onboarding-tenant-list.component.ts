@@ -27,7 +27,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   gridApi: GridApi;
-  params: AnyObject;
+  params: TenantDetails;
   gridOptions: GridOptions;
   limit = 10;
   defaultColDef: ColDef = {
@@ -210,10 +210,11 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
                 name: item.name,
                 tenant_name: fullTenantName,
                 email: item.email,
+                key: item.key,
                 address: addressString,
                 planName: item.subscription?.plan.name,
                 tier: displayTier,
-                status: TenantStatus[item.subscription?.status],
+                status: TenantStatus[item.status],
                 startDate: item.subscription?.startDate
                   ? new Date(item.subscription.startDate).toLocaleDateString()
                   : 'N/A',
