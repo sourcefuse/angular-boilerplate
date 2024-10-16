@@ -34,6 +34,7 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
     {field: 'description', width: 200, minWidth: 20},
     {field: 'cycleName', width: 250, minWidth: 20},
     {field: 'currencyName', width: 250, minWidth: 20},
+    {field: 'tier', headerName: 'Tier', width: 250, minWidth: 20},
     {field: 'price', width: 250, minWidth: 20},
     {
       field: 'actions',
@@ -106,13 +107,12 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
               id: item.id,
               name: item.name,
               description: item.description,
-          cycleName: item['billingCycle']?.cycleName,
-                
-          currencyName: item['currency']?.currencyName,
-            
-          price: item.price,
-        };
-      });
+              cycleName: item['billingCycle']?.cycleName,
+              currencyName: item['currency']?.currencyName,
+              tier: item.tier,
+              price: item.price,
+            };
+          });
 
           return rows;
         } catch (error) {
