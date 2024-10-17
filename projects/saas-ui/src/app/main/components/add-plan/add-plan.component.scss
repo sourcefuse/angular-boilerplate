@@ -119,6 +119,10 @@ h3 {
   text-align: right;
   margin: 10px;
   padding: 10px;
+  .btn-danger{
+    background-color: #f00a18 !important;
+    color: white !important;
+  }
 }
 
 input.ng-invalid.ng-touched {

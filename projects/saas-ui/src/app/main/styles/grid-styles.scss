@@ -37,9 +37,9 @@
   text-align: right;
   button {
     min-width: 200px;
-    &:hover {
-      background-color: #ff3d71;
-      color: white;
+    .btn-danger{
+      background-color: #f00a18 !important;
+      color: white !important;
     }
   }
 }

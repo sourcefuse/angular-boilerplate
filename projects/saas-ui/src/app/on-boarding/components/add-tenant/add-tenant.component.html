@@ -158,7 +158,7 @@
                         size="large"
                       ></nb-icon>
                     </nb-card-header>
-                    <nb-card-body>
+                    <nb-card-body class="body-wrapper">
                       <p class="plan-description">{{ plan.description }}</p>
                       <p class="plan-price" *ngIf="plan.tier || plan.size">
                         {{ plan.tier }}
@@ -198,7 +198,7 @@
                 <button
                   nbButton
                   size="medium"
-                  status="danger"
+                  class="btn-danger"
                   [disabled]="!addTenantForm.valid"
                   type="submit"
                 >

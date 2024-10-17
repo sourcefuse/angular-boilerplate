@@ -215,13 +215,18 @@
 
           <!-- signup button -->
           <div class="btn">
-            <button nbButton size="medium" status="danger" (click)="onCancel()">
+            <button
+              nbButton
+              size="medium"
+              class="btn-danger"
+              (click)="onCancel()"
+            >
               Cancel
             </button>
             <button
               nbButton
               size="medium"
-              status="danger"
+              class="btn-danger"
               [disabled]="!addLeadForm.valid"
               type="submit"
             >

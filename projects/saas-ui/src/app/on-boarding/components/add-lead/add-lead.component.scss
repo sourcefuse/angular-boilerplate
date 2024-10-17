@@ -16,6 +16,12 @@
     padding-top: 7%;
   }
 }
+.btn{
+  .btn-danger{
+    background-color: #f00a18 !important;
+    color: white !important;
+  }
+}
 
 .error-msg {
   color: red;
@@ -158,10 +164,10 @@ margin: auto;
 
 .add-lead-wrapper {
   .btn {
-    
         margin-top: 30px;
         justify-content: space-between;
     display: flex
+    
   }
 }
 
