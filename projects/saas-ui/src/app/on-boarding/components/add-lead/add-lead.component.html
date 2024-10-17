@@ -1,4 +1,4 @@
-<nb-card class="h-100 card-row">
+<nb-card class="card-row">
   <nb-card-body class="m-0">
     <div class="main-wrapper add-lead-wrapper">
       <div>
@@ -218,7 +218,15 @@
             <button
               nbButton
               size="medium"
-              status="danger"
+              class="btn-danger"
+              (click)="onCancel()"
+            >
+              Cancel
+            </button>
+            <button
+              nbButton
+              size="medium"
+              class="btn-danger"
               [disabled]="!addLeadForm.valid"
               type="submit"
             >

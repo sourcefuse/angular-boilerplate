@@ -5,21 +5,32 @@
   <div class="main-wrapper">
     <div>
       <div class="sign-in-title">
-        <h2>Sign In</h2>
-        <h3>Welcome to Arc by SourceFuse</h3>
+        <h2 class="head-wrapper">Multi Tenancy SaaS Application</h2>
+        <p class="text-wrapper">
+          Address Customer demand with reliable, scalable AWS-hosted SaaS
+          Solutions
+        </p>
       </div>
 
       <!-- Social login button -->
       <div class="btn">
         <button
+          class="btn-wrapper"
           nbButton
-          shape="round"
           size="medium"
+          shape="round"
           (click)="loginViaCognito()"
         >
           Sign In with Amazon Cognito
         </button>
-        <button nbButton shape="round" size="medium" (click)="withoutLogin()">
+        <p>OR</p>
+        <button
+          nbButton
+          class="btn-wrapper"
+          size="medium"
+          shape="round"
+          (click)="withoutLogin()"
+        >
           Registration
         </button>
       </div>

@@ -49,6 +49,11 @@ router-outlet.main-router + * {
   }
 }
 
+.btn-danger{
+  background-color: #f00a18 !important;
+  color: white !important;
+}
+
 .input {
   input {
     width: 92%;
