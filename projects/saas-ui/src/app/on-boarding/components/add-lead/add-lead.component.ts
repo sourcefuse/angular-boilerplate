@@ -36,6 +36,10 @@ export class AddLeadComponent {
     });
   }
 
+  onCancel() {
+    this.router.navigate(['auth/login']);
+  }
+
   onSubmit() {
     if (this.addLeadForm.valid) {
       const userData = this.addLeadForm.value;

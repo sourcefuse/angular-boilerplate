@@ -3,10 +3,10 @@
 @use '@nebular/theme/styles/theming' as *;
 
 @include nb-install-component() {
-  --menu-item-active-text-color: #ff3d71;
-  --menu-item-icon-active-color: #ff3d71;
-  --menu-item-hover-text-color: #ff3d71;
-  --menu-item-icon-hover-color: #ff3d71;
+  --menu-item-active-text-color: #ef0b16;
+  --menu-item-icon-active-color: #ef0b16;
+  --menu-item-hover-text-color: #ef0b16;
+  --menu-item-icon-hover-color: #ef0b16;
   .nav-container {
     display: flex;
     justify-content: space-between;
@@ -16,6 +16,7 @@
   .column-wrapper {
     height: calc(100vh - 100px);
     overflow: hidden;
+    padding:15px !important;
   }
   .logo-container {
     display: flex;
@@ -42,7 +43,8 @@
         .menu-item {
           a {
             &.active {
-              color: red !important;
+              // color: red !important;
+              color:  #f00a18 ;
             }
           }
         }
