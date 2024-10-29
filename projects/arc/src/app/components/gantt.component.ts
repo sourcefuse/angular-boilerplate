@@ -7,7 +7,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
-import {NbMenuItem, NbSidebarService} from '@nebular/theme';
+import {NbMenuItem} from '@nebular/theme';
 import {
   GanttProviders,
   GanttAdapter,
@@ -22,16 +22,15 @@ import {
   KebabListItem,
   Timelines,
 } from '@project-lib/components/gantt';
-import {GanttScaleUnits} from '@project-lib/components/gantt/enum';
 import {Item, empData} from '@project-lib/components/gantt/model/item.model';
 import {AnyObject} from '@project-lib/core/api';
 import {gantt} from 'dhtmlx-gantt';
-import {takeUntil, switchMap, tap, map} from 'rxjs';
+import {BehaviorSubject, takeUntil} from 'rxjs';
 
 @Component({
-  selector: 'arc-gantt-demo',
-  templateUrl: './gantt-demo.component.html',
-  styleUrls: ['./gantt-demo.component.scss'],
+  selector: 'arc-gantt',
+  templateUrl: './gantt.component.html',
+  styleUrls: ['./gantt.component.scss'],
   providers: [
     GanttProviders,
     {
@@ -40,55 +39,104 @@ import {takeUntil, switchMap, tap, map} from 'rxjs';
     },
   ],
 })
-export class GanttDemoComponent<T extends AnyObject>
+export class GanttComponent<T extends AnyObject>
   implements GanttRenderOptions<T>
 {
+  private _data: BehaviorSubject<T[]> = new BehaviorSubject<T[]>([]);
+  @ViewChild('gantt', {static: true}) ganttContainer!: ElementRef;
   // data for tooltip component
   showTooltip = false;
   selectedItem: Item;
+  infiniteScroll = false;
 
-  constructor(public readonly viewContainerRef: ViewContainerRef) {}
+  constructor(
+    private readonly ganttSvc: GanttService<AnyObject>,
+    public readonly viewContainerRef: ViewContainerRef,
+  ) {}
+  showParentInitials: boolean;
+  showChildInitials: boolean;
+  showOverallocatedIcon: boolean;
+  columnComponent: Type<IColumnComponent<T>>;
+  barComponent: Type<IBarComponent<T>>;
   contextItems: NbMenuItem[];
   contextTemplate?: TemplateRef<AnyObject>;
   columnName?: string;
   showKebab?: boolean;
-  showParentInitials: boolean;
-  showChildInitials: boolean;
-  columnComponent: Type<IColumnComponent<T>>;
-  barComponent: Type<IBarComponent<T>>;
   columnWidth: number;
   resizer: boolean;
   sorting: boolean;
   moveToToday: boolean;
   highlightRange?: [Date, Date];
-  showOverallocatedIcon: boolean;
   showNonBillableIcon: boolean;
   contextItemFilter?: ContextItemFilter<T>;
   defaultScale: Timelines;
-  sidebarItems: empData[] = []; // Load or set your sidebar items here
-  // allocationTypes: any;
-  // allocationBase: number;
   markToday: boolean;
   showBillingRate?: boolean;
   groupings?: string[];
   childIndent: boolean;
   tooltipOffset?: number;
-  infiniteScroll: boolean;
   batchSize?: number;
   searchPlaceholder?: string;
   showSearch: boolean;
   ganttStartDate?: Date;
   kebabOption: (task: GanttTaskValue<T>) => KebabListItem[];
   ganttRowConfig: GanttRowConfig;
+
+  private initializeGantt(): void {
+    gantt.config.scale_unit = 'year';
+    gantt.config.date_scale = '%Y';
+    gantt.config.subscales = [
+      {unit: 'month', step: 1, date: '%F'},
+      {unit: 'week', step: 1, date: 'Week %W'},
+    ];
+    gantt.config.start_date = new Date();
+    gantt.config.end_date = new Date(
+      gantt.config.start_date.getFullYear() + 1,
+      0,
+      1,
+    );
+
+    gantt.init(this.ganttContainer.nativeElement);
+
+    gantt.parse({
+      data: [
+        {
+          id: 1,
+          text: 'Project #1',
+          start_date: '01-04-2023',
+          duration: 365,
+          progress: 0.6,
+        },
+        {
+          id: 2,
+          text: 'Task #1',
+          start_date: '01-04-2023',
+          duration: 30,
+          progress: 0.6,
+          parent: 1,
+        },
+        {
+          id: 3,
+          text: 'Task #2',
+          start_date: '01-05-2023',
+          duration: 60,
+          progress: 0.6,
+          parent: 1,
+        },
+      ],
+    });
+  }
+
+  // data for tooltip component
   itemData: Item = {
     allocatedHours: 1600,
     billingRate: 100,
     startDate: new Date('2024-01-01'),
     endDate: new Date('2024-12-31'),
-    // allotedDeals: [
-    //   {name: 'Deal 1', allocatedHours: 800, status: 'approved'},
-    //   {name: 'Deal 2', allocatedHours: 900, status: 'pending'},
-    // ],
+    allotedDeals: [
+      {name: 'Deal 1', allocatedHours: 800, status: 'approved'},
+      {name: 'Deal 2', allocatedHours: 900, status: 'pending'},
+    ],
   };
 
   allocationMap = new Map<string, boolean>([
@@ -99,7 +147,7 @@ export class GanttDemoComponent<T extends AnyObject>
   // Data for GanttColumnComponent
   items: empData[] = [
     {
-      name: 'john Doe ',
+      name: 'john Doe teena',
       subtitle: 'Manager',
       hasChildren: false,
       isParent: false,
@@ -138,35 +186,18 @@ export class GanttDemoComponent<T extends AnyObject>
 
   allocationBase = 40;
 
-  item: any = {
+  item: Item = {
     type: 'ActualResource',
     allocation: 32,
     payload: {dealStage: 'closedwon', billingRate: 100},
     classes: ['example-class'],
     subAllocations: [
-      {percent: 50, allocation: 20, allocatedHours: 20, classes: ['class1']},
-      {percent: 50, allocation: 15, allocatedHours: 15, classes: ['class2']},
+      {percent: 50, allocation: 16, allocatedHours: 16, classes: ['class1']},
+      {percent: 50, allocation: 16, allocatedHours: 16, classes: ['class2']},
     ],
   };
-
-  // Data for GanttHeaderComponent
   headerDesc = true;
   headerName = 'Dynamic Project Gantt';
   headerSearchPlaceholder = 'Search your tasks';
   headerShowSearch = true;
-
-  onSidebarItemSelected(item: Item): void {
-    this.selectedItem = this.convertToItem(item);
-    console.log(item);
-  }
-
-  // Helper function to convert empData to Item if needed
-  convertToItem(empItem: Item): Item {
-    return {
-      allocatedHours: 40,
-      billingRate: 100,
-      startDate: new Date(),
-      endDate: new Date(),
-    };
-  }
 }

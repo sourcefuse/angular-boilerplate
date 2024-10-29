@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {empData} from '../../model/item.model';
 
 @Component({
@@ -18,4 +18,12 @@ export class GanttColumnComponent {
 
   @Input()
   showOverallocatedIcon: boolean;
+  // for testing
+
+  @Output() itemSelected = new EventEmitter<empData>();
+
+  onItemClick(item: empData): void {
+    this.itemSelected.emit(item);
+    console.log('hi tiny');
+  }
 }

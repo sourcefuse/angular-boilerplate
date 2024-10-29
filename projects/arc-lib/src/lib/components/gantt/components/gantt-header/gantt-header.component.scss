@@ -56,18 +56,22 @@
 .header-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: calc(100vw - 1rem);
 }
 
 .project-title {
   font-size: x-large;
-  margin-bottom: -2px;
+  line-height: 1;
 }
 
 .desc-wrapper {
-  margin-top: -8px;
+  margin-top: 6px;
+  p{
+    margin:0;
+  }
 }
 
-.search-wrapper {
-  margin-top: 32px;
+.project-title{
+  margin:0;
 }

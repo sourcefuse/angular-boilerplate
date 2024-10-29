@@ -1,8 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {environment} from '../environments/environment';
-import {AuthGuard, LoggedInGuard} from '@project-lib/core/auth';
 import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
+import {GanttZoomBarComponent} from '@project-lib/components/gantt/components/gantt-zoombar/gantt-zoombar.component';
+import {GanttComponent} from './components/gantt.component';
+import {GanttTooltipComponent} from '@project-lib/components/gantt/components';
+import {TimelineComponent} from '@project-lib/components/gantt/components/timeline/timeline.component';
+import {LoggedInGuard, AuthGuard} from '@project-lib/core/auth';
+import {environment} from '../environments/environment';
 
 const routes: Routes = [
   {
@@ -26,12 +30,10 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
-
   {
     path: 'gantt-demo',
     component: GanttDemoComponent,
   },
-
   {
     path: '',
     redirectTo: environment.homePath,

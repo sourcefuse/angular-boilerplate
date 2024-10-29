@@ -9,13 +9,7 @@ export const GANTT_SCALES = new InjectionToken<GanttScaleService>(
   'gantt.scales',
 );
 
-export const GanttProviders = [
-  GanttService,
-  {
-    provide: GANTT,
-    useFactory: () => Gantt.getGanttInstance(),
-  },
-];
+export const GanttProviders = [GanttService];
 
 export function isHTMLELement(element: EventTarget): element is HTMLElement {
   return !!(element as HTMLElement).closest;

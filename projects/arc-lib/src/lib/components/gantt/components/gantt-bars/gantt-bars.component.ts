@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {AllocationBar, Item} from '../../model/item.model';
 
 @Component({
@@ -7,7 +7,7 @@ import {AllocationBar, Item} from '../../model/item.model';
   styleUrls: ['./gantt-bars.component.scss'],
 })
 export class GanttBarsComponent {
-  @Input() item: Item;
+  @Input() item: any;
   @Input() allocationTypes: any;
   @Input() allocationBase: number;
   showTooltip = -1;

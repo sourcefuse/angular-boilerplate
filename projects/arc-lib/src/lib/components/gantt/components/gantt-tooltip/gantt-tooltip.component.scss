@@ -14,7 +14,7 @@
   font-family: var(--font-family-primary);
   font-weight: map.get($font-weight, light);
   font-size: map.get($font-size, default);
-  width: 35rem;
+  width: 25rem;
   max-height: 25rem;
   overflow-y: auto;
 }
@@ -77,7 +77,7 @@ hr {
 
 .deal-name {
   text-decoration: underline;
-  width: 24rem !important;
+  width: 20rem !important;
   color: map.get($color, light) !important;
   font-weight: map.get($font-weight, bold);
   text-overflow: ellipsis;
@@ -87,7 +87,7 @@ hr {
 }
 .deal-key {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   justify-content: end;
 }
 .status-circle {
@@ -96,6 +96,7 @@ hr {
   height: 10px;
   border-radius: 50%;
   margin-right: 10px;
+
   &.active {
     background-color: green;
   }

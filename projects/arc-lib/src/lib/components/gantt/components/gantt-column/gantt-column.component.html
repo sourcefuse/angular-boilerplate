@@ -1,4 +1,8 @@
-<div *ngFor="let item of items" class="employee-list-item">
+<div
+  *ngFor="let item of items"
+  (click)="onItemClick(item)"
+  class="employee-list-item"
+>
   <nb-icon
     *ngIf="item.hasChildren"
     [icon]="item.$open ? 'chevron-up' : 'chevron-down'"

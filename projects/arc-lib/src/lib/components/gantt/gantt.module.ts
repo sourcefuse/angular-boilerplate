@@ -16,10 +16,10 @@ import {
   GanttHeaderComponent,
   GanttTooltipComponent,
 } from './components';
-import {NbInputModule} from '@nebular/theme/components/input/input.module';
 import {GanttZoomBarComponent} from './components/gantt-zoombar/gantt-zoombar.component';
 import {GanttScrollComponent} from './components/gantt-scroll/gantt-scroll.component';
 import {DateOperationService} from './services/date-operation.service';
+import {TimelineComponent} from './components/timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import {DateOperationService} from './services/date-operation.service';
     GanttTooltipComponent,
     GanttZoomBarComponent,
     GanttScrollComponent,
+    TimelineComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, ThemeModule, GanttRoutingModule],
   exports: [
@@ -38,6 +39,7 @@ import {DateOperationService} from './services/date-operation.service';
     GanttTooltipComponent,
     GanttZoomBarComponent,
     GanttScrollComponent,
+    TimelineComponent,
   ],
   providers: [
     GanttProviders,

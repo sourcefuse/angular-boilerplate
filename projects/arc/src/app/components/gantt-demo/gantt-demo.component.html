@@ -15,15 +15,18 @@
     <div class="sidebar">
       <arc-gantt-column
         [items]="items"
+        (itemSelected)="onSidebarItemSelected($event)"
         [showParentInitials]="showParentInitials"
         [showChildInitials]="showChildInitials"
         [showOverallocatedIcon]="showOverallocatedIcon"
       ></arc-gantt-column>
     </div>
   </nb-sidebar>
+
   <nb-layout-column>
     <nb-card class="bar-wrapper">
       <nb-card-body>
+        <arc-timeline-gantt> </arc-timeline-gantt>
         <arc-gantt-bars
           [item]="item"
           [allocationTypes]="allocationTypes"
@@ -35,5 +38,6 @@
   </nb-layout-column>
 </nb-layout>
 
-<arc-gantt-tooltip [itemData]="itemData" [allocationMap]="allocationMap">
-</arc-gantt-tooltip>
+<arc-gantt-tooltip></arc-gantt-tooltip>
+
+<!-- <arc-gantt-zoombar></arc-gantt-zoombar> -->
