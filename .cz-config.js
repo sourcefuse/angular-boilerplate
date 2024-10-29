@@ -25,6 +25,9 @@ module.exports = {
   ],
 
   scopes: [
+    {name: 'ci-cd'},
+    {name: 'chore'},
+    {name: 'docs'},
     {name: 'arc'},
     {name: 'arc-lib'},
     {name: 'arc-docs'},
