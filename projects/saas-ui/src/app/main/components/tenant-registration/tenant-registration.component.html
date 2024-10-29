@@ -306,11 +306,16 @@
                 <div class="plan-card-wrapper">
                   <nb-card
                     class="plan-card-box"
-                    accent="danger"
                     *ngFor="let plan of subscriptionPlans"
                   >
                     <nb-card-header class="plan-card-header">
                       <h5>{{ plan.name }}</h5>
+                      <nb-icon
+                        class="edit-icon"
+                        icon="file-text-outline"
+                        pack="eva"
+                        size="large"
+                      ></nb-icon>
                     </nb-card-header>
                     <nb-card-body class="plan-card-body">
                       <p class="plan-description">{{ plan.description }}</p>
@@ -318,6 +323,7 @@
                         {{ plan.tier }}
                         <ng-container *ngIf="plan.size">
                           <nb-tag
+                            class="size-tag-wrapper"
                             *ngIf="plan.size"
                             status="basic"
                             appearance="filled"
@@ -325,7 +331,10 @@
                           ></nb-tag>
                         </ng-container>
                       </p>
-                      <p class="plan-price">${{ plan.price }}</p>
+                      <p class="numeric-plan-price">
+                        <span class="doller-wrapper">$</span>
+                        {{ plan.price }}
+                      </p>
                     </nb-card-body>
                     <nb-card-footer class="plan-card-footer">
                       <label class="plan-radio">
@@ -347,8 +356,8 @@
                 <div class="btn regbtn">
                   <button
                     nbButton
+                    class="btn-danger"
                     size="medium"
-                    status="danger"
                     (click)="backToPriviousPage()"
                   >
                     Cancel
@@ -356,8 +365,8 @@
 
                   <button
                     nbButton
+                    class="btn-danger"
                     size="medium"
-                    status="danger"
                     [disabled]="!tenantRegForm.valid"
                     type="submit"
                   >
