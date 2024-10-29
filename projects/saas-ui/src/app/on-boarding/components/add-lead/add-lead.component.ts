@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {id} from 'date-fns/locale';
 import {verifyHostBindings} from '@angular/compiler';
+import {COUNTRIES} from '../../../shared/constants/countries.constant';
 
 @Component({
   selector: 'app-add-lead',
@@ -14,6 +15,7 @@ import {verifyHostBindings} from '@angular/compiler';
 })
 export class AddLeadComponent {
   addLeadForm: FormGroup;
+  countryOptions = COUNTRIES;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,15 +26,13 @@ export class AddLeadComponent {
     private fb: FormBuilder,
   ) {
     this.addLeadForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       companyName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
-      country: ['', Validators.required],
-      state: ['', Validators.required],
-      city: ['', Validators.required],
-      zip: ['', Validators.required],
+      address: [''],
+      zip: ['', [Validators.pattern('^[0-9]+$'), Validators.maxLength(9)]],
+      country: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
     });
   }
 
@@ -46,13 +46,10 @@ export class AddLeadComponent {
         email: userData.email,
         address: {
           address: userData.address,
-          city: userData.city,
-          state: userData.state,
           zip: userData.zip,
           country: userData.country,
         },
       };
-
       this.onBoardingService.addLead(user).subscribe(
         () => {
           this.router.navigate(['tenant/add-lead/emailHasBeenSent']);

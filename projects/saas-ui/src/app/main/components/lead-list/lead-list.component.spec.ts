@@ -1,6 +1,9 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LeadListComponent} from './lead-list.component';
+import {ActivatedRoute} from '@angular/router';
+import {NbToastrService} from '@nebular/theme';
+import {of} from 'rxjs';
 
 describe('TenantComponent', () => {
   let component: LeadListComponent;
@@ -9,6 +12,13 @@ describe('TenantComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LeadListComponent],
+      providers: [
+        NbToastrService,
+        {
+          provide: ActivatedRoute,
+          useValue: {paramMap: of(new Map())}, // Mock ActivatedRoute
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LeadListComponent);

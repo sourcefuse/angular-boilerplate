@@ -10,4 +10,5 @@ export class Plan {
   metadata?: AnyObject;
   billingCycleId: string;
   currencyId: string;
+  size?: string;
 }

@@ -13,62 +13,145 @@
               <!-- input fields -->
               <div class="input-wrapper">
                 <!-- key -->
-                <div class="input-box">
+                <div class="input-box address-input-box">
                   <div class="input-title">
-                    <span>Key</span>
+                    <span>Application Sub domain
+                      <span class="required">*</span></span>
                   </div>
                   <div class="input">
-                    <input
-                      placeholder="Enter Unique Key."
-                      fieldSize="medium"
-                      status="“info”"
-                      formControlName="key"
-                      nbInput
-                    />
+                    <div class="input-container">
+                      <input placeholder="Enter Unique Key." fieldSize="medium" status="“info”" formControlName="key"
+                        nbInput />
+                      <nb-icon icon="info-outline" class="info-icon"
+                        nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"></nb-icon>
+                    </div>
+                    <div class="error-msg" *ngIf="
+                  addTenantForm.get('key').hasError('required') &&
+                  addTenantForm.get('key').touched
+                  ">
+                      Sub-domain is required.
+                    </div>
+                    <div class="error-msg" *ngIf="
+                  addTenantForm.get('key').hasError('maxlength') &&
+                  addTenantForm.get('key').touched
+                  ">
+                      Maximum length exceeded.
+                    </div>
+                    <div class="error-msg" *ngIf="
+                  addTenantForm.get('key').hasError('pattern') &&
+                  addTenantForm.get('key').touched
+                  ">
+                      Invalid characters used.
+                    </div>
                   </div>
                 </div>
                 <!-- domain -->
-                <div class="input-box">
+                <!-- <div class="input-box">
+
                   <div class="input-title">
-                    <span>Domain</span>
+                    <span>Email Domain <span class="required">*</span></span>
                   </div>
                   <div class="input">
-                    <input
-                      placeholder="Enter your mail domain."
-                      fieldSize="medium"
-                      status="“info”"
-                      formControlName="domains"
-                      nbInput
-                    />
+                    <div class="input-container">
+                      <input placeholder="Enter your Email domain." fieldSize="medium" status="“info”"
+                        formControlName="domains" nbInput />
+                      <nb-icon icon="info-outline" class="info-icon" nbTooltip="Enter your Domain name. 
+                      This field is required and should match the format of a valid email address.."></nb-icon>
+                    </div>
+                  </div>
+                  <div *ngIf="addTenantForm.errors?.domainMismatch">
+                    Email domain does not match the domain part of the email
+                    address.
+                  </div>
+                </div> -->
+              </div>
+
+              <!-- payment method -->
+              <!-- Payment Method (Hidden Field) -->
+              <input type="hidden" formControlName="paymentMethod" />
+
+              <!-- Payment Details -->
+              <!-- Payment Details -->
+              <div class="payment-details-container">
+                <h3>Payment Details</h3>
+
+                <div class="input-box">
+                  <div class="input-title">
+                    <span>Card Number <span class="required">*</span></span>
+                  </div>
+                  <div class="input">
+                    <!-- Use formGroupName to access the nested form group -->
+                    <div formGroupName="paymentDetails">
+                      <input placeholder="Enter 16-digit Card Number" formControlName="cardNumber" nbInput />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="input-wrapper">
+                  <div class="input-box">
+                    <div class="input-title">
+                      <span>Expiry Month <span class="required">*</span></span>
+                    </div>
+                    <div class="input">
+                      <div formGroupName="paymentDetails">
+                        <input placeholder="MM" formControlName="expiryMonth" type="number" nbInput />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-box">
+                    <div class="input-title">
+                      <span>Expiry Year <span class="required">*</span></span>
+                    </div>
+                    <div class="input">
+                      <div formGroupName="paymentDetails">
+                        <input placeholder="YYYY" formControlName="expiryYear" type="number" nbInput />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-box">
+                    <div class="input-title">
+                      <span>CVV <span class="required">*</span></span>
+                    </div>
+                    <div class="input">
+                      <div formGroupName="paymentDetails">
+                        <input placeholder="Enter 3-digit CVV" formControlName="cvv" type="password" nbInput />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+
 
               <!-- Subscription Plans -->
 
               <div class="plan-card-container">
                 <div class="input-title">
-                  <span>Subscription Plan</span>
+                  <h3>Subscription Plan</h3>
                 </div>
                 <div class="plan-card-wrapper">
-                  <nb-card
-                    class="plan-card-box"
-                    accent="danger"
-                    *ngFor="let plan of subscriptionPlans"
-                  >
-                    <nb-card-header>{{ plan.name }}</nb-card-header>
+                  <nb-card class="plan-card-box" accent="danger" *ngFor="let plan of subscriptionPlans">
+                    <nb-card-header class="plan-card-header">
+                      <h5>{{ plan.name }}</h5>
+                    </nb-card-header>
                     <nb-card-body>
-                      <p>{{ plan.description }}</p>
-                      <p>${{ plan.price }}</p>
+                      <p class="plan-description">{{ plan.description }}</p>
+                      <p class="plan-price" *ngIf="plan.tier || plan.size">
+                        {{ plan.tier }}
+                        <ng-container *ngIf="plan.size">
+                          <nb-tag *ngIf="plan.size" status="basic" appearance="filled" text="{{ plan.size }}"></nb-tag>
+                        </ng-container>
+                      </p>
+                      <p class="plan-price">${{ plan.price }}</p>
                     </nb-card-body>
-                    <nb-card-footer>
-                      <!-- Use FormControl directly -->
-                      <input
-                        type="radio"
-                        [formControl]="addTenantForm.get('planId')"
-                        [value]="plan.id"
-                      />
-                      {{ plan.name }}
+                    <nb-card-footer class="plan-card-footer">
+                      <label class="plan-radio">
+                        <!-- Use FormControl directly -->
+                        <input type="radio" [formControl]="addTenantForm.get('planId')" [value]="plan.id" />
+                        <span class="radio-checkmark"></span>
+                        {{ plan.name }}
+                      </label>
                     </nb-card-footer>
                   </nb-card>
                 </div>
@@ -76,14 +159,7 @@
 
               <!-- signup button -->
               <div class="btn regbtn">
-                <button
-                  nbButton
-                  shape="round"
-                  size="medium"
-                  status="danger"
-                  [disabled]="!addTenantForm.valid"
-                  type="submit"
-                >
+                <button nbButton size="medium" status="danger" [disabled]="!addTenantForm.valid" type="submit">
                   Submit
                 </button>
               </div>

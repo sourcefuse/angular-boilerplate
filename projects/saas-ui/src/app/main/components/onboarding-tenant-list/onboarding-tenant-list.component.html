@@ -1,16 +1,33 @@
 <div>
   <nb-card accent="danger" class="card-style">
     <nb-card-body>
-      <h2 class="heading">Onboarded Tenant List</h2>
+      <div class="header-wrapper">
+        <h2 class="heading">Onboarded Tenant List</h2>
+        <!-- signup button -->
+        <div class="regbtn">
+          <button
+            nbButton
+            size="medium"
+            status="danger"
+            (click)="registerTenantPage()"
+          >
+            Add tenant
+          </button>
+        </div>
+      </div>
+
       <!-- ag-grid -->
-      <div class="grid">
-        <ag-grid-angular
-          style="width: 1350px; height: 650px"
-          class="ag-theme-quartz"
-          [columnDefs]="colDefs"
-          [gridOptions]="gridOptions"
-        >
-        </ag-grid-angular>
+      <div class="grid-wrapper">
+        <div class="grid">
+          <ag-grid-angular
+            style="width: calc(100vw-200px); height: 650px"
+            class="ag-theme-quartz"
+            [columnDefs]="colDefs"
+            [gridOptions]="gridOptions"
+            (gridReady)="onGridReady($event)"
+          >
+          </ag-grid-angular>
+        </div>
       </div>
     </nb-card-body>
   </nb-card>

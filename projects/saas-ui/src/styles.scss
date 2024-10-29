@@ -61,7 +61,8 @@ router-outlet.main-router + * {
 .input-title {
   margin-top: 10px;
   span {
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: bold;
   }
 }
 .google-btn {

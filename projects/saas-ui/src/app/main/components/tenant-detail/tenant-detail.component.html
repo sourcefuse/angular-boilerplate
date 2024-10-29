@@ -1,0 +1,100 @@
+<nb-card class="h-100 card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper add-lead-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>Tenant Details</h2>
+
+          <!-- Read-Only Fields -->
+          <div class="input-wrapper">
+            <div class="input-box">
+              <div class="input-title">
+                <span>Tenant Name:</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('tenantName').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Company Name:</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('name').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Email:</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('email').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Country:</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('country').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Plan Name</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('planName').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Plan Price</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('price').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Plan Start Date</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('startDate').value }}</span>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Plan End Date</span>
+              </div>
+              <div class="inputTags">
+                <span>{{ tenantDetailForm.get('endDate').value }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="btn-wrapper">
+            <div class="btn regbtn btn-wrapper">
+              <button
+                nbButton
+                size="medium"
+                status="danger"
+                (click)="backToPriviousPage()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

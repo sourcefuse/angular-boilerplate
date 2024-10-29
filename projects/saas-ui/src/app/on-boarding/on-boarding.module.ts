@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {OnBoardingRoutingModule} from './on-boarding-routing.module';
 import {AddLeadComponent} from './components/add-lead/add-lead.component';
 import {ThemeModule} from '@project-lib/theme/theme.module';
-import {NbRadioModule} from '@nebular/theme';
+import {NbLayoutModule, NbRadioModule, NbTagModule} from '@nebular/theme';
 import {EmailVerificationComponent} from './components/email-verification/email-verification.component';
 import {VerificationCompleteComponent} from './components/verification-complete/verification-complete.component';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -20,11 +20,12 @@ import {AddTenantComponent} from './components/add-tenant/add-tenant.component';
   ],
   imports: [
     CommonModule,
-
+    NbLayoutModule,
     OnBoardingRoutingModule,
     ThemeModule,
     NbRadioModule,
     ReactiveFormsModule,
+    NbTagModule,
   ],
   providers: [OnBoardingService, TenantFacadeService],
 })

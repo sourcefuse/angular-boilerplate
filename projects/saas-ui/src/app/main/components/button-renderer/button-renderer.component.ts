@@ -18,9 +18,9 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
   gridApi: GridApi;
   addPlanForm: AnyObject;
   constructor(
-    private readonly router: Router,
+    private router: Router,
     private toastrService: ToasterService,
-    private readonly billingPlanService: BillingPlanService,
+    private billingPlanService: BillingPlanService,
     private location: Location,
     private fb: FormBuilder,
   ) {

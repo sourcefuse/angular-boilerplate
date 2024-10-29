@@ -11,65 +11,113 @@
           <div class="input-wrapper">
             <div class="input-box">
               <div class="input-title">
-                <span>First Name</span>
+                <span>First Name <span class="required">*</span></span>
               </div>
               <div class="inputTags">
-                <input
-                  type="text"
-                  placeholder="Enter First Name"
-                  status="“info”"
-                  formControlName="firstName"
-                  nbInput
-                />
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Enter First Name"
+                    status="“info”"
+                    formControlName="firstName"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your first name. This field is required."
+                  ></nb-icon>
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    addLeadForm.get('firstName').hasError('pattern') &&
+                    addLeadForm.get('firstName').touched
+                  "
+                >
+                  First Name must contain only characters.
+                </div>
               </div>
             </div>
 
             <div class="input-box">
               <div class="input-title">
-                <span>Last Name</span>
+                <span>Last Name <span class="required">*</span></span>
               </div>
               <div class="inputTags">
-                <input
-                  type="text"
-                  placeholder="Enter Last Name"
-                  status="“info”"
-                  formControlName="lastName"
-                  nbInput
-                />
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Enter Last Name"
+                    status="“info”"
+                    formControlName="lastName"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your Last name. This field is required."
+                  ></nb-icon>
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    addLeadForm.get('lastName').hasError('pattern') &&
+                    addLeadForm.get('lastName').touched
+                  "
+                >
+                  Last Name must contain only characters.
+                </div>
               </div>
             </div>
 
             <div class="input-box">
               <div class="input-title">
-                <span>Company Name</span>
+                <span>Company Name <span class="required">*</span></span>
               </div>
               <div class="inputTags">
-                <input
-                  type="text"
-                  placeholder="Company Name"
-                  status="“info”"
-                  formControlName="companyName"
-                  nbInput
-                />
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Company Name"
+                    status="“info”"
+                    formControlName="companyName"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your Company name. This field is required."
+                  ></nb-icon>
+                </div>
               </div>
             </div>
 
             <!-- email -->
             <div class="input-box">
               <div class="input-title">
-                <span>Email</span>
+                <span>Email <span class="required">*</span></span>
               </div>
-              <div class="input">
-                <input
-                  type="Email"
-                  placeholder="Email"
-                  status="“info”"
-                  fieldSize="medium"
-                  formControlName="email"
-                  nbInput
-                />
+              <div class="inputTags">
+                <div class="input-container">
+                  <input
+                    type="Email"
+                    placeholder="Email"
+                    status="“info”"
+                    fieldSize="medium"
+                    formControlName="email"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your Mail id. This field is required."
+                  ></nb-icon>
+                </div>
               </div>
+
               <div
+                class="error-msg"
                 *ngIf="
                   addLeadForm.get('email').hasError('required') &&
                   addLeadForm.get('email').touched
@@ -78,6 +126,7 @@
                 Email is required.
               </div>
               <div
+                class="error-msg"
                 *ngIf="
                   addLeadForm.get('email').hasError('email') &&
                   addLeadForm.get('email').touched
@@ -93,74 +142,73 @@
               <div class="input-title">
                 <span>Address</span>
               </div>
-              <div class="input address-input">
-                <input
-                  type="text"
-                  placeholder="Enter Your Address"
-                  status="“info”"
-                  formControlName="address"
-                  nbInput
-                />
+              <div class="input address-input inputTags">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Enter Your Address"
+                    status="“info”"
+                    formControlName="address"
+                    nbInput
+                  />
+                </div>
               </div>
             </div>
 
             <div class="input-box">
               <div class="input-title">
-                <span>City</span>
+                <span>Zip Code </span>
               </div>
-              <div class="input">
-                <input
-                  type="text"
-                  placeholder="Enter Your City"
-                  status="“info”"
-                  formControlName="city"
-                  nbInput
-                />
+              <div class="inputTags">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Enter your Zip Code"
+                    status="“info”"
+                    formControlName="zip"
+                    nbInput
+                  />
+                </div>
+              </div>
+              <div
+                class="error-msg"
+                *ngIf="
+                  addLeadForm.get('zip').hasError('pattern') &&
+                  addLeadForm.get('zip').touched
+                "
+              >
+                Zip code should only contain numbers.
+              </div>
+              <div
+                class="error-msg"
+                *ngIf="
+                  addLeadForm.get('zip').hasError('maxlength') &&
+                  addLeadForm.get('zip').touched
+                "
+              >
+                Maximum length exceeded.
               </div>
             </div>
 
+            <!-- Country Drop down  -->
             <div class="input-box">
               <div class="input-title">
-                <span>State</span>
+                <span>Country <span class="required">*</span></span>
               </div>
-              <div class="input">
-                <input
-                  type="text"
-                  placeholder="Enter Your State"
-                  status="“info”"
-                  formControlName="state"
-                  nbInput
-                />
-              </div>
-            </div>
-
-            <div class="input-box">
-              <div class="input-title">
-                <span>Country</span>
-              </div>
-              <div class="input">
-                <input
-                  type="text"
-                  placeholder="Enter your Country"
-                  status="“info”"
+              <div class="select">
+                <nb-select
+                  class="dropdown-wrapper"
+                  placeholder="Select Your Country"
+                  size="large"
                   formControlName="country"
-                  nbInput
-                />
-              </div>
-            </div>
-
-            <div class="input-box">
-              <div class="input-title">
-                <span>Zip Code</span>
-              </div>
-              <div class="input">
-                <input
-                  type="text"
-                  placeholder="Enter your Zip Code"
-                  status="“info”"
-                  formControlName="zip"
-                  nbInput
-                />
+                >
+                  <nb-option
+                    *ngFor="let option of countryOptions"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </nb-option>
+                </nb-select>
               </div>
             </div>
           </div>
@@ -169,7 +217,6 @@
           <div class="btn">
             <button
               nbButton
-              shape="round"
               size="medium"
               status="danger"
               [disabled]="!addLeadForm.valid"
