@@ -103,6 +103,9 @@ export class AddPlanComponent implements OnInit {
     const domainData = this.addPlanForm.value;
     domainData.price = parseFloat(domainData.price);
     domainData.tier = String(domainData.tier);
+    if (domainData.tier === 'BASIC') {
+      domainData.size = '';
+    }
     const featuresGroup = this.addPlanForm.get('features') as FormGroup;
     const selectedFeatures = Object.keys(featuresGroup.controls)
       .filter(
