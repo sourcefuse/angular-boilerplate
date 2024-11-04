@@ -15,18 +15,24 @@
           </button>
         </div>
       </div>
-      <!-- ag-grid -->
-      <div class="grid">
-        <ag-grid-angular
-          class="ag-theme-quartz"
-          [columnDefs]="colDefs"
-          [editType]="'fullRow'"
-          [rowSelection]="rowSelection"
-          [gridOptions]="gridOptions"
-          (gridReady)="onGridReady($event)"
-          (rowEditingStopped)="(onRowEditingStopped)"
-        >
-        </ag-grid-angular>
+      <div *ngIf="isLoading" class="loader">
+        <div class="loading-spinner"></div>
+      </div>
+
+      <div *ngIf="!isLoading">
+        <!-- ag-grid -->
+        <div class="grid">
+          <ag-grid-angular
+            class="ag-theme-quartz"
+            [columnDefs]="colDefs"
+            [editType]="'fullRow'"
+            [rowSelection]="rowSelection"
+            [gridOptions]="gridOptions"
+            (gridReady)="onGridReady($event)"
+            (rowEditingStopped)="(onRowEditingStopped)"
+          >
+          </ag-grid-angular>
+        </div>
       </div>
       <!-- Add Plan Button-->
     </nb-card-body>
