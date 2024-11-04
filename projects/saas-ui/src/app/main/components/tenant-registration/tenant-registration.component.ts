@@ -144,7 +144,6 @@ export class TenantRegistrationComponent {
       this.onBoardingService.registerTenant(user).subscribe(
         () => {
           this.toastrService.show('Tenant Added , successfully');
-          this.isSubmitting = false;
           this.router.navigate(['main/onboard-tenant-list']);
         },
         (error: string) => {
