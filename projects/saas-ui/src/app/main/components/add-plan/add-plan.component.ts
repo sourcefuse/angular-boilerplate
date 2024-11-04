@@ -103,6 +103,9 @@ export class AddPlanComponent implements OnInit {
     const domainData = this.addPlanForm.value;
     domainData.price = parseFloat(domainData.price);
     domainData.tier = String(domainData.tier);
+    if (domainData.tier === 'BASIC') {
+      domainData.size = '';
+    }
     const featuresGroup = this.addPlanForm.get('features') as FormGroup;
     const selectedFeatures = Object.keys(featuresGroup.controls)
       .filter(
@@ -178,7 +181,7 @@ export class AddPlanComponent implements OnInit {
           break;
         case 'number':
           control = new FormControl(
-            feature.defaultValue,
+            feature.defaultValue || 0,
             Validators.pattern(/[0-9]/),
           );
           break;
@@ -251,27 +254,22 @@ export class AddPlanComponent implements OnInit {
 
       const featuresGroup = this.addPlanForm.get('features') as FormGroup;
       const selectedFeatures = featuresGroup
-        ? Object.keys(featuresGroup.controls)
-            .filter(
-              key =>
-                featuresGroup.get(key)?.value !== null &&
-                featuresGroup.get(key)?.value !== '',
-            )
-            .reduce(
-              (acc, key) => {
-                const feature = this.featureValue.features.find(
-                  f => (f as any).key === key,
-                );
-                if (feature) {
-                  acc[feature.id] = {
-                    id: (feature.value as any).id,
-                    value: featuresGroup.get(key)?.value,
-                  };
-                }
-                return acc;
-              },
-              {} as {[key: string]: any},
-            )
+        ? Object.keys(featuresGroup.controls).reduce(
+            (acc, key) => {
+              const feature = this.featureValue.features.find(
+                f => (f as any).key === key,
+              );
+              if (feature) {
+                const featureVal = featuresGroup.get(key)?.value;
+                acc[feature.id] = {
+                  id: (feature.value as any)?.id,
+                  value: featureVal || feature.defaultValue || '',
+                };
+              }
+              return acc;
+            },
+            {} as {[key: string]: any},
+          )
         : {};
       const generalDetailsData = {
         name: domainData.name,
@@ -317,6 +315,7 @@ export class AddPlanComponent implements OnInit {
       console.error('Form is invalid');
     }
   }
+
   onTierChange(selectedTier: string): void {
     this.showStorageSize =
       selectedTier === 'STANDARD' || selectedTier === 'PREMIUM';

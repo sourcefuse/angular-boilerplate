@@ -315,7 +315,12 @@
                 "glob": "**/*",
                 "input": "projects/arc-lib/src/lib/assets/",
                 "output": "/assets/"
-              }
+              },
+            {
+              "glob": "**/*",
+              "input": "projects/saas-ui/src/assets/",
+              "output": "/assets/"
+            }
               
             ],
             "styles": [

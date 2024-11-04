@@ -23,7 +23,12 @@ import {HttpClient} from '@angular/common/http';
 export class LeadListComponent extends RouteComponentBaseDirective {
   // defining column names here
   colDefs: ColDef[] = [
-    {field: 'firstName', width: 250, minWidth: 20},
+    {
+      field: 'firstName',
+      width: 250,
+      minWidth: 20,
+      headerClass: 'header-bold',
+    },
     {field: 'lastName', width: 250, minWidth: 20},
     {field: 'companyName', width: 250, minWidth: 20},
     {field: 'email', width: 300, minWidth: 20},

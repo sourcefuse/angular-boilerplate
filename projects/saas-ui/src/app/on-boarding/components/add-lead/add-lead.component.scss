@@ -16,11 +16,17 @@
     padding-top: 7%;
   }
 }
+.btn{
+  .btn-danger{
+    background-color: #f00a18 !important;
+    color: white !important;
+  }
+}
 
 .error-msg {
   color: red;
   font-size: 14px;
-  margin-top: 3px; 
+  margin-top: 3px;
 }
 
 .required {
@@ -138,9 +144,30 @@
   }
 }
 
+.card-row{
+border-radius: 16px;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+max-width: 80%;
+margin: auto;
+.sign-in-title h2 {
+  font-size: 34px;
+}
+ .sign-in-title h3 {
+  font-size: 20px;
+  color: #525252;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+}
+
+
 .add-lead-wrapper {
   .btn {
-    text-align: right;
+        margin-top: 30px;
+        justify-content: space-between;
+    display: flex
+    
   }
 }
 

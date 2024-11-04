@@ -18,6 +18,41 @@
   }
 }
 
+.card-row {
+  .sign-in-title {
+    p {
+      font-size: 16px;
+      margin: 0 0 15px 0 !important;
+      .size-tag-wrapper{
+        font-weight: 500;
+    font-size: 13px;
+    border: 1px solid #000;
+    padding: 2px 12px;
+    margin-left: 5px;
+      }
+    }
+
+   h2 {
+      font-size: 34px;
+      font-weight: 700;
+      margin: 50px 0 10px 0;
+   }
+    .plan-price{
+      color: #535050;
+      font-size: 15px;
+      gap: 4px;
+      align-items: center;
+      display: flex;
+    }
+    .numeric-plan-price{
+      color: #535050;
+      font-size: 20px;
+      gap: 4px;
+      align-items: center;
+      display: flex;
+    }
+  }
+}
 .info-icon {
   margin-left: 8px;
   cursor: pointer;
@@ -35,31 +70,46 @@
       border: 1px solid #dcdcdc;
     }
   }
+  .input-title{
+    span {
+      font-size: 15px;
+      font-weight: 500;  
+  }
+  margin-bottom: 5px !important;
+  } 
+
 }
-.input-box{
-  .input{
-    .payment-comment-box{
+
+
+.input-box {
+  .input {
+    .payment-comment-box {
       min-width: 100%;
       border: 1px solid #dcdcdc;
-     }     
+    }
   }
 }
 
-.input-wrapper{
-  .input-box{
-    .select{
-      .dropdown-wrapper{
+.input-wrapper {
+  .input-box {
+    .select {
+      .dropdown-wrapper {
         min-width: 100%;
         margin-top: 5px;
         border: 1px solid #dcdcdc;
-    border-radius: 3px;
+        border-radius: 3px;
       }
     }
   }
 }
 
-nb-select{
-  .select-button{
+.card-row{
+  border-radius: 16px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; 
+  }
+
+nb-select {
+  .select-button {
     height: 46px !important;
     margin-top: 5px !important;
   }
@@ -80,8 +130,6 @@ nb-select{
     }
   }
 }
-
-
 
 .error-msg {
   color: red;
@@ -108,6 +156,18 @@ input.ng-invalid.ng-touched {
     text-align: right;
   }
 }
+
+.btn {
+  text-align: right;
+  // for testing purpose
+  .btn-danger{
+    background-color: #f00a18 !important;
+    color: white !important;
+  }
+   // for testing purpose
+}
+
+
 
 .address-input-box {
   width: 100%;
@@ -140,7 +200,7 @@ input.ng-invalid.ng-touched {
     gap: 20px;
 
     .plan-card-box {
-      min-width: 23%;
+      min-width: 32%;
       justify-content: space-between;
     }
   }
@@ -234,6 +294,10 @@ input[nbInput] {
   color: #007bff;
 }
 
+.doller-wrapper{
+  color: #f00a19;
+  font-size: 16px;
+}
 // testing design card
 .plan-card-container {
   display: flex;
@@ -260,7 +324,7 @@ input[nbInput] {
 
 .plan-card-box {
   width: 300px;
-  border-radius: 8px;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
@@ -271,14 +335,28 @@ input[nbInput] {
   }
 
   .plan-card-header {
-    background: #e85b7b26;
+    // background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(234 81 116));
+    background-image: linear-gradient(to right, rgba(255, 0, 0, 0), rgb(240 10 24));
+
     color: #fff;
     padding: 15px;
-    text-align: center;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     h5 {
       font-size: 1.25em;
       margin: 0;
+      display: inline-block;
+    width: 95%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    }
+    .edit-icon{
+      color: #000;
     }
   }
 
@@ -294,6 +372,8 @@ input[nbInput] {
     .plan-price {
       font-size: 1.5em;
       font-weight: bold;
+      font-size: 20px;
+    color: #535050;
     }
   }
 
@@ -334,7 +414,7 @@ input[nbInput] {
         }
       }
 
-      input[type='radio']:checked+.radio-checkmark::after {
+      input[type='radio']:checked + .radio-checkmark::after {
         opacity: 1;
       }
     }
