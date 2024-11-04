@@ -30,6 +30,7 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   params: TenantDetails;
   gridOptions: GridOptions;
   limit = 10;
+  isLoading: boolean;
   defaultColDef: ColDef = {
     flex: 1,
     minWidth: 150,
@@ -153,16 +154,19 @@ export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {
+        this.isLoading = true;
         const page = params.endRow / this.limit;
         const paginatedLeads = this.getPaginatedTenantDetails(page, this.limit);
         const totalLead = this.getTotal();
         combineLatest([paginatedLeads, totalLead]).subscribe(
           ([data, count]) => {
             params.successCallback(data, count.count);
+            this.isLoading = false;
           },
 
           err => {
             params.failCallback();
+            this.isLoading = false;
           },
         );
       },

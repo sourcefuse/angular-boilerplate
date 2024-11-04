@@ -3,13 +3,18 @@
     <nb-card-body>
       <h2 class="heading">Billing Details</h2>
       <!-- ag-grid -->
-      <div class="grid">
-        <ag-grid-angular
-          class="ag-theme-quartz"
-          [columnDefs]="colDefs"
-          [gridOptions]="gridOptions"
-        >
-        </ag-grid-angular>
+      <div *ngIf="isLoading" class="loader">
+        <div class="loading-spinner"></div>
+      </div>
+      <div *ngIf="!isLoading">
+        <div class="grid">
+          <ag-grid-angular
+            class="ag-theme-quartz"
+            [columnDefs]="colDefs"
+            [gridOptions]="gridOptions"
+          >
+          </ag-grid-angular>
+        </div>
       </div>
     </nb-card-body>
   </nb-card>

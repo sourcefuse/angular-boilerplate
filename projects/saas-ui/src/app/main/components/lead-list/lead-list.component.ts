@@ -22,6 +22,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LeadListComponent extends RouteComponentBaseDirective {
   // defining column names here
+  isLoading: boolean;
   colDefs: ColDef[] = [
     {
       field: 'firstName',
@@ -67,16 +68,19 @@ export class LeadListComponent extends RouteComponentBaseDirective {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {
+        this.isLoading = true;
         const page = params.endRow / this.limit;
         const paginatedLeads = this.getPaginatedLeads(page, this.limit);
         const totalLead = this.getTotal();
         combineLatest([paginatedLeads, totalLead]).subscribe(
           ([data, count]) => {
             params.successCallback(data, count.count);
+            this.isLoading = false;
           },
 
           err => {
             params.failCallback();
+            this.isLoading = false;
           },
         );
       },
