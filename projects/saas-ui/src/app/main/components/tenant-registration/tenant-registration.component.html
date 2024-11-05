@@ -367,7 +367,9 @@
                     nbButton
                     class="btn-danger"
                     size="medium"
-                    [disabled]="!tenantRegForm.valid"
+                    status="danger"
+                    [disabled]="!tenantRegForm.valid || isSubmitting"
+
                     type="submit"
                   >
                     Submit

@@ -37,6 +37,7 @@ export class TenantRegistrationComponent {
   subscriptionPlans: AnyObject[];
   leadId = '';
   countryOptions = COUNTRIES;
+  isSubmitting = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -121,6 +122,7 @@ export class TenantRegistrationComponent {
 
   onSubmit() {
     if (this.tenantRegForm.valid) {
+      this.isSubmitting = true;
       const userData = this.tenantRegForm.value;
       const user: TenantLeadWithPaymentMethod = {
         name: userData.name,
