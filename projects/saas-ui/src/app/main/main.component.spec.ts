@@ -26,6 +26,7 @@ import {ThemeModule} from '@project-lib/theme/theme.module';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
+import {LeadListComponent} from './components/lead-list/lead-list.component';
 
 describe('MainComponent', () => {
   let component: MainComponent;
@@ -49,6 +50,13 @@ describe('MainComponent', () => {
   };
 
   beforeEach(async () => {
+    router = jasmine.createSpyObj('Router', ['navigate']);
+    sidebarServiceMock = jasmine.createSpyObj('NbSidebarService', ['toggle']);
+    authService = jasmine.createSpyObj('AuthService', [
+      'currentUser ',
+      'logout',
+    ]);
+    menuService = jasmine.createSpyObj('NbMenuService', ['onItemClick']);
     const nbRestoreScrollTopHelperMock = {
       shouldRestore: jasmine
         .createSpy('shouldRestore')
@@ -81,8 +89,6 @@ describe('MainComponent', () => {
 
     fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;
-    authService = TestBed.inject(AuthService);
-    menuService = TestBed.inject(NbMenuService);
     sidebarServiceMock = jasmine.createSpyObj('NbSidebarService', ['toggle']);
     router = TestBed.inject(Router);
     routerMock = jasmine.createSpyObj('Router', ['navigate']);

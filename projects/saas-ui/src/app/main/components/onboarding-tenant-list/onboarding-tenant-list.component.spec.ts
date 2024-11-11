@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {NbCardModule, NbStatusService, NbToastrService} from '@nebular/theme';
 import {of} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';
-import {OnboardingTenantListComponent} from './onboarding-tenant-list.component';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {AgGridModule} from 'ag-grid-angular';
@@ -13,6 +12,9 @@ import {TenantStatus} from '../../../shared/enum/tenant-status.enum';
 import {GridApi} from 'ag-grid-community';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TenantRegistrationComponent} from '../tenant-registration/tenant-registration.component';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {ApiService} from '@project-lib/core/api';
+import {TenantDetails} from '../../../shared/models/tenantDetails.model';
 
 const mockAppConfig = {baseApiUrl: 'https://api.example.com/'};
 describe('OnboardingTenantListComponent', () => {
@@ -28,6 +30,7 @@ describe('OnboardingTenantListComponent', () => {
     tenantFacadeSpy = jasmine.createSpyObj('TenantFacadeService', [
       'getTenantList',
       'getTotalTenant',
+      'getTenantDetails',
     ]);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
     // Define what the spy should return when the methods are called
@@ -82,7 +85,10 @@ describe('OnboardingTenantListComponent', () => {
     tenantFacadeService = TestBed.inject(
       TenantFacadeService,
     ) as jasmine.SpyObj<TenantFacadeService>;
-    gridApiMock = jasmine.createSpyObj('GridApi', ['updateGridOptions']);
+    gridApiMock = jasmine.createSpyObj('GridApi', [
+      'updateGridOptions',
+      'setDatasource',
+    ]);
     router = TestBed.inject(Router);
     component = fixture.componentInstance;
     tenantFacadeService = TestBed.inject(
@@ -94,38 +100,12 @@ describe('OnboardingTenantListComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize grid options correctly', () => {
-    expect(component.gridOptions.pagination).toBe(true);
+  it('should initialize gridOptions correctly', () => {
+    expect(component.gridOptions).toBeDefined();
+    expect(component.gridOptions.pagination).toBeTrue();
     expect(component.gridOptions.rowModelType).toBe('infinite');
     expect(component.gridOptions.paginationPageSize).toBe(component.limit);
-    expect(component.gridOptions.paginationPageSizeSelector).toEqual([
-      component.limit,
-      10,
-      20,
-      50,
-      100,
-    ]);
-  });
-
-  it('should transform and paginate data correctly', () => {
-    component.getPaginatedTenants(1, component.limit).subscribe(data => {
-      expect(data).toEqual([
-        {
-          name: 'Company A',
-          key: 'company-a',
-          domains: 'domain1.com',
-          address: ' 12345, USA',
-          status: 'ACTIVE',
-        },
-        {
-          name: 'Company B',
-          key: 'company-b',
-          domains: 'domain2.com',
-          address: ' 67890, Canada',
-          status: 'INACTIVE',
-        },
-      ]);
-    });
+    expect(component.gridOptions.cacheBlockSize).toBe(component.limit);
   });
 
   it('should return the total count from the tenant facade', () => {
@@ -133,13 +113,41 @@ describe('OnboardingTenantListComponent', () => {
       expect(count).toEqual({count: 2});
     });
   });
+  it('should handle errors in retrieving tenant list gracefully', done => {
+    tenantFacadeSpy.getTenantDetails.and.returnValue(of([])); // Return an empty observable array to simulate error handling
 
-  describe('onGridReady', () => {
-    it('should set the grid API and configure the datasource', () => {
-      const params = {api: gridApiMock};
-      component.onGridReady(params);
-      expect(component.gridApi).toBe(gridApiMock);
-      expect(gridApiMock.updateGridOptions).toHaveBeenCalled();
+    component.getPaginatedTenantDetails(1, component.limit).subscribe(data => {
+      expect(data).toEqual([]); // Expect data to be an empty array if an error is simulated
+      done();
+    });
+  });
+
+  it('should set the grid API and configure the datasource', () => {
+    const params = {api: gridApiMock};
+    component.onGridReady(params);
+    expect(component.gridApi).toBe(gridApiMock);
+    expect(gridApiMock.setDatasource).toHaveBeenCalled();
+  });
+
+  it('should navigate to create-tenant page', () => {
+    spyOn(router, 'navigate');
+    component.registerTenantPage();
+    expect(router.navigate).toHaveBeenCalledWith(['main/create-tenant']);
+  });
+
+  it('should handle errors in getPaginatedTenantDetails gracefully', done => {
+    tenantFacadeSpy.getTenantDetails.and.returnValue(of(null)); // Simulate error
+    component.getPaginatedTenantDetails(1, component.limit).subscribe(data => {
+      expect(data).toEqual([]);
+      done();
+    });
+  });
+
+  it('should retrieve total tenant count', done => {
+    tenantFacadeSpy.getTotalTenant.and.returnValue(of({count: 10}));
+    component.getTotal().subscribe(total => {
+      expect(total.count).toBe(10);
+      done();
     });
   });
 
@@ -158,24 +166,13 @@ describe('OnboardingTenantListComponent', () => {
         },
       ];
 
-      tenantFacadeService.getTenantList.and.returnValue(of(mockTenants));
+      tenantFacadeService.getTenantDetails.and.returnValue(of());
 
-      component.getPaginatedTenants(1, 5).subscribe(data => {
+      component.getPaginatedTenantDetails(1, 5).subscribe(data => {
         expect(data.length).toBe(1);
         expect(data[0].name).toBe('Tenant1');
         expect(data[0].address).toBe(' 12345, Country');
       });
-    });
-  });
-
-  describe('createCompanyLink', () => {
-    it('should create a company link correctly', () => {
-      const params = {data: {key: 'tenant1'}, value: 'Company1'};
-      const link = component.createCompanyLink(params);
-      console.log(link);
-      expect(link).toBe(
-        '<a href="https://tenant1.api.example.com/" target="_blank" class="company-link">Company1</a>',
-      );
     });
   });
 

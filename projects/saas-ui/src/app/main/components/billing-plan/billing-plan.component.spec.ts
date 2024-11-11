@@ -23,21 +23,30 @@ import {Plan} from '../../../shared/models';
 describe('BillingPlanComponent', () => {
   let component: BillingPlanComponent;
   let fixture: ComponentFixture<BillingPlanComponent>;
-  let billingplanService: BillingPlanService;
+  let mockBillingPlanService: jasmine.SpyObj<BillingPlanService>;
   let location: Location;
   let route: ActivatedRoute;
   let router: Router;
 
-  class MockBillingPlanService {
-    getBillingDetails(filter: BackendFilter<Plan>): Observable<AnyObject[]> {
-      return of([]);
-    }
-    getTotalBillingPlan(): Observable<Count> {
-      return of({count: 0});
-    }
-  }
+  const mockBillingData = [
+    {
+      companyName: 'Test Company',
+      userName: 'John Doe',
+      planName: 'Premium',
+      startDate: '2024-01-01',
+      endDate: '2024-12-31',
+      status: SubscriptionStatus.ACTIVE,
+    },
+  ];
 
   beforeEach(async () => {
+    mockBillingPlanService = jasmine.createSpyObj('BillingPlanService', [
+      'getPlanOptions',
+      'getTotalPlan',
+      'getBillingDetails',
+      'getTotalBillingPlan',
+    ]);
+
     await TestBed.configureTestingModule({
       declarations: [BillingPlanComponent],
       imports: [ThemeModule, RouterTestingModule, MainModule],
@@ -47,7 +56,7 @@ describe('BillingPlanComponent', () => {
         {provide: Location, useValue: location},
         {provide: ActivatedRoute, useValue: route},
         {provide: Router, useValue: router},
-        {provide: BillingPlanService, useClass: MockBillingPlanService},
+        {provide: BillingPlanService, useValue: mockBillingPlanService},
       ],
     }).compileComponents();
   });
@@ -55,7 +64,6 @@ describe('BillingPlanComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BillingPlanComponent);
     component = fixture.componentInstance;
-    billingplanService = TestBed.inject(BillingPlanService);
     location = TestBed.inject(Location);
     route = TestBed.inject(ActivatedRoute);
     router = TestBed.inject(Router);
@@ -74,12 +82,67 @@ describe('BillingPlanComponent', () => {
 
   it('should call getTotal and return count', () => {
     const mockCount: Count = {count: 10};
-    spyOn(billingplanService, 'getTotalBillingPlan').and.returnValue(
-      of(mockCount),
-    );
+    mockBillingPlanService.getTotalBillingPlan.and.returnValue(of(mockCount));
 
     component.getTotal().subscribe(count => {
       expect(count).toEqual(mockCount);
+    });
+  });
+
+  it('should define correct column definitions', () => {
+    expect(component.colDefs.length).toBe(6);
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({
+        field: 'companyName',
+        width: 200,
+        minWidth: 20,
+      }),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'userName', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'planName', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'startDate', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'endDate', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'status', width: 200, minWidth: 20}),
+    );
+  });
+
+  it('should get paginated billing plans', done => {
+    const page = 1;
+    const limit = 5;
+
+    // Make sure the spy is properly configured before the test
+    mockBillingPlanService.getBillingDetails.and.returnValue(
+      of(mockBillingData),
+    );
+
+    component.getPaginatedBillPlans(page, limit).subscribe({
+      next: data => {
+        expect(mockBillingPlanService.getBillingDetails).toHaveBeenCalledWith({
+          offset: limit * (page - 1),
+          limit: limit,
+        });
+        expect(data[0]).toEqual({
+          companyName: mockBillingData[0].companyName,
+          userName: mockBillingData[0].userName,
+          planName: mockBillingData[0].planName,
+          startDate: mockBillingData[0].startDate,
+          endDate: mockBillingData[0].endDate,
+          status: SubscriptionStatus[mockBillingData[0].status],
+        });
+        done();
+      },
+      error: error => {
+        done.fail(error);
+      },
     });
   });
 
@@ -103,9 +166,7 @@ describe('BillingPlanComponent', () => {
       },
     ];
 
-    spyOn(billingplanService, 'getBillingDetails').and.returnValue(
-      of(mockPlans),
-    );
+    mockBillingPlanService.getBillingDetails.and.returnValue(of(mockPlans));
 
     component.getPaginatedBillPlans(1, component.limit).subscribe(data => {
       expect(data).toEqual([
@@ -129,7 +190,7 @@ describe('BillingPlanComponent', () => {
     });
   });
   it('should handle errors in getPaginatedBillPlans', () => {
-    spyOn(billingplanService, 'getBillingDetails').and.returnValue(
+    mockBillingPlanService.getBillingDetails.and.returnValue(
       throwError('Error'),
     );
 

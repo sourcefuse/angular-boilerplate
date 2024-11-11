@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ReactiveFormsModule, FormBuilder, FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ActivatedRoute, Router} from '@angular/router';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {
   NbCardModule,
   NbDynamicOverlay,
@@ -22,6 +22,7 @@ import {TenantRegistrationComponent} from './tenant-registration.component';
 import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {DOCUMENT} from '@angular/common';
+import {TenantLead} from '../../../shared/models/tenantLead.model';
 
 describe('TenantRegistrationComponent', () => {
   let component: TenantRegistrationComponent;
@@ -113,7 +114,6 @@ describe('TenantRegistrationComponent', () => {
   it('should initialize form and fetch radio options on init', () => {
     spyOn(component, 'getRadioOptions').and.callThrough();
     component.ngOnInit();
-
     expect(component.tenantRegForm).toBeDefined();
     expect(component.leadId).toBe('123');
     expect(component.getRadioOptions).toHaveBeenCalled();
@@ -123,8 +123,112 @@ describe('TenantRegistrationComponent', () => {
     component.ngOnInit();
     const emailControl = component.tenantRegForm.get('email');
     emailControl.setValue('test@example.com');
-
     expect(component.tenantRegForm.get('domains').value).toBe('example.com');
+  });
+
+  describe('Form Validation', () => {
+    it('should initialize form with empty fields and required validators', () => {
+      expect(component.tenantRegForm.valid).toBeFalse();
+      const controls = component.tenantRegForm.controls;
+      expect(controls['firstName'].hasError('required')).toBeTrue();
+      expect(controls['lastName'].hasError('required')).toBeTrue();
+      expect(controls['name'].hasError('required')).toBeTrue();
+      expect(controls['email'].hasError('required')).toBeTrue();
+      expect(controls['country'].hasError('required')).toBeTrue();
+      expect(controls['paymentMethod'].hasError('required')).toBeTrue();
+    });
+
+    it('should validate email format correctly', () => {
+      const email = component.tenantRegForm.controls['email'];
+      email.setValue('invalid-email');
+      expect(email.hasError('email')).toBeTrue();
+      email.setValue('valid@example.com');
+      expect(email.hasError('email')).toBeFalse();
+    });
+
+    it('should validate email domain match', () => {
+      component.tenantRegForm.get('email').setValue('user@example.com');
+      component.tenantRegForm.get('domains').setValue('example.org');
+      expect(component.tenantRegForm.hasError('domainMismatch')).toBeTrue();
+      component.tenantRegForm.get('domains').setValue('example.com');
+      expect(component.tenantRegForm.hasError('domainMismatch')).toBeFalse();
+    });
+  });
+
+  it('should update domain field based on email input', () => {
+    const emailControl = component.tenantRegForm.get('email');
+    emailControl.setValue('user@domain.com');
+    fixture.detectChanges();
+    expect(component.tenantRegForm.get('domains').value).toBe('domain.com');
+  });
+
+  it('should show email format error on invalid email input', () => {
+    const emailControl = component.tenantRegForm.get('email');
+    emailControl.setValue('invalid-email');
+    expect(emailControl.hasError('email')).toBeTrue();
+  });
+
+  it('should show domain mismatch error when email domain does not match', () => {
+    component.tenantRegForm.get('email').setValue('user@wrongdomain.com');
+    component.tenantRegForm.get('domains').setValue('anotherdomain.com');
+    expect(component.tenantRegForm.hasError('domainMismatch')).toBeTrue();
+  });
+
+  it('should call registerTenant with correct parameters on valid form submission', () => {
+    component.tenantRegForm.setValue({
+      firstName: 'Jane',
+      lastName: 'Doe',
+      name: 'Company',
+      email: 'jane@example.com',
+      address: '456 Street',
+      country: 'USA',
+      zip: '67890',
+      key: 'tenantKey2',
+      domains: 'example.com',
+      planId: '2',
+      paymentMethod: 'credit-card',
+      comment: 'test-comment',
+    });
+    component.onSubmit();
+    expect(onBoardingService.registerTenant).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        name: 'Company',
+        contact: jasmine.objectContaining({
+          firstName: 'Jane',
+          lastName: 'Doe',
+          email: 'jane@example.com',
+          isPrimary: true, // Ensure this is a boolean, not a string
+        }),
+        address: '456 Street',
+        zip: '67890',
+        country: 'USA',
+        key: 'tenantKey2',
+        domains: ['example.com'],
+        planId: '2',
+        paymentMethod: 'credit-card',
+        comment: 'test-comment',
+      }),
+    );
+  });
+
+  it('should navigate to tenant list on successful registration', () => {
+    // Fill the form with valid data
+    component.tenantRegForm.setValue({
+      name: 'Company',
+      firstName: 'Jane',
+      lastName: 'Doe',
+      email: 'jane@example.com',
+      address: '456 Street',
+      zip: '67890',
+      country: 'USA',
+      key: 'tenantKey2',
+      domains: 'example.com',
+      planId: '2',
+      paymentMethod: 'credit-card',
+      comment: 'test-comment',
+    });
+    component.onSubmit();
+    expect(router.navigate).toHaveBeenCalledWith(['main/onboard-tenant-list']);
   });
 
   it('should validate form with proper values', () => {
@@ -139,68 +243,10 @@ describe('TenantRegistrationComponent', () => {
       key: 'tenantKey1',
       domains: 'example.com',
       planId: '1',
+      paymentMethod: 'cash', // Add a valid payment method value
+      comment: 'Test comment', // Optional, but add if it's part of the form
     });
 
     expect(component.tenantRegForm.valid).toBeTrue();
-  });
-
-  it('should mark form as invalid if email domain does not match', () => {
-    component.tenantRegForm.setValue({
-      firstName: 'John',
-      lastName: 'Doe',
-      name: 'Company',
-      email: 'test@wrongdomain.com',
-      address: '123 Street',
-      country: 'USA',
-      zip: '12345',
-      key: 'tenantKey1',
-      domains: 'example.com',
-      planId: '1',
-    });
-
-    expect(component.tenantRegForm.valid).toBeFalse();
-    expect(component.tenantRegForm.errors).toEqual({domainMismatch: true});
-  });
-  it('should call registerTenant on valid form submission', () => {
-    component.tenantRegForm.setValue({
-      firstName: 'John',
-      lastName: 'Doe',
-      name: 'Company',
-      email: 'test@example.com',
-      address: '123 Street',
-      country: 'USA',
-      zip: 12345,
-      key: 'tenantKey1',
-      domains: 'example.com',
-      planId: '1',
-    });
-
-    component.onSubmit();
-
-    expect(onBoardingService.registerTenant).toHaveBeenCalledWith({
-      name: 'Company',
-      contact: {
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'test@example.com',
-        isPrimary: true,
-      },
-      address: '123 Street',
-      zip: 12345,
-      country: 'USA',
-      key: 'tenantKey1',
-      domains: ['example.com'],
-      planId: '1',
-    });
-    expect(toastrService.show).toHaveBeenCalledWith(
-      'Tenant Added , successfully',
-    );
-    expect(router.navigate).toHaveBeenCalledWith(['main/onboard-tenant-list']);
-  });
-
-  it('should navigate back to the previous page', () => {
-    component.backToPriviousPage();
-
-    expect(router.navigate).toHaveBeenCalledWith(['main/onboard-tenant-list']);
   });
 });

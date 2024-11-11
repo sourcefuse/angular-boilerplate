@@ -146,6 +146,19 @@ describe('ButtonRendererComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/main/edit-plan/1']);
   });
 
+  it('should navigate to edit plan with correct id', () => {
+    const params: ICellRendererParams = {
+      node: {
+        data: {
+          id: 2,
+        },
+      },
+    } as any;
+    component.agInit(params);
+    component.editPlan(null);
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/main/edit-plan/2']);
+  });
+
   it('should return true on refresh method', () => {
     const params = {} as any;
     const result = component.refresh(params);
@@ -156,5 +169,19 @@ describe('ButtonRendererComponent', () => {
     const params = {api: {}} as any;
     component.onGridReady(params);
     expect(component.gridApi).toEqual(params.api);
+  });
+
+  it('should validate form fields', () => {
+    component.addPlanForm.controls['name'].setValue('Test Plan');
+    component.addPlanForm.controls['description'].setValue('Test Description');
+    component.addPlanForm.controls['price'].setValue(100);
+    component.addPlanForm.controls['currencyId'].setValue('USD');
+    component.addPlanForm.controls['billingCycleId'].setValue(1);
+    component.addPlanForm.controls['tier'].setValue(1);
+
+    expect(component.addPlanForm.valid).toBeTrue();
+
+    component.addPlanForm.controls['name'].setValue('');
+    expect(component.addPlanForm.valid).toBeFalse();
   });
 });
