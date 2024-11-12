@@ -1,42 +1,30 @@
-import {Component} from '@angular/core';
-import {AnyObject} from '@project-lib/core/api';
-import {MAX_ALLOCATION} from '@project-lib/core/constants';
-import {TranslationService} from '@project-lib/core/localization';
-import {TranslateService} from '@ngx-translate/core';
-import {
-  GanttTaskValue,
-  GanttTaskValueWithSubAllocation,
-  SubAllocation,
-} from '../../types';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {AllocationBar, Item} from '../../model/item.model';
 
 @Component({
-  selector: 'gantt-bars',
+  selector: 'arc-gantt-bars',
   templateUrl: './gantt-bars.component.html',
   styleUrls: ['./gantt-bars.component.scss'],
 })
-export class GanttBarsComponent<T extends AnyObject> {
-  item!: GanttTaskValue<T>;
-  allocationTypes: AnyObject;
-  allocationBase = MAX_ALLOCATION;
-  private translate: TranslateService;
-  constructor(private translateSvc: TranslationService) {
-    this.translate = translateSvc.translate;
+export class GanttBarsComponent {
+  @Input() item: any;
+  @Input() allocationTypes: any;
+  @Input() allocationBase: number;
+  showTooltip = -1;
+
+  formatAllocation(value: number): string {
+    return `${value} hours`;
   }
 
-  stringify(subAllocation: SubAllocation) {
-    return JSON.stringify(subAllocation);
-  }
-  formatter(rate: number) {
-    return `$${rate}/${this.translate.instant('hr')}`;
+  formatter(value: number): string {
+    return `$${value}/hour`;
   }
 
-  formatAllocation(allocation: number) {
-    return `${allocation}${this.translate.instant('h/d')}`;
+  hasSubAllocation(item: Item): boolean {
+    return item.subAllocations && item.subAllocations.length > 0;
   }
 
-  hasSubAllocation(
-    item: GanttTaskValue<T>,
-  ): item is GanttTaskValueWithSubAllocation<T> {
-    return !!(item as GanttTaskValueWithSubAllocation<T>).subAllocations;
+  stringify(allocationBar: AllocationBar): string {
+    return JSON.stringify(allocationBar);
   }
 }

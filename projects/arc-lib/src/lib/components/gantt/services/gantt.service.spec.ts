@@ -5,7 +5,9 @@ import {GanttModule} from '../gantt.module';
 import {GanttService} from './gantt.service';
 
 describe('GanttService', () => {
-  let service: GanttService<any>;
+
+  let service: GanttService<AnyObject>;
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({

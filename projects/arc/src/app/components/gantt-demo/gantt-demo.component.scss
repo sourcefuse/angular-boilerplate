@@ -1,0 +1,140 @@
+@use 'sass:map';
+@import '../../../../../arc-lib/src/lib/theme/styles/variables';
+
+.bar-wrapper {
+  height: calc(100% - 1rem);
+}
+.gantt-container {
+  position: relative;
+  border-top: 0.063rem solid map.get($color, gantt-lines);
+  height: 100%;
+  transition: height 2s ease-in-out;
+  .gantt-loading {
+    display: none;
+    width: 100%;
+    background-color: map.get($color, transparent-light);
+    z-index: 10;
+    height: 3.125rem;
+    transition: transform 2s ease-in-out;
+    padding: 0.938rem;
+    transform: translateY(3.125rem);
+    align-items: center;
+    justify-content: center;
+  }
+  &.loading {
+    .gantt-chart {
+      height: calc(100% - 3.125rem);
+    }
+    .gantt-loading {
+      display: flex;
+      transform: translateY(0);
+    }
+  }
+}
+
+.gantt-menu {
+  background-color: map.get($color, light);
+  box-shadow: 0px 0.938rem 1.25rem 0px #00000029;
+  width: 11.75rem;
+}
+
+nb-list-item {
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  height: 1em;
+  &:hover {
+    background-color: map.get($color, background-basic);
+  }
+
+  .title {
+    position: relative;
+    padding-left: 1em;
+    bottom: 0.15em;
+  }
+}
+
+.dot-falling {
+  position: relative;
+  left: -9999px;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 0.313rem;
+  background-color: map.get($font, primary);
+  color: map.get($font, primary);
+  box-shadow: 9999px 0 0 0 map.get($font, primary);
+  animation: dot-falling 1s infinite linear;
+  animation-delay: 0.1s;
+}
+.dot-falling::before,
+.dot-falling::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+}
+.dot-falling::before {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 0.313rem;
+  background-color: map.get($font, primary);
+  color: map.get($font, primary);
+  animation: dot-falling-before 1s infinite linear;
+  animation-delay: 0s;
+}
+.dot-falling::after {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 0.313rem;
+  background-color: map.get($font, primary);
+  color: map.get($font, primary);
+  animation: dot-falling-after 1s infinite linear;
+  animation-delay: 0.2s;
+}
+
+@keyframes dot-falling {
+  0% {
+    box-shadow: 624.938rem -0.938rem 0 0 map.get($color, falling-loader-shadow);
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 624.938rem 0 0 0 map.get($font, primary);
+  }
+  100% {
+    box-shadow: 624.938rem 0.938rem 0 0 map.get($color, falling-loader-shadow);
+  }
+}
+@keyframes dot-falling-before {
+  0% {
+    box-shadow: 624rem -0.938rem 0 0 map.get($color, falling-loader-shadow);
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 624rem 0 0 0 map.get($font, primary);
+  }
+  100% {
+    box-shadow: 624rem 0.938rem 0 0 map.get($color, falling-loader-shadow);
+  }
+}
+@keyframes dot-falling-after {
+  0% {
+    box-shadow: 625.875rem -0.938rem 0 0 map.get($color, falling-loader-shadow);
+  }
+  25%,
+  50%,
+  75% {
+    box-shadow: 625.875rem 0 0 0 map.get($font, primary);
+  }
+  100% {
+    box-shadow: 625.875rem 0.938rem 0 0 map.get($color, falling-loader-shadow);
+  }
+}
+.default-color {
+  fill: map.get($font, 'primary');
+}
+
+.header-icon-wrapper{
+    margin: -12px;
+}

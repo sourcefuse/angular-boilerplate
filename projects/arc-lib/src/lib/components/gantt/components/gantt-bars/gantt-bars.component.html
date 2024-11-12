@@ -16,6 +16,8 @@
       class="bar actual-bar"
       [class.with-suballocations]="hasSubAllocation(item)"
       [class.closed-won]="item.payload?.['dealStage'] === 'closedwon'"
+      [attr.gantt-tooltip-data]="'abc'"
+      gantt-hover="tooltip"
       [ngClass]="item.classes ?? []"
       data-gantt-click="bar"
     >
@@ -32,18 +34,26 @@
         {{ formatter(item.payload?.['billingRate']) }}
       </div>
       <div *ngIf="hasSubAllocation(item)" class="bar-container">
-        <ng-container *ngFor="let allocationBar of item.subAllocations">
+        <ng-container
+          *ngFor="let allocationBar of item.subAllocations; let i = index"
+        >
           <div
             class="suballocation-bars"
             [attr.gantt-bar-data]="stringify(allocationBar)"
             gantt-hover="bar"
             [ngClass]="allocationBar.classes ?? []"
-            [ngStyle]="{
-              width: allocationBar.percent + '%',
-            }"
+            [ngStyle]="{width: allocationBar.percent + '%'}"
             [class.empty]="!allocationBar.allocation"
             [class.over-allocated]="allocationBar.allocation > allocationBase"
+            (mouseover)="showTooltip = i"
+            (mouseout)="showTooltip = -1"
           >
+            <div class="showTooltip-wrapper">
+              <arc-gantt-tooltip
+                *ngIf="i == showTooltip"
+                [itemData]="allocationBar"
+              ></arc-gantt-tooltip>
+            </div>
             <div class="actual-hours">
               {{
                 formatAllocation(

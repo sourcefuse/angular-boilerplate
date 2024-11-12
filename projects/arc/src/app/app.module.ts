@@ -23,9 +23,12 @@ import {GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
+import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
+import {GanttComponent} from './components/gantt.component';
+import {TimelineComponent} from '@project-lib/components/gantt/components/timeline/timeline.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GanttDemoComponent, GanttComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     BrowserModule,

@@ -1,9 +1,16 @@
 import {TemplateRef, Type, ViewContainerRef} from '@angular/core';
 import {AnyObject} from '@project-lib/core/api';
-import {DIGITS, ONE_MIN} from '@project-lib/core/constants';
+import {
+  DIGITS,
+  MAX_ALLOCATION,
+  ONE_DAY,
+  ONE_MIN,
+  PERCENT,
+} from '@project-lib/core/constants';
 import {NbMenuItem} from '@nebular/theme';
 import {RANDOM_SIZE} from './const';
 import {gantt} from 'dhtmlx-gantt';
+import {GanttService} from './services';
 
 /**
  * `GanttTaskValue` is a type that represents a task in the Gantt chart.
@@ -67,7 +74,7 @@ export interface GanttTaskValueWithSubAllocation<T> extends BaseTaskValue<T> {
   subAllocations: SubAllocation[];
 }
 
-export type GanttScaleService = {
+export type GanttScaleService<T extends AnyObject = AnyObject> = {
   scale: Timelines;
   config(options?: GanttScaleOptions): {
     unit: string;
@@ -75,6 +82,8 @@ export type GanttScaleService = {
     format: (date: Date) => string;
     css?: (date: Date) => string;
   }[];
+  scroll(forward: boolean, ganttService: GanttService<T>): void;
+  moveToToday(ganttService: GanttService<T>): void;
 };
 
 // will be required for custom scale
@@ -93,27 +102,38 @@ export type GanttEvent<T> = {
 export type GanttRenderOptions<T = AnyObject> = {
   contextItems: NbMenuItem[];
   contextTemplate?: TemplateRef<AnyObject>;
+  // toolTip?: Type<ITooltipComponent<T>>;
   viewContainerRef?: ViewContainerRef;
   columnName?: string;
-  showKebab: boolean;
+  showKebab?: boolean;
   showParentInitials: boolean;
   showChildInitials: boolean;
   columnComponent: Type<IColumnComponent<T>>;
   barComponent: Type<IBarComponent<T>>;
   columnWidth: number;
   resizer: boolean;
-  searchPlaceholder?: string;
-  showSearch: boolean;
+  sorting: boolean;
   moveToToday: boolean;
   highlightRange?: [Date, Date];
   showOverallocatedIcon: boolean;
+  showNonBillableIcon: boolean;
   contextItemFilter?: ContextItemFilter<T>;
   defaultScale: Timelines;
   markToday: boolean;
   showTooltip?: boolean;
+  showBillingRate?: boolean;
+  groupings?: string[];
   childIndent: boolean;
+  // tooltipComponents: Record<string, Type<ITooltipComponent<AnyObject>>>;
+  tooltipOffset?: number;
+  infiniteScroll: boolean;
+  batchSize?: number;
+  searchPlaceholder?: string;
+  showSearch: boolean;
+  ganttStartDate?: Date;
+  kebabOption: (task: GanttTaskValue<T>) => KebabListItem[];
+  ganttRowConfig: GanttRowConfig;
 };
-
 export type GanttAllocationFields = {
   startDate: Date;
   endDate: Date;
@@ -127,6 +147,7 @@ export enum Timelines {
   Monthly,
   Quarterly,
   Custom,
+  Yearly,
 }
 
 export const GanttTimelineMap: {
@@ -136,6 +157,7 @@ export const GanttTimelineMap: {
   [Timelines.Monthly]: 'Monthly',
   [Timelines.Quarterly]: 'Quarterly',
   [Timelines.Custom]: 'Custom',
+  [Timelines.Yearly]: 'Yearly',
 };
 export abstract class GanttAdapter<T> {
   abstract adaptFrom(data: T[]): GanttTaskValue<T>[];
@@ -173,13 +195,243 @@ export abstract class GanttAdapter<T> {
 
 export class CustomGanttAdapter<T> extends GanttAdapter<T> {
   // Implement the abstract method adaptFrom
-  adaptFrom(): GanttTaskValue<T>[] {
-    // Your implementation logic here to adapt data to GanttTaskValue
-    // ...
+  // adaptFrom(): GanttTaskValue<T>[] {
+  //   // Your implementation logic here to adapt data to GanttTaskValue
+  //   // ...
 
-    return;
+  //   return;
+  // }
+  adaptFrom(data: any[]): GanttTaskValue<any>[] {
+    const result: GanttTaskValue<any>[] = [];
+    data.forEach(sow => {
+      let startDate: Date | undefined;
+      let endDate: Date | undefined;
+      const resourceWiseMap = new Map<
+        string,
+        GanttTaskValueWithSubAllocation<any>[]
+      >();
+      for (let allocation of sow.allocations ?? []) {
+        allocation.startDate = this._addTimezoneOffset(allocation.startDate);
+        allocation.endDate = this._nextDay(
+          this._addTimezoneOffset(allocation.endDate),
+        );
+        if (!startDate || allocation.startDate < startDate) {
+          startDate = allocation.startDate;
+        }
+        if (!endDate || allocation.endDate > endDate) {
+          endDate = allocation.endDate;
+        }
+        const task: GanttTaskValueWithSubAllocation<any> = {
+          start_date: allocation.startDate,
+          end_date: allocation.endDate,
+          name: allocation.name,
+          subtitle: allocation.roleName,
+          type: allocation.type,
+          payload: {...allocation, billingType: sow?.billingType},
+          id: allocation.id ?? '',
+          hasChildren: false,
+          isParent: false,
+          subAllocations: [],
+        };
+        this._checkForShadowAllocation(task, allocation);
+        if (allocation.allocationPerDay) {
+          const {overallocated, allocations, min, max} =
+            this._findOverAllocationRanges(allocation, sow?.currency?.symbol);
+          task.subAllocations = allocations;
+          task.overallocated = overallocated;
+          task.start_date = new Date(min);
+          task.end_date = new Date(max);
+        }
+        resourceWiseMap.set(
+          allocation.resourceId,
+          (resourceWiseMap.get(allocation.resourceId) ?? []).concat(task),
+        );
+      }
+      const task: GanttTaskValue<any> = {
+        start_date: startDate ?? sow.startDate ?? new Date(),
+        end_date: endDate ?? sow.endDate ?? new Date(),
+        name: sow.name,
+        allocation: 0,
+        type: 'SOW',
+        payload: sow,
+        id: sow.id!,
+        hasChildren: true,
+        isParent: true,
+        $open: true,
+      };
+
+      // add mock allocation for staggered subtask
+      // this._pushDummyParentForStaggeredAllocations(
+      //   resourceWiseMap,
+      //   result,
+      //   sow.id!,
+      // );
+
+      // no row if no allocations for a project
+      if (sow.allocations?.length) {
+        result.push(task);
+      }
+    });
+    return result;
   }
 
+  private _checkForShadowAllocation(
+    task: GanttTaskValueWithSubAllocation<any>,
+    allocation: any,
+  ) {}
+
+  private _findOverAllocationRanges(item: any, currency?: string) {
+    let allocations: SubAllocation[] = [];
+    let overallocated = false;
+    let min = 0;
+    let max = 0;
+    if (!item.allocationPerDay?.length) {
+      return {
+        overallocated,
+        allocations: [
+          {
+            percent: PERCENT,
+            allocation: item.allocation,
+          },
+        ],
+        min: new Date(item.startDate).getTime(),
+        max: new Date(item.endDate).getTime(),
+      };
+    }
+
+    let suballocations: any[] = item.allocationPerDay;
+    suballocations.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+    );
+    min = new Date(suballocations[0].date).getTime();
+    max =
+      new Date(suballocations[suballocations.length - 1].date).getTime() +
+      ONE_DAY; // one day added because gantt is drawn upto 0:00 of the next day
+    const duration = (max - min) / ONE_DAY;
+    let lastInstance: SubAllocation<any> | undefined;
+    enum STATE {
+      OVERALLOCATED,
+      NONOVERALLOCATION,
+    }
+    let state: STATE = STATE.NONOVERALLOCATION;
+    for (let suballocation of suballocations) {
+      let {allocatedHours, allotedDeals} = this._getAllotedDeals(
+        suballocation,
+        item.dealId,
+      );
+      overallocated =
+        overallocated || this._checkIfOverallocated(suballocation); // if any day is overallocated, then the whole allocation is overallocated
+      switch (state) {
+        case STATE.OVERALLOCATED:
+          if (suballocation.totalAllocation <= MAX_ALLOCATION) {
+            state = STATE.NONOVERALLOCATION;
+            lastInstance = this._createLastInstance(
+              duration,
+              suballocation.totalAllocation,
+              suballocation.date,
+              item.billingRate,
+              allocatedHours,
+              allotedDeals,
+              currency,
+            );
+            allocations.push(lastInstance);
+          } else {
+            this._updateLastInstance(duration, lastInstance);
+          }
+          break;
+        case STATE.NONOVERALLOCATION:
+          if (suballocation.totalAllocation > MAX_ALLOCATION) {
+            state = STATE.OVERALLOCATED;
+            lastInstance = this._createLastInstance(
+              duration,
+              suballocation.totalAllocation,
+              suballocation.date,
+              item.billingRate,
+              allocatedHours,
+              allotedDeals,
+              currency,
+            );
+            allocations.push(lastInstance);
+            // update and check in one go
+          } else if (!this._updateLastInstance(duration, lastInstance)) {
+            lastInstance = this._createLastInstance(
+              duration,
+              suballocation.totalAllocation,
+              suballocation.date,
+              item.billingRate,
+              allocatedHours,
+              allotedDeals,
+              currency,
+            );
+            allocations.push(lastInstance);
+          } else {
+            // do nothing
+          }
+          break;
+      }
+    }
+
+    return {
+      allocations,
+      overallocated,
+      min: this._addTimezoneOffset(new Date(min)),
+      max: this._addTimezoneOffset(new Date(max)),
+    };
+  }
+
+  private _updateLastInstance(
+    duration: number,
+    lastInstance?: SubAllocation<any>,
+  ) {
+    if (lastInstance) {
+      const prevCount = (lastInstance.percent * duration) / PERCENT;
+      lastInstance.percent = ((prevCount + 1) / duration) * PERCENT;
+      lastInstance.endDate = this._nextDay(lastInstance.endDate);
+      return true;
+    }
+    return false;
+  }
+  private _createLastInstance(
+    duration: number,
+    allocation: number,
+    date: Date,
+    billingRate: number,
+    allocatedHours: number,
+    allotedDeals: any,
+    currency?: string,
+  ) {
+    return {
+      percent: (DIGITS.ONE / duration) * PERCENT,
+      allocation,
+      startDate: this._addTimezoneOffset(date),
+      endDate: this._addTimezoneOffset(date),
+      billingRate,
+      allocatedHours,
+      allotedDeals,
+      currency,
+    };
+  }
+  private _checkIfOverallocated(suballocation: any): boolean {
+    throw new Error('Method not implemented.');
+  }
+
+  private _getAllotedDeals(suballocation: any, dealId: string) {
+    let allocatedHours = 0;
+    const allotedDeals: any = [];
+
+    suballocation.allocations.forEach(allocation => {
+      if (allocation.dealId === dealId) {
+        allocatedHours = allocation.allocation;
+      }
+      allotedDeals.push({
+        name: allocation.deal?.name!,
+        allocatedHours: allocation.allocation,
+        billingRate: allocation.billingRate,
+        status: allocation.deal?.status,
+      });
+    });
+    return {allocatedHours, allotedDeals};
+  }
   // You can optionally override or use the inherited protected methods
   protected _nextDay(date: Date) {
     // Custom implementation or call the parent method
@@ -205,7 +457,7 @@ export type IColumnComponent<T> = {
   item: GanttTaskValue<T>;
   contextItems: NbMenuItem[];
   active: boolean;
-  showKebab: boolean;
+  showKebab?: boolean;
   showParentInitials: boolean;
   showChildInitials: boolean;
   showOverallocatedIcon: boolean;
@@ -215,6 +467,27 @@ export type IColumnComponent<T> = {
 export type IBarComponent<T> = {
   item: GanttTaskValue<T>;
 };
+
+export type GanttRowConfig = {
+  rowHeight: number;
+  actualRowSize: number;
+  rowBuffer: number;
+};
+
+export const TimelineArray: Timelines[] = [
+  Timelines.Weekly,
+  Timelines.Monthly,
+  Timelines.Quarterly,
+  Timelines.Yearly,
+];
+export interface KebabListItem extends NbMenuItem {
+  itemClass?: string[];
+  iconClass?: string[];
+  titleClass?: string[];
+  permissions?: string[];
+  tooltipData?: string;
+  disabled?: boolean;
+}
 
 export type SubAllocation<T = AnyObject> = {
   percent: number;

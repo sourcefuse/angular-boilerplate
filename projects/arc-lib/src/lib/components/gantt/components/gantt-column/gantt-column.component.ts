@@ -1,35 +1,29 @@
-import {Component, Input} from '@angular/core';
-import {AnyObject} from '@project-lib/core/api';
-import {NbMenuItem} from '@nebular/theme';
-import {ContextItemFilter, GanttTaskValue} from '../../types';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {empData} from '../../model/item.model';
 
 @Component({
-  selector: 'gantt-column',
+  selector: 'arc-gantt-column',
   templateUrl: './gantt-column.component.html',
   styleUrls: ['./gantt-column.component.scss'],
 })
-export class GanttColumnComponent<T extends AnyObject> {
+export class GanttColumnComponent {
   @Input()
-  item!: GanttTaskValue<T>;
+  items: empData[];
 
   @Input()
-  contextItems: NbMenuItem[] = [];
+  showParentInitials: boolean;
 
   @Input()
-  active!: boolean;
+  showChildInitials: boolean;
 
   @Input()
-  showKebab!: boolean;
+  showOverallocatedIcon: boolean;
+  // for testing
 
-  @Input()
-  showParentInitials!: boolean;
+  @Output() itemSelected = new EventEmitter<empData>();
 
-  @Input()
-  showChildInitials!: boolean;
-
-  @Input()
-  showOverallocatedIcon!: boolean;
-
-  @Input()
-  contextItemFilter!: ContextItemFilter<T>;
+  onItemClick(item: empData): void {
+    this.itemSelected.emit(item);
+    console.log('hi tiny');
+  }
 }
