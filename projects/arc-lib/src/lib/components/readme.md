@@ -5,7 +5,7 @@
 - The Gantt module is a project management tool that provides a visual representation of a project schedule.
 - It displays tasks along a timeline,, allowing users to see task durations, dependencies, and progress at a glance. Users can easily adjust timelines by dragging tasks, set milestones, and allocate resources, making it an effective tool for planning and tracking project timelines.
 
-For further reference you can refer [Here](projects/arc-lib/README.md)
+For further reference you can refer [Here](/projects/arc-lib/src/lib/components/gantt/readme.md)
 
 ## Resize
 
