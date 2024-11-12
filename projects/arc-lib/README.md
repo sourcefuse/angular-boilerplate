@@ -2,18 +2,19 @@
 
 ## Description
 
-- In an Angular multiproject workspace, a shared library is a package that contains reusable code and 
+- In an Angular multiproject workspace, a shared library is a package that contains reusable code and
   functionality that can be used across multiple projects within the workspace.
 
-- A shared library can include components, services, pipes, directives, and other modules that can be 
+- A shared library can include components, services, pipes, directives, and other modules that can be
   used by other projects in the workspace. By using a shared library, you can avoid duplicating code and functionality across multiple projects, which can save time and effort.
 
-- By separating your reusable code into a shared library, you can also maintain consistency and 
+- By separating your reusable code into a shared library, you can also maintain consistency and
   standardization across your projects. If you need to make changes to the shared code, you can update the library and all projects that use it will be automatically updated as well. a shared library is a powerful tool for managing code and functionality in an Angular multiproject workspace, and can help improve code quality, reduce duplication, and increase productivity.
 
-###  Structure of the arc-lib is
+### Structure of the arc-lib is
 
 The Structure of the arc-lib is as follows
+
 ```
 ├── arc-lib
 │   └── src
@@ -24,7 +25,7 @@ The Structure of the arc-lib is as follows
 │            └── theme
 ```
 
-- Angular arc library  provides various features and components to help developers get started with 
+- Angular arc library provides various features and components to help developers get started with
   their projects quickly. Here are some of the features and components that provides:
 
 ## Core Module:
@@ -111,12 +112,13 @@ For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme
 
 ### Select Component
 
-  This component supports auto-completion, filtering of options by search terms, and the
-  ability to add new tags that are not present in the list of options. There are also several configurable options, such as the ability to select multiple items, the placeholder text for the input field, and the width and height of the dropdown panel and provides a reusable component for displaying a searchable list of items with a selectable checkbox and dropdown with customized states.
+This component supports auto-completion, filtering of options by search terms, and the
+ability to add new tags that are not present in the list of options. There are also several configurable options, such as the ability to select multiple items, the placeholder text for the input field, and the width and height of the dropdown panel and provides a reusable component for displaying a searchable list of items with a selectable checkbox and dropdown with customized states.
 
 ### Gantt Component:
 
-  In this The boilerplate usingbb.gantt,bb.gantt charts,bb.gantt bars a Gantt chart is a user interface component that displays project tasks or events over a timeline, allowing users to visualize the schedule and progress of a project.
+In this The boilerplate usingbb.gantt,bb.gantt charts,bb.gantt bars a Gantt chart is a user interface component that displays project tasks or events over a timeline, allowing users to visualize the schedule and progress of a project.
+or further reference you can refer [Here](/projects/arc-lib/src/lib/components/gantt/readme.md)
 
 ### Login Component:
 
@@ -130,7 +132,7 @@ For more details about Theme Module,refer [Here](/projects/arc-lib/src/lib/theme
 
 - Auth component is a module that handles the authentication and authorization of users. It is responsible
   for managing user sessions, verifying user credentials, and granting access to protected resources based on the user's role and permissions.
-- The auth component typically includes a login as well as a registration form for new users to create 
+- The auth component typically includes a login as well as a registration form for new users to create
   an account. The component may also handle password reset functionality and provide options for users to manage their accounts
 
 For more details about Components ,refer [Here](/projects/arc-lib/src/lib/components/readme.md)
