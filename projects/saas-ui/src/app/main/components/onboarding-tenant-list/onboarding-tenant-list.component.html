@@ -15,18 +15,22 @@
           </button>
         </div>
       </div>
-
-      <!-- ag-grid -->
-      <div class="grid-wrapper">
-        <div class="grid">
-          <ag-grid-angular
-            style="width: calc(100vw-200px); height: 650px"
-            class="ag-theme-quartz"
-            [columnDefs]="colDefs"
-            [gridOptions]="gridOptions"
-            (gridReady)="onGridReady($event)"
-          >
-          </ag-grid-angular>
+      <div *ngIf="isLoading" class="loader">
+        <div class="loading-spinner"></div>
+      </div>
+      <div *ngIf="!isLoading">
+        <!-- ag-grid -->
+        <div class="grid-wrapper">
+          <div class="grid">
+            <ag-grid-angular
+              style="width: calc(100vw-200px); height: 650px"
+              class="ag-theme-quartz"
+              [columnDefs]="colDefs"
+              [gridOptions]="gridOptions"
+              (gridReady)="onGridReady($event)"
+            >
+            </ag-grid-angular>
+          </div>
         </div>
       </div>
     </nb-card-body>
