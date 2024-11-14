@@ -4,7 +4,7 @@ import {Location} from '@angular/common';
 import {BillingPlanComponent} from './billing-plan.component';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 import {SubscriptionStatus} from '../../../shared/enum/subscription-status.enum';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {
   GridApi,
   GridOptions,
@@ -16,16 +16,37 @@ import {ThemeModule} from '@project-lib/theme/theme.module';
 import {MainModule} from '../../main.module';
 import {TenantFacadeService} from '../../../shared/services';
 import {NbStatusService} from '@nebular/theme';
+import {Count} from '@project-lib/core/api/models';
+import {BackendFilter, AnyObject} from '@project-lib/core/api';
+import {Plan} from '../../../shared/models';
 
 describe('BillingPlanComponent', () => {
   let component: BillingPlanComponent;
   let fixture: ComponentFixture<BillingPlanComponent>;
-  let billingplanService: BillingPlanService;
+  let mockBillingPlanService: jasmine.SpyObj<BillingPlanService>;
   let location: Location;
   let route: ActivatedRoute;
   let router: Router;
 
+  const mockBillingData = [
+    {
+      companyName: 'Test Company',
+      userName: 'John Doe',
+      planName: 'Premium',
+      startDate: '2024-01-01',
+      endDate: '2024-12-31',
+      status: SubscriptionStatus.ACTIVE,
+    },
+  ];
+
   beforeEach(async () => {
+    mockBillingPlanService = jasmine.createSpyObj('BillingPlanService', [
+      'getPlanOptions',
+      'getTotalPlan',
+      'getBillingDetails',
+      'getTotalBillingPlan',
+    ]);
+
     await TestBed.configureTestingModule({
       declarations: [BillingPlanComponent],
       imports: [ThemeModule, RouterTestingModule, MainModule],
@@ -35,7 +56,7 @@ describe('BillingPlanComponent', () => {
         {provide: Location, useValue: location},
         {provide: ActivatedRoute, useValue: route},
         {provide: Router, useValue: router},
-        {provide: BillingPlanService, useValue: billingplanService},
+        {provide: BillingPlanService, useValue: mockBillingPlanService},
       ],
     }).compileComponents();
   });
@@ -43,7 +64,6 @@ describe('BillingPlanComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BillingPlanComponent);
     component = fixture.componentInstance;
-    billingplanService = TestBed.inject(BillingPlanService);
     location = TestBed.inject(Location);
     route = TestBed.inject(ActivatedRoute);
     router = TestBed.inject(Router);
@@ -54,64 +74,143 @@ describe('BillingPlanComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('getPaginatedBillPlans', () => {
-    it('should return paginated bill plans', () => {
-      const page = 1;
-      const limit = 5;
-      const filter = {offset: 0, limit: 5};
-      const billingDetails = [
-        {
-          companyName: 'Company 1',
-          userName: 'User 1',
-          planName: 'Plan 1',
-          startDate: '2021-01-01',
-          endDate: '2021-12-31',
-          status: SubscriptionStatus.ACTIVE,
-        },
-        {
-          companyName: 'Company 2',
-          userName: 'User 2',
-          planName: 'Plan 2',
-          startDate: '2021-01-01',
-          endDate: '2021-12-31',
-          status: SubscriptionStatus.INACTIVE,
-        },
-      ];
-      spyOn(billingplanService, 'getBillingDetails').and.returnValue(
-        of(billingDetails),
-      );
-      component.getPaginatedBillPlans(page, limit).subscribe(data => {
-        expect(data).toEqual([
-          {
-            companyName: 'Company 1',
-            userName: 'User 1',
-            planName: 'Plan 1',
-            startDate: '2021-01-01',
-            endDate: '2021-12-31',
-            status: 'ACTIVE',
-          },
-          {
-            companyName: 'Company 2',
-            userName: 'User 2',
-            planName: 'Plan 2',
-            startDate: '2021-01-01',
-            endDate: '2021-12-31',
-            status: 'INACTIVE',
-          },
-        ]);
-      });
+  it('should initialize grid options correctly', () => {
+    expect(component.gridOptions.pagination).toBeTrue();
+    expect(component.gridOptions.rowModelType).toBe('infinite');
+    expect(component.gridOptions.paginationPageSize).toBe(component.limit);
+  });
+
+  it('should call getTotal and return count', () => {
+    const mockCount: Count = {count: 10};
+    mockBillingPlanService.getTotalBillingPlan.and.returnValue(of(mockCount));
+
+    component.getTotal().subscribe(count => {
+      expect(count).toEqual(mockCount);
     });
   });
 
-  describe('getTotal', () => {
-    it('should return total billing plan count', () => {
-      const count = {count: 10};
-      spyOn(billingplanService, 'getTotalBillingPlan').and.returnValue(
-        of(count),
-      );
-      component.getTotal().subscribe(data => {
-        expect(data).toEqual(count);
-      });
+  it('should define correct column definitions', () => {
+    expect(component.colDefs.length).toBe(6);
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({
+        field: 'companyName',
+        width: 200,
+        minWidth: 20,
+      }),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'userName', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'planName', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'startDate', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'endDate', width: 200, minWidth: 20}),
+    );
+    expect(component.colDefs).toContain(
+      jasmine.objectContaining({field: 'status', width: 200, minWidth: 20}),
+    );
+  });
+
+  it('should get paginated billing plans', done => {
+    const page = 1;
+    const limit = 5;
+
+    // Make sure the spy is properly configured before the test
+    mockBillingPlanService.getBillingDetails.and.returnValue(
+      of(mockBillingData),
+    );
+
+    component.getPaginatedBillPlans(page, limit).subscribe({
+      next: data => {
+        expect(mockBillingPlanService.getBillingDetails).toHaveBeenCalledWith({
+          offset: limit * (page - 1),
+          limit: limit,
+        });
+        expect(data[0]).toEqual({
+          companyName: mockBillingData[0].companyName,
+          userName: mockBillingData[0].userName,
+          planName: mockBillingData[0].planName,
+          startDate: mockBillingData[0].startDate,
+          endDate: mockBillingData[0].endDate,
+          status: SubscriptionStatus[mockBillingData[0].status],
+        });
+        done();
+      },
+      error: error => {
+        done.fail(error);
+      },
     });
+  });
+
+  it('should call getPaginatedBillPlans and return transformed data', () => {
+    const mockPlans = [
+      {
+        companyName: 'Company A',
+        userName: 'User A',
+        planName: 'Plan A',
+        startDate: '2024-01-01',
+        endDate: '2024-12-31',
+        status: 'Active',
+      },
+      {
+        companyName: 'Company B',
+        userName: 'User B',
+        planName: 'Plan B',
+        startDate: '2024-01-01',
+        endDate: '2024-12-31',
+        status: 'Inactive',
+      },
+    ];
+
+    mockBillingPlanService.getBillingDetails.and.returnValue(of(mockPlans));
+
+    component.getPaginatedBillPlans(1, component.limit).subscribe(data => {
+      expect(data).toEqual([
+        {
+          companyName: 'Company A',
+          userName: 'User A',
+          planName: 'Plan A',
+          startDate: '2024-01-01',
+          endDate: '2024-12-31',
+          status: SubscriptionStatus['Active'],
+        },
+        {
+          companyName: 'Company B',
+          userName: 'User B',
+          planName: 'Plan B',
+          startDate: '2024-01-01',
+          endDate: '2024-12-31',
+          status: SubscriptionStatus['Inactive'],
+        },
+      ]);
+    });
+  });
+  it('should handle errors in getPaginatedBillPlans', () => {
+    mockBillingPlanService.getBillingDetails.and.returnValue(
+      throwError('Error'),
+    );
+
+    component.getPaginatedBillPlans(1, component.limit).subscribe(
+      () => fail('expected an error, not data'),
+      error => expect(error).toBe('Error'),
+    );
+  });
+
+  it('should set dataSource in grid when onGridReady is called', () => {
+    const mockApi = {
+      setDatasource: jasmine.createSpy('setDatasource'),
+    };
+
+    component.gridApi = mockApi as unknown as GridApi;
+
+    component.onGridReady({
+      api: mockApi,
+    } as any);
+
+    expect(mockApi.setDatasource).toHaveBeenCalled();
   });
 });
