@@ -1,6 +1,5 @@
 @use 'sass:map';
-// @use "../../../../theme/styles/variables" as *;
-@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
+@use '../../../../theme/styles/variables' as *;
 
 .actual-rate {
   padding: 0.25rem 0.5rem;
@@ -28,7 +27,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: 20px;
   overflow: hidden;
 
   &.actual-bar {
