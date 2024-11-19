@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {environment} from '../environments/environment';
 import {AuthGuard, LoggedInGuard} from '@project-lib/core/auth';
+import {GanttDemoComponent} from './components/gantt-demo/gantt-demo.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,12 @@ const routes: Routes = [
       ),
     canActivate: [AuthGuard],
   },
+
+  {
+    path: 'gantt-demo',
+    component: GanttDemoComponent,
+  },
+
   {
     path: '',
     redirectTo: environment.homePath,
