@@ -14,6 +14,7 @@ import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {Lead} from '../../../shared/models';
 import {AnyObject, BackendFilter, Count} from '@project-lib/core/index';
 import {HttpClient} from '@angular/common/http';
+import {ResendReminderButtonComponent} from '../resend-reminder-button/resend-reminder-button.component';
 
 @Component({
   selector: 'app-lead',
@@ -33,6 +34,12 @@ export class LeadListComponent extends RouteComponentBaseDirective {
     {field: 'companyName', width: 250, minWidth: 20},
     {field: 'email', width: 300, minWidth: 20},
     {field: 'country', width: 250, minWidth: 20},
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      cellRenderer: ResendReminderButtonComponent,
+      width: 200,
+    },
   ];
 
   rowData = [];

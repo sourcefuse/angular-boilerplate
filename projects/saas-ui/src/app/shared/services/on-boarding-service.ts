@@ -26,6 +26,7 @@ import {GetTotalLeadCommand} from '../../main/commands/get-total-lead.command';
 
 import {TenantLead} from '../models/tenantLead.model';
 import {RegisterTenantCommand} from '../../main/commands/register-tenant.command';
+import {ResendEmailByLeadIdCommand} from '../../main/commands/resend-email-by-leadid.command';
 
 interface BackendFilter<MT extends object = AnyObject> {
   where?: Where<MT>;
@@ -62,6 +63,21 @@ export class OnBoardingService {
       headers: new HttpHeaders()
         .set(AuthTokenSkipHeader, '-')
         .set('Authorization', `Bearer ${code}`),
+    };
+    return command.execute();
+  }
+
+  public resendValidateEmail(code: string, leadId: string) {
+    const command: ResendEmailByLeadIdCommand<{leadId: string; token: string}> =
+      new ResendEmailByLeadIdCommand(
+        this.apiService,
+        this.anyAdapter,
+        leadId,
+        this.appConfig,
+      );
+    // sonarignore:end
+    command.parameters = {
+      data: {},
     };
     return command.execute();
   }
