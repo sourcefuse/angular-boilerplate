@@ -67,8 +67,8 @@ export class OnBoardingService {
     return command.execute();
   }
 
-  public resendValidateEmail(code: string, leadId: string) {
-    const command: ResendEmailByLeadIdCommand<{leadId: string; token: string}> =
+  public resendValidateEmail(leadId: string) {
+    const command: ResendEmailByLeadIdCommand<{leadId: string}> =
       new ResendEmailByLeadIdCommand(
         this.apiService,
         this.anyAdapter,

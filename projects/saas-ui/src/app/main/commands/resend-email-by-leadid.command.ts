@@ -18,7 +18,7 @@ export class ResendEmailByLeadIdCommand<T> extends PostAPICommand<T> {
     super(
       apiService,
       adapter,
-      `${appConfig.baseApiUrl}${appConfig.tenantMgmtFacadeUrl}/leads/${leadId}/verify`,
+      `${appConfig.baseApiUrl}${appConfig.tenantMgmtFacadeUrl}/leads/${leadId}/reminder`,
     );
   }
 }

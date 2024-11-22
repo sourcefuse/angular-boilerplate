@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AnyObject} from '@project-lib/core/api';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {ICellRendererAngularComp} from 'ag-grid-angular';
 import {GridApi, ICellRendererParams} from 'ag-grid-community';
-import {BillingPlanService} from '../../../shared/services';
+import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {Location} from '@angular/common';
 
 @Component({
@@ -21,6 +21,8 @@ export class ResendReminderButtonComponent implements ICellRendererAngularComp {
     private toastrService: ToasterService,
     private billingPlanService: BillingPlanService,
     private location: Location,
+    private route: ActivatedRoute,
+    private readonly onBoardingService: OnBoardingService,
   ) {}
   refresh(params: ICellRendererParams) {
     return true;
@@ -30,8 +32,15 @@ export class ResendReminderButtonComponent implements ICellRendererAngularComp {
     this.params = params;
   }
   resendEmail(e) {
+    // const rowDataId = this.route.snapshot.paramMap.get('id')!;
     const rowDataId = this.params.node.data.id;
-    this.router.navigate([`/tenant/add-lead/emailHasBeenSent/${rowDataId}`]);
+    console.log(rowDataId);
+    this.onBoardingService
+      .resendValidateEmail(rowDataId)
+      .subscribe(respLead => {
+        console.log(respLead);
+      });
+    this.toastrService.show('The email has been sent successfully.');
   }
   onGridReady(params) {
     this.gridApi = params.api;

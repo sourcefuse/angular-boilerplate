@@ -100,6 +100,7 @@ export class LeadListComponent extends RouteComponentBaseDirective {
     return this.onboardingService.getLeadList(filter).pipe(
       map(res => {
         const rows = res.map(item => ({
+          id: item.id,
           firstName: item.firstName,
           lastName: item.lastName,
           companyName: item.companyName,
