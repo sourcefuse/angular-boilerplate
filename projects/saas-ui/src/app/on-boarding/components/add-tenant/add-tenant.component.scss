@@ -179,6 +179,40 @@
   gap: 20px;
 }
 
+.payment-details-container {
+  margin-top: 1rem;
+}
+
+.stripe-element-container {
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  margin-top: 0.5rem;
+
+  // Loading and error states
+  &.StripeElement--focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
+  &.StripeElement--invalid {
+    border-color: #fa755a;
+  }
+
+  &.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+  }
+}
+
+h3 {
+  color: #495057;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+
 .address-input-box {
   width: 100%;
 }
