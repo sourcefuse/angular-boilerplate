@@ -13,51 +13,32 @@
                 <!-- key -->
                 <div class="input-box address-input-box">
                   <div class="input-title">
-                    <span
-                      >Application Sub domain
-                      <span class="required">*</span></span
-                    >
+                    <span>Application Sub domain
+                      <span class="required">*</span></span>
                   </div>
                   <div class="input">
                     <div class="input-container">
-                      <input
-                        placeholder="Enter Unique Key."
-                        fieldSize="medium"
-                        status="“info”"
-                        formControlName="key"
-                        nbInput
-                      />
-                      <nb-icon
-                        icon="info-outline"
-                        class="info-icon"
-                        nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"
-                      ></nb-icon>
+                      <input placeholder="Enter Unique Key." fieldSize="medium" status="“info”" formControlName="key"
+                        nbInput />
+                      <nb-icon icon="info-outline" class="info-icon"
+                        nbTooltip="Enter a unique key starting with an alphabet. This field is required and has a maximum length of 10 characters. Special characters are not allowed"></nb-icon>
                     </div>
-                    <div
-                      class="error-msg"
-                      *ngIf="
+                    <div class="error-msg" *ngIf="
                         addTenantForm.get('key').hasError('required') &&
                         addTenantForm.get('key').touched
-                      "
-                    >
+                      ">
                       Sub-domain is required.
                     </div>
-                    <div
-                      class="error-msg"
-                      *ngIf="
+                    <div class="error-msg" *ngIf="
                         addTenantForm.get('key').hasError('maxlength') &&
                         addTenantForm.get('key').touched
-                      "
-                    >
+                      ">
                       Maximum length exceeded.
                     </div>
-                    <div
-                      class="error-msg"
-                      *ngIf="
+                    <div class="error-msg" *ngIf="
                         addTenantForm.get('key').hasError('pattern') &&
                         addTenantForm.get('key').touched
-                      "
-                    >
+                      ">
                       Invalid characters used.
                     </div>
                   </div>
@@ -69,72 +50,12 @@
               <input type="hidden" formControlName="paymentMethod" />
 
               <!-- Payment Details -->
+
+              <!-- Payment Details Section -->
               <div class="payment-details-container">
                 <h3>Payment Details</h3>
-
-                <div class="input-wrapper">
-                  <div class="input-box">
-                    <div class="input-title">
-                      <span>Card Number <span class="required">*</span></span>
-                    </div>
-                    <div class="input">
-                      <!-- Use formGroupName to access the nested form group -->
-                      <div formGroupName="paymentDetails">
-                        <input
-                          placeholder="Enter 16-digit Card Number"
-                          formControlName="cardNumber"
-                          nbInput
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-box">
-                    <div class="input-title">
-                      <span>Expiry Month <span class="required">*</span></span>
-                    </div>
-                    <div class="input">
-                      <div formGroupName="paymentDetails">
-                        <input
-                          placeholder="MM"
-                          formControlName="expiryMonth"
-                          type="number"
-                          nbInput
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="input-box">
-                    <div class="input-title">
-                      <span>Expiry Year <span class="required">*</span></span>
-                    </div>
-                    <div class="input">
-                      <div formGroupName="paymentDetails">
-                        <input
-                          placeholder="YYYY"
-                          formControlName="expiryYear"
-                          type="number"
-                          nbInput
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="input-box">
-                    <div class="input-title">
-                      <span>CVV <span class="required">*</span></span>
-                    </div>
-                    <div class="input">
-                      <div formGroupName="paymentDetails">
-                        <input
-                          placeholder="Enter 3-digit CVV"
-                          formControlName="cvv"
-                          type="password"
-                          nbInput
-                        />
-                      </div>
-                    </div>
-                  </div>
+                <div class="stripe-element-container">
+                  <div #cardNumber></div> <!-- Mounting Stripe's card element -->
                 </div>
               </div>
 
@@ -145,31 +66,18 @@
                   <h3>Subscription Plan</h3>
                 </div>
                 <div class="plan-card-wrapper">
-                  <nb-card
-                    class="plan-card-box"
-                    *ngFor="let plan of subscriptionPlans"
-                  >
+                  <nb-card class="plan-card-box" *ngFor="let plan of subscriptionPlans">
                     <nb-card-header class="plan-card-header">
                       <h5>{{ plan.name }}</h5>
-                      <nb-icon
-                        class="edit-icon"
-                        icon="file-text-outline"
-                        pack="eva"
-                        size="large"
-                      ></nb-icon>
+                      <nb-icon class="edit-icon" icon="file-text-outline" pack="eva" size="large"></nb-icon>
                     </nb-card-header>
                     <nb-card-body class="body-wrapper">
                       <p class="plan-description">{{ plan.description }}</p>
                       <p class="plan-price" *ngIf="plan.tier || plan.size">
                         {{ plan.tier }}
                         <ng-container *ngIf="plan.size">
-                          <nb-tag
-                            class="size-tag-wrapper"
-                            *ngIf="plan.size"
-                            status="basic"
-                            appearance="filled"
-                            text="{{ plan.size }}"
-                          ></nb-tag>
+                          <nb-tag class="size-tag-wrapper" *ngIf="plan.size" status="basic" appearance="filled"
+                            text="{{ plan.size }}"></nb-tag>
                         </ng-container>
                       </p>
                       <p class="numeric-plan-price">
@@ -180,11 +88,7 @@
                     <nb-card-footer class="plan-card-footer">
                       <label class="plan-radio">
                         <!-- Use FormControl directly -->
-                        <input
-                          type="radio"
-                          [formControl]="addTenantForm.get('planId')"
-                          [value]="plan.id"
-                        />
+                        <input type="radio" [formControl]="addTenantForm.get('planId')" [value]="plan.id" />
                         <span class="radio-checkmark"></span>
                         {{ plan.name }}
                       </label>
@@ -195,13 +99,7 @@
 
               <!-- signup button -->
               <div class="btn regbtn">
-                <button
-                  nbButton
-                  size="medium"
-                  class="btn-danger"
-                  [disabled]="!addTenantForm.valid"
-                  type="submit"
-                >
+                <button nbButton size="medium" class="btn-danger" [disabled]="!addTenantForm.valid" type="submit">
                   Submit
                 </button>
               </div>
