@@ -29,7 +29,7 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
   gridOptions: GridOptions;
   getResp: Plan[];
   limit = 5;
-  isLoading: boolean;
+
   colDefs: ColDef[] = [
     {field: 'name', headerName: 'Plan Name', width: 200, minWidth: 20},
     {field: 'description', width: 200, minWidth: 20},
@@ -76,19 +76,16 @@ export class ManagePlansComponent extends RouteComponentBaseDirective {
     this.gridApi = params.api;
     const dataSource: IDatasource = {
       getRows: (params: IGetRowsParams) => {
-        this.isLoading = true;
         const page = params.endRow / this.limit;
         const paginatedLeads = this.getPaginatedPlans(page, this.limit);
         const totalLead = this.getTotal();
         combineLatest([paginatedLeads, totalLead]).subscribe(
           ([data, count]) => {
             params.successCallback(data, count.count);
-            this.isLoading = false;
           },
 
           err => {
             params.failCallback();
-            this.isLoading = false;
           },
         );
       },
