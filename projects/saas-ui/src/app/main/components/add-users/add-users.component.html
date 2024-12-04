@@ -1,0 +1,186 @@
+<nb-card class="card-row">
+  <nb-card-body class="m-0">
+    <div class="main-wrapper add-lead-wrapper">
+      <div>
+        <div class="sign-in-title">
+          <h2>Add User</h2>
+        </div>
+        <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+          <!-- input fields -->
+          <div class="input-wrapper">
+            <div class="input-box">
+              <div class="input-title">
+                <span>First Name <span class="required">*</span></span>
+              </div>
+              <div class="inputTags">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Enter First Name"
+                    status="“info”"
+                    formControlName="firstName"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your first name. This field is required."
+                  ></nb-icon>
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    addUserForm.get('firstName').hasError('pattern') &&
+                    addUserForm.get('firstName').touched
+                  "
+                >
+                  First Name must contain only characters.
+                </div>
+              </div>
+            </div>
+
+            <div class="input-box">
+              <div class="input-title">
+                <span>Last Name <span class="required">*</span></span>
+              </div>
+              <div class="inputTags">
+                <div class="input-container">
+                  <input
+                    type="text"
+                    placeholder="Enter Last Name"
+                    status="“info”"
+                    formControlName="lastName"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your Last name. This field is required."
+                  ></nb-icon>
+                </div>
+                <div
+                  class="error-msg"
+                  *ngIf="
+                    addUserForm.get('lastName').hasError('pattern') &&
+                    addUserForm.get('lastName').touched
+                  "
+                >
+                  Last Name must contain only characters.
+                </div>
+              </div>
+            </div>
+
+            <!-- email -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Email <span class="required">*</span></span>
+              </div>
+              <div class="inputTags">
+                <div class="input-container">
+                  <input
+                    type="Email"
+                    placeholder="Email"
+                    status="“info”"
+                    fieldSize="medium"
+                    formControlName="email"
+                    nbInput
+                  />
+                  <nb-icon
+                    icon="info-outline"
+                    class="info-icon"
+                    nbTooltip="Please enter your Mail id. This field is required."
+                  ></nb-icon>
+                </div>
+              </div>
+
+              <div
+                class="error-msg"
+                *ngIf="
+                  addUserForm.get('email').hasError('required') &&
+                  addUserForm.get('email').touched
+                "
+              >
+                Email is required.
+              </div>
+              <div
+                class="error-msg"
+                *ngIf="
+                  addUserForm.get('email').hasError('email') &&
+                  addUserForm.get('email').touched
+                "
+              >
+                Invalid email format.
+              </div>
+            </div>
+            <!-- Validated or not  -->
+
+            <!-- Role Drop down  -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>Role <span class="required">*</span></span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="dropdown-wrapper"
+                  placeholder="Select Your Role"
+                  size="large"
+                  formControlName="role"
+                >
+                  <nb-option
+                    *ngFor="let option of roleOptions"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+
+            <!-- Role Drop down  -->
+            <div class="input-box">
+              <div class="input-title">
+                <span>IDP <span class="required">*</span></span>
+              </div>
+              <div class="select">
+                <nb-select
+                  class="dropdown-wrapper"
+                  placeholder="Select Your IDP"
+                  size="large"
+                  formControlName="idp"
+                >
+                  <nb-option
+                    *ngFor="let option of idpOptions"
+                    [value]="option.value"
+                  >
+                    {{ option.label }}
+                  </nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+
+          <!-- signup button -->
+          <div class="btn">
+            <button
+              nbButton
+              size="medium"
+              class="btn-danger"
+              (click)="onCancel()"
+            >
+              Cancel
+            </button>
+            <button
+              nbButton
+              size="medium"
+              class="btn-danger"
+              [disabled]="!addUserForm.valid"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

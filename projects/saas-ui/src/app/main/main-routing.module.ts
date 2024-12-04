@@ -8,6 +8,8 @@ import {BillingPlanComponent} from './components/billing-plan/billing-plan.compo
 import {AddPlanComponent} from './components/add-plan/add-plan.component';
 import {TenantRegistrationComponent} from './components/tenant-registration/tenant-registration.component';
 import {TenantDetailComponent} from './components/tenant-detail/tenant-detail.component';
+import {ManageUsersComponent} from './components/manage-users/manage-users.component';
+import {AddUsersComponent} from './components/add-users/add-users.component';
 
 const routes: Routes = [
   {
@@ -32,12 +34,20 @@ const routes: Routes = [
         component: ManagePlansComponent,
       },
       {
+        path: 'users',
+        component: ManageUsersComponent,
+      },
+      {
         path: 'billing-plan',
         component: BillingPlanComponent,
       },
       {
         path: 'add-plan',
         component: AddPlanComponent,
+      },
+      {
+        path: 'add-user',
+        component: AddUsersComponent,
       },
       {
         path: 'edit-plan/:id',
