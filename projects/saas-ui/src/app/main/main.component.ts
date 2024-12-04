@@ -68,6 +68,13 @@ export class MainComponent
       home: true,
       pathMatch: 'prefix',
     },
+    {
+      title: 'Manage-Users',
+      icon: 'people-outline',
+      link: '/main/users',
+      home: true,
+      pathMatch: 'prefix',
+    },
   ];
 
   navigate(link: string) {
