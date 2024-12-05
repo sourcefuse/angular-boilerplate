@@ -63,6 +63,9 @@ export class LoginComponent extends RouteComponentBaseDirective {
     this.authService.loginViaCognito();
   }
 
+  loginViaKeycloak() {
+    this.authService.loginViaKeycloak();
+  }
   withoutLogin() {
     this.router.navigate(['/tenant/add-lead']);
   }
