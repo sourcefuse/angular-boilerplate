@@ -1,7 +1,7 @@
-import { HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { APP_CONFIG } from '@project-lib/app-config';
+import {HttpHeaders} from '@angular/common/http';
+import {Inject, Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {APP_CONFIG} from '@project-lib/app-config';
 
 import {
   CoreAuthModule,
@@ -18,20 +18,20 @@ import {
   GetTokenCommand,
   GetCurrentUserCommand,
 } from '@project-lib/core/auth';
-import { SignUpAdapter } from '@project-lib/core/auth/adapters/signup-adapter.service';
-import { CreateExternalUserCommand } from '@project-lib/core/auth/commands/create-external-user.command';
-import { CreateTokenCommand } from '@project-lib/core/auth/commands/create-token.command';
+import {SignUpAdapter} from '@project-lib/core/auth/adapters/signup-adapter.service';
+import {CreateExternalUserCommand} from '@project-lib/core/auth/commands/create-external-user.command';
+import {CreateTokenCommand} from '@project-lib/core/auth/commands/create-token.command';
 import {
   AuthTokenSkipHeader,
   ErrToastSkipHeader,
 } from '@project-lib/core/constants';
-import { IAnyObject } from '@project-lib/core/i-any-object';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 import {
   AnyAdapter,
   ApiService,
   UserSessionStoreService,
 } from '@project-lib/core/index';
-import { NgxPermissionsService } from 'ngx-permissions';
+import {NgxPermissionsService} from 'ngx-permissions';
 import {
   Observable,
   switchMap,
@@ -66,7 +66,7 @@ export class AuthService {
     private readonly anyAdapter: AnyAdapter,
     private readonly permissionsService: NgxPermissionsService,
     @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
-  ) { }
+  ) {}
 
   public isLoggedIn(): Observable<boolean> {
     return this.currentUser().pipe(
@@ -342,8 +342,26 @@ export class AuthService {
       }),
     );
   }
+  loginViaKeycloak(): void {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = `${this.appConfig.baseApiUrl}${this.appConfig.authServiceUrl}/auth/keycloak`;
+    form.style.display = 'none';
 
+    const clientId = document.createElement('input');
+    clientId.type = 'hidden';
+    clientId.name = 'client_id';
+    clientId.value = this.appConfig.clientId;
+    form.appendChild(clientId);
 
+    const clientSecret = document.createElement('input');
+    clientSecret.type = 'hidden';
+    clientSecret.name = 'client_secret';
+    clientSecret.value = this.appConfig.publicKey;
+    form.appendChild(clientSecret);
+    document.body.appendChild(form);
+    form.submit();
+  }
   loginViaCognito(): void {
     const form = document.createElement('form');
     form.method = 'POST';
@@ -380,7 +398,7 @@ export class AuthService {
     const clientSecret = document.createElement('input');
     clientSecret.type = 'hidden';
     clientSecret.name = 'logout_uri';
-    clientSecret.value = this.appConfig.publicKey;;
+    clientSecret.value = this.appConfig.publicKey;
     form.appendChild(clientSecret);
     document.body.appendChild(form);
     form.submit();

@@ -14,15 +14,27 @@
 
       <!-- Social login button -->
       <div class="btn">
-        <button
-          class="btn-wrapper"
-          nbButton
-          size="medium"
-          shape="round"
-          (click)="loginViaCognito()"
-        >
-          Sign In with Amazon Cognito
-        </button>
+        <div class="idp-wrapper">
+          <button
+            class="btn-wrapper"
+            nbButton
+            size="medium"
+            shape="round"
+            (click)="loginViaCognito()"
+          >
+            Sign In with Amazon Cognito
+          </button>
+          <button
+            class="btn-wrapper"
+            nbButton
+            size="medium"
+            shape="round"
+            (click)="loginViaKeycloak()"
+          >
+            Sign In with Keycloak
+          </button>
+        </div>
+
         <p>OR</p>
         <button
           nbButton
@@ -31,7 +43,7 @@
           shape="round"
           (click)="withoutLogin()"
         >
-          Registration
+          Sign Up
         </button>
       </div>
     </div>
