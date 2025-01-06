@@ -1,12 +1,10 @@
-import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {NbToastrService} from '@nebular/theme';
-import {Location} from '@angular/common';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {OnBoardingService} from '../../../shared/services/on-boarding-service';
-import {id} from 'date-fns/locale';
-import {verifyHostBindings} from '@angular/compiler';
-import {COUNTRIES} from '../../../shared/constants/countries.constant';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
+import { Location } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { OnBoardingService } from '../../../shared/services/on-boarding-service';
+import { COUNTRIES } from '../../../shared/constants/countries.constant';
 
 @Component({
   selector: 'app-add-lead',
@@ -33,11 +31,22 @@ export class AddLeadComponent {
       address: [''],
       zip: ['', [Validators.pattern('^[0-9]+$'), Validators.maxLength(9)]],
       country: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      communicationEmail: ['', [Validators.email]], // Add communicationEmail field
     });
   }
 
   onCancel() {
     this.router.navigate(['auth/login']);
+  }
+
+  onCommunicationEmailCheckboxChange(event: boolean) {
+    if (event) {
+      this.addLeadForm
+        .get('communicationEmail')
+        .setValue(this.addLeadForm.get('email').value);
+    } else {
+      this.addLeadForm.get('communicationEmail').setValue('');
+    }
   }
 
   onSubmit() {
@@ -53,6 +62,7 @@ export class AddLeadComponent {
           zip: userData.zip,
           country: userData.country,
         },
+        communicationEmail: userData.communicationEmail, // Include communicationEmail
       };
       this.onBoardingService.addLead(user).subscribe(
         () => {
