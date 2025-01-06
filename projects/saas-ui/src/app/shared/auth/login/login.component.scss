@@ -55,6 +55,16 @@
   width: 25px;
 }
 .btn{
+  .idp-wrapper {
+    display: inline-grid;
+    grid-gap: 15px; 
+
+    @media (max-width: 575px) {
+      display: flex;            
+      flex-direction: column;    
+      align-items: center;        
+    }
+  }
   .btn-wrapper{
   color: #ffffff !important;
   background: #f00a18 !important;
