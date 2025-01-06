@@ -5,6 +5,7 @@ export class TenantLead {
     lastName?: string;
     email?: string;
     isPrimary?: boolean;
+    communicationEmail?: string;
   };
   address?: string;
   city?: string;
