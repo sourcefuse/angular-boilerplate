@@ -6,6 +6,7 @@ import {TenantFacadeService} from '../../../shared/services';
 import {TenantDetailComponent} from './tenant-detail.component';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {NbThemeModule} from '@nebular/theme';
+import {TenantDetails} from '../../../shared/models/tenantDetails.model';
 
 describe('TenantDetailComponent', () => {
   let component: TenantDetailComponent;
@@ -57,6 +58,50 @@ describe('TenantDetailComponent', () => {
       'Error fetching tenant data:',
       error,
     );
+  });
+
+  it('should load tenant data successfully', () => {
+    const tenantData: TenantDetails = {
+      id: '1',
+      firstName: 'John',
+      lastName: 'Doe',
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      address: {
+        country: 'USA',
+        city: '',
+        state: '',
+        zip: '',
+      },
+      subscription: {
+        plan: {
+          name: 'Premium',
+          price: 99.99,
+          description: '',
+          tier: '1',
+        },
+        startDate: new Date('2023-01-01'),
+        endDate: new Date('2023-12-31'),
+      },
+      status: 0,
+      key: 'er45',
+    };
+    tenantFacadeService.getTenantDetails.and.returnValue(of([tenantData]));
+    fixture.detectChanges();
+    expect(tenantFacadeService.getTenantDetails).toHaveBeenCalledWith({
+      where: {id: '1'},
+    });
+    expect(component.tenantDetailForm.value).toEqual({
+      tenantName: 'John Doe',
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      country: 'USA',
+      planName: 'Premium',
+      startDate: '01/01/2023',
+      endDate: '31/12/2023',
+      price: 99.99,
+      tier: '',
+    });
   });
 
   it('should navigate back to tenant list on backToPreviousPage', () => {
