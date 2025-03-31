@@ -1,6 +1,7 @@
 // @use "../../../../theme/styles/variables" as *;
-@use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
+// @use 'projects/arc-lib/src/lib/theme/styles/_variables.scss' as *;
 @use 'sass:map';
+@use '../../../../theme/styles/variables' as *;
 .header-container {
   line-height: 1;
   width: 100%;
