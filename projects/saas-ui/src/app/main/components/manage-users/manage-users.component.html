@@ -1,0 +1,30 @@
+<div>
+  <nb-card accent="danger" class="card-style">
+    <nb-card-body>
+      <div class="heading-wrapper">
+        <h2 class="heading">Manage Users</h2>
+        <div class="regbtn">
+          <button
+            nbButton
+            class="btn-danger"
+            size="medium"
+            status="basic"
+            (click)="showManageUsers()"
+          >
+            Add User
+          </button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <ag-grid-angular
+          class="ag-theme-quartz"
+          [columnDefs]="colDefs"
+          [gridOptions]="gridOptions"
+          (gridReady)="onGridReady($event)"
+        >
+        </ag-grid-angular>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</div>
