@@ -7,4 +7,15 @@ export const environment = {
   authServiceUrl: '',
   userServiceUrl: '',
   logLevel: 0,
+  csp: {
+    defaultSrc: [true],
+    scriptSrc: [true],
+    styleSrc: [true, "'unsafe-inline'"],
+    imgSrc: [true],
+    connectSrc: [true, 'env:baseApiUrl'],
+    objectSrc: ['none'],
+    baseUri: [true],
+    formAction: [true],
+    blockAllMixedContent: true,
+  },
 };

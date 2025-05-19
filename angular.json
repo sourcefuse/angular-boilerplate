@@ -65,6 +65,13 @@
                   "maximumError": "2mb"
                 }
               ],
+
+              "fileReplacements": [
+                {
+                  "replace": "projects/arc/src/environments/environment.ts",
+                  "with": "projects/arc/src/environments/environment.prod.ts"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {
