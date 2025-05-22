@@ -1,0 +1,31 @@
+<nav aria-label="breadcrumb" class="breadcrumbs-nav">
+  <ol class="breadcrumbs-list">
+    <ng-container *ngFor="let crumb of displayBreadcrumbs; let i = index; trackBy: trackByFn">
+      <li
+        [ngClass]="[
+          itemClass,
+          crumb.disabled ? disabledClass : '',
+          i === displayBreadcrumbs.length - 1 ? activeClass : '',
+          crumb.customClass || ''
+        ]"
+        class="breadcrumb-item"
+      >
+        <ng-container *ngIf="!crumb.disabled && i !== displayBreadcrumbs.length - 1; else lastOrDisabled">
+          <a [routerLink]="crumb.url" [attr.aria-disabled]="crumb.disabled">
+            <nb-icon *ngIf="showIcons && crumb.icon" [icon]="crumb.icon" class="breadcrumb-icon"></nb-icon>
+            {{ crumb.label }}
+          </a>
+        </ng-container>
+        <ng-template #lastOrDisabled>
+          <span>
+            <nb-icon *ngIf="showIcons && crumb.icon" [icon]="crumb.icon" class="breadcrumb-icon"></nb-icon>
+            {{ crumb.label }}
+          </span>
+        </ng-template>
+      </li>
+      <li *ngIf="i < displayBreadcrumbs.length - 1" [ngClass]="separatorClass" class="breadcrumb-separator">
+        <span>{{ separator }}</span>
+      </li>
+    </ng-container>
+  </ol>
+</nav> 

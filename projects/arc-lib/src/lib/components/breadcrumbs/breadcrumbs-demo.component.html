@@ -1,0 +1,143 @@
+<nb-card>
+  <nb-card-header>
+    <h1>Breadcrumbs Examples</h1>
+    <nav class="breadcrumbs-demo-nav">
+      <a [routerLink]="[]" fragment="basic">Basic</a> |
+      <a [routerLink]="[]" fragment="active">Active Last</a> |
+      <a [routerLink]="[]" fragment="separator">Custom Separator</a> |
+      <a [routerLink]="[]" fragment="icons">With Icons</a> |
+      <a [routerLink]="[]" fragment="collapsed">Collapsed</a> |
+      <a [routerLink]="[]" fragment="customization">Customization</a> |
+      <a [routerLink]="[]" fragment="dynamic">Dynamic</a> |
+      <a [routerLink]="[]" fragment="accessibility">Accessibility</a>
+    </nav>
+  </nb-card-header>
+  <nb-card-body>
+    <section id="basic">
+      <h2>Basic Breadcrumbs</h2>
+      <lib-breadcrumbs
+        [staticBreadcrumbs]="[
+          {label: 'Home', url: '/home', icon: 'home-outline'},
+          {label: 'Components', url: '/components', icon: 'layers-outline'},
+          {label: 'Arc Components', url: '/components/arc-comp'},
+        ]"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+    <section id="active">
+      <h2>Active Last Breadcrumb</h2>
+      <lib-breadcrumbs
+        [staticBreadcrumbs]="[
+          {label: 'Home', url: '/home'},
+          {label: 'Components', url: '/components'},
+          {label: 'Arc Components', url: '/components/arc-comp'},
+        ]"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+    <section id="separator">
+      <h2>Custom Separator</h2>
+      <lib-breadcrumbs
+        [staticBreadcrumbs]="[
+          {label: 'Home', url: '/home'},
+          {label: 'Catalog', url: '/catalog'},
+          {label: 'Accessories', url: '/catalog/accessories'},
+        ]"
+        separator="›"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" separator="›" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+    <section id="icons">
+      <h2>Breadcrumbs with Icons</h2>
+      <lib-breadcrumbs
+        [staticBreadcrumbs]="[
+          {label: 'Home', url: '/home', icon: 'home-outline'},
+          {label: 'Library', url: '/library', icon: 'book-outline'},
+          {
+            label: 'Data',
+            url: '/library/data',
+            icon: 'folder-outline',
+            disabled: true,
+          },
+        ]"
+        [showIcons]="true"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" [showIcons]="true" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+    <section id="collapsed">
+      <h2>Collapsed Breadcrumbs</h2>
+      <lib-breadcrumbs
+        [staticBreadcrumbs]="[
+          {label: 'Home', url: '/home'},
+          {label: 'Catalog', url: '/catalog'},
+          {label: 'Accessories', url: '/catalog/accessories'},
+          {label: 'New Collection', url: '/catalog/accessories/new'},
+          {label: 'Belts', url: '/catalog/accessories/new/belts'},
+        ]"
+        [maxItems]="2"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" [maxItems]="2" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+    <section id="customization">
+      <h2>Customization</h2>
+      <lib-breadcrumbs
+        [staticBreadcrumbs]="[
+          {
+            label: 'Home',
+            url: '/home',
+            icon: 'home-outline',
+            customClass: 'custom-home',
+          },
+          {label: 'Catalog', url: '/catalog', customClass: 'custom-catalog'},
+          {
+            label: 'Accessories',
+            url: '/catalog/accessories',
+            customClass: 'custom-accessories',
+          },
+        ]"
+        separator="-"
+        [showIcons]="true"
+        itemClass="custom-breadcrumb-item"
+        activeClass="custom-active"
+        disabledClass="custom-disabled"
+        separatorClass="custom-separator"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" separator="-" [showIcons]="true" itemClass="custom-breadcrumb-item" activeClass="custom-active" disabledClass="custom-disabled" separatorClass="custom-separator" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+    <section id="dynamic">
+      <h2>Dynamic Breadcrumbs Example</h2>
+      <lib-breadcrumbs
+        separator="›"
+        [showIcons]="true"
+        [maxItems]="5"
+        aria-label="breadcrumb"
+      ></lib-breadcrumbs>
+      <pre><code>&lt;lib-breadcrumbs separator="›" [showIcons]="true" [maxItems]="5" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+      <p>
+        This example uses the current route and its
+        <code>data.breadcrumb</code> values to build the trail. Try navigating
+        to different pages to see the breadcrumbs update dynamically.
+      </p>
+    </section>
+    <section id="accessibility">
+      <h2>Accessibility</h2>
+      <p>
+        The breadcrumbs component uses
+        <code>&lt;nav aria-label="breadcrumb"&gt;</code> and an ordered list
+        <code>&lt;ol&gt;</code> for accessibility, following
+        <a
+          href="https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/"
+          target="_blank"
+          >WAI-ARIA best practices</a
+        >.
+      </p>
+      <pre><code>&lt;lib-breadcrumbs aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    </section>
+  </nb-card-body>
+</nb-card>

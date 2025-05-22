@@ -28,6 +28,11 @@ export const COMPONENTS_ITEMS = [
     image: '../../../assets/images/components/Default button.svg',
   },
   {
+    title: 'Breadcrumbs',
+    link: '/main/components/arc-comp/breadcrumbs-demo',
+    image: 'assets/images/components/breadcrumbs.svg',
+  },
+  {
     title: 'Select',
     link: '/main/component-details',
     home: true,
