@@ -1,57 +1,17 @@
 <nb-card>
   <nb-card-header>
-    <h1>Breadcrumbs Examples</h1>
-    <nav class="breadcrumbs-demo-nav">
-      <a [routerLink]="[]" fragment="basic">Basic</a> |
-      <a [routerLink]="[]" fragment="active">Active Last</a> |
-      <a [routerLink]="[]" fragment="separator">Custom Separator</a> |
-      <a [routerLink]="[]" fragment="icons">With Icons</a> |
-      <a [routerLink]="[]" fragment="collapsed">Collapsed</a> |
-      <a [routerLink]="[]" fragment="customization">Customization</a> |
-      <a [routerLink]="[]" fragment="dynamic">Dynamic</a> |
-      <a [routerLink]="[]" fragment="accessibility">Accessibility</a>
-    </nav>
+    <h1>Breadcrumbs Component Examples</h1>
+    <p class="subtitle">
+      Flexible, dynamic, and static breadcrumbs for Angular projects.
+    </p>
   </nb-card-header>
   <nb-card-body>
-    <section id="basic">
-      <h2>Basic Breadcrumbs</h2>
-      <lib-breadcrumbs
-        [staticBreadcrumbs]="[
-          {label: 'Home', url: '/home', icon: 'home-outline'},
-          {label: 'Components', url: '/components', icon: 'layers-outline'},
-          {label: 'Arc Components', url: '/components/arc-comp'},
-        ]"
-        aria-label="breadcrumb"
-      ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
-    </section>
-    <section id="active">
-      <h2>Active Last Breadcrumb</h2>
-      <lib-breadcrumbs
-        [staticBreadcrumbs]="[
-          {label: 'Home', url: '/home'},
-          {label: 'Components', url: '/components'},
-          {label: 'Arc Components', url: '/components/arc-comp'},
-        ]"
-        aria-label="breadcrumb"
-      ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
-    </section>
-    <section id="separator">
-      <h2>Custom Separator</h2>
-      <lib-breadcrumbs
-        [staticBreadcrumbs]="[
-          {label: 'Home', url: '/home'},
-          {label: 'Catalog', url: '/catalog'},
-          {label: 'Accessories', url: '/catalog/accessories'},
-        ]"
-        separator="›"
-        aria-label="breadcrumb"
-      ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" separator="›" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
-    </section>
-    <section id="icons">
-      <h2>Breadcrumbs with Icons</h2>
+    <section id="static">
+      <h2>Static Example</h2>
+      <p>
+        Use static breadcrumbs for simple, non-dynamic navigation trails. Icons,
+        custom classes, and collapsing are supported.
+      </p>
       <lib-breadcrumbs
         [staticBreadcrumbs]="[
           {label: 'Home', url: '/home', icon: 'home-outline'},
@@ -63,81 +23,132 @@
             disabled: true,
           },
         ]"
+        separator=">"
         [showIcons]="true"
-        aria-label="breadcrumb"
-      ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" [showIcons]="true" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
-    </section>
-    <section id="collapsed">
-      <h2>Collapsed Breadcrumbs</h2>
-      <lib-breadcrumbs
-        [staticBreadcrumbs]="[
-          {label: 'Home', url: '/home'},
-          {label: 'Catalog', url: '/catalog'},
-          {label: 'Accessories', url: '/catalog/accessories'},
-          {label: 'New Collection', url: '/catalog/accessories/new'},
-          {label: 'Belts', url: '/catalog/accessories/new/belts'},
-        ]"
-        [maxItems]="2"
-        aria-label="breadcrumb"
-      ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" [maxItems]="2" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
-    </section>
-    <section id="customization">
-      <h2>Customization</h2>
-      <lib-breadcrumbs
-        [staticBreadcrumbs]="[
-          {
-            label: 'Home',
-            url: '/home',
-            icon: 'home-outline',
-            customClass: 'custom-home',
-          },
-          {label: 'Catalog', url: '/catalog', customClass: 'custom-catalog'},
-          {
-            label: 'Accessories',
-            url: '/catalog/accessories',
-            customClass: 'custom-accessories',
-          },
-        ]"
-        separator="-"
-        [showIcons]="true"
+        [maxItems]="5"
         itemClass="custom-breadcrumb-item"
         activeClass="custom-active"
         disabledClass="custom-disabled"
         separatorClass="custom-separator"
         aria-label="breadcrumb"
       ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs [staticBreadcrumbs]="[...]" separator="-" [showIcons]="true" itemClass="custom-breadcrumb-item" activeClass="custom-active" disabledClass="custom-disabled" separatorClass="custom-separator" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copy(staticCode)">Copy</button>
+        <pre><code [innerText]="staticCode"></code></pre>
+      </div>
     </section>
     <section id="dynamic">
-      <h2>Dynamic Breadcrumbs Example</h2>
-      <lib-breadcrumbs
-        separator="›"
-        [showIcons]="true"
-        [maxItems]="5"
-        aria-label="breadcrumb"
-      ></lib-breadcrumbs>
-      <pre><code>&lt;lib-breadcrumbs separator="›" [showIcons]="true" [maxItems]="5" aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+      <h2>Dynamic Example (User/Notes)</h2>
       <p>
-        This example uses the current route and its
-        <code>data.breadcrumb</code> values to build the trail. Try navigating
-        to different pages to see the breadcrumbs update dynamically.
+        This example demonstrates dynamic breadcrumbs using route data and
+        resolvers.<br />
+        Click a button to see the breadcrumbs update with resolved user and note
+        titles.
       </p>
+      <div class="demo-links">
+        <button class="nav-btn" [routerLink]="['user', 12, 'notes', 1]">
+          User 12 / Note 1
+        </button>
+        <button class="nav-btn" [routerLink]="['user', 7, 'notes', 2]">
+          User 7 / Note 2
+        </button>
+      </div>
+      <div class="dynamic-info">
+        <div class="current-path">
+          <strong>Current path:</strong> <code>{{ currentPath }}</code>
+        </div>
+        <div *ngIf="resolvedUser || resolvedNote" class="resolved-data">
+          <strong>Resolved data:</strong>
+          <ng-container *ngIf="resolvedUser">
+            User:
+            <a
+              [routerLink]="['/main/components/arc-comp/user', getUserId()]"
+              class="user-link"
+              title="Go to user page"
+            >
+              <nb-icon
+                icon="person-outline"
+                style="vertical-align: middle; margin-right: 4px"
+              ></nb-icon>
+              {{ resolvedUser.name }}
+            </a>
+          </ng-container>
+          <span *ngIf="resolvedNote"> | Note: {{ resolvedNote.title }}</span>
+        </div>
+      </div>
+      <lib-breadcrumbs aria-label="breadcrumb"></lib-breadcrumbs>
+      <div class="how-it-works">
+        <h3>How it works</h3>
+        <ol>
+          <li>
+            You navigate to a dynamic route (e.g.,
+            <code>/user/12/notes/1</code>).
+          </li>
+          <li>
+            Resolvers fetch user and note data before the route activates.
+          </li>
+          <li>
+            The <code>breadcrumb</code> function uses this data for labels.
+          </li>
+          <li>The breadcrumb trail updates automatically.</li>
+        </ol>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" (click)="copy(dynamicCode)">Copy</button>
+        <pre><code [innerText]="dynamicCode"></code></pre>
+      </div>
+      <hr class="section-divider" />
     </section>
-    <section id="accessibility">
-      <h2>Accessibility</h2>
-      <p>
-        The breadcrumbs component uses
-        <code>&lt;nav aria-label="breadcrumb"&gt;</code> and an ordered list
-        <code>&lt;ol&gt;</code> for accessibility, following
-        <a
-          href="https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/"
-          target="_blank"
-          >WAI-ARIA best practices</a
-        >.
-      </p>
-      <pre><code>&lt;lib-breadcrumbs aria-label="breadcrumb"&gt;&lt;/lib-breadcrumbs&gt;</code></pre>
+    <section id="api">
+      <h2>API</h2>
+      <p>See all available inputs for customization:</p>
+      <table class="api-table">
+        <tr>
+          <th>Input</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>staticBreadcrumbs</td>
+          <td>Breadcrumb[]</td>
+          <td>Static breadcrumb items (optional)</td>
+        </tr>
+        <tr>
+          <td>separator</td>
+          <td>string</td>
+          <td>Separator character/string (default: /)</td>
+        </tr>
+        <tr>
+          <td>maxItems</td>
+          <td>number</td>
+          <td>Max breadcrumbs before collapsing (default: 8)</td>
+        </tr>
+        <tr>
+          <td>showIcons</td>
+          <td>boolean</td>
+          <td>Show icons if provided (default: false)</td>
+        </tr>
+        <tr>
+          <td>itemClass</td>
+          <td>string</td>
+          <td>Custom class for breadcrumb items</td>
+        </tr>
+        <tr>
+          <td>activeClass</td>
+          <td>string</td>
+          <td>Class for active (last) item</td>
+        </tr>
+        <tr>
+          <td>disabledClass</td>
+          <td>string</td>
+          <td>Class for disabled items</td>
+        </tr>
+        <tr>
+          <td>separatorClass</td>
+          <td>string</td>
+          <td>Class for separator</td>
+        </tr>
+      </table>
     </section>
   </nb-card-body>
 </nb-card>

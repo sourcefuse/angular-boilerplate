@@ -7,18 +7,18 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-    data: { breadcrumb: 'Home' },
+    data: {breadcrumb: 'Home'},
     children: [
       {
         path: 'home',
         loadChildren: () =>
           import('./home/home.module').then(m => m.HomeModule),
-        data: { breadcrumb: 'Home' },
+        data: {breadcrumb: 'Home'},
       },
       {
         path: 'components',
         component: IntroductionComponent,
-        data: { breadcrumb: 'Components' },
+        data: {breadcrumb: 'Components'},
         children: [
           {
             path: 'nebular-comp',
@@ -26,7 +26,7 @@ const routes: Routes = [
               import('./introduction/introduction.module').then(
                 m => m.IntroductionModule,
               ),
-            data: { breadcrumb: 'Nebular Components' },
+            data: {breadcrumb: 'Nebular Components'},
           },
           {
             path: 'arc-comp',
@@ -34,7 +34,7 @@ const routes: Routes = [
               import('./introduction/introduction.module').then(
                 m => m.IntroductionModule,
               ),
-            data: { breadcrumb: 'Arc Components' },
+            data: {breadcrumb: 'Arc Components'},
           },
         ],
       },

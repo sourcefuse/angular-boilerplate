@@ -2,11 +2,11 @@ import {Component} from '@angular/core';
 import {COMPONENTS_ITEMS} from '../constants/components.constant';
 import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {NEBULAR_COMP_ITEMS} from '../constants/nebularComponents.constants';
-import { CommonModule } from '@angular/common';
-import { NbCardModule } from '@nebular/theme';
-import { BreadcrumbsComponent } from 'projects/arc-lib/src/lib/components/breadcrumbs/breadcrumbs.component';
-import { RouterModule } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import {CommonModule} from '@angular/common';
+import {NbCardModule} from '@nebular/theme';
+import {BreadcrumbsComponent} from 'projects/arc-lib/src/lib/components/breadcrumbs/breadcrumbs.component';
+import {RouterModule} from '@angular/router';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'arc-introduction',
@@ -25,12 +25,18 @@ export class IntroductionComponent {
 
   ngOnInit() {
     this.loadConfig();
-    this.hasChildRoute = this.route.firstChild && this.route.firstChild.snapshot.routeConfig?.path !== '';
+    this.hasChildRoute =
+      this.route.firstChild &&
+      this.route.firstChild.snapshot.routeConfig?.path !== '';
 
-    this.router.events.pipe(filter(e => e instanceof NavigationEnd)).subscribe(() => {
-      this.loadConfig();
-      this.hasChildRoute = this.route.firstChild && this.route.firstChild.snapshot.routeConfig?.path !== '';
-    });
+    this.router.events
+      .pipe(filter(e => e instanceof NavigationEnd))
+      .subscribe(() => {
+        this.loadConfig();
+        this.hasChildRoute =
+          this.route.firstChild &&
+          this.route.firstChild.snapshot.routeConfig?.path !== '';
+      });
   }
 
   loadConfig() {
