@@ -1,13 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {Component} from '@angular/core';
+import {CommonModule, Location} from '@angular/common';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {ActivatedRoute, Router} from '@angular/router';
-import {NbSidebarService, NbMenuService, NbMenuItem} from '@nebular/theme';
+import {NbSidebarService, NbMenuService} from '@nebular/theme';
 import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {IconPacksManagerService} from '@project-lib/theme/services';
-import {takeUntil} from 'rxjs';
-import {Location} from '@angular/common';
 
 @Component({
   selector: 'lib-header',
@@ -27,7 +25,7 @@ export class HeaderComponent extends RouteComponentBaseDirective {
     private readonly authService: AuthService,
     private readonly menuService: NbMenuService,
     private readonly iconMgr: IconPacksManagerService,
-    private router: Router,
+    private readonly router: Router,
   ) {
     super(route, location);
     this.iconMgr.registerSvgs();

@@ -16,7 +16,7 @@
   .column-wrapper {
     height: calc(100vh - 100px);
     overflow: hidden;
-    padding:15px !important;
+    padding: 15px !important;
   }
   .logo-container {
     display: flex;
@@ -44,7 +44,7 @@
           a {
             &.active {
               // color: red !important;
-              color:  #f00a18 ;
+              color: #f00a18;
             }
           }
         }

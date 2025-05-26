@@ -1,15 +1,21 @@
-import { Location } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NbToastrService } from '@nebular/theme';
-import { AnyObject } from '@project-lib/core/api';
-import { environment } from 'projects/saas-ui/src/environment';
-import { Lead } from '../../../shared/models';
-import { BillingPlanService } from '../../../shared/services/billing-plan-service';
-import { OnBoardingService } from '../../../shared/services/on-boarding-service';
+import {Location} from '@angular/common';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NbToastrService} from '@nebular/theme';
+import {AnyObject} from '@project-lib/core/api';
+import {environment} from 'projects/saas-ui/src/environment';
+import {Lead} from '../../../shared/models';
+import {BillingPlanService} from '../../../shared/services/billing-plan-service';
+import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 
-declare var Stripe: any;
+declare const Stripe;
 
 @Component({
   selector: 'app-add-tenant',
@@ -36,11 +42,18 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
     private billingPlanService: BillingPlanService,
   ) {
     this.addTenantForm = this.fb.group({
-      key: ['', [Validators.required, Validators.maxLength(10), Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$')]],
+      key: [
+        '',
+        [
+          Validators.required,
+          Validators.maxLength(10),
+          Validators.pattern('^[a-zA-Z][a-zA-Z0-9]*$'),
+        ],
+      ],
       domains: [''],
-      planId: [null, Validators.required],  // Mark planId as required
-      paymentMethod: ['payment_source'],     // Specify Stripe as payment method
-      paymentToken: ['', Validators.required] // New FormControl for Stripe token
+      planId: [null, Validators.required], // Mark planId as required
+      paymentMethod: ['payment_source'], // Specify Stripe as payment method
+      paymentToken: ['', Validators.required], // New FormControl for Stripe token
     });
   }
 
@@ -67,14 +80,14 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
           fontSmoothing: 'antialiased',
           fontSize: '16px',
           '::placeholder': {
-            color: '#aab7c4'
-          }
+            color: '#aab7c4',
+          },
         },
         invalid: {
           color: '#fa755a',
-          iconColor: '#fa755a'
-        }
-      }
+          iconColor: '#fa755a',
+        },
+      },
     });
 
     this.cardElement.mount(this.cardNumberElement.nativeElement);
@@ -83,7 +96,7 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
     this.cardElement.on('change', (event: any) => {
       if (event.error) {
         this.toastrService.danger(event.error.message, 'Error');
-        this.addTenantForm.get('paymentToken')?.setValue('');  // Clear paymentToken on error
+        this.addTenantForm.get('paymentToken')?.setValue(''); // Clear paymentToken on error
       } else if (event.complete) {
         this.generateStripeToken();
       }
@@ -92,7 +105,7 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
 
   // Generate token and set it to the form when payment details are complete
   async generateStripeToken() {
-    const { token, error } = await this.stripe.createToken(this.cardElement);
+    const {token, error} = await this.stripe.createToken(this.cardElement);
     if (error) {
       this.toastrService.danger(error.message, 'Error');
     } else {
@@ -115,7 +128,7 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
 
       this.onboardingService.addTenant(domainData, this.leadId).subscribe(
         () => this.router.navigate(['/tenant/registration/complete']),
-        error => this.toastrService.danger('Registration failed', 'Error')
+        error => this.toastrService.danger('Registration failed', 'Error'),
       );
     }
   }
@@ -128,13 +141,15 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
       },
       error => {
         this.toastrService.danger('Failed to fetch lead data', 'Error');
-      }
+      },
     );
   }
 
   updateDomainFromEmail() {
     if (this.leadData && this.leadData.email) {
-      const emailDomain = this.leadData.email?.substring(this.leadData.email.lastIndexOf('@') + 1);
+      const emailDomain = this.leadData.email?.substring(
+        this.leadData.email.lastIndexOf('@') + 1,
+      );
       if (emailDomain) {
         this.addTenantForm.get('domains').setValue(emailDomain);
       }

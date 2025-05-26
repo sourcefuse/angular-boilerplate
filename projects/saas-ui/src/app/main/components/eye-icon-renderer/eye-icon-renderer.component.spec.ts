@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EyeIconRendererComponent } from './eye-icon-renderer.component';
+import {EyeIconRendererComponent} from './eye-icon-renderer.component';
 
 describe('EyeIconRendererComponent', () => {
   let component: EyeIconRendererComponent;
@@ -8,9 +8,8 @@ describe('EyeIconRendererComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EyeIconRendererComponent ]
-    })
-    .compileComponents();
+      declarations: [EyeIconRendererComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EyeIconRendererComponent);
     component = fixture.componentInstance;

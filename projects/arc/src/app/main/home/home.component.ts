@@ -44,7 +44,7 @@ export class HomeComponent
   getGreetingText() {
     // Intentionally ignored as this is needed to be done sequentially
     // sonarignore:start
-    const data = [
+    const data: [number, string][] = [
         [21, 'Good Night'],
         [16, 'Good Evening'],
         [12, 'Good Afternoon'],
@@ -52,9 +52,9 @@ export class HomeComponent
         [0, 'Good Night'],
       ],
       hr = new Date().getHours();
-    for (let i = 0; i < data.length; i++) {
-      if (hr >= data[i][0]) {
-        return data[i][1] as string;
+    for (const [hour, greeting] of data) {
+      if (hr >= hour) {
+        return greeting;
       }
     }
     // sonarignore:end

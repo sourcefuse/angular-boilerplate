@@ -4,8 +4,6 @@ import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {OnBoardingService} from '../../../shared/services/on-boarding-service';
-import {id} from 'date-fns/locale';
-import {verifyHostBindings} from '@angular/compiler';
 import {COUNTRIES} from '../../../shared/constants/countries.constant';
 
 @Component({

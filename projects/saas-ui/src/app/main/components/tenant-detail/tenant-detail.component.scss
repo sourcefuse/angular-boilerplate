@@ -1,4 +1,4 @@
-$primary-color: #f50057; 
+$primary-color: #f50057;
 $secondary-color: #6c757d;
 $background-color: #f8f9fa;
 $text-color: #343a40;
@@ -33,7 +33,7 @@ h2 {
 
 .input-box {
   width: 100%;
-  
+
   @media (min-width: 600px) {
     width: calc(50% - 10px); // Two fields per row
   }
@@ -66,7 +66,7 @@ h2 {
   margin-top: 5px;
 }
 
-.btn-wrapper{
+.btn-wrapper {
   display: flex;
   justify-content: end;
 }

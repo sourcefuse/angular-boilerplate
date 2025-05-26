@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import {UserSessionStoreService} from '@project-lib/core/index';
-import {Observable, catchError, map, of, tap} from 'rxjs';
+import {Observable, catchError, map, of} from 'rxjs';
 import {OnBoardingService} from '../../shared/services/on-boarding-service';
 
 @Injectable({

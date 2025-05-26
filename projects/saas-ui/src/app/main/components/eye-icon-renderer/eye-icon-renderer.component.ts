@@ -10,7 +10,7 @@ import {ICellRendererAngularComp} from 'ag-grid-angular';
 export class EyeIconRendererComponent implements ICellRendererAngularComp {
   private params: any;
 
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
   agInit(params: any): void {
     this.params = params;

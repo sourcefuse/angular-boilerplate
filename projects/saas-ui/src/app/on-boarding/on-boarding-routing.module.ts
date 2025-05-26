@@ -29,7 +29,6 @@ const routes: Routes = [
         component: AddTenantComponent,
         canActivate: [EmailVerifyGuard],
       },
-      
     ],
   },
 ];

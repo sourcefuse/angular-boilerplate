@@ -30,22 +30,21 @@
   padding: 80px;
 }
 
-.sign-in-title{
+.sign-in-title {
   padding: 40px 10px;
   max-width: 450px;
   margin-top: 50px;
-  h2{
+  h2 {
     font-weight: 900;
     font-size: 42px;
     line-height: 1;
     margin: 0;
-    font-family: "Raleway", sans-serif;
+    font-family: 'Raleway', sans-serif;
   }
-  .text-wrapper{
+  .text-wrapper {
     font-size: 18px !important;
-    font-family: "Open Sans";
+    font-family: 'Open Sans';
     font-weight: 400;
-
   }
 }
 
@@ -54,31 +53,30 @@
   height: 19px;
   width: 25px;
 }
-.btn{
+.btn {
   .idp-wrapper {
     display: inline-grid;
-    grid-gap: 15px; 
+    grid-gap: 15px;
 
     @media (max-width: 575px) {
-      display: flex;            
-      flex-direction: column;    
-      align-items: center;        
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
   }
-  .btn-wrapper{
-  color: #ffffff !important;
-  background: #f00a18 !important;
-  text-transform: inherit;
-  margin-right: 15px;
-  min-width: 300px;
+  .btn-wrapper {
+    color: #ffffff !important;
+    background: #f00a18 !important;
+    text-transform: inherit;
+    margin-right: 15px;
+    min-width: 300px;
     padding: 15px;
     font-size: 15px;
   }
-  p{
+  p {
     max-width: 300px;
     text-align: center;
   }
-
 }
 
 @media (max-width: 991px) {

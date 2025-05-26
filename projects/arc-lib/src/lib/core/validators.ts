@@ -22,11 +22,9 @@ export function keyValidator(): ValidatorFn {
   };
 }
 
-
-
 export function domainMatchValidator(emailDomain: string): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
     const domainValue = control.value;
-    return domainValue === emailDomain ? null : { 'domainMismatch': true };
+    return domainValue === emailDomain ? null : {domainMismatch: true};
   };
 }

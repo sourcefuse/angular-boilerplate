@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {FormBuilder, ReactiveFormsModule} from '@angular/forms';
 import {Router, ActivatedRoute} from '@angular/router';
-import {of, throwError} from 'rxjs';
+import {throwError} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services';
 import {TenantDetailComponent} from './tenant-detail.component';
 import {ThemeModule} from '@project-lib/theme/theme.module';

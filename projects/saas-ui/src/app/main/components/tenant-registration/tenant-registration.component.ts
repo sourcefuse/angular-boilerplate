@@ -1,21 +1,11 @@
 import {Component} from '@angular/core';
-import {
-  FormGroup,
-  FormBuilder,
-  Validators,
-  AbstractControl,
-  ValidatorFn,
-} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {Location} from '@angular/common';
 import {BillingPlanService, OnBoardingService} from '../../../shared/services';
 import {AnyObject} from '@project-lib/core/api/backend-filter';
-import {
-  TenantLead,
-  TenantLeadWithPaymentMethod,
-} from '../../../shared/models/tenantLead.model';
-import {keyValidator} from '@project-lib/core/validators';
+import {TenantLeadWithPaymentMethod} from '../../../shared/models/tenantLead.model';
 import {COUNTRIES} from '../../../shared/constants/countries.constant';
 
 export enum PaymentMethod {

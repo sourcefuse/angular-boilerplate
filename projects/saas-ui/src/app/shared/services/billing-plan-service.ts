@@ -1,4 +1,4 @@
-import {HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpParams} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {
   AnyAdapter,
@@ -9,11 +9,10 @@ import {
   Inclusion,
   Where,
 } from '@project-lib/core/api';
-import {AuthTokenSkipHeader} from '@project-lib/core/constants';
-import {Observable, Subject} from 'rxjs';
+import {Observable} from 'rxjs';
 import {GetPlanAdapter} from '../../on-boarding/adapters';
 import {GetPlanCommand} from '../../on-boarding/commands';
-import {Lead, Plan} from '../models';
+import {Plan} from '../models';
 import {GetBillingCycles} from '../../main/commands/get-billing-cycles-command';
 import {GetCurrencyDetails} from '../../main/commands/get-currency-command';
 import {GetBillingDetails} from '../../main/commands/get-billing.command';
@@ -39,8 +38,6 @@ interface BackendFilter<MT extends object = AnyObject> {
   providedIn: 'root',
 })
 export class BillingPlanService {
- 
-
   constructor(
     private readonly apiService: ApiService,
     private readonly anyAdapter: AnyAdapter,
@@ -60,7 +57,7 @@ export class BillingPlanService {
           offset: filter.offset,
           limit: filter.limit,
           order: filter.order,
-          include: filter.include || [], 
+          include: filter.include || [],
         }
       : {};
     command.parameters = {
@@ -166,7 +163,7 @@ export class BillingPlanService {
       this.anyAdapter,
       this.appConfig,
     );
-  
+
     return command.execute();
   }
 }

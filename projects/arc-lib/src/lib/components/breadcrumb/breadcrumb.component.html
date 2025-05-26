@@ -1,0 +1,47 @@
+<nav aria-label="breadcrumb" *ngIf="breadcrumbs$ | async as breadcrumbs">
+  <ul class="breadcrumb">
+    <ng-container
+      *ngIf="breadcrumbs.length > 2 && !expanded; else fullBreadcrumb"
+    >
+      <li class="breadcrumb-item">
+        <ng-container *ngIf="!breadcrumbs[0].skipLink; else noLinkFirst">
+          <a [routerLink]="breadcrumbs[0].url">{{ breadcrumbs[0].label }}</a>
+        </ng-container>
+        <ng-template #noLinkFirst>
+          <span>{{ breadcrumbs[0].label }}</span>
+        </ng-template>
+      </li>
+      <span class="separator">›</span>
+
+      <li class="breadcrumb-item clickable" (click)="toggleExpand()">...</li>
+      <span class="separator">›</span>
+
+      <li class="breadcrumb-item" [class.active]="true">
+        <ng-container
+          *ngIf="!breadcrumbs[breadcrumbs.length - 1].skipLink; else noLinkLast"
+        >
+          <a [routerLink]="breadcrumbs[breadcrumbs.length - 1].url">
+            {{ breadcrumbs[breadcrumbs.length - 1].label }}
+          </a>
+        </ng-container>
+        <ng-template #noLinkLast>
+          <span>{{ breadcrumbs[breadcrumbs.length - 1].label }}</span>
+        </ng-template>
+      </li>
+    </ng-container>
+
+    <ng-template #fullBreadcrumb>
+      <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+        <li class="breadcrumb-item" [class.active]="last">
+          <ng-container *ngIf="!breadcrumb.skipLink && !last; else noLink">
+            <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+          </ng-container>
+          <ng-template #noLink>
+            <span>{{ breadcrumb.label }}</span>
+          </ng-template>
+        </li>
+        <span *ngIf="!last" class="separator">›</span>
+      </ng-container>
+    </ng-template>
+  </ul>
+</nav>

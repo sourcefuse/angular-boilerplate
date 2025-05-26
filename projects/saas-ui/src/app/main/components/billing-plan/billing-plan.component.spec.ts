@@ -4,13 +4,7 @@ import {Location} from '@angular/common';
 import {BillingPlanComponent} from './billing-plan.component';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 import {SubscriptionStatus} from '../../../shared/enum/subscription-status.enum';
-import {Observable, of} from 'rxjs';
-import {
-  GridApi,
-  GridOptions,
-  IDatasource,
-  IGetRowsParams,
-} from 'ag-grid-community';
+import {of} from 'rxjs';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {MainModule} from '../../main.module';

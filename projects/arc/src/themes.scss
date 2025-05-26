@@ -125,8 +125,10 @@ $nb-themes: nb-register-theme(
     button-filled-basic-active-border-color: map.get($bb-color, 'primary-focus'),
     button-filled-basic-focus-border-color: map.get($bb-color, 'primary-focus'),
     button-filled-medium-padding: map.get($bb-padding, 'large') 0.914rem,
-    button-filled-basic-hover-border-color:
-      map.get($bb-color, 'input-border-basic-hover'),
+    button-filled-basic-hover-border-color: map.get(
+        $bb-color,
+        'input-border-basic-hover'
+      ),
     button-medium-text-line-height: map.get($bb-font-size, 'medium'),
     button-medium-icon-size: 0.688rem,
     button-medium-icon-offset: 0.125rem,
@@ -136,8 +138,9 @@ $nb-themes: nb-register-theme(
     // route tabset
     route-tabset-tab-underline-width: 0.125rem,
     route-tabset-tab-padding: map.get($bb-font-size, 'largest') 1.5rem,
-    route-tabset-tab-underline-width-cover:
-      calc(100% - map.get($bb-font-size, 'large')),
+    route-tabset-tab-underline-width-cover: calc(
+        100% - map.get($bb-font-size, 'large')
+      ),
     route-tabset-tab-underline-left-position: map.get($bb-font-size, 'smallest'),
     route-tabset-tab-underline-bottom-position: 0,
     route-tabset-tab-text-transform: capitalize,
@@ -152,8 +155,10 @@ $nb-themes: nb-register-theme(
     text-button-medium-font-size: map.get($bb-font-size, 'small'),
     // input
     input-basic-background-color: map.get($bb-color, 'light'),
-    input-basic-hover-background-color-disabled:
-      map.get($bb-color, 'background-basic'),
+    input-basic-hover-background-color-disabled: map.get(
+        $bb-color,
+        'background-basic'
+      ),
     input-basic-text-color-disabled: map.get($bb-font, 'disable'),
     input-basic-focus-background-color: map.get($bb-color, 'light'),
     input-basic-hover-background-color: map.get($bb-color, 'light'),
@@ -165,14 +170,20 @@ $nb-themes: nb-register-theme(
     background-basic-color-2: map.get($bb-font, 'light'),
     border-basic-color-4: map.get($bb-color, 'input-border-basic'),
     input-basic-hover-border-color: map.get($bb-color, 'input-border-basic'),
-    input-basic-hover-border-color-disabled:
-      map.get($bb-color, 'background-basic'),
+    input-basic-hover-border-color-disabled: map.get(
+        $bb-color,
+        'background-basic'
+      ),
     color-primary-default-border: map.get($bb-font, 'primary-hover'),
-    input-basic-disabled-background-color:
-      map.get($bb-color, 'background-basic'),
+    input-basic-disabled-background-color: map.get(
+        $bb-color,
+        'background-basic'
+      ),
     select-outline-basic-border-color: map.get($bb-color, 'input-border-basic'),
-    select-outline-basic-disabled-background-color:
-      map.get($bb-color, 'background-basic'),
+    select-outline-basic-disabled-background-color: map.get(
+        $bb-color,
+        'background-basic'
+      ),
     // form field
     form-field-addon-medium-height: 1.875rem,
     // card
@@ -193,8 +204,9 @@ $nb-themes: nb-register-theme(
     bb-select-input-btn-padding: 0.36rem 0.75rem,
     bb-select-line-height: 1.728571,
     bb-select-placeholder-font-color: var(--input-basic-placeholder-text-color),
-    bb-select-placeholder-font-weight:
-      var(--input-medium-placeholder-text-font-weight),
+    bb-select-placeholder-font-weight: var(
+        --input-medium-placeholder-text-font-weight
+      ),
     bb-select-font-weight: var(--input-medium-text-font-weight),
     select-medium-text-line-height: 1.25rem,
     select-medium-text-font-size: 0.8125rem,
@@ -210,22 +222,32 @@ $nb-themes: nb-register-theme(
     toggle-basic-hover-background-color: map.get($bb-color, 'grey'),
     toggle-basic-focus-background-color: map.get($bb-color, 'grey'),
     // checked toggle backgrounds
-    toggle-basic-checked-background-color:
-      map.get($bb-color, 'toggle-background'),
-    toggle-basic-hover-checked-background-color:
-      map.get($bb-color, 'toggle-background'),
-    toggle-basic-focus-checked-background-color:
-      map.get($bb-color, 'toggle-background'),
+    toggle-basic-checked-background-color: map.get(
+        $bb-color,
+        'toggle-background'
+      ),
+    toggle-basic-hover-checked-background-color: map.get(
+        $bb-color,
+        'toggle-background'
+      ),
+    toggle-basic-focus-checked-background-color: map.get(
+        $bb-color,
+        'toggle-background'
+      ),
     // unchecked toggle border
     toggle-basic-border-color: map.get($bb-color, 'grey'),
     toggle-basic-hover-border-color: map.get($bb-color, 'grey'),
     toggle-basic-focus-border-color: map.get($bb-color, 'grey'),
     // checked toggle border
     toggle-basic-checked-border-color: map.get($bb-color, 'toggle-background'),
-    toggle-basic-hover-checked-border-color:
-      map.get($bb-color, 'toggle-background'),
-    toggle-basic-focus-checked-border-color:
-      map.get($bb-color, 'toggle-background'),
+    toggle-basic-hover-checked-border-color: map.get(
+        $bb-color,
+        'toggle-background'
+      ),
+    toggle-basic-focus-checked-border-color: map.get(
+        $bb-color,
+        'toggle-background'
+      ),
     toggle-outline-width: 0rem
   ),
   boiler,

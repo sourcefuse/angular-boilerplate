@@ -1,7 +1,10 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './main.component';
-import {IntroductionComponent} from './introduction/introduction.component';
+import {UserResolver} from '@project-lib/components/user/user.resolver';
+import {UserComponent} from '@project-lib/components/user/user.component';
+import {UserTitleComponent} from '@project-lib/components/user-title/user-title.component';
+import {TitleResolver} from '@project-lib/components/user-title/user-title.resolver';
 
 const routes: Routes = [
   {
@@ -15,7 +18,6 @@ const routes: Routes = [
       },
       {
         path: 'components',
-        component: IntroductionComponent,
         children: [
           {
             path: 'nebular-comp',
@@ -33,10 +35,29 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'user/:id',
+        component: UserComponent,
+        resolve: {user: UserResolver},
+        data: {
+          breadcrumb: (data: any, params: any) =>
+            data.user?.name ?? `User #${params.get('id')}`,
+        },
+        children: [
+          {
+            path: 'document/:id',
+            component: UserTitleComponent,
+            resolve: {document: TitleResolver},
+            data: {
+              breadcrumb: (data: any, params: any) =>
+                data.document?.title ?? `Document #${params.get('id')}`,
+            },
+          },
+        ],
+      },
     ],
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

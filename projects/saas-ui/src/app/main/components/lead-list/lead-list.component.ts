@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {
@@ -9,7 +9,7 @@ import {
   IGetRowsParams,
 } from 'ag-grid-community';
 import {Location} from '@angular/common';
-import {Observable, combineLatest, map, of, takeUntil} from 'rxjs';
+import {Observable, combineLatest, map} from 'rxjs';
 import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {Lead} from '../../../shared/models';
 import {AnyObject, BackendFilter, Count} from '@project-lib/core/index';

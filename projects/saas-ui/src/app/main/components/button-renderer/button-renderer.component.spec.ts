@@ -3,11 +3,10 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {ButtonRendererComponent} from './button-renderer.component';
 import {ToasterService} from '@project-lib/theme/toaster';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {Location} from '@angular/common';
-import {GridApi} from 'ag-grid-community';
 import {MainModule} from '../../main.module';
-import {NbThemeModule, NbOverlayModule, NbOverlayService} from '@nebular/theme';
+import {NbOverlayModule, NbOverlayService} from '@nebular/theme';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 
 describe('ButtonRendererComponent', () => {

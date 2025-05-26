@@ -1,12 +1,6 @@
-import {
-  ComponentFixture,
-  TestBed,
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
-import {Router} from '@angular/router';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {Router, ActivatedRoute} from '@angular/router';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {of} from 'rxjs';
 import {TenantFacadeService} from '../../../shared/services/tenant-list-facade.service';

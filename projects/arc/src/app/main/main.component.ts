@@ -6,9 +6,6 @@ import {takeUntil} from 'rxjs';
 import {AuthService, LoggedInUserDM} from '@project-lib/core/auth';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {IconPacksManagerService} from '@project-lib/theme/services';
-import {COMPONENTS_ITEMS} from './constants/components.constant';
-import {NEBULAR_COMP_ITEMS} from './constants/nebularComponents.constants';
-import {DOCUMENTATION_MENU_ITEMS} from 'projects/arc-docs/src/app/constants/docs-menu.constant';
 import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.constant';
 
 @Component({
@@ -28,7 +25,7 @@ export class MainComponent
     private readonly authService: AuthService,
     private readonly menuService: NbMenuService,
     private readonly iconMgr: IconPacksManagerService,
-    private router: Router,
+    private readonly router: Router,
   ) {
     super(route, location);
     this.iconMgr.registerSvgs();
@@ -42,7 +39,6 @@ export class MainComponent
       .onItemClick()
       .pipe(takeUntil(this._destroy$))
       .subscribe(menu => {
-        console.log(menu);
         if (menu.tag === 'userMenu' && menu.item.data === 'logout') {
           this.authService.logout().pipe(takeUntil(this._destroy$)).subscribe();
         }

@@ -4,7 +4,6 @@ import {ToasterService} from '@project-lib/theme/toaster';
 import {ICellRendererAngularComp} from 'ag-grid-angular';
 import {GridApi, ICellRendererParams} from 'ag-grid-community';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
-import {AddPlanComponent} from '../add-plan/add-plan.component';
 import {FormBuilder, Validators} from '@angular/forms';
 import {Location} from '@angular/common';
 import {AnyObject} from '@project-lib/core/api';
@@ -18,11 +17,11 @@ export class ButtonRendererComponent implements ICellRendererAngularComp {
   gridApi: GridApi;
   addPlanForm: AnyObject;
   constructor(
-    private router: Router,
-    private toastrService: ToasterService,
-    private billingPlanService: BillingPlanService,
-    private location: Location,
-    private fb: FormBuilder,
+    private readonly router: Router,
+    private readonly toastrService: ToasterService,
+    private readonly billingPlanService: BillingPlanService,
+    private readonly location: Location,
+    private readonly fb: FormBuilder,
   ) {
     this.addPlanForm = this.fb.group({
       name: ['', Validators.required],

@@ -17,7 +17,7 @@ export class GetPlanCommand<T> extends GetAPICommand<Plan[]> {
     super(
       apiService,
       adapter,
-    `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans`,
+      `${appConfig.baseApiUrl}${appConfig.subscriptionServiceUrl}/plans`,
     );
   }
 }

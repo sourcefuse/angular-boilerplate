@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {AnyObject, BackendFilter, Count} from '@project-lib/core/api';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
 import {
@@ -9,7 +9,7 @@ import {
   IDatasource,
   IGetRowsParams,
 } from 'ag-grid-community';
-import {Observable, combineLatest, map, takeUntil} from 'rxjs';
+import {Observable, combineLatest, map} from 'rxjs';
 import {Location} from '@angular/common';
 
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';

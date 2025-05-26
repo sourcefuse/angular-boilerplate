@@ -1,20 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, Location} from '@angular/common';
 import {ThemeModule} from '@project-lib/theme/theme.module';
-import {
-  NbActionsModule,
-  NbMenuItem,
-  NbMenuService,
-  NbSidebarService,
-} from '@nebular/theme';
-import {COMPONENTS_ITEMS} from '@main-project/boiler/main/constants/components.constant';
-import {NEBULAR_COMP_ITEMS} from '@main-project/boiler/main/constants/nebularComponents.constants';
+import {NbMenuItem, NbMenuService, NbSidebarService} from '@nebular/theme';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '@project-lib/core/auth';
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {takeUntil} from 'rxjs';
 import {RouteComponentBaseDirective} from '@project-lib/core/route-component-base';
-import {Location} from '@angular/common';
 import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.constant';
 
 @Component({

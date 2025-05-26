@@ -1,5 +1,4 @@
 import {TestBed} from '@angular/core/testing';
-import {AnyObject} from '@project-lib/core/api/backend-filter';
 import {GanttProviders} from '../const';
 import {GanttModule} from '../gantt.module';
 import {GanttService} from './gantt.service';

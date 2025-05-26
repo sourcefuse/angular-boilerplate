@@ -2,18 +2,15 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbDialogService, NbToastrService} from '@nebular/theme';
-import {Location} from '@angular/common';
 import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {AnyObject} from '@project-lib/core/api';
 import {IAnyObject} from '../../../../../../arc-lib/src/lib/core/i-any-object';
 import {APP_CONFIG} from '@project-lib/app-config';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 import {FeatureListService} from '../../../shared/services/feature-list-service';
-import {Feature} from '../../../shared/interfaces/features';
-import {Features} from '../../../shared/models/feature.model';
-import {Plan} from '../../../shared/models';
 import {FeatureValues} from '../../../shared/models/feature-values.model';
 import {PlanWithFeatures} from '../../../shared/models/plans-features.model';
+import {Features} from '../../../shared/models/feature.model';
 
 interface Subtask {
   name: string;
@@ -66,7 +63,7 @@ export class AddPlanComponent implements OnInit {
   };
 
   constructor(
-    private fb: FormBuilder,
+    private readonly fb: FormBuilder,
     private readonly featureListService: FeatureListService,
     private readonly onboardingService: OnBoardingService,
     private readonly toasterService: NbToastrService,
@@ -309,7 +306,9 @@ export class AddPlanComponent implements OnInit {
           updateFeatureDetails,
           this.activateRoute.snapshot.params.id,
         )
-        .subscribe(respFeature => {});
+        .subscribe(respFeature => {
+          console.log('Features updated successfully', respFeature);
+        });
     } else {
       // Handle form validation errors if necessary
       console.error('Form is invalid');
