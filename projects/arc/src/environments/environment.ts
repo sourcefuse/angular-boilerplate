@@ -8,14 +8,14 @@ export const environment = {
   userServiceUrl: '',
   logLevel: 5,
   csp: {
-    defaultSrc: [true], //'self'
-    scriptSrc: [true],
-    styleSrc: [true, "'unsafe-inline'"], //'self' https://fonts.example.com
-    imgSrc: [true],
-    connectSrc: [true, 'env:baseApiUrl'],
+    defaultSrc: ["'self'"], //'self'
+    scriptSrc: ["'self'"],
+    styleSrc: ["'self'", "'unsafe-inline'"], //'self' https://fonts.example.com
+    imgSrc: ["'self'"],
+    connectSrc: ["'self'", 'env:baseApiUrl'],
     objectSrc: ['none'],
-    baseUri: [true],
-    formAction: [true],
+    baseUri: ["'self'"],
+    formAction: ["'self'"],
     blockAllMixedContent: true, // block-all-mixed-content;
   },
 };

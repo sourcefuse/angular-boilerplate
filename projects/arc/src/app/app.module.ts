@@ -79,13 +79,6 @@ function initCsp(cspService: CspService): () => void {
       deps: [CspService],
       multi: true,
     },
-
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initCsp,
-      deps: [CspService],
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent],
 })
