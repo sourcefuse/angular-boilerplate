@@ -26,6 +26,12 @@
   </nb-sidebar>
 
   <nb-layout-column>
+    <app-breadcrumb
+      [separator]="'/'"
+      [maxItems]="2"
+      [itemClass]="'breadcrumb-item'"
+      [separatorClass]="'separator'"
+    ></app-breadcrumb>
     <router-outlet class="main-router"></router-outlet>
   </nb-layout-column>
 </nb-layout>

@@ -1,0 +1,119 @@
+<div class="breadcrumb-section">
+  <h3>1.Basic Breadcrumb</h3>
+  <ul class="breadcrumb">
+    <li>Home</li>
+    <span class="separator">›</span>
+    <li>Users</li>
+    <span class="separator">›</span>
+    <li>John Doe</li>
+    <span class="separator">›</span>
+    <li>Document.pdf</li>
+  </ul>
+  <div class="code-block">
+    <span
+      class="copy-icon"
+      (click)="copyCode(basicCode)"
+      title="Copy Routing Code"
+      >📋</span
+    >
+    <pre>{{ basicCode }}</pre>
+  </div>
+
+  <h3>2.Dynamic Handling Breadcrumb</h3>
+
+  <ul class="breadcrumb">
+    <li>Main</li>
+    <span class="separator">›</span>
+    <li class="clickable" (click)="expanded = !expanded">...</li>
+    <span class="separator">›</span>
+    <li>Document.pdf</li>
+  </ul>
+
+  <div *ngIf="expanded" class="expanded-breadcrumb">
+    <ul class="breadcrumb">
+      <li>Main</li>
+      <span class="separator">›</span>
+      <li>Users</li>
+      <span class="separator">›</span>
+      <li>John Doe</li>
+      <span class="separator">›</span>
+      <li>Document.pdf</li>
+    </ul>
+  </div>
+  <div class="button-group">
+    <button class="colors" (click)="goToUser(123)">User/123</button>
+    <button class="colors" (click)="goToDocument(124, 1)">
+      User/124/document/1
+    </button>
+  </div>
+  <div class="code-container">
+    <div class="code-block">
+      <h3>Routing Code</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(routingCode)"
+        title="Copy Routing Code"
+        >📋</span
+      >
+      <pre>{{ routingCode }}</pre>
+    </div>
+
+    <div class="code-block">
+      <h3>Resolver Code</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(resolverCode)"
+        title="Copy Resolver Code"
+        >📋</span
+      >
+      <pre>{{ resolverCode }}</pre>
+    </div>
+    <div class="code-block">
+      <h3>Service Code</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(serviceCode)"
+        title="Copy Service Code"
+        >📋</span
+      >
+      <pre>{{ serviceCode }}</pre>
+    </div>
+  </div>
+  <h3>3. Breadcrumb Inputs</h3>
+  <p>See all available inputs for customization:</p>
+
+  <table class="breadcrumb-api-table">
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>staticBreadcrumbs</td>
+        <td>Static breadcrumb items</td>
+      </tr>
+      <tr>
+        <td>separator</td>
+        <td>Separator character/string</td>
+      </tr>
+      <tr>
+        <td>skipLink</td>
+        <td>A flag to disable click navigation on a breadcrumb</td>
+      </tr>
+      <tr>
+        <td>resolver</td>
+        <td>Angular service that pre-fetches data before routing</td>
+      </tr>
+      <tr>
+        <td>separatorClass</td>
+        <td>Custom class applied to the separator between breadcrumb items</td>
+      </tr>
+      <tr>
+        <td>itemClass</td>
+        <td>Custom class applied to each breadcrumb element.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -19,7 +19,7 @@ import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {GanttModule} from '@project-lib/components/index';
+import {BreadcrumbComponent, GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
@@ -40,6 +40,7 @@ import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.componen
     BrowserAnimationsModule,
     HeaderComponent,
     SidebarComponent,
+    BreadcrumbComponent,
   ],
   providers: [
     TranslationService,

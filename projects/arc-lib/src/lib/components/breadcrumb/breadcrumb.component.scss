@@ -1,0 +1,44 @@
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.active {
+      font-weight: 600;
+      color: #333;
+    }
+    &.clickable {
+      cursor: pointer;
+      color: #007bff;
+      text-decoration: underline;
+
+      &:hover {
+        color: #0056b3;
+      }
+    }
+  }
+
+  .separator {
+    margin: 0 6px;
+    color: #aaa;
+    font-size: 14px;
+  }
+}

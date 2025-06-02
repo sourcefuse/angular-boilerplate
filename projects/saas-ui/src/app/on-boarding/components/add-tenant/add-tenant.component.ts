@@ -9,7 +9,7 @@ import { Lead } from '../../../shared/models';
 import { BillingPlanService } from '../../../shared/services/billing-plan-service';
 import { OnBoardingService } from '../../../shared/services/on-boarding-service';
 
-declare var Stripe: any;
+declare let Stripe: any;
 
 @Component({
   selector: 'app-add-tenant',
