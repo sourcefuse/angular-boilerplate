@@ -19,7 +19,17 @@
     <pre>{{ basicCode }}</pre>
   </div>
 
-  <h3>2.Dynamic Handling Breadcrumb</h3>
+  <h3>2. Dynamic Handling Breadcrumb</h3>
+  <p>
+    This example demonstrates how breadcrumbs can be dynamically generated and
+    updated based on route parameters and asynchronous data fetching from
+    services. Instead of relying on blocking resolvers, the breadcrumb labels
+    are initially displayed using fallback or loading placeholders (e.g.,
+    "Loading user...") and are automatically updated when the actual data
+    becomes available from the API or service. This approach ensures smooth
+    navigation and improves user experience by preventing full page loading
+    delays while keeping the breadcrumb context accurate and dynamic.
+  </p>
 
   <ul class="breadcrumb">
     <li>Main</li>
@@ -59,16 +69,6 @@
     </div>
 
     <div class="code-block">
-      <h3>Resolver Code</h3>
-      <span
-        class="copy-icon"
-        (click)="copyCode(resolverCode)"
-        title="Copy Resolver Code"
-        >📋</span
-      >
-      <pre>{{ resolverCode }}</pre>
-    </div>
-    <div class="code-block">
       <h3>Service Code</h3>
       <span
         class="copy-icon"
@@ -77,6 +77,17 @@
         >📋</span
       >
       <pre>{{ serviceCode }}</pre>
+    </div>
+
+    <div class="code-block">
+      <h3>Async Breadcrumb Logic</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(asyncLogicCode)"
+        title="Copy Async Logic Code"
+        >📋</span
+      >
+      <pre>{{ asyncLogicCode }}</pre>
     </div>
   </div>
   <h3>3. Breadcrumb Inputs</h3>
@@ -101,10 +112,6 @@
       <tr>
         <td>skipLink</td>
         <td>A flag to disable click navigation on a breadcrumb</td>
-      </tr>
-      <tr>
-        <td>resolver</td>
-        <td>Angular service that pre-fetches data before routing</td>
       </tr>
       <tr>
         <td>separatorClass</td>

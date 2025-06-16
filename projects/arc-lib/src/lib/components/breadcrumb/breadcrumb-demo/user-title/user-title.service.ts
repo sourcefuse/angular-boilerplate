@@ -1,13 +1,19 @@
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {catchError, delay, map, Observable, of} from 'rxjs';
 import {TITLES} from '../mock-data.constants';
+import {TitleDetails} from '../user-title.interface';
 
-@Injectable()
 export class TitleService {
   private readonly titles = TITLES;
 
-  getTitleById(id: string): Observable<any> {
+  getTitleById(id: string): Observable<TitleDetails> {
     const title = this.titles.find(u => u.id === id);
     return of(title);
+  }
+  getTitleNameForBreadcrumb(id: string): Observable<string> {
+    return this.getTitleById(id).pipe(
+      map(titles => titles?.title || `Document #${id}`),
+      catchError(() => of(`Document #${id}`)),
+      delay(2000), // Simulating network delay
+    );
   }
 }

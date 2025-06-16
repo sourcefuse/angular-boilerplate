@@ -1,9 +1,9 @@
-export interface User {
+export interface UserDetails {
   id: string;
   name: string;
   email: string;
 }
-export interface Title {
+export interface TitleDetails {
   id: string;
   title: string;
 }

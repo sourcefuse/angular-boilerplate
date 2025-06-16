@@ -23,6 +23,8 @@ import {BreadcrumbComponent, GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
+import {UserService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user/user.service';
+import {TitleService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user-title/user-title.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +51,8 @@ import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.componen
     TranslateStore,
     SystemStoreFacadeService,
     EnvAdapterService,
+    UserService,
+    TitleService,
     ApiService,
     {
       provide: APP_CONFIG,

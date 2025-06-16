@@ -1,8 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {Component} from '@angular/core';
 import {ActivatedRoute, RouterModule} from '@angular/router';
-import {User} from '../user-title.interface';
-import {UserResolver} from './user.resolver';
+import {UserDetails} from '../user-title.interface';
+import {UserService} from './user.service';
 
 @Component({
   selector: 'lib-user',
@@ -11,9 +11,17 @@ import {UserResolver} from './user.resolver';
   imports: [CommonModule, RouterModule],
 })
 export class UserComponent {
-  user: User;
+  user: UserDetails;
 
-  constructor(private readonly route: ActivatedRoute) {
-    this.user = this.route.snapshot.data['user'];
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly userService: UserService,
+  ) {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.userService.getUserById(id).subscribe(user => {
+        this.user = user;
+      });
+    }
   }
 }

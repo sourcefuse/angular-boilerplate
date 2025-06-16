@@ -2,7 +2,7 @@ import {Component, Input, isDevMode, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Breadcrumb} from './breadcrumb.interface';
 import {BreadcrumbService} from './breadcrumb.service';
-import {Observable} from 'rxjs';
+import {Observable, Subject, takeUntil} from 'rxjs';
 import {RouterModule} from '@angular/router';
 
 @Component({
@@ -22,15 +22,20 @@ export class BreadcrumbComponent implements OnInit {
   @Input() itemClass = 'breadcrumb-item';
 
   expanded = false;
+  private destroy$ = new Subject<void>();
   constructor(private readonly breadcrumbService: BreadcrumbService) {}
   ngOnInit(): void {
-    this.breadcrumbs$.subscribe(breadcrumbs => {
+    this.breadcrumbs$.pipe(takeUntil(this.destroy$)).subscribe(breadcrumbs => {
       if (isDevMode()) {
         console.log('Breadcrumbs:', breadcrumbs);
       }
     });
   }
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
   toggleExpand() {
-    this.expanded = true;
+    this.expanded = !this.expanded;
   }
 }

@@ -1,9 +1,12 @@
-import {Component} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Component, NgModule} from '@angular/core';
 import {Router} from '@angular/router';
 @Component({
   selector: 'arc-bread-crumb-introduction',
   templateUrl: './bread-crumb-introduction.component.html',
   styleUrls: ['./bread-crumb-introduction.component.scss'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class BreadCrumbIntroductionComponent {
   expanded = false;
@@ -16,41 +19,67 @@ export class BreadCrumbIntroductionComponent {
           {label: 'Arc Components', url: '/components/arc-comp'}]">
     </app-breadcrumb>`;
   routingCode = `
-{
-  path: 'user/:id',
-  component: UserComponent,
-  resolve: { user: UserResolver },
-  data: {
-    breadcrumb: (data: any, params: any) =>
-      data.user?.name ?? \`User #\${params.get('id')}\`
-  },
-  children: [
-    {
-      path: 'document/:id',
-      component: UserTitleComponent,
-      resolve: { document: TitleResolver },
-      data: {
-        breadcrumb: (data: any, params: any) =>
-          data.document?.title ?? \`Document #\${params.get('id')}\`
-      }
+      {
+        path: 'user/:id',
+        component: UserComponent,
+        data: {
+          asyncBreadcrumb: {
+            service: UserService,
+            method: 'getUserNameForBreadcrumb',
+            fallbackLabel: (params: ParamMap) => \`User #\${params.get('id')}\`,
+            loadingLabel: 'Loading user...',
+          },
+        },
+        children: [
+          {
+            path: 'document/:id',
+            component: UserTitleComponent,
+            data: {
+              asyncBreadcrumb: {
+                service: TitleService,
+                method: 'getTitleNameForBreadcrumb',
+                fallbackLabel: (params: ParamMap) =>
+                  \`Document #\${params.get('id')}\`,
+                loadingLabel: 'Loading document...',
+              },
+            },
+          },
+        ],
+      },
+  `;
+  asyncLogicCode = `
+    const asyncConfig = data?.asyncBreadcrumb;
+    if (asyncConfig?.service && asyncConfig?.method) {
+      const params = route.paramMap;
+      const paramValue = params.get('id');
+      const fallback =
+        asyncConfig.fallbackLabel?.(params) || this._toTitleCase(path);
+      const loadingLabel = asyncConfig.loadingLabel || fallback;
+
+      setTimeout(async () => {
+        try {
+          const serviceInstance = this.injector.get(asyncConfig.service);
+          const result$ = serviceInstance[asyncConfig.method](paramValue);
+          const result = await result$.toPromise();
+          this.updateBreadcrumbLabel(currentUrl, result);
+        } catch (error) {
+          console.warn('Async breadcrumb load failed:', error);
+        }
+      }, 0);
+
+      return loadingLabel;
     }
-  ]
-}
   `;
-  resolverCode = `
-resolve(route: ActivatedRouteSnapshot): Observable<any> {
-  const id = route.paramMap.get('id');
-  return this.userService.getUserById(id);
-}
-  `;
-  serviceCode = `private readonly users = [
-      { id: '123', name: 'John Doe', email: 'john.doe123@example.com' },
-      { id: '124', name: 'Jane Smith', email: 'jane.smith124@example.com' }
-    ];
-  
-    getUserById(id: string): Observable<any> {
+  serviceCode = `
+  getUserById(id: string): Observable<UserDetails> {
       const user = this.users.find(u => u.id === id);
       return of(user);
+    }
+    getUserNameForBreadcrumb(id: string): Observable<string> {
+      return this.getUserById(id).pipe(
+        map(user => user?.name || \`User #\${id}\`),
+        catchError(() => of(\`User #\${id}\`)),
+      );
     }`;
 
   copyCode(text: string) {
