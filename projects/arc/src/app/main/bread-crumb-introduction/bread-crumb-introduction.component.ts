@@ -1,12 +1,13 @@
 import {CommonModule} from '@angular/common';
 import {Component, NgModule} from '@angular/core';
 import {Router} from '@angular/router';
+import {NbIconModule} from '@nebular/theme';
 @Component({
   selector: 'arc-bread-crumb-introduction',
   templateUrl: './bread-crumb-introduction.component.html',
   styleUrls: ['./bread-crumb-introduction.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NbIconModule],
 })
 export class BreadCrumbIntroductionComponent {
   expanded = false;
@@ -20,32 +21,32 @@ export class BreadCrumbIntroductionComponent {
     </app-breadcrumb>`;
   routingCode = `
       {
-        path: 'user/:id',
-        component: UserComponent,
-        data: {
-          asyncBreadcrumb: {
-            service: UserService,
-            method: 'getUserNameForBreadcrumb',
-            fallbackLabel: (params: ParamMap) => \`User #\${params.get('id')}\`,
-            loadingLabel: 'Loading user...',
-          },
-        },
-        children: [
-          {
-            path: 'document/:id',
-            component: UserTitleComponent,
-            data: {
-              asyncBreadcrumb: {
-                service: TitleService,
-                method: 'getTitleNameForBreadcrumb',
-                fallbackLabel: (params: ParamMap) =>
-                  \`Document #\${params.get('id')}\`,
-                loadingLabel: 'Loading document...',
+              path: 'user/:id',
+              component: UserComponent,
+              data: {
+                asyncBreadcrumb: {
+                  service: UserService,
+                  method: 'getUserNameForBreadcrumb',
+                  fallbackLabel: (params: ParamMap) => \`User #\${params.get('id')}\`
+                },
+                icon: 'person-outline',
               },
+              children: [
+                {
+                  path: 'document/:id',
+                  component: UserTitleComponent,
+                  data: {
+                    asyncBreadcrumb: {
+                      service: TitleService,
+                      method: 'getTitleNameForBreadcrumb',
+                      fallbackLabel: (params: ParamMap) =>
+                        \`Document #\${params.get('id')}\`
+                    },
+                    icon: 'file-text-outline',
+                  },
+                },
+              ],
             },
-          },
-        ],
-      },
   `;
   asyncLogicCode = `
     const asyncConfig = data?.asyncBreadcrumb;
@@ -54,7 +55,6 @@ export class BreadCrumbIntroductionComponent {
       const paramValue = params.get('id');
       const fallback =
         asyncConfig.fallbackLabel?.(params) || this._toTitleCase(path);
-      const loadingLabel = asyncConfig.loadingLabel || fallback;
 
       setTimeout(async () => {
         try {
@@ -67,7 +67,7 @@ export class BreadCrumbIntroductionComponent {
         }
       }, 0);
 
-      return loadingLabel;
+      return fallback;;
     }
   `;
   serviceCode = `
@@ -81,6 +81,29 @@ export class BreadCrumbIntroductionComponent {
         catchError(() => of(\`User #\${id}\`)),
       );
     }`;
+  iconBreadcrumbCode = `
+<ul class="breadcrumb">
+  <li>
+    <nb-icon icon="home-outline" class="breadcrumb-icon"></nb-icon>
+    Home
+  </li>
+  <span class="separator">›</span>
+  <li>
+    <nb-icon icon="people-outline" class="breadcrumb-icon"></nb-icon>
+    Users
+  </li>
+  <span class="separator">›</span>
+  <li>
+    <nb-icon icon="person-outline" class="breadcrumb-icon"></nb-icon>
+    Jane Smith
+  </li>
+  <span class="separator">›</span>
+  <li>
+    <nb-icon icon="file-text-outline"  class="breadcrumb-icon"></nb-icon>
+    Contract.pdf
+  </li>
+</ul>
+`;
 
   copyCode(text: string) {
     navigator.clipboard.writeText(text);

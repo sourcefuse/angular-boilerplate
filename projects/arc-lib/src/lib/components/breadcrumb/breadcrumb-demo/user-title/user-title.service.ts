@@ -9,11 +9,14 @@ export class TitleService {
     const title = this.titles.find(u => u.id === id);
     return of(title);
   }
-  getTitleNameForBreadcrumb(id: string): Observable<string> {
+  getTitleNameForBreadcrumb(
+    params: Record<string, string>,
+  ): Observable<string> {
+    const id = params['id'];
     return this.getTitleById(id).pipe(
       map(titles => titles?.title || `Document #${id}`),
       catchError(() => of(`Document #${id}`)),
-      delay(2000), // Simulating network delay
+      delay(4000), // Simulating network delay
     );
   }
 }

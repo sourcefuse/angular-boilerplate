@@ -1,47 +1,121 @@
-<nav aria-label="breadcrumb" *ngIf="breadcrumbs$ | async as breadcrumbs">
-  <ul class="breadcrumb">
-    <ng-container
-      *ngIf="breadcrumbs.length > maxItems && !expanded; else fullBreadcrumb"
-    >
-      <li class="breadcrumb-item">
-        <ng-container *ngIf="!breadcrumbs[0].skipLink; else noLinkFirst">
-          <a [routerLink]="breadcrumbs[0].url">{{ breadcrumbs[0].label }}</a>
-        </ng-container>
-        <ng-template #noLinkFirst>
-          <span>{{ breadcrumbs[0].label }}</span>
-        </ng-template>
-      </li>
-      <span class="separator">{{ separator }}</span>
+<nav aria-label="breadcrumb">
+  <div
+    *ngIf="(loading$ | async) && showLoadingSkeleton"
+    class="breadcrumb-skeleton"
+  >
+    <div class="skeleton-item"></div>
+    <span [class]="separatorClass">{{ separator }}</span>
+    <div class="skeleton-item"></div>
+    <span [class]="separatorClass">{{ separator }}</span>
+    <div class="skeleton-item"></div>
+  </div>
 
-      <li class="breadcrumb-item clickable" (click)="toggleExpand()">...</li>
-      <span class="separator">{{ separator }}</span>
-
-      <li class="breadcrumb-item" [class.active]="true">
-        <ng-container
-          *ngIf="!breadcrumbs[breadcrumbs.length - 1].skipLink; else noLinkLast"
-        >
-          <a [routerLink]="breadcrumbs[breadcrumbs.length - 1].url">
-            {{ breadcrumbs[breadcrumbs.length - 1].label }}
-          </a>
-        </ng-container>
-        <ng-template #noLinkLast>
-          <span>{{ breadcrumbs[breadcrumbs.length - 1].label }}</span>
-        </ng-template>
-      </li>
-    </ng-container>
-
-    <ng-template #fullBreadcrumb>
-      <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
-        <li class="breadcrumb-item" [class.active]="last">
-          <ng-container *ngIf="!breadcrumb.skipLink && !last; else noLink">
-            <a [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+  <ng-container *ngIf="!(loading$ | async)">
+    <ul class="breadcrumb" *ngIf="breadcrumbs$ | async as breadcrumbs">
+      <ng-container
+        *ngIf="breadcrumbs.length > maxItems && !expanded; else fullBreadcrumb"
+      >
+        <li class="breadcrumb-item">
+          <ng-container *ngIf="!breadcrumbs[0].skipLink; else noLinkFirst">
+            <a
+              [routerLink]="breadcrumbs[0].url"
+              [title]="breadcrumbs[0].label"
+              class="breadcrumb-label"
+            >
+              <nb-icon
+                *ngIf="breadcrumbs[0].icon"
+                [icon]="breadcrumbs[0].icon"
+                class="breadcrumb-icon"
+              ></nb-icon>
+              {{ getTrimmedLabel(breadcrumbs[0].label) }}
+            </a>
           </ng-container>
-          <ng-template #noLink>
-            <span>{{ breadcrumb.label }}</span>
+          <ng-template #noLinkFirst>
+            <span class="breadcrumb-label" [title]="breadcrumbs[0].label">
+              <nb-icon
+                *ngIf="breadcrumbs[0].icon"
+                [icon]="breadcrumbs[0].icon"
+                class="breadcrumb-icon"
+              ></nb-icon>
+              {{ getTrimmedLabel(breadcrumbs[0].label) }}
+            </span>
           </ng-template>
         </li>
-        <span *ngIf="!last" class="separator">{{ separator }}</span>
+
+        <span class="{{ separatorClass }}">{{ separator }}</span>
+
+        <li class="breadcrumb-item clickable" (click)="toggleExpand()">...</li>
+        <span class="{{ separatorClass }}">{{ separator }}</span>
+
+        <li class="breadcrumb-item active">
+          <ng-container
+            *ngIf="
+              !breadcrumbs[breadcrumbs.length - 1].skipLink;
+              else noLinkLast
+            "
+          >
+            <a
+              [routerLink]="breadcrumbs[breadcrumbs.length - 1].url"
+              [title]="breadcrumbs[breadcrumbs.length - 1].label"
+              class="breadcrumb-label"
+            >
+              <nb-icon
+                *ngIf="breadcrumbs[breadcrumbs.length - 1].icon"
+                [icon]="breadcrumbs[breadcrumbs.length - 1].icon"
+                class="breadcrumb-icon"
+              ></nb-icon>
+              {{ getTrimmedLabel(breadcrumbs[breadcrumbs.length - 1].label) }}
+            </a>
+          </ng-container>
+          <ng-template #noLinkLast>
+            <span
+              class="breadcrumb-label"
+              [title]="breadcrumbs[breadcrumbs.length - 1].label"
+            >
+              <nb-icon
+                *ngIf="breadcrumbs[breadcrumbs.length - 1].icon"
+                [icon]="breadcrumbs[breadcrumbs.length - 1].icon"
+                class="breadcrumb-icon"
+              ></nb-icon>
+              {{ getTrimmedLabel(breadcrumbs[breadcrumbs.length - 1].label) }}
+            </span>
+          </ng-template>
+        </li>
       </ng-container>
-    </ng-template>
-  </ul>
+
+      <ng-template #fullBreadcrumb>
+        <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+          <li class="breadcrumb-item" [class.active]="last">
+            <ng-container *ngIf="!breadcrumb.skipLink && !last; else noLink">
+              <a
+                [routerLink]="breadcrumb.url"
+                [title]="breadcrumb.label"
+                class="breadcrumb-label"
+              >
+                <nb-icon
+                  *ngIf="breadcrumb.icon"
+                  [icon]="breadcrumb.icon"
+                  class="breadcrumb-icon"
+                ></nb-icon>
+                {{ getTrimmedLabel(breadcrumb.label) }}
+              </a>
+            </ng-container>
+            <ng-template #noLink>
+              <span class="breadcrumb-label" [title]="breadcrumb.label">
+                <nb-icon
+                  *ngIf="breadcrumb.icon"
+                  [icon]="breadcrumb.icon"
+                  class="breadcrumb-icon"
+                ></nb-icon>
+                {{ getTrimmedLabel(breadcrumb.label) }}
+              </span>
+            </ng-template>
+          </li>
+          <span *ngIf="!last" class="{{ separatorClass }}">{{
+            separator
+          }}</span>
+        </ng-container>
+      </ng-template>
+    </ul>
+  </ng-container>
 </nav>

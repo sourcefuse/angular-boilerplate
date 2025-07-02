@@ -9,7 +9,8 @@ export class UserService {
     const user = this.users.find(u => u.id === id);
     return of(user);
   }
-  getUserNameForBreadcrumb(id: string): Observable<string> {
+  getUserNameForBreadcrumb(params: Record<string, string>): Observable<string> {
+    const id = params['id']; // Access any param key dynamically
     return this.getUserById(id).pipe(
       map(user => user?.name || `User #${id}`),
       catchError(() => of(`User #${id}`)),

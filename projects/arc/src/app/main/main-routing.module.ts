@@ -43,8 +43,8 @@ const routes: Routes = [
             service: UserService,
             method: 'getUserNameForBreadcrumb',
             fallbackLabel: (params: ParamMap) => `User #${params.get('id')}`,
-            loadingLabel: 'Loading user...',
           },
+          icon: 'person-outline',
         },
         children: [
           {
@@ -56,8 +56,8 @@ const routes: Routes = [
                 method: 'getTitleNameForBreadcrumb',
                 fallbackLabel: (params: ParamMap) =>
                   `Document #${params.get('id')}`,
-                loadingLabel: 'Loading document...',
               },
+              icon: 'file-text-outline',
             },
           },
         ],

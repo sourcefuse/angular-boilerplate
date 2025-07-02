@@ -1,12 +1,13 @@
 import {Injectable, Injector} from '@angular/core';
 import {ActivatedRouteSnapshot, NavigationEnd, Router} from '@angular/router';
-import {BehaviorSubject} from 'rxjs';
-import {filter} from 'rxjs/operators';
+import {BehaviorSubject, EMPTY, Observable} from 'rxjs';
+import {catchError, filter, finalize, tap} from 'rxjs/operators';
 import {Breadcrumb} from './breadcrumb.interface';
 
 @Injectable({providedIn: 'root'})
 export class BreadcrumbService {
   private readonly breadcrumbs$ = new BehaviorSubject<Breadcrumb[]>([]);
+  private readonly loading$ = new BehaviorSubject<boolean>(false);
 
   constructor(
     private readonly router: Router,
@@ -41,9 +42,10 @@ export class BreadcrumbService {
     const nextUrl = path ? `${url}/${path}` : url;
     const label = this._resolveLabel(route, path, nextUrl);
     const skipLink = route.routeConfig.data?.['skipLink'] ?? false;
+    const icon = route.routeConfig.data?.['icon'];
 
     if (label && label.trim() !== '') {
-      breadcrumbs.push({label, url: nextUrl, skipLink});
+      breadcrumbs.push({label, url: nextUrl, skipLink, icon});
     }
 
     return route.firstChild
@@ -66,23 +68,37 @@ export class BreadcrumbService {
     const asyncConfig = data?.asyncBreadcrumb;
     if (asyncConfig?.service && asyncConfig?.method) {
       const params = route.paramMap;
-      const paramValue = params.get('id');
+      const paramValue = Object.fromEntries(
+        params.keys.map(k => [k, params.get(k)]),
+      );
       const fallback =
         asyncConfig.fallbackLabel?.(params) || this._toTitleCase(path);
-      const loadingLabel = asyncConfig.loadingLabel || fallback;
 
-      setTimeout(async () => {
-        try {
-          const serviceInstance = this.injector.get(asyncConfig.service);
-          const result$ = serviceInstance[asyncConfig.method](paramValue);
-          const result = await result$.toPromise();
-          this.updateBreadcrumbLabel(currentUrl, result);
-        } catch (error) {
-          console.warn('Async breadcrumb load failed:', error);
-        }
-      }, 0);
+      this.loading$.next(true);
+      try {
+        const serviceInstance = this.injector.get(asyncConfig.service);
+        const result$ = serviceInstance[asyncConfig.method](paramValue);
 
-      return loadingLabel;
+        this.loading$.next(true);
+
+        result$
+          .pipe(
+            tap(result =>
+              this.updateBreadcrumbLabel(currentUrl, String(result)),
+            ),
+            catchError(error => {
+              console.warn('Async breadcrumb load failed:', error);
+              return EMPTY;
+            }),
+            finalize(() => this.loading$.next(false)),
+          )
+          .subscribe();
+      } catch (error) {
+        console.warn('Async breadcrumb load failed:', error);
+        this.loading$.next(false);
+      }
+
+      return fallback;
     }
     const breadcrumbData = data?.['breadcrumb'];
 
@@ -105,5 +121,8 @@ export class BreadcrumbService {
   }
   get breadcrumbs() {
     return this.breadcrumbs$.asObservable();
+  }
+  get loading(): Observable<boolean> {
+    return this.loading$.asObservable();
   }
 }

@@ -90,7 +90,57 @@
       <pre>{{ asyncLogicCode }}</pre>
     </div>
   </div>
-  <h3>3. Breadcrumb Inputs</h3>
+  <h3>3. Breadcrumb with Icons</h3>
+  <p>
+    This example shows how to add icons to breadcrumb items using icon property
+    in route data.
+  </p>
+
+  <ul class="breadcrumb">
+    <li>
+      <nb-icon icon="home-outline" pack="eva" class="breadcrumb-icon"></nb-icon>
+      Home
+    </li>
+    <span class="separator">›</span>
+    <li>
+      <nb-icon
+        icon="people-outline"
+        pack="eva"
+        class="breadcrumb-icon"
+      ></nb-icon>
+      Users
+    </li>
+    <span class="separator">›</span>
+    <li>
+      <nb-icon
+        icon="person-outline"
+        pack="eva"
+        class="breadcrumb-icon"
+      ></nb-icon>
+      Jane Smith
+    </li>
+    <span class="separator">›</span>
+    <li>
+      <nb-icon
+        icon="file-text-outline"
+        pack="eva"
+        class="breadcrumb-icon"
+      ></nb-icon>
+      Contract.pdf
+    </li>
+  </ul>
+
+  <div class="code-block">
+    <span
+      class="copy-icon"
+      (click)="copyCode(iconBreadcrumbCode)"
+      title="Copy Icon Example Code"
+      >📋</span
+    >
+    <pre>{{ iconBreadcrumbCode }}</pre>
+  </div>
+
+  <h3>4. Breadcrumb Inputs</h3>
   <p>See all available inputs for customization:</p>
 
   <table class="breadcrumb-api-table">
@@ -104,6 +154,13 @@
       <tr>
         <td>staticBreadcrumbs</td>
         <td>Static breadcrumb items</td>
+      </tr>
+      <tr>
+        <td>showIcons</td>
+        <td>
+          Icons will appear before each breadcrumb item that has an associated
+          icon
+        </td>
       </tr>
       <tr>
         <td>separator</td>
@@ -120,6 +177,20 @@
       <tr>
         <td>itemClass</td>
         <td>Custom class applied to each breadcrumb element.</td>
+      </tr>
+      <tr>
+        <td>maxLabelLength</td>
+        <td>
+          Maximum number of characters shown in each breadcrumb label before it
+          gets trimmed with an ellipsis (…)
+        </td>
+      </tr>
+      <tr>
+        <td>maxItems</td>
+        <td>
+          Maximum number of breadcrumb items to display before collapsing the
+          middle items into an expandable “...” element
+        </td>
       </tr>
     </tbody>
   </table>

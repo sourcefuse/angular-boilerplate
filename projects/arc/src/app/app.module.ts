@@ -25,6 +25,8 @@ import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
 import {UserService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user/user.service';
 import {TitleService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user-title/user-title.service';
+import {NbIconModule} from '@nebular/theme';
+import {NbEvaIconsModule} from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [AppComponent],
@@ -43,6 +45,8 @@ import {TitleService} from '@project-lib/components/breadcrumb/breadcrumb-demo/u
     HeaderComponent,
     SidebarComponent,
     BreadcrumbComponent,
+    NbIconModule,
+    NbEvaIconsModule,
   ],
   providers: [
     TranslationService,
