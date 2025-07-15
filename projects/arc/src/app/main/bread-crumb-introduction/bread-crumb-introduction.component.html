@@ -1,0 +1,197 @@
+<div class="breadcrumb-section">
+  <h3>1.Basic Breadcrumb</h3>
+  <ul class="breadcrumb">
+    <li>Home</li>
+    <span class="separator">›</span>
+    <li>Users</li>
+    <span class="separator">›</span>
+    <li>John Doe</li>
+    <span class="separator">›</span>
+    <li>Document.pdf</li>
+  </ul>
+  <div class="code-block">
+    <span
+      class="copy-icon"
+      (click)="copyCode(basicCode)"
+      title="Copy Routing Code"
+      >📋</span
+    >
+    <pre>{{ basicCode }}</pre>
+  </div>
+
+  <h3>2. Dynamic Handling Breadcrumb</h3>
+  <p>
+    This example demonstrates how breadcrumbs can be dynamically generated and
+    updated based on route parameters and asynchronous data fetching from
+    services. Instead of relying on blocking resolvers, the breadcrumb labels
+    are initially displayed using fallback or loading placeholders (e.g.,
+    "Loading user...") and are automatically updated when the actual data
+    becomes available from the API or service. This approach ensures smooth
+    navigation and improves user experience by preventing full page loading
+    delays while keeping the breadcrumb context accurate and dynamic.
+  </p>
+
+  <ul class="breadcrumb">
+    <li>Main</li>
+    <span class="separator">›</span>
+    <li class="clickable" (click)="expanded = !expanded">...</li>
+    <span class="separator">›</span>
+    <li>Document.pdf</li>
+  </ul>
+
+  <div *ngIf="expanded" class="expanded-breadcrumb">
+    <ul class="breadcrumb">
+      <li>Main</li>
+      <span class="separator">›</span>
+      <li>Users</li>
+      <span class="separator">›</span>
+      <li>John Doe</li>
+      <span class="separator">›</span>
+      <li>Document.pdf</li>
+    </ul>
+  </div>
+  <div class="button-group">
+    <button class="colors" (click)="goToUser(123)">User/123</button>
+    <button class="colors" (click)="goToDocument(124, 1)">
+      User/124/document/1
+    </button>
+  </div>
+  <div class="code-container">
+    <div class="code-block">
+      <h3>Routing Code</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(routingCode)"
+        title="Copy Routing Code"
+        >📋</span
+      >
+      <pre>{{ routingCode }}</pre>
+    </div>
+
+    <div class="code-block">
+      <h3>Service Code</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(serviceCode)"
+        title="Copy Service Code"
+        >📋</span
+      >
+      <pre>{{ serviceCode }}</pre>
+    </div>
+
+    <div class="code-block">
+      <h3>Async Breadcrumb Logic</h3>
+      <span
+        class="copy-icon"
+        (click)="copyCode(asyncLogicCode)"
+        title="Copy Async Logic Code"
+        >📋</span
+      >
+      <pre>{{ asyncLogicCode }}</pre>
+    </div>
+  </div>
+  <h3>3. Breadcrumb with Icons</h3>
+  <p>
+    This example shows how to add icons to breadcrumb items using icon property
+    in route data.
+  </p>
+
+  <ul class="breadcrumb">
+    <li>
+      <nb-icon icon="home-outline" pack="eva" class="breadcrumb-icon"></nb-icon>
+      Home
+    </li>
+    <span class="separator">›</span>
+    <li>
+      <nb-icon
+        icon="people-outline"
+        pack="eva"
+        class="breadcrumb-icon"
+      ></nb-icon>
+      Users
+    </li>
+    <span class="separator">›</span>
+    <li>
+      <nb-icon
+        icon="person-outline"
+        pack="eva"
+        class="breadcrumb-icon"
+      ></nb-icon>
+      Jane Smith
+    </li>
+    <span class="separator">›</span>
+    <li>
+      <nb-icon
+        icon="file-text-outline"
+        pack="eva"
+        class="breadcrumb-icon"
+      ></nb-icon>
+      Contract.pdf
+    </li>
+  </ul>
+
+  <div class="code-block">
+    <span
+      class="copy-icon"
+      (click)="copyCode(iconBreadcrumbCode)"
+      title="Copy Icon Example Code"
+      >📋</span
+    >
+    <pre>{{ iconBreadcrumbCode }}</pre>
+  </div>
+
+  <h3>4. Breadcrumb Inputs</h3>
+  <p>See all available inputs for customization:</p>
+
+  <table class="breadcrumb-api-table">
+    <thead>
+      <tr>
+        <th>Input</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>staticBreadcrumbs</td>
+        <td>Static breadcrumb items</td>
+      </tr>
+      <tr>
+        <td>showIcons</td>
+        <td>
+          Icons will appear before each breadcrumb item that has an associated
+          icon
+        </td>
+      </tr>
+      <tr>
+        <td>separator</td>
+        <td>Separator character/string</td>
+      </tr>
+      <tr>
+        <td>skipLink</td>
+        <td>A flag to disable click navigation on a breadcrumb</td>
+      </tr>
+      <tr>
+        <td>separatorClass</td>
+        <td>Custom class applied to the separator between breadcrumb items</td>
+      </tr>
+      <tr>
+        <td>itemClass</td>
+        <td>Custom class applied to each breadcrumb element.</td>
+      </tr>
+      <tr>
+        <td>maxLabelLength</td>
+        <td>
+          Maximum number of characters shown in each breadcrumb label before it
+          gets trimmed with an ellipsis (…)
+        </td>
+      </tr>
+      <tr>
+        <td>maxItems</td>
+        <td>
+          Maximum number of breadcrumb items to display before collapsing the
+          middle items into an expandable “...” element
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

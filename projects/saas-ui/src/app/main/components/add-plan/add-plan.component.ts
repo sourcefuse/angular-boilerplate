@@ -309,7 +309,7 @@ export class AddPlanComponent implements OnInit {
           updateFeatureDetails,
           this.activateRoute.snapshot.params.id,
         )
-        .subscribe(respFeature => {});
+        .subscribe();
     } else {
       // Handle form validation errors if necessary
       console.error('Form is invalid');

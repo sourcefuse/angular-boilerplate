@@ -35,6 +35,10 @@ export const COMPONENTS_ITEMS = [
     image: '../../../assets/images/components/Rectangle 37.svg',
   },
   {
+    title: 'Breadcrumb',
+    link: '/main/components/arc-comp/breadcrumb',
+  },
+  {
     title: 'List',
     link: '/main/components/arc-comp',
     home: true,

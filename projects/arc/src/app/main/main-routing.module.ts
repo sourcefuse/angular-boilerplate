@@ -1,7 +1,10 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {ParamMap, RouterModule, Routes} from '@angular/router';
 import {MainComponent} from './main.component';
-import {IntroductionComponent} from './introduction/introduction.component';
+import {UserComponent} from '@project-lib/components/breadcrumb/breadcrumb-demo/user/user.component';
+import {UserTitleComponent} from '@project-lib/components/breadcrumb/breadcrumb-demo/user-title/user-title.component';
+import {UserService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user/user.service';
+import {TitleService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user-title/user-title.service';
 
 const routes: Routes = [
   {
@@ -15,7 +18,6 @@ const routes: Routes = [
       },
       {
         path: 'components',
-        component: IntroductionComponent,
         children: [
           {
             path: 'nebular-comp',
@@ -33,10 +35,36 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'user/:id',
+        component: UserComponent,
+        data: {
+          asyncBreadcrumb: {
+            service: UserService,
+            method: 'getUserNameForBreadcrumb',
+            fallbackLabel: (params: ParamMap) => `User #${params.get('id')}`,
+          },
+          icon: 'person-outline',
+        },
+        children: [
+          {
+            path: 'document/:id',
+            component: UserTitleComponent,
+            data: {
+              asyncBreadcrumb: {
+                service: TitleService,
+                method: 'getTitleNameForBreadcrumb',
+                fallbackLabel: (params: ParamMap) =>
+                  `Document #${params.get('id')}`,
+              },
+              icon: 'file-text-outline',
+            },
+          },
+        ],
+      },
     ],
   },
 ];
-
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

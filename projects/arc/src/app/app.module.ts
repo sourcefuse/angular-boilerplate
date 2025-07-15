@@ -19,10 +19,14 @@ import {environment} from '../environments/environment';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {GanttModule} from '@project-lib/components/index';
+import {BreadcrumbComponent, GanttModule} from '@project-lib/components/index';
 import {SelectModule} from '@project-lib/components/selector';
 import {HeaderComponent} from '@project-lib/components/header/header.component';
 import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.component';
+import {UserService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user/user.service';
+import {TitleService} from '@project-lib/components/breadcrumb/breadcrumb-demo/user-title/user-title.service';
+import {NbIconModule} from '@nebular/theme';
+import {NbEvaIconsModule} from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,6 +44,9 @@ import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.componen
     BrowserAnimationsModule,
     HeaderComponent,
     SidebarComponent,
+    BreadcrumbComponent,
+    NbIconModule,
+    NbEvaIconsModule,
   ],
   providers: [
     TranslationService,
@@ -48,6 +55,8 @@ import {SidebarComponent} from '@project-lib/components/sidebar/sidebar.componen
     TranslateStore,
     SystemStoreFacadeService,
     EnvAdapterService,
+    UserService,
+    TitleService,
     ApiService,
     {
       provide: APP_CONFIG,
