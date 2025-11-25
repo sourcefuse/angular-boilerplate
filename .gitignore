@@ -8,3 +8,11 @@ lerna-debug.log
 .nyc_output
 dist
 /.angular/cache
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+e2e/arc-docs/tests/.playwright-cache/
+e2e/arc/tests/.playwright-cache/
+e2e/saas-ui/tests/.playwright-cache/
