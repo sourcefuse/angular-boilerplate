@@ -62,10 +62,6 @@ playwright-report/                   # HTML report directory
 - `npm run e2e:all` - Run all project tests sequentially
 
 **Interactive modes:**
-
-- `npm run e2e:ui:arc-docs` - Playwright UI mode for arc-docs
-- `npm run e2e:ui:arc` - Playwright UI mode for arc
-- `npm run e2e:ui:saas-ui` - Playwright UI mode for saas-ui
 - `npm run e2e:headed` - Run arc-docs tests in headed mode (browser visible)
 
 ### Running Specific Tests
@@ -307,13 +303,6 @@ The configuration automatically optimizes for CI:
    ```bash
    npm run e2e:headed
    npx playwright test --headed --config=e2e/arc/playwright.config.ts
-   ```
-
-2. **UI mode**: Interactive test runner per project
-   ```bash
-   npm run e2e:ui:arc-docs
-   npm run e2e:ui:arc
-   npm run e2e:ui:saas-ui
    ```
 
 ### Trace Viewer
