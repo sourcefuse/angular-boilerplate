@@ -1,6 +1,6 @@
 # Playwright E2E Testing Setup
 
-This Angular boilerplate includes Playwright for end-to-end testing of the Arc-Docs documentation application. Playwright provides reliable testing across Chromium, Firefox, and WebKit browsers.
+This Angular boilerplate includes Playwright for end-to-end testing across multiple projects in the workspace. Playwright provides reliable testing across Chromium, Firefox, and WebKit browsers with project-separated architecture for scalable test organization.
 
 ## Installation
 

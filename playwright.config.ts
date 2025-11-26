@@ -16,6 +16,7 @@ import {defineConfig} from '@playwright/test';
  *
  * See https://playwright.dev/docs/test-configuration.
  */
+//This config in not in use, but kept for reference
 export default defineConfig({
   // This config is intentionally minimal as project-specific configs are in subdirectories
   // You can run tests from specific project directories or use the npm scripts

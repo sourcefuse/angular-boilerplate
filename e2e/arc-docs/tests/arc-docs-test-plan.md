@@ -297,14 +297,14 @@ The Arc-Docs application is an Angular-based documentation portal for the Arc An
 
 1. Navigate to `http://localhost:4200/`
 2. Expand "Auth" menu
-3. Click on "Setting Up Api Configration"
+3. Click on "Setting Up Api Configuration"
 4. Verify page loads
 
 **Expected Results:**
 
 - URL changes to `/docs/auth-doc/configureEnvs`
 - Page content loads successfully
-- "Setting Up Api Configration" menu item is highlighted as active
+- "Setting Up Api Configuration" menu item is highlighted as active
 
 #### 5.5 Navigate to UI Components Page
 
@@ -343,7 +343,7 @@ The Arc-Docs application is an Angular-based documentation portal for the Arc An
    - Introduction
    - Installation
    - Getting User Token
-   - Setting Up Api Configration
+   - Setting Up Api Configuration
    - UI Components
 6. Verify each page loads correctly
 
