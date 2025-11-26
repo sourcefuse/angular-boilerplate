@@ -37,30 +37,6 @@ npm run e2e:saas-ui         # Run saas-ui tests
 npm run e2e:all
 ```
 
-### Run tests in UI mode:
-
-```bash
-npm run e2e:ui:arc-docs     # Open Playwright UI for arc-docs
-npm run e2e:ui:arc          # Open Playwright UI for arc
-npm run e2e:ui:saas-ui      # Open Playwright UI for saas-ui
-```
-
-### Debug tests:
-
-```bash
-npm run e2e:debug:arc-docs
-npm run e2e:debug:arc
-npm run e2e:debug:saas-ui
-```
-
-### View test reports:
-
-```bash
-npm run e2e:report:arc-docs
-npm run e2e:report:arc
-npm run e2e:report:saas-ui
-```
-
 ## Project Configuration
 
 Each project has its own `playwright.config.ts` with:

@@ -142,11 +142,6 @@ npm run e2e:saas-ui     # Test saas-ui project (port 4202)
 # Run all project tests sequentially
 npm run e2e:all
 
-# Run tests in UI mode for interactive debugging
-npm run e2e:ui:arc-docs
-npm run e2e:ui:arc
-npm run e2e:ui:saas-ui
-
 # Run tests in headed mode (visible browser)
 npm run e2e:headed
 ```
