@@ -28,6 +28,7 @@ After this, it will take a few minutes to set everything up, once that is done, 
 BOILER-PLATE
 ├── .github
 ├── .husky
+├── e2e
 ├── projects
 ├── .czferc.js
 ├── .npmrc
@@ -37,6 +38,7 @@ BOILER-PLATE
 ├── CODE_OF_CONDUCT.md
 ├── package-lock.json
 ├── package.json
+├── PLAYWRIGHT.md
 ├── README.md
 └── tsconfig.json
 ```
@@ -50,6 +52,8 @@ Some predefined settings are initialised:-
 4. `package.json` and `package-lock.json` for npm to work.
 5. The folder named `projects`: Projects will hold the multi application pattern and will always be 
    completely independent.
+6. The folder named `e2e`: Contains Playwright end-to-end tests organized by project (arc-docs, arc, saas-ui),
+   each with dedicated configurations and isolated test suites.
 
 #### Projects
 
@@ -127,7 +131,22 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+This boilerplate includes Playwright for E2E testing with project-specific test suites:
+
+```sh
+# Run tests for a specific project
+npm run e2e:arc-docs    # Test arc-docs project (port 4200)
+npm run e2e:arc         # Test arc project (port 4201)
+npm run e2e:saas-ui     # Test saas-ui project (port 4202)
+
+# Run all project tests sequentially
+npm run e2e:all
+
+# Run tests in headed mode (visible browser)
+npm run e2e:headed
+```
+
+For detailed information about the Playwright setup, test organization, and advanced usage, see [PLAYWRIGHT.md](PLAYWRIGHT.md).
 
 ## Further help
 
