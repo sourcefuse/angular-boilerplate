@@ -4,7 +4,7 @@ import {catchError, concatMap, Observable, of, tap} from 'rxjs';
 
 import {AuthService} from '../auth.service';
 import {SystemStoreFacadeService} from '@project-lib/core/store';
-import {environment} from '@main-project/boiler/env/environment';
+import {environment} from '@project-lib/env/environment';
 
 @Injectable({
   providedIn: 'root',

@@ -12,4 +12,5 @@ export const environment = {
   tenantmgmtServiceUrl: '',
   subscriptionServiceUrl: '',
   cognitoLogoutUrl: '',
+  stripePublicKey: '',
 };

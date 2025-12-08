@@ -1,0 +1,17 @@
+export const environment = {
+  production: true,
+  clientId: '',
+  publicKey: '',
+  homePath: '/main/home',
+  baseApiUrl: '',
+  authServiceUrl: '',
+  userServiceUrl: '',
+  logLevel: 5,
+  client_secret: '',
+  home: '',
+  tenantMgmtFacadeUrl: '',
+  tenantmgmtServiceUrl: '',
+  subscriptionServiceUrl: '',
+  cognitoLogoutUrl: '',
+  stripePublicKey: '',
+};
