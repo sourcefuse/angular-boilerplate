@@ -4,8 +4,11 @@ import {
   CanActivate,
   RouterStateSnapshot,
 } from '@angular/router';
-import {UserSessionStoreService} from '@project-lib/core/index';
-import {Observable, catchError, map, of, tap} from 'rxjs';
+import {
+  SystemStoreFacadeService,
+  UserSessionStoreService,
+} from '@project-lib/core/index';
+import {Observable, catchError, map, of, switchMap} from 'rxjs';
 import {OnBoardingService} from '../../shared/services/on-boarding-service';
 
 @Injectable({
@@ -15,6 +18,7 @@ export class EmailVerifyGuard implements CanActivate {
   constructor(
     private readonly onboardingService: OnBoardingService,
     private readonly store: UserSessionStoreService,
+    private readonly systemStore: SystemStoreFacadeService,
   ) {}
 
   canActivate(
@@ -26,16 +30,21 @@ export class EmailVerifyGuard implements CanActivate {
       const leadId = route.params['leadId'];
 
       if (code) {
-        return this.onboardingService.validateEmail(code, leadId).pipe(
-          map(response => {
-            if (response.token) {
-              this.store.saveAccessToken(response.token);
-              return true;
-            } else return false;
-          }),
-          catchError(err => {
-            console.log(err);
-            throw err;
+        return this.systemStore.getEnvConfig().pipe(
+          switchMap(() => {
+            return this.onboardingService.validateEmail(code, leadId).pipe(
+              map(response => {
+                if (response.token) {
+                  this.store.saveAccessToken(response.token);
+                  return true;
+                }
+                return false;
+              }),
+              catchError(err => {
+                console.log(err);
+                return of(false); // guards must return boolean
+              }),
+            );
           }),
         );
       }

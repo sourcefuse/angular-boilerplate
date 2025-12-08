@@ -22,7 +22,7 @@ import {IconPacksManagerService} from '@project-lib/theme/services';
 import {OnBoardingComponent} from './on-boarding/on-boarding.component';
 import {NbLayoutModule, NbRadioModule} from '@nebular/theme';
 import {AgGridModule} from 'ag-grid-angular';
-import {environment} from '../environment';
+import {environment} from '@project-lib/env/environment';
 import {FeatureListService} from './shared/services/feature-list-service';
 
 @NgModule({

@@ -3,6 +3,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  Inject,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -10,11 +11,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NbToastrService} from '@nebular/theme';
 import {AnyObject} from '@project-lib/core/api';
-import {environment} from 'projects/saas-ui/src/environment';
 import {Lead} from '../../../shared/models';
 import {BillingPlanService} from '../../../shared/services/billing-plan-service';
 import {OnBoardingService} from '../../../shared/services/on-boarding-service';
 import {Stripe} from '@stripe/stripe-js';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '@project-lib/core/i-any-object';
 declare let Stripe: (key: string) => Stripe;
 
 @Component({
@@ -40,6 +42,7 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private onboardingService: OnBoardingService,
     private billingPlanService: BillingPlanService,
+    @Inject(APP_CONFIG) private readonly appConfig: IAnyObject,
   ) {
     this.addTenantForm = this.fb.group({
       key: [
@@ -68,7 +71,7 @@ export class AddTenantComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.stripe = Stripe(environment.stripePublicKey); // Initialize Stripe
+    this.stripe = Stripe(this.appConfig.stripePublicKey); // Initialize Stripe
     const elements = this.stripe.elements();
 
     // Initialize the card element for payment details

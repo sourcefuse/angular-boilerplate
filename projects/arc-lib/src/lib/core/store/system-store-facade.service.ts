@@ -11,7 +11,7 @@ import {GetEnvCommand} from './commands';
 import {StoreKeys} from './store-keys.enum';
 import {StoreModule} from './store.module';
 import {ApiService} from '../api';
-import {environment} from '@main-project/boiler/env/environment.prod';
+import {environment} from '@project-lib/env/environment';
 
 @Injectable({
   providedIn: StoreModule,

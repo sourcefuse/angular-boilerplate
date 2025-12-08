@@ -9,7 +9,7 @@ import {AuthService, CoreAuthModule} from '@project-lib/core/auth';
 import {HttpClientModule} from '@angular/common/http';
 import {NgxPermissionsService, NgxPermissionsStore} from 'ngx-permissions';
 import {AuthModule} from '@project-lib/components/index';
-import {environment} from '@main-project/boiler/env/environment';
+import {environment} from '@project-lib/env/environment';
 import {APP_CONFIG} from '@project-lib/app-config';
 
 @NgModule({

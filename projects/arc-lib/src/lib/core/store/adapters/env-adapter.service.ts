@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {NgxLoggerLevel} from 'ngx-logger';
 import {StoreModule} from '../store.module';
 import {IAdapter} from '../../api';
-import {environment} from '@main-project/boiler/env/environment';
+import {environment} from '@project-lib/env/environment';
 
 @Injectable({
   providedIn: StoreModule,
