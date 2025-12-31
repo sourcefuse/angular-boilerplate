@@ -1,11 +1,4 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-import {TranslationService} from '@project-lib/core/localization';
-import {
-  TranslateFakeLoader,
-  TranslateLoader,
-  TranslateModule,
-  TranslateService,
-} from '@ngx-translate/core';
 
 import {GanttTooltipComponent} from './gantt-tooltip.component';
 
@@ -16,19 +9,8 @@ describe('GanttTooltipComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GanttTooltipComponent],
-      providers: [TranslateService, TranslationService],
-      imports: [
-        TranslateModule.forRoot({
-          loader: {
-            provide: TranslateLoader,
-            useClass: TranslateFakeLoader,
-          },
-        }),
-      ],
     }).compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(GanttTooltipComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

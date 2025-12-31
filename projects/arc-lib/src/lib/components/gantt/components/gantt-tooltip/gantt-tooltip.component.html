@@ -1,41 +1,48 @@
-<div class="gantt-tooltip" gantt-hover="tooltip" *ngIf="item">
-  <div class="key">
-    <div>Start Date</div>
-    <div *ngIf="item.startDate">
-      {{ formatDate(item.startDate) | date: 'dd/MM/YYYY' }}
+<!-- gantt-tooltip.component.html -->
+<div class="tooltip-wrapper">
+  <div class="gantt-tooltip" *ngIf="item">
+    <div class="key">
+      <div>Hours Per Day</div>
+      <div>{{ formatAllocation(item.allocatedHours) }}</div>
     </div>
-  </div>
-  <div class="key">
-    <div>End Date</div>
-    <div *ngIf="item.endDate">
-      {{ formatDate(item.endDate) | date: 'dd/MM/YYYY' }}
+    <div class="key" *ngIf="item.billingRate">
+      <div>Hourly Rate</div>
+      <div>{{ formatter(item.billingRate) }}</div>
     </div>
-  </div>
-  <div class="key">
-    <div>Hourly Rate Charged</div>
-    <div>{{ formatter(item.billingRate!) }}</div>
-  </div>
-  <div class="key">
-    <div>Allocated Hours</div>
-    <div>{{ formatAllocation(item.allocatedHours) }}</div>
-  </div>
-  <hr />
-  <div class="key">
-    <div>{{ 'currentAllocationsLbl' | translate }}</div>
-    <div [ngClass]="item.allocation > maxAllocation ? 'over-allocated' : ''">
-      <div *ngIf="item.allocation > maxAllocation">
-        <span class="arrow">&#8593;</span>
-        <span class="overallocated-hours">
-          {{ formatAllocation(item.allocation - maxAllocation) }}
-        </span>
-      </div>
-      <div>
-        {{ formatAllocation(item.allocation) }}
+    <div class="key" *ngIf="item.startDate">
+      <div>Start Date</div>
+      <div *ngIf="item.startDate">
+        {{ formatDate(item.startDate) | date: 'dd/MM/yyyy' }}
       </div>
     </div>
-  </div>
-  <div class="key" *ngFor="let deal of item.allotedDeals">
-    <div class="deal-name">{{ deal.name }}</div>
-    <div>{{ formatAllocation(deal.allocatedHours) }}</div>
+    <div class="key" *ngIf="item.endDate">
+      <div>End Date</div>
+      <div *ngIf="item.endDate">
+        {{ formatDate(item.endDate) | date: 'dd/MM/yyyy' }}
+      </div>
+    </div>
+    <hr />
+    <div class="key" *ngFor="let deal of item.allotedDeals">
+      <div class="deal-name">
+        <span class="underline">{{ deal.name }}</span>
+        <ng-container *ngIf="allocationMap.get(deal.name)">
+          <span class="icon-shadow">
+            <nb-icon icon="shadowResource" pack="svg-bizbook"></nb-icon>
+          </span>
+          <i class="fa fa-icon"></i>
+        </ng-container>
+      </div>
+      <div class="deal-key">
+        <div class="sow-status">
+          <span class="status-circle active"></span>
+          <span class="status-text">{{
+            displayStatus(deal.status) | titlecase
+          }}</span>
+        </div>
+        <div>
+          {{ formatAllocation(deal.allocatedHours) }}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
