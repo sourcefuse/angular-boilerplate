@@ -22,6 +22,8 @@ import {ButtonRendererComponent} from './components/button-renderer/button-rende
 import {TenantRegistrationComponent} from './components/tenant-registration/tenant-registration.component';
 import { TenantDetailComponent } from './components/tenant-detail/tenant-detail.component';
 import { EyeIconRendererComponent } from './components/eye-icon-renderer/eye-icon-renderer.component';
+import { ManageUsersComponent } from './components/manage-users/manage-users.component';
+import { AddUsersComponent } from './components/add-users/add-users.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { EyeIconRendererComponent } from './components/eye-icon-renderer/eye-ico
     TenantRegistrationComponent,
     TenantDetailComponent,
     EyeIconRendererComponent,
+    ManageUsersComponent,
+    AddUsersComponent,
   ],
   imports: [
     CommonModule,

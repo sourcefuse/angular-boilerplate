@@ -1,0 +1,196 @@
+@use '../../../on-boarding/styles/forms.style.scss' as *;
+
+
+:host {
+  .logo {
+    padding-top: 10%;
+  }
+
+  .description {
+    padding-top: 10%;
+  }
+
+  .login-btn {
+    padding-top: 7%;
+  }
+
+  .footer {
+    padding-top: 7%;
+  }
+}
+.btn{
+  .btn-danger{
+    background-color: #f00a18 !important;
+    color: white !important;
+  }
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.required {
+  color: red;
+}
+
+.input-container {
+  position: relative;
+}
+
+.info-icon {
+  margin-left: 8px;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.input-box {
+  position: relative;
+
+  .input-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  .input-box{
+    .input{
+      .payment-comment-box{
+        min-width: 100%;
+        border: 1px solid #dcdcdc;
+       }     
+    }
+  }
+  
+
+ 
+  
+  nb-select{
+    .select-button{
+      height: 46px !important;
+      margin-top: 5px !important;
+    }
+  }
+  
+
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  input[nbInput] {
+    padding-right: 2.5rem;
+  }
+
+  .info-icon {
+    position: absolute;
+    right: 0.5rem;
+    font-size: 1.2rem;
+    color: #007bff;
+  }
+
+  .inputTags {
+    position: relative;
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      input {
+        width: 100%;
+        padding: 10px;
+        padding-right: 30px;
+        border: 1px solid #dcdcdc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .info-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #007bff;
+        font-size: 18px;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.input-wrapper{
+  .input-box{
+    .select{
+      .dropdown-wrapper{
+        min-width: 100%;
+        margin-top: 5px;
+        border: 1px solid #dcdcdc;
+    border-radius: 3px;
+      }
+    }
+  }
+}
+
+.input-box {
+  .inputTags {
+    input {
+      margin: 5px 0;
+      width: 100% !important;
+      max-width: 100%;
+      border-radius: 0;
+      background: #fff;
+    }
+  }
+}
+
+.card-row{
+border-radius: 16px;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+max-width: 100%;
+margin: auto;
+.sign-in-title h2 {
+  font-size: 34px;
+}
+ .sign-in-title h3 {
+  font-size: 20px;
+  color: #525252;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+}
+
+
+.add-lead-wrapper {
+  .btn {
+        margin-top: 30px;
+        justify-content: space-between;
+    display: flex
+    
+  }
+}
+
+.address-input-box {
+  width: 100%;
+}
+
+.main-wrapper {
+  padding-top: 10px;
+}
+
+.green-icon {
+  color: green;
+}
+
+.invisible-icon {
+  display: none;
+}
+
+.add-lead-wrapper {
+  h2 {
+    margin-top: 0 !important;
+  }
+}

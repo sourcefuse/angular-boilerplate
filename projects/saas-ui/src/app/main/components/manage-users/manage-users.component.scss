@@ -1,0 +1,19 @@
+@use '../../styles/grid-styles.scss' as *;
+.regbtn {
+  padding: 10px 0;
+  text-align: right;
+  button {
+    min-width: 200px;
+    &:hover {
+      background-color: #ff3d71;
+      color: white;
+    }
+  }
+}
+
+.heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
