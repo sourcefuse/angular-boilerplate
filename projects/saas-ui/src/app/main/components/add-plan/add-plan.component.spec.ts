@@ -1,366 +1,310 @@
-// import {ComponentFixture, TestBed} from '@angular/core/testing';
-// import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-// import {ActivatedRoute, Router} from '@angular/router';
-// import {NbDialogService, NbToastrService} from '@nebular/theme';
-// import {of, throwError} from 'rxjs'; // Import 'of' and 'throwError' from 'rxjs'
-// import {OnBoardingService} from '../../../shared/services/on-boarding-service';
-// import {BillingPlanService} from '../../../shared/services/billing-plan-service';
-// import {FeatureListService} from '../../../shared/services/feature-list-service';
-// import {AddPlanComponent} from './add-plan.component';
-// import {AddFeaturesDialogComponent} from '../add-features-dialog/add-features-dialog.component';
-// import {ApiService} from '@project-lib/core/api/api.service';
-// import {HttpClientTestingModule} from '@angular/common/http/testing';
-// import {AnyAdapter} from '@project-lib/core/api/adapters';
-// import {InjectionToken} from '@angular/core';
-// import {ThemeModule} from '@project-lib/theme/theme.module';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import {RouterTestingModule} from '@angular/router/testing';
+import {
+  NbCardModule,
+  NbDialogService,
+  NbFocusMonitor,
+  NbInputModule,
+  NbLayoutModule,
+  NbPositionBuilderService,
+  NbStatusService,
+  NbThemeModule,
+  NbToastrService,
+} from '@nebular/theme';
+import {async, of, throwError} from 'rxjs';
+import {AddPlanComponent} from './add-plan.component';
+import {BillingPlanService} from '../../../shared/services/billing-plan-service';
+import {FeatureListService} from '../../../shared/services/feature-list-service';
+import {OnBoardingService} from '../../../shared/services/on-boarding-service';
+import {APP_CONFIG} from '@project-lib/app-config';
+import {IAnyObject} from '../../../../../../arc-lib/src/lib/core/i-any-object';
+import {ThemeModule} from '@project-lib/theme/theme.module';
+import {DOCUMENT} from '@angular/common';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Features} from '../../../shared/models/feature.model';
 
-// export const APP_CONFIG = new InjectionToken('Application config');
+// Mock services
+class MockBillingPlanService {
+  getCurrencyDetails() {
+    return of([{id: 'USD'}]);
+  }
+  getBillingCycles() {
+    return of([{id: 'monthly'}]);
+  }
+  addPlan() {
+    return of({id: 'plan123'});
+  }
+  getPlanById() {
+    return of({id: 'plan123', tier: 'Basic'});
+  }
+  editPlan() {
+    return of({});
+  }
+}
 
-// describe('AddPlanComponent', () => {
-//   let component: AddPlanComponent;
-//   let fixture: ComponentFixture<AddPlanComponent>;
-//   let fb: FormBuilder;
-//   let featureListService: FeatureListService;
-//   let onboardingService: OnBoardingService;
-//   let toasterService: NbToastrService;
-//   let billingplanService: BillingPlanService;
-//   let dialogService: NbDialogService;
-//   let router: Router;
-//   let activateRoute: ActivatedRoute;
+class MockFeatureListService {
+  getFeatures() {
+    return of([{key: 'feature1', type: 'string', defaultValue: ''}]);
+  }
+  getFeatureById() {
+    return of({features: [{key: 'feature1', value: 'test'}]});
+  }
+  addFeatures() {
+    return of({});
+  }
+  editFeatures() {
+    return of({});
+  }
+}
 
-//   const mockAppConfig = {
-//     currency: 'USD',
-//     billingCycles: ['Monthly', 'Yearly'],
-//   };
+class MockOnBoardingService {}
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [AddPlanComponent],
-//       imports: [HttpClientTestingModule, ThemeModule],
-//       providers: [
-//         FormBuilder,
-//         OnBoardingService,
-//         NbToastrService,
-//         AnyAdapter,
-//         ApiService,
-//         {provide: APP_CONFIG, useValue: mockAppConfig},
-//         {
-//           provide: BillingPlanService,
-//           useValue: {
-//             addPlan: jasmine.createSpy('addPlan').and.returnValue(of(null)),
-//             editPlan: jasmine.createSpy('editPlan').and.returnValue(of(null)),
-//             getPlanById: jasmine
-//               .createSpy('getPlanById')
-//               .and.returnValue(of({})),
-//             getCurrencyDetails: jasmine
-//               .createSpy('getCurrencyDetails')
-//               .and.returnValue(of([])),
-//             getBillingCycles: jasmine
-//               .createSpy('getBillingCycles')
-//               .and.returnValue(of([])),
-//           }, // Mock BillingPlanService
-//         },
-//         {
-//           provide: NbDialogService,
-//           useValue: {
-//             open: jasmine.createSpy('open').and.returnValue({onClose: of([])}),
-//           }, // Mock NbDialogService
-//         },
-//         {
-//           provide: Router,
-//           useValue: {navigate: jasmine.createSpy('navigate')},
-//         },
-//         {
-//           provide: ActivatedRoute,
-//           useValue: {snapshot: {params: {id: '1'}}},
-//         },
-//         {
-//           provide: featureListService,
-//           useValue: {snapshot: {params: {id: '1'}}},
-//         },
-//       ],
-//     }).compileComponents();
-//   });
+const mockAppConfig: IAnyObject = {};
 
-//   beforeEach(() => {
-//     fixture = TestBed.createComponent(AddPlanComponent);
-//     component = fixture.componentInstance;
-//     fb = TestBed.inject(FormBuilder);
-//     featureListService = TestBed.inject(FeatureListService);
-//     onboardingService = TestBed.inject(OnBoardingService);
-//     toasterService = TestBed.inject(NbToastrService);
-//     billingplanService = TestBed.inject(BillingPlanService);
-//     dialogService = TestBed.inject(NbDialogService);
-//     router = TestBed.inject(Router);
-//     activateRoute = TestBed.inject(ActivatedRoute);
-//     fixture.detectChanges();
-//   });
+describe('AddPlanComponent', () => {
+  let component: AddPlanComponent;
+  let fixture: ComponentFixture<AddPlanComponent>;
+  let activateRoute: ActivatedRoute;
+  let fb: FormBuilder;
+  let router: Router;
+  let mockRouter;
+  let mockBillingPlanService;
+  let mockFeatureListService;
+  let mockToastrService;
+  let featureListService: FeatureListService;
+  let onboardingService: OnBoardingService;
+  let toasterService: NbToastrService;
+  let billingplanService: BillingPlanService;
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
+  beforeEach(async () => {
+    const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+    mockBillingPlanService = jasmine.createSpyObj('BillingPlanService', [
+      'addPlan',
+      'editPlan',
+      'getCurrencyDetails',
+      'getBillingCycles',
+      'getPlanById',
+    ]);
+    mockFeatureListService = jasmine.createSpyObj('FeatureListService', [
+      'getFeatures',
+      'getFeatureById',
+      'addFeatures',
+      'editFeatures',
+    ]);
+    const getCurrencydetails =
+      mockBillingPlanService.getCurrencyDetails.and.returnValue(of([]));
+    const getBillingCycledetails =
+      mockBillingPlanService.getBillingCycles.and.returnValue(of([]));
+    mockFeatureListService.getFeatures.and.returnValue(of([]));
 
-//   describe('ngOnInit', () => {
-//     it('should call getCurrencyDetails and getBillingCycleDetails', () => {
-//       spyOn(component, 'getCurrencyDetails');
-//       spyOn(component, 'getBillingCycleDetails');
+    await TestBed.configureTestingModule({
+      declarations: [AddPlanComponent],
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule,
+        NbThemeModule.forRoot(),
+        ThemeModule,
+        NbCardModule,
+        NbInputModule,
+        NbLayoutModule,
+      ],
+      providers: [
+        {provide: APP_CONFIG, useValue: mockAppConfig},
+        {provide: BillingPlanService, useValue: mockBillingPlanService},
+        {provide: FeatureListService, useValue: mockFeatureListService},
+        {provide: OnBoardingService, useClass: MockOnBoardingService},
+      ],
+    }).compileComponents();
+  });
 
-//       component.ngOnInit();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AddPlanComponent);
+    component = fixture.componentInstance;
+    activateRoute = TestBed.inject(ActivatedRoute);
+    fb = TestBed.inject(FormBuilder);
+    mockRouter = jasmine.createSpyObj(['navigate']);
+    featureListService = TestBed.inject(FeatureListService);
+    onboardingService = TestBed.inject(OnBoardingService);
+    toasterService = TestBed.inject(NbToastrService);
+    mockToastrService = jasmine.createSpyObj(['show']);
+    billingplanService = TestBed.inject(
+      BillingPlanService,
+    ) as jasmine.SpyObj<BillingPlanService>;
+    featureListService = TestBed.inject(
+      FeatureListService,
+    ) as jasmine.SpyObj<FeatureListService>;
+    router = TestBed.inject(Router);
+    fixture.detectChanges();
+  });
 
-//       expect(component.getCurrencyDetails).toHaveBeenCalled();
-//       expect(component.getBillingCycleDetails).toHaveBeenCalled();
-//     });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-//     it('should set isEditMode to true and call getPlanbyId if activateRoute.snapshot.params.id is truthy', () => {
-//       activateRoute.snapshot.params.id = '1';
-//       spyOn(component, 'getPlanbyId');
+  describe('ngOnInit', () => {
+    it('should call getCurrencyDetails and getBillingCycleDetails', () => {
+      spyOn(component, 'getCurrencyDetails');
+      spyOn(component, 'getBillingCycleDetails');
 
-//       component.ngOnInit();
+      component.ngOnInit();
 
-//       expect(component.isEditMode).toBeTrue();
-//       expect(component.getPlanbyId).toHaveBeenCalled();
-//     });
+      expect(component.getCurrencyDetails).toHaveBeenCalled();
+      expect(component.getBillingCycleDetails).toHaveBeenCalled();
+    });
 
-//     it('should call createFeatureControls', () => {
-//       spyOn(component, 'createFeatureControls');
+    it('should set isEditMode to true and call getPlanbyId if activateRoute.snapshot.params.id is truthy', () => {
+      activateRoute.snapshot.params.id = '1';
+      spyOn(component, 'getPlanbyId');
 
-//       component.ngOnInit();
+      component.ngOnInit();
 
-//       expect(component.createFeatureControls).toHaveBeenCalled();
-//     });
-//   });
+      expect(component.isEditMode).toBeTrue();
+      expect(component.getPlanbyId).toHaveBeenCalled();
+    });
+  });
 
-//   describe('addPlan', () => {
-//     beforeEach(() => {
-//       component.addPlanForm = fb.group({
-//         name: ['Test Plan', Validators.required],
-//         billingCycleId: [1, Validators.required],
-//         price: ['10.99'],
-//         currencyId: ['USD', Validators.required],
-//         description: ['Test Description', Validators.required],
-//         tier: [0, Validators.required],
-//         storage: [null],
-//         features: fb.group({}),
-//       });
-//     });
+  it('should call createFeatureControls', () => {
+    spyOn(component, 'createFeatureControls');
 
-//     it('should do nothing if addPlanForm is invalid', () => {
-//       component.addPlanForm.get('name')?.setValue('');
+    component.ngOnInit();
 
-//       component.addPlan();
+    expect(component.createFeatureControls).toHaveBeenCalled();
+  });
 
-//       expect(billingplanService.addPlan).not.toHaveBeenCalled();
-//       expect(toasterService.show).not.toHaveBeenCalled();
-//       expect(router.navigate).not.toHaveBeenCalled();
-//     });
-//   });
+  it('should update form controls when tier changes', () => {
+    component.onTierChange('STANDARD');
+    expect(component.showStorageSize).toBe(true);
 
-//   describe('createFeatureControls', () => {
-//     it('should create a form control for each feature in featureOptions', () => {
-//       component.featureOptions = [
-//         {
-//           name: 'Video Call',
-//           description: 'Whether to allow Video Call',
-//           key: 'VIDEO_CALL',
-//           value_type: 'boolean',
-//           default_value: true,
-//         },
-//         {
-//           name: 'Consultant Limit',
-//           description: 'Maximum number of participants',
-//           key: 'MAX_PARTICIPANTS',
-//           value_type: 'number',
-//           default_value: null,
-//         },
-//       ];
+    component.onTierChange('BASIC');
+    expect(component.showStorageSize).toBe(false);
+    expect(component.addPlanForm.get('size')?.value).toBeNull();
+  });
 
-//       component.createFeatureControls();
+  it('should create feature controls based on feature options', () => {
+    const features = [
+      {key: 'feature1', type: 'boolean'},
+      {key: 'feature2', type: 'number', defaultValue: 5},
+      {key: 'feature3', type: 'string'},
+    ] as Features[];
 
-//       expect(
-//         component.addPlanForm.get('features')?.get('VIDEO_CALL'),
-//       ).toBeInstanceOf(FormControl);
-//       expect(
-//         component.addPlanForm.get('features')?.get('MAX_PARTICIPANTS'),
-//       ).toBeInstanceOf(FormControl);
-//     });
+    component.featureOption = features;
+    component.createFeatureControls();
 
-//     it('should set the default value of the number form control to the default_value property of the feature', () => {
-//       component.featureOptions = [
-//         {
-//           name: 'Consultant Limit',
-//           description: 'Maximum number of participants',
-//           key: 'MAX_PARTICIPANTS',
-//           value_type: 'number',
-//           default_value: 5,
-//         },
-//       ];
+    const featuresGroup = component.addPlanForm.get('features') as FormGroup;
 
-//       component.createFeatureControls();
+    expect(featuresGroup.contains('feature1')).toBe(true);
+    expect(featuresGroup.contains('feature2')).toBe(true);
+    expect(featuresGroup.contains('feature3')).toBe(true);
+  });
 
-//       expect(
-//         component.addPlanForm.get('features')?.get('MAX_PARTICIPANTS')?.value,
-//       ).toBe(5);
-//     });
+  it('should remove feature from form controls', () => {
+    const feature = {key: 'feature1', type: 'boolean'} as Features;
 
-//     it('should set the validators of the number form control to Validators.pattern(/^[0-9]+$/)', () => {
-//       component.featureOptions = [
-//         {
-//           name: 'Consultant Limit',
-//           description: 'Maximum number of participants',
-//           key: 'MAX_PARTICIPANTS',
-//           value_type: 'number',
-//           default_value: null,
-//         },
-//       ];
+    component.featureOption = [feature];
+    component.createFeatureControls();
+    component.removeFeature(feature);
 
-//       component.createFeatureControls();
+    const featuresGroup = component.addPlanForm.get('features') as FormGroup;
 
-//       expect(
-//         component.addPlanForm.get('features')?.get('MAX_PARTICIPANTS')
-//           ?.validator,
-//       ).toBe(Validators.pattern(/^[0-9]+$/));
-//     });
+    expect(featuresGroup.contains('feature1')).toBe(false);
+  });
 
-//     it('should create an empty form control for value_type "boolean"', () => {
-//       component.featureOptions = [
-//         {
-//           name: 'Video Call',
-//           description: 'Whether to allow Video Call',
-//           key: 'VIDEO_CALL',
-//           value_type: 'boolean',
-//           default_value: true,
-//         },
-//       ];
+  it('should add a plan when addPlan is called', () => {
+    const addPlanSpy = mockBillingPlanService.addPlan.and.returnValue(
+      of({id: 'planId'}),
+    );
+    const addFeaturesSpy = mockFeatureListService.addFeatures.and.returnValue(
+      of({}),
+    );
 
-//       component.createFeatureControls();
+    component.addPlanForm.patchValue({
+      name: 'Test Plan',
+      billingCycleId: '123',
+      price: '100',
+      currencyId: 'USD',
+      description: 'Test Plan Description',
+      tier: 'BASIC',
+      size: 'SMALL',
+    });
+    spyOn(router, 'navigate');
+    spyOn(toasterService, 'show');
+    component.addPlan();
+    expect(addPlanSpy).toHaveBeenCalled();
+    expect(addFeaturesSpy).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/main/plans']);
+    expect(toasterService.show).toHaveBeenCalledWith('Plan added Successfully');
+  });
 
-//       expect(
-//         component.addPlanForm.get('features')?.get('VIDEO_CALL')?.value,
-//       ).toBeTrue();
-//     });
+  it('should call getPlanbyId and populate form with data', () => {
+    const mockPlan = {
+      name: 'Test Plan',
+      billingCycleId: 'monthly',
+      price: 100,
+      currencyId: 'USD',
+      description: 'Test description',
+      tier: 'STANDARD',
+      size: 'MEDIUM',
+    };
+    const mockFeature = {
+      features: [{key: 'feature1', value: {value: 'value1'}}],
+    };
+    mockBillingPlanService.getPlanById.and.returnValue(of(mockPlan));
+    mockFeatureListService.getFeatureById.and.returnValue(of(mockFeature));
 
-//     it('should create an empty form control for value_type "string"', () => {
-//       component.featureOptions = [
-//         {
-//           name: 'Welcome Message',
-//           description: 'Message displayed to users on login',
-//           key: 'WELCOME_MESSAGE',
-//           value_type: 'string',
-//           default_value: 'Welcome!',
-//         },
-//       ];
+    component.getPlanbyId();
 
-//       component.createFeatureControls();
+    expect(billingplanService.getPlanById).toHaveBeenCalled();
+    expect(featureListService.getFeatureById).toHaveBeenCalled();
+    expect(component.addPlanForm.get('name').value).toBe(mockPlan.name);
+    expect(component.addPlanForm.get('billingCycleId').value).toBe(
+      mockPlan.billingCycleId,
+    );
+  });
 
-//       expect(
-//         component.addPlanForm.get('features')?.get('WELCOME_MESSAGE')?.value,
-//       ).toBe('Welcome!');
-//     });
+  it('should call editPlan and navigate to plans on success', () => {
+    const mockResponse = {id: 'plan1'};
+    component.addPlanForm.patchValue({
+      name: 'Test Plan',
+      billingCycleId: '123',
+      price: '100',
+      currencyId: 'USD',
+      description: 'Test Plan Description',
+      tier: 'BASIC',
+      size: 'SMALL',
+    });
+    spyOn(router, 'navigate');
+    mockBillingPlanService.editPlan.and.returnValue(of(mockResponse));
+    mockFeatureListService.editFeatures.and.returnValue(of({}));
+    component.editPlan();
+    expect(mockBillingPlanService.editPlan).toHaveBeenCalled();
+    expect(mockFeatureListService.editFeatures).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/main/plans']);
+  });
 
-//     it('should create an empty form control for value_type "object"', () => {
-//       component.featureOptions = [
-//         {
-//           name: 'Contact Info',
-//           description: 'Contact Information',
-//           key: 'CONTACT_INFO',
-//           value_type: 'object',
-//           default_value: {email: 'test@example.com'},
-//         },
-//       ];
+  it('should call addPlan and navigate to plans on success', () => {
+    const mockResponse = {id: 'plan1'};
+    mockBillingPlanService.addPlan.and.returnValue(of(mockResponse));
+    mockFeatureListService.addFeatures.and.returnValue(of({}));
+    spyOn(router, 'navigate');
+    spyOn(toasterService, 'show');
 
-//       component.createFeatureControls();
+    component.addPlan();
+    expect(mockBillingPlanService.addPlan).toHaveBeenCalled();
+    expect(mockFeatureListService.addFeatures).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith(['/main/plans']);
+    expect(toasterService.show).toHaveBeenCalledWith('Plan added Successfully');
+  });
 
-//       expect(
-//         component.addPlanForm.get('features')?.get('CONTACT_INFO')?.value,
-//       ).toEqual({email: 'test@example.com'});
-//     });
-//   });
-
-//   describe('showAddFeaturesPopup', () => {
-//     it('should open AddFeaturesDialogComponent', () => {
-//       component.showAddFeaturesPopup();
-
-//       expect(dialogService.open).toHaveBeenCalledWith(
-//         AddFeaturesDialogComponent,
-//         {
-//           context: {
-//             selectedFeatures: component.selectedFeatures,
-//             featureOptions: component.featureOptions,
-//           },
-//         },
-//       );
-//     });
-//   });
-
-//   describe('update', () => {
-//     it('should update the completion status of task and subtasks if index is undefined', () => {
-//       component.task = {
-//         name: 'Main Task',
-//         completed: false,
-//         subtasks: [
-//           {name: 'Subtask 1', completed: false},
-//           {name: 'Subtask 2', completed: false},
-//           {name: 'Subtask 3', completed: false},
-//         ],
-//       };
-
-//       component.update(true);
-
-//       expect(component.task.completed).toBeTrue();
-//       expect(component.task.subtasks[0].completed).toBeTrue();
-//       expect(component.task.subtasks[1].completed).toBeTrue();
-//       expect(component.task.subtasks[2].completed).toBeTrue();
-//     });
-
-//     it('should call updateParentCompletion if an index is provided', () => {
-//       component.task = {
-//         name: 'Main Task',
-//         completed: false,
-//         subtasks: [
-//           {name: 'Subtask 1', completed: false},
-//           {name: 'Subtask 2', completed: false},
-//           {name: 'Subtask 3', completed: false},
-//         ],
-//       };
-
-//       spyOn(component, 'updateParentCompletion');
-
-//       component.update(true, 1);
-
-//       expect(component.updateParentCompletion).toHaveBeenCalled();
-//     });
-//   });
-
-//   describe('savePlan', () => {
-//     beforeEach(() => {
-//       component.addPlanForm = fb.group({
-//         name: ['Test Plan', Validators.required],
-//         billingCycleId: [1, Validators.required],
-//         price: ['10.99'],
-//         currencyId: ['USD', Validators.required],
-//         description: ['Test Description', Validators.required],
-//         tier: [0, Validators.required],
-//         storage: [null],
-//         features: fb.group({}),
-//       });
-//     });
-
-//     it('should call addPlan if isEditMode is false', () => {
-//       spyOn(component, 'addPlan');
-//       component.isEditMode = false;
-
-//       component.savePlan();
-
-//       expect(component.addPlan).toHaveBeenCalled();
-//     });
-
-//     it('should call editPlan if isEditMode is true', () => {
-//       spyOn(component, 'editPlan');
-//       component.isEditMode = true;
-
-//       component.savePlan();
-
-//       expect(component.editPlan).toHaveBeenCalled();
-//     });
-//   });
-// });
+  it('should cancel edit and navigate to plans', () => {
+    spyOn(router, 'navigate');
+    component.cancelEdit();
+    expect(router.navigate).toHaveBeenCalledWith(['/main/plans']);
+  });
+});
