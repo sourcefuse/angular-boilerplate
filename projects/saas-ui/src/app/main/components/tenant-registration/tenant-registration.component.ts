@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -6,17 +6,17 @@ import {
   AbstractControl,
   ValidatorFn,
 } from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {NbToastrService} from '@nebular/theme';
-import {Location} from '@angular/common';
-import {BillingPlanService, OnBoardingService} from '../../../shared/services';
-import {AnyObject} from '@project-lib/core/api/backend-filter';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NbToastrService } from '@nebular/theme';
+import { Location } from '@angular/common';
+import { BillingPlanService, OnBoardingService } from '../../../shared/services';
+import { AnyObject } from '@project-lib/core/api/backend-filter';
 import {
   TenantLead,
   TenantLeadWithPaymentMethod,
 } from '../../../shared/models/tenantLead.model';
-import {keyValidator} from '@project-lib/core/validators';
-import {COUNTRIES} from '../../../shared/constants/countries.constant';
+import { keyValidator } from '@project-lib/core/validators';
+import { COUNTRIES } from '../../../shared/constants/countries.constant';
 
 export enum PaymentMethod {
   Cash = 'cash',
@@ -37,7 +37,6 @@ export class TenantRegistrationComponent {
   subscriptionPlans: AnyObject[];
   leadId = '';
   countryOptions = COUNTRIES;
-  isSubmitting = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +60,7 @@ export class TenantRegistrationComponent {
         ],
         name: ['', [Validators.required]], // for company name
         email: ['', [Validators.required, Validators.email]],
+        communicationEmail: ['', [Validators.email]], // Add communicationEmail field
         address: [''],
         country: ['', [Validators.required]],
         zip: ['', [Validators.pattern('^[0-9]+$'), Validators.maxLength(9)]],
@@ -77,20 +77,20 @@ export class TenantRegistrationComponent {
         paymentMethod: ['', Validators.required],
         comment: [''],
       },
-      {validators: this.emailDomainMatchValidator},
+      { validators: this.emailDomainMatchValidator },
     );
   }
 
   paymentMethods = Object.values(PaymentMethod); // Use Object.values() to get the enum values
 
-  emailDomainMatchValidator(group: FormGroup): {[key: string]: boolean} | null {
+  emailDomainMatchValidator(group: FormGroup): { [key: string]: boolean } | null {
     const email = group.get('email').value;
     const domain = group.get('domains').value;
 
     if (email && domain) {
       const emailDomain = email.substring(email.lastIndexOf('@') + 1);
       if (emailDomain !== domain) {
-        return {domainMismatch: true};
+        return { domainMismatch: true };
       }
     }
     return null;
@@ -98,11 +98,11 @@ export class TenantRegistrationComponent {
 
   ngOnInit() {
     this.getRadioOptions();
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.leadId = params['leadId'];
     });
     // for automatically writing domain name from email
-    this.tenantRegForm.get('email').valueChanges.subscribe(email => {
+    this.tenantRegForm.get('email').valueChanges.subscribe((email) => {
       const emailDomain = email?.substring(email.lastIndexOf('@') + 1);
       if (emailDomain) {
         this.tenantRegForm.get('domains').setValue(emailDomain);
@@ -111,7 +111,7 @@ export class TenantRegistrationComponent {
   }
 
   getRadioOptions() {
-    this.billingPlanService.getPlanOptions().subscribe(res => {
+    this.billingPlanService.getPlanOptions().subscribe((res) => {
       this.subscriptionPlans = res;
     });
   }
@@ -120,9 +120,18 @@ export class TenantRegistrationComponent {
     this.router.navigate(['main/onboard-tenant-list']);
   }
 
+  onCommunicationEmailCheckboxChange(event: boolean) {
+    if (event) {
+      this.tenantRegForm
+        .get('communicationEmail')
+        .setValue(this.tenantRegForm.get('email').value);
+    } else {
+      this.tenantRegForm.get('communicationEmail').setValue('');
+    }
+  }
+
   onSubmit() {
     if (this.tenantRegForm.valid) {
-      this.isSubmitting = true;
       const userData = this.tenantRegForm.value;
       const user: TenantLeadWithPaymentMethod = {
         name: userData.name,
@@ -131,6 +140,7 @@ export class TenantRegistrationComponent {
           lastName: userData.lastName,
           email: userData.email,
           isPrimary: true,
+          communicationEmail: userData.communicationEmail, // Include communicationEmail
         },
         address: userData.address,
         zip: userData.zip,
@@ -152,7 +162,7 @@ export class TenantRegistrationComponent {
             'Unable register tenant. Please check your input and try again.',
             'Failure',
           );
-        },
+        }
       );
     }
   }
