@@ -1,12 +1,12 @@
 # [ARC Angular](https://github.com/sourcefuse/angular-boilerplate)
-[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)](https://www.npmjs.com/package/@angular/cli/v/14.0.0)
 
+[![Version](https://img.shields.io/badge/@angular/core-v14-brightgreen)](https://www.npmjs.com/package/@angular/cli/v/14.0.0)
 
 <!-- DOCUMENTATION -->
 
 ## Description
 
-  This boilerplate uses multiple projects in single Angular workspace, which helps the users to develop shareable libraries, and for enterprises to use a "monorepo" development style, with a single repository and global configuration for all Angular projects. This boilerplate can also help in increasing productivity, reduce risks, and improve the quality of application.Duplication and redundant code can be avoided by using boilerplate approach.
+This boilerplate uses multiple projects in single Angular workspace, which helps the users to develop shareable libraries, and for enterprises to use a "monorepo" development style, with a single repository and global configuration for all Angular projects. This boilerplate can also help in increasing productivity, reduce risks, and improve the quality of application.Duplication and redundant code can be avoided by using boilerplate approach.
 
 ## Usage
 
@@ -16,10 +16,10 @@
 git clone https://github.com/sourcefuse/angular-boilerplate
 ```
 
-### Step 2: Install the project dependencies by running the following command 
+### Step 2: Install the project dependencies by running the following command
 
 ```sh
-npm install 
+npm install
 ```
 
 After this, it will take a few minutes to set everything up, once that is done, you will see a folder structure generated like the following:-
@@ -42,15 +42,16 @@ BOILER-PLATE
 ├── README.md
 └── tsconfig.json
 ```
+
 Some predefined settings are initialised:-
 
 1. A GitHub PR template is created inside: `.github`
-2. Conventional commits are enabled using commitizen (`.cz-config.js`), commitlint (`commitlint-config.js`) 
+2. Conventional commits are enabled using commitizen (`.cz-config.js`), commitlint (`commitlint-config.js`)
    and husky for githooks.
-3. `.gitignore` for ignoring files from source code. Important for secure coding and keeping the repo clean 
-    on SCM (git)
+3. `.gitignore` for ignoring files from source code. Important for secure coding and keeping the repo clean
+   on SCM (git)
 4. `package.json` and `package-lock.json` for npm to work.
-5. The folder named `projects`: Projects will hold the multi application pattern and will always be 
+5. The folder named `projects`: Projects will hold the multi application pattern and will always be
    completely independent.
 6. The folder named `e2e`: Contains Playwright end-to-end tests organized by project (arc-docs, arc, saas-ui),
    each with dedicated configurations and isolated test suites.
@@ -58,9 +59,11 @@ Some predefined settings are initialised:-
 #### Projects
 
 ##### Structure
+
 ```
 PROJECTS
 ├── arc
+├── arc-docs
 ├── arc-lib
 │   └── src
 │          └──lib
@@ -69,35 +72,48 @@ PROJECTS
 │            ├── core
 │            └── theme
 ├── (...other files)
-```
-##### Purpose 
-  - As stated above, the boilerplate uses Multi-projects pattern to avoid duplication and is easy to maintain.
-    Here Boilerplate use "Projects" folder, which serves as a centralized location to organize and store project-related files and resources. For example:- An application can have multiple user portal :- admin-portal and super-admin-portal. In that case, the structure of the "Projects" folder can look like the following:-
-    ```
-    PROJECTS
-    ├── admin-portal
-    ├── super-admin-portal
-    ├── shared-lib
-    │   └── src
-    │          └──lib
-    │            ├── assets
-    │            ├── components
-    │            ├── core
-    │            └── theme
-    ├── (...other files)
-    ```
 
-  - Boilerplate allows users to Generate new applications at same workspace by using the following command:
- ```sh
-   ng generate application <application-name>
+```
+
+##### Purpose
+
+- As stated above, the boilerplate uses Multi-projects pattern to avoid duplication and is easy to maintain.
+  Here Boilerplate use "Projects" folder, which serves as a centralized location to organize and store project-related files and resources. For example:- An application can have multiple user portal :- admin-portal and super-admin-portal. In that case, the structure of the "Projects" folder can look like the following:-
+
+  ```
+  PROJECTS
+  ├── admin-portal
+  ├── super-admin-portal
+  ├── shared-lib
+  │   └── src
+  │          └──lib
+  │            ├── assets
+  │            ├── components
+  │            ├── core
+  │            └── theme
+  ├── (...other files)
   ```
 
-  1. Arc:
-  - This refers to the different applications inside single workspace sharing code.
+- Boilerplate allows users to Generate new applications at same workspace by using the following command:
 
-  2. Arc-Lib
-  - This refers to the shared library which can include components, services, pipes, directives, and other modules that are shared among the applications in the workspace. By using a shared library, we avoid duplicating and using redundant code across, which can save time and effort.
- 
+```sh
+  ng generate application <application-name>
+```
+
+1. Arc:
+
+- This refers to the different applications inside single workspace sharing code.
+
+2. Arc-Docs
+
+- The arc-docs project is not explicitly detailed in the provided context. However, based on the structure and purpose of the boilerplate, we can infer that the arc-docs project is likely intended for documentation purposes related to the applications and libraries
+
+For further reference you can refer [Here](/projects/arc-docs/Readme.md)
+
+3. Arc-Lib
+
+- This refers to the shared library which can include components, services, pipes, directives, and other modules that are shared among the applications in the workspace. By using a shared library, we avoid duplicating and using redundant code across, which can save time and effort.
+
 For further reference you can refer [Here](projects/arc-lib/README.md)
 
 ### Step 3: Setup the application to run
@@ -116,14 +132,15 @@ ng serve
 
 You'll see a message saying Server is running at `http://localhost:4200/` Navigate to this URL. The application will automatically reload if you change any of the source files.
 
-##  Build the Application
+## Build the Application
 
- To build the project, run the following command:-
- 
+To build the project, run the following command:-
+
 ```sh
 ng build
 ```
- The build artifacts will be stored in the `dist/` directory.
+
+The build artifacts will be stored in the `dist/` directory.
 
 ## Running unit tests
 
@@ -153,4 +170,5 @@ For detailed information about the Playwright setup, test organization, and adva
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## References
+
 1. https://angular.io/guide/file-structure
