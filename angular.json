@@ -103,14 +103,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "arc:build"
+            "buildTarget": "arc:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "arc:build:production"
+              "buildTarget": "arc:build:production"
             },
             "development": {
-              "browserTarget": "arc:build:development"
+              "buildTarget": "arc:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -118,7 +118,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "arc:build"
+            "buildTarget": "arc:build"
           }
         },
         "test": {
@@ -259,10 +259,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "arc-docs:build:production"
+              "buildTarget": "arc-docs:build:production"
             },
             "development": {
-              "browserTarget": "arc-docs:build:development"
+              "buildTarget": "arc-docs:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -270,7 +270,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "arc-docs:build"
+            "buildTarget": "arc-docs:build"
           }
         },
         "test": {
@@ -363,10 +363,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "saas-ui:build:production"
+              "buildTarget": "saas-ui:build:production"
             },
             "development": {
-              "browserTarget": "saas-ui:build:development"
+              "buildTarget": "saas-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -374,7 +374,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "saas-ui:build"
+            "buildTarget": "saas-ui:build"
           }
         },
         "test": {
@@ -401,5 +401,31 @@
   },
   "cli": {
     "analytics": "dcf534a6-f2c3-4c9c-99f0-3de66c9162da"
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

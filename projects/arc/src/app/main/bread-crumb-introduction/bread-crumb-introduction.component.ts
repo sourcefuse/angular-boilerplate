@@ -6,7 +6,6 @@ import {NbIconModule} from '@nebular/theme';
   selector: 'arc-bread-crumb-introduction',
   templateUrl: './bread-crumb-introduction.component.html',
   styleUrls: ['./bread-crumb-introduction.component.scss'],
-  standalone: true,
   imports: [CommonModule, NbIconModule],
 })
 export class BreadCrumbIntroductionComponent {

@@ -11,6 +11,7 @@ import {concatMap, takeUntil} from 'rxjs';
   selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  standalone: false,
 })
 export class MainComponent
   extends RouteComponentBaseDirective

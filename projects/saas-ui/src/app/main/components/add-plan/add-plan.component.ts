@@ -29,6 +29,7 @@ interface Task {
   selector: 'add-plan',
   templateUrl: './add-plan.component.html',
   styleUrls: ['./add-plan.component.scss'],
+  standalone: false,
 })
 export class AddPlanComponent implements OnInit {
   [x: string]: any;

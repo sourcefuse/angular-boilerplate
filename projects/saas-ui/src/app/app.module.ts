@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {OverlayModule} from '@angular/cdk/overlay';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CoreModule} from '@project-lib/core/core.module';
 import {
@@ -27,10 +27,10 @@ import {FeatureListService} from './shared/services/feature-list-service';
 
 @NgModule({
   declarations: [AppComponent, OnBoardingComponent],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     LocalizationModule,
     CoreModule,
     ThemeModule.forRoot('default'),
@@ -53,7 +53,7 @@ import {FeatureListService} from './shared/services/feature-list-service';
       provide: APP_CONFIG,
       useValue: environment,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

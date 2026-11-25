@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-backend-integration-doc',
   templateUrl: './backend-integration-doc.component.html',
   styleUrls: ['./backend-integration-doc.component.scss'],
+  standalone: false,
 })
 export class BackendIntegrationDocComponent {
   DataList: object[] = [

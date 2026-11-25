@@ -11,7 +11,6 @@ import {Location} from '@angular/common';
 
 @Component({
   selector: 'lib-header',
-  standalone: true,
   imports: [CommonModule, ThemeModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],

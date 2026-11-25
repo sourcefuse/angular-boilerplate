@@ -19,7 +19,6 @@ import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.const
 
 @Component({
   selector: 'lib-sidebar',
-  standalone: true,
   imports: [CommonModule, ThemeModule],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],

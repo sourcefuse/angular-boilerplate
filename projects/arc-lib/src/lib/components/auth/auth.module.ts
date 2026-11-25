@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -31,7 +31,6 @@ import {ResetPasswordComponent} from './reset-password/reset-password.component'
     ReactiveFormsModule,
     ThemeModule,
     AuthRoutingModule,
-    HttpClientModule,
     TranslateModule,
     NbAuthModule.forRoot({
       strategies: [
@@ -42,5 +41,6 @@ import {ResetPasswordComponent} from './reset-password/reset-password.component'
       forms: {},
     }),
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class AuthModule {}

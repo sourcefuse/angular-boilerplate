@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -17,7 +17,7 @@ import {HttpInterceptorProviders} from './interceptors';
 
 @NgModule({
   declarations: [ComponentBaseDirective],
-  providers: [HttpInterceptorProviders],
+  exports: [StoreModule, ApiModule, ComponentBaseDirective],
   imports: [
     CommonModule,
     NgxPermissionsModule.forRoot(),
@@ -26,7 +26,6 @@ import {HttpInterceptorProviders} from './interceptors';
       serverLogLevel: NgxLoggerLevel.OFF,
     }),
     FormsModule,
-    HttpClientModule,
     RouterModule,
     ApiModule,
     LocalizationModule,
@@ -34,7 +33,10 @@ import {HttpInterceptorProviders} from './interceptors';
     ToasterModule,
     CoreAuthModule,
   ],
-  exports: [StoreModule, ApiModule, ComponentBaseDirective],
+  providers: [
+    HttpInterceptorProviders,
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class CoreModule extends EnsureModuleLoadedOnce {
   // Ensure that CoreModule is only loaded into AppModule

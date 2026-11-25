@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -20,7 +20,6 @@ import {LoginComponent} from './login/login.component';
     ReactiveFormsModule,
     ThemeModule,
     AuthRoutingModule,
-    HttpClientModule,
     NbLayoutModule,
     NbThemeModule.forRoot(),
     NbAuthModule.forRoot({
@@ -32,5 +31,6 @@ import {LoginComponent} from './login/login.component';
       forms: {},
     }),
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class AuthModule {}

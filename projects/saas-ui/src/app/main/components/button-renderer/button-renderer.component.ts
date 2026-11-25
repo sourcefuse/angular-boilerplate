@@ -12,6 +12,7 @@ import {AnyObject} from '@project-lib/core/api';
   selector: 'app-button-renderer',
   templateUrl: './button-renderer.component.html',
   styleUrls: ['./button-renderer.component.scss'],
+  standalone: false,
 })
 export class ButtonRendererComponent implements ICellRendererAngularComp {
   params: AnyObject;

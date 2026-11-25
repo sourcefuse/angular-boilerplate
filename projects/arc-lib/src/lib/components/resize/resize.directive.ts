@@ -12,6 +12,7 @@ import {ResizeEvent} from './types';
 
 @Directive({
   selector: '[Resize]',
+  standalone: false,
 })
 export class ResizeDirective
   extends ComponentBaseDirective

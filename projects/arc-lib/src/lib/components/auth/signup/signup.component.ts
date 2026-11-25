@@ -9,6 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   selector: 'lib-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
+  standalone: false,
 })
 export class SignupComponent extends RouteComponentBaseDirective {
   signupForm: FormGroup;

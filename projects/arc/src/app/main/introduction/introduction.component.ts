@@ -7,6 +7,7 @@ import {NEBULAR_COMP_ITEMS} from '../constants/nebularComponents.constants';
   selector: 'arc-introduction',
   templateUrl: './introduction.component.html',
   styleUrls: ['./introduction.component.scss'],
+  standalone: false,
 })
 export class IntroductionComponent {
   config = [];

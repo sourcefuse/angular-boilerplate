@@ -36,6 +36,7 @@ import {GanttColumnComponent} from './gantt-column/gantt-column.component';
   selector: 'gantt',
   templateUrl: './bb-gantt.component.html',
   styleUrls: ['./bb-gantt.component.scss'],
+  standalone: false,
 })
 export class BbGanttComponent<T extends AnyObject>
   extends ComponentBaseDirective

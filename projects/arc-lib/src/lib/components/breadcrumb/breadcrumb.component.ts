@@ -8,7 +8,6 @@ import {NbIconModule} from '@nebular/theme';
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.component.html',
-  standalone: true,
   imports: [CommonModule, RouterModule, NbIconModule],
   styleUrls: ['./breadcrumb.component.scss'],
 })

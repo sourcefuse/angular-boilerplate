@@ -1,9 +1,5 @@
 import {Injectable} from '@angular/core';
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  RouterStateSnapshot,
-} from '@angular/router';
+import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {UserSessionStoreService} from '@project-lib/core/index';
 import {Observable, catchError, map, of, tap} from 'rxjs';
 import {OnBoardingService} from '../../shared/services/on-boarding-service';
@@ -11,7 +7,7 @@ import {OnBoardingService} from '../../shared/services/on-boarding-service';
 @Injectable({
   providedIn: 'root',
 })
-export class EmailVerifyGuard implements CanActivate {
+export class EmailVerifyGuard {
   constructor(
     private readonly onboardingService: OnBoardingService,
     private readonly store: UserSessionStoreService,

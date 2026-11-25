@@ -1,12 +1,13 @@
 import {
-  HttpClientTestingModule,
   HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import {TestBed} from '@angular/core/testing';
 
 import {ApiModule} from './api.module';
 import {ApiService} from './api.service';
 import {NameId} from './models';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 describe('ApiService', () => {
   let service: ApiService;
@@ -15,7 +16,11 @@ describe('ApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ApiModule],
+      imports: [ApiModule],
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+      ],
     });
     service = TestBed.inject(ApiService);
     httpController = TestBed.inject(HttpTestingController);

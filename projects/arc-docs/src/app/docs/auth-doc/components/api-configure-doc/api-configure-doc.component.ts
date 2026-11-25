@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-api-configure-doc',
   templateUrl: './api-configure-doc.component.html',
   styleUrls: ['./api-configure-doc.component.scss'],
+  standalone: false,
 })
 export class ApiConfigureDocComponent {
   envVariables: object[] = [

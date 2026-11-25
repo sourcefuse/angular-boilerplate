@@ -6,7 +6,6 @@ import {UserService} from './user.service';
 
 @Component({
   selector: 'lib-user',
-  standalone: true,
   templateUrl: './user.component.html',
   imports: [CommonModule, RouterModule],
 })

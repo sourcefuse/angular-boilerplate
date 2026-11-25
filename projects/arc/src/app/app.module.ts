@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {IconPacksManagerService} from '@project-lib/theme/services';
 import {TranslateService, TranslateStore} from '@ngx-translate/core';
 import {
@@ -31,10 +31,10 @@ import {NbEvaIconsModule} from '@nebular/eva-icons';
 @NgModule({
   declarations: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     LocalizationModule,
     CoreModule,
     ThemeModule.forRoot('default'),
@@ -62,7 +62,7 @@ import {NbEvaIconsModule} from '@nebular/eva-icons';
       provide: APP_CONFIG,
       useValue: environment,
     },
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}

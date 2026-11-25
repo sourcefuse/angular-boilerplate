@@ -7,6 +7,7 @@ import {IconPacksManagerService} from '@project-lib/theme/services';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  standalone: false,
 })
 export class AppComponent extends ComponentBaseDirective implements OnInit {
   title = 'boiler-plate-ui';

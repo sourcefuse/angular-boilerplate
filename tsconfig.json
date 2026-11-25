@@ -8,11 +8,10 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
-    "lib": ["ES2019", "dom"],
     "useDefineForClassFields": false,
     "paths": {
       "@main-project/boiler/env/*": ["projects/arc/src/environments/*"],

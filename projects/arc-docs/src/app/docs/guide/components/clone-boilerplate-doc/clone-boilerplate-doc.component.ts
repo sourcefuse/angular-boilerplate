@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-clone-boilerplate-doc',
   templateUrl: './clone-boilerplate-doc.component.html',
   styleUrls: ['./clone-boilerplate-doc.component.scss'],
+  standalone: false,
 })
 export class CloneBoilerplateDocComponent {
   yourDataList: object[] = [

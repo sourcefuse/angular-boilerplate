@@ -1,5 +1,9 @@
 import {CommonModule} from '@angular/common';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -18,7 +22,6 @@ export function httpLoaderFactory(http: HttpClient) {
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: LanguageTranslation.ENGLISH,
       useDefaultLang: true,
@@ -29,5 +32,6 @@ export function httpLoaderFactory(http: HttpClient) {
       },
     }),
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class LocalizationModule {}

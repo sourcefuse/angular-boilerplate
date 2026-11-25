@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-ui-configure-doc',
   templateUrl: './ui-configure-doc.component.html',
   styleUrls: ['./ui-configure-doc.component.scss'],
+  standalone: false,
 })
 export class UiConfigureDocComponent {
   loginWrapper: object[] = [

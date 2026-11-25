@@ -49,6 +49,7 @@ import {GroupConfig, Panel, ValueType} from '../types';
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SelectComponent<
     InputType,

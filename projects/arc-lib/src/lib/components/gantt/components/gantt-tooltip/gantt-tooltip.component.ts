@@ -7,6 +7,7 @@ import {SubAllocation} from '../../types';
   selector: 'gantt-tooltip',
   templateUrl: './gantt-tooltip.component.html',
   styleUrls: ['./gantt-tooltip.component.scss'],
+  standalone: false,
 })
 export class GanttTooltipComponent {
   item!: SubAllocation;

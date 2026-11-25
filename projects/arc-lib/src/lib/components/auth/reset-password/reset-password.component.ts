@@ -11,6 +11,7 @@ import {NbToastrService} from '@nebular/theme';
   selector: 'lib-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss'],
+  standalone: false,
 })
 export class ResetPasswordComponent extends RouteComponentBaseDirective {
   resetPasswordForm: FormGroup;

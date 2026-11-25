@@ -12,6 +12,7 @@ import {COUNTRIES} from '../../../shared/constants/countries.constant';
   selector: 'app-add-lead',
   templateUrl: './add-lead.component.html',
   styleUrls: ['./add-lead.component.scss'],
+  standalone: false,
 })
 export class AddLeadComponent {
   addLeadForm: FormGroup;

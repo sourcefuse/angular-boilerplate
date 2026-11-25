@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'lib-cli-wrapper',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './cli-wrapper.component.html',
   styleUrls: ['./cli-wrapper.component.scss'],

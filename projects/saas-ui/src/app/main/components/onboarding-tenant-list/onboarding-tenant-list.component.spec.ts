@@ -5,7 +5,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import {Router} from '@angular/router';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {of} from 'rxjs';
@@ -16,6 +16,7 @@ import {GridApi} from 'ag-grid-community';
 import {ThemeModule} from '@project-lib/theme/theme.module';
 import {NbThemeModule} from '@nebular/theme';
 import {AgGridModule} from 'ag-grid-angular';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 
 describe('OnboardingTenantListComponent', () => {
   let component: OnboardingTenantListComponent;
@@ -62,12 +63,7 @@ describe('OnboardingTenantListComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [OnboardingTenantListComponent],
-      imports: [
-        HttpClientTestingModule,
-        ThemeModule,
-        NbThemeModule.forRoot(),
-        AgGridModule,
-      ],
+      imports: [ThemeModule, NbThemeModule.forRoot(), AgGridModule],
       providers: [
         {provide: APP_CONFIG, useValue: mockAppConfig},
         {
@@ -88,6 +84,8 @@ describe('OnboardingTenantListComponent', () => {
           useValue: {snapshot: {paramMap: {get: () => '1'}}},
         },
         Location,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
       ],
     }).compileComponents();
 

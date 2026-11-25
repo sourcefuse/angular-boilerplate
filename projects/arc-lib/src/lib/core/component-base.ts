@@ -3,6 +3,7 @@ import {Subject} from 'rxjs';
 
 @Directive({
   selector: 'app-dir',
+  standalone: false,
 })
 export class ComponentBaseDirective implements OnDestroy {
   protected _destroy$: Subject<void> = new Subject();
