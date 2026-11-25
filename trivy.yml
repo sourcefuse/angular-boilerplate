@@ -1,0 +1,14 @@
+format: table
+exit-code: 1
+severity:
+  - HIGH
+  - CRITICAL
+security-checks:
+  - vuln
+  - secret
+  - license
+vulnerability:
+  type:
+    - os
+    - library
+  ignore-unfixed: true
