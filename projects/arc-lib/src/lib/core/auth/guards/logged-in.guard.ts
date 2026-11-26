@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {catchError, concatMap, Observable, of, tap} from 'rxjs';
 
 import {AuthService} from '../auth.service';
@@ -9,7 +9,7 @@ import {environment} from '@main-project/boiler/env/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class LoggedInGuard implements CanActivate {
+export class LoggedInGuard {
   constructor(
     private readonly authService: AuthService,
     private readonly systemStore: SystemStoreFacadeService,

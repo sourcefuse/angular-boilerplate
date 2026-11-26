@@ -30,6 +30,7 @@ export enum PaymentMethod {
   selector: 'app-tenant-registration',
   templateUrl: './tenant-registration.component.html',
   styleUrls: ['./tenant-registration.component.scss'],
+  standalone: false,
 })
 export class TenantRegistrationComponent {
   tenantRegForm: FormGroup;

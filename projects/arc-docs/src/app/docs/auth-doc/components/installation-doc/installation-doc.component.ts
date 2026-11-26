@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-installation-doc',
   templateUrl: './installation-doc.component.html',
   styleUrls: ['./installation-doc.component.scss'],
+  standalone: false,
 })
 export class InstallationDocComponent {
   dataWrapper: object[] = [

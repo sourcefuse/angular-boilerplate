@@ -4,6 +4,7 @@ import {Component, Input} from '@angular/core';
   selector: 'gantt-header',
   templateUrl: './gantt-header.component.html',
   styleUrls: ['./gantt-header.component.scss'],
+  standalone: false,
 })
 export class GanttHeaderComponent {
   @Input()

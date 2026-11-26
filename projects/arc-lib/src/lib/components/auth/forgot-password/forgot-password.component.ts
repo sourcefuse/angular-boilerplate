@@ -10,6 +10,7 @@ import {NbToastrService} from '@nebular/theme';
   selector: 'lib-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
+  standalone: false,
 })
 export class ForgotPasswordComponent
   extends RouteComponentBaseDirective

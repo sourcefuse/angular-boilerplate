@@ -20,6 +20,7 @@ import {Plan} from '../../../shared/models';
   selector: 'app-billing-plan',
   templateUrl: './billing-plan.component.html',
   styleUrls: ['./billing-plan.component.scss'],
+  standalone: false,
 })
 export class BillingPlanComponent extends RouteComponentBaseDirective {
   gridApi: GridApi;

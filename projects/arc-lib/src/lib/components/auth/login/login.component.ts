@@ -10,6 +10,7 @@ import {concatMap, throwError} from 'rxjs';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  standalone: false,
 })
 export class LoginComponent extends RouteComponentBaseDirective {
   loginForm: FormGroup;

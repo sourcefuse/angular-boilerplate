@@ -24,6 +24,7 @@ import {HttpClient} from '@angular/common/http';
   selector: 'app-onboarding-tenant-list',
   templateUrl: './onboarding-tenant-list.component.html',
   styleUrls: ['./onboarding-tenant-list.component.scss'],
+  standalone: false,
 })
 export class OnboardingTenantListComponent extends RouteComponentBaseDirective {
   gridApi: GridApi;

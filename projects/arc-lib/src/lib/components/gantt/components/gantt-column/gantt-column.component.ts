@@ -7,6 +7,7 @@ import {ContextItemFilter, GanttTaskValue} from '../../types';
   selector: 'gantt-column',
   templateUrl: './gantt-column.component.html',
   styleUrls: ['./gantt-column.component.scss'],
+  standalone: false,
 })
 export class GanttColumnComponent<T extends AnyObject> {
   @Input()

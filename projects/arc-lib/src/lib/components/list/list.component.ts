@@ -23,6 +23,7 @@ import {GroupConfig} from '../selector/types';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class ListComponent<
     InputType,

@@ -15,6 +15,7 @@ import {SIDEBAR_MENU_ITEMS} from '@project-lib/core/constants/sidebar-menu.const
   selector: 'main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
+  standalone: false,
 })
 export class MainComponent
   extends RouteComponentBaseDirective

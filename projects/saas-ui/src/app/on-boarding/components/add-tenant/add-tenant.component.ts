@@ -21,6 +21,7 @@ declare let Stripe: (key: string) => Stripe;
   selector: 'app-add-tenant',
   templateUrl: './add-tenant.component.html',
   styleUrls: ['./add-tenant.component.scss'],
+  standalone: false,
 })
 export class AddTenantComponent implements OnInit, AfterViewInit {
   addTenantForm: FormGroup;

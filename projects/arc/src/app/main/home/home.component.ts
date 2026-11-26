@@ -9,6 +9,7 @@ import {takeUntil} from 'rxjs';
   selector: 'home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  standalone: false,
 })
 export class HomeComponent
   extends RouteComponentBaseDirective
@@ -44,7 +45,7 @@ export class HomeComponent
   getGreetingText() {
     // Intentionally ignored as this is needed to be done sequentially
     // sonarignore:start
-    const data = [
+    const data: [number, string][] = [
         [21, 'Good Night'],
         [16, 'Good Evening'],
         [12, 'Good Afternoon'],

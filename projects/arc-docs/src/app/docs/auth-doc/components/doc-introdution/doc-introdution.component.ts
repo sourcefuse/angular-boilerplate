@@ -4,6 +4,7 @@ import {Component} from '@angular/core';
   selector: 'app-doc-introdution',
   templateUrl: './doc-introdution.component.html',
   styleUrls: ['./doc-introdution.component.scss'],
+  standalone: false,
 })
 export class DocIntrodutionComponent {
   strategyList: object[] = [

@@ -1,0 +1,16 @@
+format: table
+exit-code: 1
+severity:
+  - HIGH
+  - CRITICAL
+scan:
+  scanners:
+    - vuln
+    - secret
+    - license
+pkg:
+  types:
+    - os
+    - library
+vulnerability:
+  ignore-unfixed: true

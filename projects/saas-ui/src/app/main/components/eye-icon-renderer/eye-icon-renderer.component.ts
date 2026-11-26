@@ -6,6 +6,7 @@ import {ICellRendererAngularComp} from 'ag-grid-angular';
   selector: 'app-eye-icon-renderer',
   templateUrl: './eye-icon-renderer.component.html',
   styleUrls: ['./eye-icon-renderer.component.scss'],
+  standalone: false,
 })
 export class EyeIconRendererComponent implements ICellRendererAngularComp {
   private params: any;

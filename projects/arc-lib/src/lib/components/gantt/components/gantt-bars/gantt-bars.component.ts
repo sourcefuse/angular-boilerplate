@@ -13,6 +13,7 @@ import {
   selector: 'gantt-bars',
   templateUrl: './gantt-bars.component.html',
   styleUrls: ['./gantt-bars.component.scss'],
+  standalone: false,
 })
 export class GanttBarsComponent<T extends AnyObject> {
   item!: GanttTaskValue<T>;

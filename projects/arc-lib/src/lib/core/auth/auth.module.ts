@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {NgxPermissionsModule} from 'ngx-permissions';
@@ -15,7 +15,7 @@ import {StoreModule} from '../store';
     ApiModule,
     StoreModule,
     NgxPermissionsModule.forChild(),
-    HttpClientModule,
   ],
+  providers: [provideHttpClient(withInterceptorsFromDi())],
 })
 export class CoreAuthModule {}

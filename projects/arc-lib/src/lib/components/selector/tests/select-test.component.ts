@@ -5,6 +5,7 @@ import {NameIdRequired} from '@project-lib/core/api';
 @Component({
   selector: 'select-test',
   templateUrl: './select-test.component.html',
+  standalone: false,
 })
 export class SelectTestComponent {
   options: NameIdRequired[] = [];

@@ -4,5 +4,6 @@ import {Component} from '@angular/core';
   selector: 'app-verification-complete',
   templateUrl: './verification-complete.component.html',
   styleUrls: ['./verification-complete.component.scss'],
+  standalone: false,
 })
 export class VerificationCompleteComponent {}

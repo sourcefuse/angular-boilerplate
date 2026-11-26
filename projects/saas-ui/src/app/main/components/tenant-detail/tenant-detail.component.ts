@@ -7,6 +7,7 @@ import {TenantFacadeService} from '../../../shared/services';
   selector: 'app-tenant-detail',
   templateUrl: './tenant-detail.component.html',
   styleUrls: ['./tenant-detail.component.scss'],
+  standalone: false,
 })
 export class TenantDetailComponent {
   tenantDetailForm: FormGroup;

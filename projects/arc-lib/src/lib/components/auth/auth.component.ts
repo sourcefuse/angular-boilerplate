@@ -6,6 +6,7 @@ import {NbAuthComponent, NbAuthService} from '@nebular/auth';
   selector: 'auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
+  standalone: false,
 })
 export class AuthComponent extends NbAuthComponent {
   image: string;

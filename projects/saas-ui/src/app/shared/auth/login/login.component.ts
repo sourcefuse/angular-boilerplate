@@ -11,6 +11,7 @@ import {AuthService} from '@project-lib/core/auth';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  standalone: false,
 })
 export class LoginComponent extends RouteComponentBaseDirective {
   loginForm: FormGroup;

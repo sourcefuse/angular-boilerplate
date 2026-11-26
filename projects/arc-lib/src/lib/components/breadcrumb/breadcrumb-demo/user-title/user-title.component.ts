@@ -6,6 +6,7 @@ import {TitleService} from './user-title.service';
 @Component({
   selector: 'lib-user-title',
   templateUrl: './user-title.component.html',
+  standalone: false,
 })
 export class UserTitleComponent {
   title: TitleDetails;

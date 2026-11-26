@@ -22,6 +22,7 @@ import {ButtonRendererComponent} from '../button-renderer/button-renderer.compon
   selector: 'app-manage-plans',
   templateUrl: './manage-plans.component.html',
   styleUrls: ['./manage-plans.component.scss'],
+  standalone: false,
 })
 export class ManagePlansComponent extends RouteComponentBaseDirective {
   [x: string]: any;

@@ -13,6 +13,7 @@ import {DOCUMENTATION_MENU_ITEMS} from '../constants/docs-menu.constant';
   selector: 'app-docs',
   templateUrl: './docs.component.html',
   styleUrls: ['./docs.component.scss'],
+  standalone: false,
 })
 export class DocsComponent extends RouteComponentBaseDirective {
   constructor(

@@ -19,6 +19,7 @@ import {HttpClient} from '@angular/common/http';
   selector: 'app-lead',
   templateUrl: './lead-list.component.html',
   styleUrls: ['./lead-list.component.scss'],
+  standalone: false,
 })
 export class LeadListComponent extends RouteComponentBaseDirective {
   // defining column names here
